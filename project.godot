@@ -1,0 +1,115 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Node",
+"class": "CharacterAttr",
+"language": "GDScript",
+"path": "res://class/CharacterAttr.gd"
+}, {
+"base": "Node",
+"class": "CharacterCard",
+"language": "GDScript",
+"path": "res://class/CharacterCard.gd"
+}, {
+"base": "Node",
+"class": "CharacterInfo",
+"language": "GDScript",
+"path": "res://class/CharacterInfo.gd"
+}, {
+"base": "Node",
+"class": "CharacterState",
+"language": "GDScript",
+"path": "res://class/CharacterState.gd"
+}, {
+"base": "Node",
+"class": "EquipmentAttr",
+"language": "GDScript",
+"path": "res://class/EquipmentAttr.gd"
+}, {
+"base": "Node",
+"class": "EquipmentCard",
+"language": "GDScript",
+"path": "res://class/EquipmentCard.gd"
+}, {
+"base": "Node",
+"class": "EquipmentExtraAttr",
+"language": "GDScript",
+"path": "res://class/EquipmentExtraAttr.gd"
+}, {
+"base": "Node",
+"class": "EquipmentInfo",
+"language": "GDScript",
+"path": "res://class/EquipmentInfo.gd"
+}, {
+"base": "Node",
+"class": "EquipmentRequire",
+"language": "GDScript",
+"path": "res://class/EquipmentRequire.gd"
+}, {
+"base": "Node",
+"class": "SkillAttr",
+"language": "GDScript",
+"path": "res://class/SkillAttr.gd"
+}, {
+"base": "Node",
+"class": "SkillCard",
+"language": "GDScript",
+"path": "res://class/SkillCard.gd"
+}, {
+"base": "Node",
+"class": "SkillCondition",
+"language": "GDScript",
+"path": "res://class/SkillCondition.gd"
+}, {
+"base": "Node",
+"class": "SkillEffect",
+"language": "GDScript",
+"path": "res://class/SkillEffect.gd"
+}, {
+"base": "Node",
+"class": "SkillInfo",
+"language": "GDScript",
+"path": "res://class/SkillInfo.gd"
+} ]
+_global_script_class_icons={
+"CharacterAttr": "",
+"CharacterCard": "",
+"CharacterInfo": "",
+"CharacterState": "",
+"EquipmentAttr": "",
+"EquipmentCard": "",
+"EquipmentExtraAttr": "",
+"EquipmentInfo": "",
+"EquipmentRequire": "",
+"SkillAttr": "",
+"SkillCard": "",
+"SkillCondition": "",
+"SkillEffect": "",
+"SkillInfo": ""
+}
+
+[application]
+
+config/name="Death Poem"
+run/main_scene="res://Node.tscn"
+config/icon="res://icon.png"
+
+[gui]
+
+common/drop_mouse_on_gui_input_disabled=true
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
