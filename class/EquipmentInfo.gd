@@ -3,7 +3,8 @@ class_name EquipmentInfo
 
 var e_name setget setName
 var introduction setget setIntroduction
-var avator setget setAvator
+var avator_name setget setAvatorName
+var avator
 
 func setName(e_name_):
 	if e_name != null:
@@ -15,15 +16,27 @@ func setIntroduction(introduction_):
 		return
 	introduction = introduction_
 	
-func setAvator(avator_):
-	if avator != null:
+func setAvatorName(avator_name_):
+	if avator_name_ != null:
 		return
-	avator = avator_
-	
-func loadData(data_pack):
-	#TODO
-	pass
+	avator_name = avator_name_
+
 
 func pack():
-	#TODO
-	pass
+	var data_pack = {}
+	data_pack["e_name"] = e_name
+	data_pack["introduction"] = introduction
+	data_pack["avator_name"] = avator_name
+	
+	return data_pack
+
+func loadAvator():
+	avator = ResourceTool.loadImage(avator_name)
+
+static func loadPack(data_pack):
+	var info = load("res://class/EquipmentInfo.gd").new()
+	info.e_name = data_pack["e_name"]
+	info.introduction = data_pack["introduction"]
+	info.avator = data_pack["avator"]
+	
+	return info

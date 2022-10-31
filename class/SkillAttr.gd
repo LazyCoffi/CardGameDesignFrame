@@ -33,19 +33,15 @@ func isAuto():
 	return true if (type & AUTO) > 0 else false
 
 func addCondition(condition):
-	assert(condition is SkillCondition)
 	conditions[condition.c_name] = condition
 
 func delCondition(condition):
-	assert(condition is SkillCondition)
 	conditions.erase(condition.c_name)
 
 func addEffect(effect):
-	assert(effect is SkillEffect)
 	effects[effect.e_name] = effect
 	
 func delEffect(effect):
-	assert(effect is SkillEffect)
 	effects.erase(effect.e_name)
 
 func getConditions():
@@ -59,4 +55,20 @@ func getEffects():
 
 func getEffectNames():
 	return effects.keys()
+
+func pack():
+	var data_pack = {}
+	data_pack["type"] = type
+	data_pack["conditions"] = conditions
+	data_pack["effects"] = effects
 	
+	return data_pack
+
+static func loadPack(data_pack):
+	var attr = load("res://class/SkillAttr.gd").new()
+	
+	attr.type = data_pack["type"]
+	attr.conditions = data_pack["conditions"]
+	attr.effects = data_pack["effects"]
+	
+	return attr

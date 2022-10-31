@@ -11,7 +11,7 @@ var max_right_arm_hp setget setMaxRightArmHP
 var right_arm_hp setget setRightArmHP
 var max_left_leg_hp setget setMaxLeftLegHP
 var left_leg_hp setget setMaxLeftLegHP
-var max_right_leg_hp setget setRightLegHP
+var max_right_leg_hp setget setMaxRightLegHP
 var right_leg_hp setget setRightLegHP
 var max_stress setget setMaxStress
 var stress setget setStress
@@ -20,8 +20,7 @@ var weight setget setWeight
 var max_power setget setMaxPower
 var power setget setPower
 
-var static_buff = []
-var continous_buff = []
+var buffs = {}
 
 func setMaxHeadHP(max_head_hp_):
 	max_head_hp = max(max_head_hp_, 1)
@@ -94,11 +93,65 @@ func setPower(power_):
 	assert(max_power != null)
 	power = max(0, power_)
 	power = max(max_power, power)
-	
-func load_pack(data_pack):
-	#TODO
-	pass
+
+func addBuff(buff):
+	buffs[buff.buff] = buff
+
+func delBuff(buff):
+	buffs.erase(buff.buff)
+
+func getBuffs():
+	return buffs.values()
+
+func getBuffNames():
+	return buffs.keys()
 
 func pack():
-	#TODO
-	pass
+	var data_pack = {}
+	data_pack["max_head_hp"] = max_head_hp
+	data_pack["head_hp"] = head_hp
+	data_pack["max_chest_hp"] = max_chest_hp
+	data_pack["chest_hp"] = chest_hp
+	data_pack["max_left_arm_hp"] = max_left_arm_hp
+	data_pack["left_arm_hp"] = left_arm_hp
+	data_pack["max_right_arm_hp"] = max_right_arm_hp
+	data_pack["right_arm_hp"] = right_arm_hp
+	data_pack["max_left_leg_hp"] = max_left_leg_hp
+	data_pack["left_leg_hp"] = max_left_leg_hp
+	data_pack["max_right_leg_hp"] = max_right_leg_hp
+	data_pack["right_leg_hp"] = right_leg_hp
+	data_pack["max_stress"] = max_stress
+	data_pack["stress"] = stress
+	data_pack["max_weight"] = max_weight
+	data_pack["weight"] = weight
+	data_pack["max_power"] = max_power
+	data_pack["power"] = power
+	data_pack["buffs"] = buffs
+	
+	return data_pack
+
+static func loadPack(data_pack):
+	assert(data_pack is Dictionary)
+	
+	var state = load("res://class/CharacterState.gd").new()
+	state.max_head_hp = int(data_pack["max_head_hp"])
+	state.head_hp = int(data_pack["head_hp"])
+	state.max_chest_hp = int(data_pack["max_chest_hp"])
+	state.chest_hp = int(data_pack["chest_hp"])
+	state.max_left_arm_hp = int(data_pack["max_left_arm_hp"])
+	state.left_arm_hp = int(data_pack["left_arm_hp"])
+	state.max_right_arm_hp = int(data_pack["max_right_arm_hp"])
+	state.right_arm_hp = int(data_pack["right_arm_hp"])
+	state.max_left_leg_hp = int(data_pack["max_left_leg_hp"])
+	state.left_leg_hp = int(data_pack["left_leg_hp"])
+	state.max_right_leg_hp = int(data_pack["max_right_leg_hp"])
+	state.right_leg_hp = int(data_pack["right_leg_hp"])
+	state.max_stress = int(data_pack["max_stress"])
+	state.stress = int(data_pack["stress"])
+	state.max_weight = int(data_pack["max_weight"])
+	state.weight = int(data_pack["weight"])
+	state.max_power = int(data_pack["max_power"])
+	state.power = int(data_pack["power"])
+	state.buffs = data_pack["buffs"]
+	
+	return state

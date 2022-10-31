@@ -85,10 +85,30 @@ func getRequirement():
 	
 	return requirement
 
-func load_pack(data_pack):
-	#TODO
-	pass
-
 func pack():
-	#TODO
-	pass
+	var data_pack = {}
+	data_pack["strength_re"] = strength_re
+	data_pack["agility_re"] = agility_re
+	data_pack["insight_re"] = insight_re
+	data_pack["intelligence_re"] = intelligence_re
+	data_pack["mystery_re"] = mystery_re
+	data_pack["perserverance_re"] = perserverance_re
+	data_pack["belief_re"] = belief_re
+	data_pack["physique_re"] = physique_re
+	data_pack["speed_re"] = speed_re
+	
+	return data_pack
+
+static func loadPack(data_pack):
+	var require = load("res://class/EquipmentRequire.gd").new()
+	require.strength_re = data_pack["strength_re"]
+	require.agility_re = data_pack["agility_re"]
+	require.insight_re = data_pack["insight_re"]
+	require.intelligence_re = data_pack["intelligence_re"]
+	require.mystery_re = data_pack["mystery_re"]
+	require.perserverance_re = data_pack["perserverance_re"]
+	require.belief_re = data_pack["belief_re"]
+	require.physique_re = data_pack["physique_re"]
+	require.speed_re = data_pack["speed_re"]
+	
+	return require

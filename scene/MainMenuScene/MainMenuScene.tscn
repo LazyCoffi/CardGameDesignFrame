@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://asserts/wallhaven-kx36mq.png" type="Texture" id=1]
+[ext_resource path="res://scene/MainMenuScene/MainMenuScene.gd" type="Script" id=2]
+
+[node name="MainMenuScene" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="TempBackground" type="TextureRect" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+texture = ExtResource( 1 )
+expand = true
+
+[node name="Button" type="Button" parent="."]
+margin_left = 1351.0
+margin_top = 479.0
+margin_right = 1639.0
+margin_bottom = 775.0

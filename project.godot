@@ -40,11 +40,6 @@ _global_script_classes=[ {
 "path": "res://class/EquipmentCard.gd"
 }, {
 "base": "Node",
-"class": "EquipmentExtraAttr",
-"language": "GDScript",
-"path": "res://class/EquipmentExtraAttr.gd"
-}, {
-"base": "Node",
 "class": "EquipmentInfo",
 "language": "GDScript",
 "path": "res://class/EquipmentInfo.gd"
@@ -55,6 +50,21 @@ _global_script_classes=[ {
 "path": "res://class/EquipmentRequire.gd"
 }, {
 "base": "Node",
+"class": "ItemAttr",
+"language": "GDScript",
+"path": "res://class/ItemAttr.gd"
+}, {
+"base": "Node",
+"class": "ItemCard",
+"language": "GDScript",
+"path": "res://class/ItemCard.gd"
+}, {
+"base": "Node",
+"class": "ItemInfo",
+"language": "GDScript",
+"path": "res://class/ItemInfo.gd"
+}, {
+"base": "Node",
 "class": "SkillAttr",
 "language": "GDScript",
 "path": "res://class/SkillAttr.gd"
@@ -63,16 +73,6 @@ _global_script_classes=[ {
 "class": "SkillCard",
 "language": "GDScript",
 "path": "res://class/SkillCard.gd"
-}, {
-"base": "Node",
-"class": "SkillCondition",
-"language": "GDScript",
-"path": "res://class/SkillCondition.gd"
-}, {
-"base": "Node",
-"class": "SkillEffect",
-"language": "GDScript",
-"path": "res://class/SkillEffect.gd"
 }, {
 "base": "Node",
 "class": "SkillInfo",
@@ -86,21 +86,36 @@ _global_script_class_icons={
 "CharacterState": "",
 "EquipmentAttr": "",
 "EquipmentCard": "",
-"EquipmentExtraAttr": "",
 "EquipmentInfo": "",
 "EquipmentRequire": "",
+"ItemAttr": "",
+"ItemCard": "",
+"ItemInfo": "",
 "SkillAttr": "",
 "SkillCard": "",
-"SkillCondition": "",
-"SkillEffect": "",
 "SkillInfo": ""
 }
 
 [application]
 
-config/name="Death Poem"
-run/main_scene="res://Node.tscn"
+config/name="DistantSong"
+run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+SceneContainer="*res://scene/SceneContainer/SceneContainer.tscn"
+CardTemplate="*res://scene/CardTemplate/CardTemplate.tscn"
+ResourceTool="*res://class/ResourceTool.gd"
+CharacterBuff="*res://class/CharacterBuff.gd"
+EquipmentExtraAttr="*res://class/EquipmentExtraAttr.gd"
+SkillCondition="*res://class/SkillCondition.gd"
+SkillEffect="*res://class/SkillEffect.gd"
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
 
 [gui]
 

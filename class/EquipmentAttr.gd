@@ -1,12 +1,6 @@
 extends Node
 class_name EquipmentAttr
 
-enum EquipmentType {
-	WEAPON,
-	ARMOR,
-	ORNAMENT
-}
-
 var weight setget setWeight					# 武器重量
 var blunt setget setBlunt					# 钝器伤害
 var sharp setget setSharp					# 锐器伤害
@@ -21,9 +15,9 @@ var volume setget setVolume					# 体积
 var type setget setType						# 装备大类
 var inner_type setget setInnerType			# 装备种类
 
-var extra_attr = {} setget setExtraAttr \
+var extra_attrs = {} setget setExtraAttr \
 						 ,getExtraAttr		# 额外属性
-var skill_cards = {} setget setSkill \
+var skills = {} setget setSkill \
 					 ,getSkill				# 附带技能
 
 func setWeight(weight_):
@@ -90,37 +84,73 @@ func getSkill():
 	return
 
 func addAttr(attr):
-	assert(attr is EquipmentExtraAttr)
-	extra_attr[attr.extra_attr_name] = attr
+	extra_attrs[attr.attr] = attr
 
 func delAttr(attr):
-	assert(attr is EquipmentExtraAttr)
-	extra_attr.erase(attr.extra_attr_name)
+	extra_attrs.erase(attr.attr)
 
 func getExtraAttrs():
-	return extra_attr.values()
+	return extra_attrs.values()
 
 func getExtraAttrNames():
-	return extra_attr.keys()
+	return extra_attrs.keys()
 
 func addSkill(skill):
 	assert(skill is SkillCard)
-	skill_cards[skill.s_name] = skill
+	skills[skill.s_name] = skill
 
 func delSkill(skill):
 	assert(skill is SkillCard)
-	skill_cards.erase(skill.s_name)
+	skills.erase(skill.s_name)
 
 func getSkillCards():
-	return skill_cards.values()
+	return skills.values()
 
 func getSkillCardNames():
-	return skill_cards.keys()
-
-func load_pack(data_pack):
-	#TODO
-	pass
+	return skills.keys()
 
 func pack():
-	#TODO
-	pass
+	var data_pack = {}
+	data_pack["weight"] = weight
+	data_pack["blunt"] = blunt
+	data_pack["sharp"] = sharp
+	data_pack["agile"] = agile
+	data_pack["flame"] = flame
+	data_pack["thunder"] = thunder
+	data_pack["frost"] = frost
+	data_pack["poison"] = poison
+	data_pack["divine"] = divine
+	data_pack["dark"] = dark
+	data_pack["volume"] = volume
+	data_pack["type"] = type
+	data_pack["inner_type"] = inner_type
+	data_pack["extra_attrs"] = extra_attrs
+	data_pack["skills"] = skills
+	
+	return data_pack
+
+func loadSkills():
+	for key in skills.keys():
+		skills[key] = CardTemplate.getCard(key)
+
+static func loadPack(data_pack):
+	assert(data_pack is Dictionary)
+	
+	var attr = load("res://class/EquipmentAttr.gd").new()
+	attr.weight = int(data_pack["weight"])
+	attr.blunt = int(data_pack["blunt"])
+	attr.sharp = int(data_pack["sharp"])
+	attr.agile = int(data_pack["agile"])
+	attr.flame = int(data_pack["flame"])
+	attr.thunder = int(data_pack["thunder"])
+	attr.frost = int(data_pack["frost"])
+	attr.poison = int(data_pack["poison"])
+	attr.divine = int(data_pack["divine"])
+	attr.dark = int(data_pack["dark"])
+	attr.volume = int(data_pack["volume"])
+	attr.type = data_pack["type"]
+	attr.inner_type = data_pack["inner_type"]
+	attr.extra_attr = data_pack["extra_attr"]
+	attr.skills = data_pack["skills"]
+	
+	return attr
