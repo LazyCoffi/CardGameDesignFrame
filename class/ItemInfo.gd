@@ -28,10 +28,9 @@ func pack():
 func loadAvator():
 	avator = ResourceTool.loadImage(avator_name)
 
-static func loadPack(data_pack):
-	var info = load("res://class/ItemInfo.gd")
-	info.i_name = data_pack["i_name"]
-	info.introduction = data_pack["introduction"]
-	info.avator = data_pack["avator"]
+func loadPack(data_pack):
+	assert(data_pack is Dictionary)
 	
-	return info
+	i_name = data_pack["i_name"]
+	introduction = data_pack["introduction"]
+	avator = data_pack["avator"]

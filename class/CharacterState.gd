@@ -130,28 +130,25 @@ func pack():
 	
 	return data_pack
 
-static func loadPack(data_pack):
+func loadPack(data_pack):
 	assert(data_pack is Dictionary)
 	
-	var state = load("res://class/CharacterState.gd").new()
-	state.max_head_hp = int(data_pack["max_head_hp"])
-	state.head_hp = int(data_pack["head_hp"])
-	state.max_chest_hp = int(data_pack["max_chest_hp"])
-	state.chest_hp = int(data_pack["chest_hp"])
-	state.max_left_arm_hp = int(data_pack["max_left_arm_hp"])
-	state.left_arm_hp = int(data_pack["left_arm_hp"])
-	state.max_right_arm_hp = int(data_pack["max_right_arm_hp"])
-	state.right_arm_hp = int(data_pack["right_arm_hp"])
-	state.max_left_leg_hp = int(data_pack["max_left_leg_hp"])
-	state.left_leg_hp = int(data_pack["left_leg_hp"])
-	state.max_right_leg_hp = int(data_pack["max_right_leg_hp"])
-	state.right_leg_hp = int(data_pack["right_leg_hp"])
-	state.max_stress = int(data_pack["max_stress"])
-	state.stress = int(data_pack["stress"])
-	state.max_weight = int(data_pack["max_weight"])
-	state.weight = int(data_pack["weight"])
-	state.max_power = int(data_pack["max_power"])
-	state.power = int(data_pack["power"])
-	state.buffs = data_pack["buffs"]
-	
-	return state
+	max_head_hp = int(data_pack["max_head_hp"])
+	head_hp = int(data_pack["head_hp"])
+	max_chest_hp = int(data_pack["max_chest_hp"])
+	chest_hp = int(data_pack["chest_hp"])
+	max_left_arm_hp = int(data_pack["max_left_arm_hp"])
+	left_arm_hp = int(data_pack["left_arm_hp"])
+	max_right_arm_hp = int(data_pack["max_right_arm_hp"])
+	right_arm_hp = int(data_pack["right_arm_hp"])
+	max_left_leg_hp = int(data_pack["max_left_leg_hp"])
+	left_leg_hp = int(data_pack["left_leg_hp"])
+	max_right_leg_hp = int(data_pack["max_right_leg_hp"])
+	right_leg_hp = int(data_pack["right_leg_hp"])
+	max_stress = int(data_pack["max_stress"])
+	stress = int(data_pack["stress"])
+	max_weight = int(data_pack["max_weight"])
+	weight = int(data_pack["weight"])
+	max_power = int(data_pack["max_power"])
+	power = int(data_pack["power"])
+	buffs = data_pack["buffs"]

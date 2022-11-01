@@ -23,14 +23,17 @@ func loadCards():
 	var raw_content = ResourceTool.parse("res://script/cards/cardTemplate.json")
 	assert(raw_content is Array)
 	
-	for card in raw_content:
-		var card_name = card["name"]
-		var card_type = parseType(card["type"])
-		var card_content = card["content"]
+	for card_pack in raw_content:
+		var card_name = card_pack["name"]
+		var card_type = parseType(card_pack["type"])
+		var card_content = card_pack["content"]
 		
 		assert(not cards.has(card_name))
 		
-		cards[card_name] = card_type.loadPack(card_content)
+		var card = card_type.new()
+		card.loadPack(card_content)
+		
+		cards[card_name] = card
 
 func getCard(card_name):
 	assert(cards.has(card_name))

@@ -4,6 +4,9 @@ class_name SkillCard
 var info
 var attr
 
+var SkillInfo = load("res://class/SkillInfo.gd")
+var SkillAttr = load("res://class/SkillAttr.gd")
+
 func pack():
 	var data_pack = {}
 	data_pack["info"] = info.pack()
@@ -14,11 +17,10 @@ func pack():
 func loadResource():
 	info.loadAvator()
 
-static func loadPack(data_pack):
-	var card = load("res://class/SkillCard.gd").new()
-	var SkillInfo = load("res://class/SkillInfo.gd")
-	var SkillAttr = load("res://class/SkillAttr.gd")
-	card.info = SkillInfo.loadPack(data_pack["info"])
-	card.attr = SkillAttr.loadPack(data_pack["attr"])
+func loadPack(data_pack):
+	assert(data_pack is Dictionary)
 	
-	return card
+	info = SkillInfo.new()
+	info.loadPack(data_pack["info"])
+	attr = SkillAttr.new()
+	attr.loadPack(data_pack["attr"])

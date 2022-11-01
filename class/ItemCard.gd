@@ -1,10 +1,11 @@
 extends Node
 class_name ItemCard
 
+var info
+var attr
 
-
-var info = ItemInfo.new()
-var attr = ItemAttr.new()
+var ItemInfo = load("res://class/ItemInfo.gd")
+var ItemAttr = load("res://class/ItemAttr.gd")
 
 func pack():
 	var data_pack = {}
@@ -15,14 +16,12 @@ func pack():
 
 func loadResource():
 	info.loadAvator()
-	attr.loadSkils()
+	attr.loadSkills()
 
-static func loadPack(data_pack):
-	var card = load("res://class/InfoCard.gd").new()
-	var ItemInfo = load("res://class/ItemInfo.gd")
-	var ItemAttr = load("res://class/ItemAttr.gd")
+func loadPack(data_pack):
+	assert(data_pack is Dictionary)
 	
-	card.info = ItemInfo.loadPack(data_pack["info"])
-	card.attr = ItemAttr.loadPack(data_pack["attr"])
-	
-	return card
+	info = ItemInfo.new()
+	info.loadPack(data_pack["info"])
+	attr = ItemAttr.new()
+	attr.loadPack(data_pack["attr"])

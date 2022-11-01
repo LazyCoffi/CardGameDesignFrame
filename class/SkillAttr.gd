@@ -64,11 +64,9 @@ func pack():
 	
 	return data_pack
 
-static func loadPack(data_pack):
-	var attr = load("res://class/SkillAttr.gd").new()
+func loadPack(data_pack):
+	assert(data_pack is Dictionary)
 	
-	attr.type = data_pack["type"]
-	attr.conditions = data_pack["conditions"]
-	attr.effects = data_pack["effects"]
-	
-	return attr
+	type = int(data_pack["type"])
+	conditions = data_pack["conditions"]
+	effects = data_pack["effects"]

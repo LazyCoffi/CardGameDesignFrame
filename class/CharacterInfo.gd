@@ -64,18 +64,14 @@ func pack():
 func loadAvator():
 	avator = ResourceTool.loadImage(avator_name)
 
-static func loadPack(data_pack):
+func loadPack(data_pack):
 	assert(data_pack is Dictionary)
-	
-	var info = load("res://class/CharacterInfo.gd").new()
-	
-	info.c_name = data_pack["c_name"]
-	info.race = data_pack["race"]
-	info.gender = data_pack["gender"]
-	info.age = data_pack["age"]
-	info.height = data_pack["height"]
-	info.weight = data_pack["weight"]
-	info.introduction = data_pack["introduction"]
-	info.avator_name = data_pack["avator_name"]
 
-	return info
+	c_name = data_pack["c_name"]
+	race = data_pack["race"]
+	gender = data_pack["gender"]
+	age = int(data_pack["age"])
+	height = int(data_pack["height"])
+	weight = int(data_pack["weight"])
+	introduction = data_pack["introduction"]
+	avator_name = data_pack["avator_name"]

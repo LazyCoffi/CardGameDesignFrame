@@ -32,10 +32,9 @@ func pack():
 func loadAvator():
 	avator = ResourceTool.loadImage(avator_name)
 
-static func loadPack(data_pack):
-	var info = load("res://class/SkillInfo.gd").new()
-	info.s_name = data_pack["s_name"]
-	info.introduction = data_pack["introduction"]
-	info.avator_name = data_pack["avator_name"]
-	
-	return info
+func loadPack(data_pack):
+	assert(data_pack is Dictionary)
+
+	s_name = data_pack["s_name"]
+	introduction = data_pack["introduction"]
+	avator_name = data_pack["avator_name"]

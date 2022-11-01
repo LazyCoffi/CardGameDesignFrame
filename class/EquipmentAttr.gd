@@ -133,24 +133,21 @@ func loadSkills():
 	for key in skills.keys():
 		skills[key] = CardTemplate.getCard(key)
 
-static func loadPack(data_pack):
+func loadPack(data_pack):
 	assert(data_pack is Dictionary)
 	
-	var attr = load("res://class/EquipmentAttr.gd").new()
-	attr.weight = int(data_pack["weight"])
-	attr.blunt = int(data_pack["blunt"])
-	attr.sharp = int(data_pack["sharp"])
-	attr.agile = int(data_pack["agile"])
-	attr.flame = int(data_pack["flame"])
-	attr.thunder = int(data_pack["thunder"])
-	attr.frost = int(data_pack["frost"])
-	attr.poison = int(data_pack["poison"])
-	attr.divine = int(data_pack["divine"])
-	attr.dark = int(data_pack["dark"])
-	attr.volume = int(data_pack["volume"])
-	attr.type = data_pack["type"]
-	attr.inner_type = data_pack["inner_type"]
-	attr.extra_attr = data_pack["extra_attr"]
-	attr.skills = data_pack["skills"]
-	
-	return attr
+	weight = int(data_pack["weight"])
+	blunt = int(data_pack["blunt"])
+	sharp = int(data_pack["sharp"])
+	agile = int(data_pack["agile"])
+	flame = int(data_pack["flame"])
+	thunder = int(data_pack["thunder"])
+	frost = int(data_pack["frost"])
+	poison = int(data_pack["poison"])
+	divine = int(data_pack["divine"])
+	dark = int(data_pack["dark"])
+	volume = int(data_pack["volume"])
+	type = data_pack["type"]
+	inner_type = data_pack["inner_type"]
+	extra_attrs = data_pack["extra_attrs"]
+	skills = data_pack["skills"]

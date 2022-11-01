@@ -90,18 +90,18 @@ static func loadPack(data_pack):
 	assert(data_pack is Dictionary)
 	
 	var attr = load("res://class/CharacterAttr.gd").new()
-	attr.strength = data_pack["strength"]
-	attr.agility = data_pack["agility"]
-	attr.insight = data_pack["insight"]
-	attr.intelligence = data_pack["intelligence"]
-	attr.perserverance = data_pack["perserverance"]
-	attr.mystery = data_pack["mystery"]
-	attr.belief = data_pack["belief"]
-	attr.physique = data_pack["physique"]
-	attr.speed = data_pack["speed"]
-	attr.survive = data_pack["survive"]
-	attr.social = data_pack["social"]
-	attr.dexterity = data_pack["dexterity"]
-	attr.knowledge = data_pack["knowledge"]
+	attr.strength = int(data_pack["strength"])
+	attr.agility = int(data_pack["agility"])
+	attr.insight = int(data_pack["insight"])
+	attr.intelligence = int(data_pack["intelligence"])
+	attr.perserverance = int(data_pack["perserverance"])
+	attr.mystery = int(data_pack["mystery"])
+	attr.belief = int(data_pack["belief"])
+	attr.physique = int(data_pack["physique"])
+	attr.speed = int(data_pack["speed"])
+	attr.survive = int(data_pack["survive"])
+	attr.social = int(data_pack["social"])
+	attr.dexterity = int(data_pack["dexterity"])
+	attr.knowledge = int(data_pack["knowledge"])
 		
 	return attr

@@ -5,6 +5,10 @@ var info
 var attr
 var state
 
+var CharacterInfo = load("res://class/CharacterInfo.gd")
+var CharacterAttr = load("res://class/CharacterAttr.gd")
+var CharacterState = load("res://class/CharacterState.gd")
+
 func pack():
 	var data_pack = {}
 	data_pack["info"] = info.pack()
@@ -16,15 +20,12 @@ func pack():
 func loadResource():
 	info.loadAvator()
 
-static func loadPack(data_pack):
+func loadPack(data_pack):
 	assert(data_pack is Dictionary)
-	
-	var card = load("res://class/CharacterCard.gd").new()
-	var CharacterInfo = load("res://class/CharacterInfo.gd")
-	var CharacterAttr = load("res://class/CharacterAttr.gd")
-	var CharacterState = load("res://class/CharacterState.gd")
-	card.info = CharacterInfo.loadPack(data_pack["info"])
-	card.attr = CharacterAttr.loadPack(data_pack["attr"])
-	card.state = CharacterState.loadPack(data_pack["state"])
-	
-	return card
+
+	info = CharacterInfo.new()
+	info.loadPack(data_pack["info"])
+	attr = CharacterAttr.new()
+	attr.loadPack(data_pack["attr"])
+	state = CharacterState.new()
+	state.loadPack(data_pack["state"])

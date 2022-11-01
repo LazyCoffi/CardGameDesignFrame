@@ -46,11 +46,10 @@ func loadSkills():
 	for key in skills.keys():
 		skills[key] = CardTemplate.getCard(key)
 
-static func loadPack(data_pack):
-	var attr = load("res://class/ItemAttr.gd").new()
-	attr.price = data_pack["price"]
-	attr.weight = data_pack["weight"]
-	attr.volume = data_pack["volume"]
-	attr.skills = data_pack["skills"]
-	
-	return attr
+func loadPack(data_pack):
+	assert(data_pack is Dictionary)
+
+	price = int(data_pack["price"])
+	weight = int(data_pack["weight"])
+	volume = int(data_pack["volume"])
+	skills = data_pack["skills"]
