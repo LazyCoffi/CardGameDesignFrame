@@ -111,6 +111,8 @@ CharacterBuff="*res://class/CharacterBuff.gd"
 EquipmentExtraAttr="*res://class/EquipmentExtraAttr.gd"
 SkillCondition="*res://class/SkillCondition.gd"
 SkillEffect="*res://class/SkillEffect.gd"
+GlobalSetting="*res://scene/GlobalSetting/GlobalSetting.tscn"
+UnitTools="*res://class/UnitTools.gd"
 
 [display]
 

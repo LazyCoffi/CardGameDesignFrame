@@ -20,7 +20,7 @@ func parseType(type):
 	assert(false)
 
 func loadCards():
-	var raw_content = ResourceTool.parse("res://script/cards/cardTemplate.json")
+	var raw_content = ResourceTool.parse("res://scripts/cards/cardTemplate.json")
 	assert(raw_content is Array)
 	
 	for card_pack in raw_content:

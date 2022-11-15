@@ -1,6 +1,6 @@
 extends Node
 
-static func parse(script_path):
+func parse(script_path):
 	var file = File.new()
 	assert(file.file_exists(script_path))
 	file.open(script_path, File.READ)
@@ -11,8 +11,23 @@ static func parse(script_path):
 	
 	return json_ret.result
 
-static func loadImage(avator_path):
+func loadImage(image_path):
 	var image = Image.new()
-	var image_path = "res://assert/avator/" + avator_path + ".png"
 	assert(image.load(image_path) == 0)
+	
 	return image
+
+func loadFont(font_attr):
+	var font = DynamicFont.new()
+	font.font_data = load(font_attr["font"])
+	font.size = font_attr["font_size"]
+	return font
+
+func loadColor(color_name):
+	return Color(color_name)
+
+func loadTexture(texture_path):
+	var texture = load(texture_path)
+	assert(texture is Texture)
+	
+	return texture

@@ -14,7 +14,25 @@ func _init():
 	is_registered = false
 
 func _ready():
-	$Button.connect("pressed", self, "switchToBattle")
+	setConnection()
+	setBackground()
+	setTitle()
+
+func setTitle():
+	var title_path = GlobalSetting.getRes("main_menu/title")
+	var title = ResourceTool.loadTexture(title_path)
 	
+	$MainMenuTitle.texture = title
+
+func setBackground():
+	var backgrounds_path = GlobalSetting.getRes("main_menu/backgrounds")
+	var bg_num = backgrounds_path.size()
+	var bg = ResourceTool.loadTexture(backgrounds_path[UnitTools.rrange(bg_num)])
+	
+	$MainMenuBackground.texture = bg
+
+func setConnection():
+	pass
+
 func switchToBattle():
 	emit_signal("changeSceneSignal", SceneContainer.getBattle())

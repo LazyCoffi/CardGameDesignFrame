@@ -1,0 +1,26 @@
+{
+    "resource_setting": {
+        "main_menu" : {
+            "backgrounds" : [
+                "res://asserts/main_menu/bg2.jpg",
+            ],
+            "title" : "res://asserts/main_menu/title.png",
+			"font" : {
+				"font" : "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+				"font_size" : 60
+			},
+			"font_color" : "#d1992d",
+			"btn_texts" : [
+				"新的旅途",
+				"继续征程",
+				"游戏设置",
+				"离开游戏"
+			],
+			"btn_icons" : [
+				"res://asserts/main_menu/main_menu_btn.png",
+				"res://asserts/main_menu/main_menu_btn_hover.png"
+			]
+
+        }
+    }
+}
