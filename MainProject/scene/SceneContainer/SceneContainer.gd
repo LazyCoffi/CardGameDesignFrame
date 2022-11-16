@@ -2,6 +2,7 @@ extends Node
 
 var MainMenuScene = preload("res://scene/MainMenuScene/MainMenuScene.tscn")
 var BattleScene = preload("res://scene/BattleScene/BattleScene.tscn")
+var CharacterGenScene = preload("res://scene/CharacterGenScene/CharacterGenScene.tscn")
 
 var container = {}
 
@@ -26,6 +27,14 @@ func createBattle():
 
 func getBattle():
 	return container["Battle"]
+
+func createCharacterGen():
+	if container.has("CharacterGen"):
+		freeScene(container["CharacterGen"])
+	container["CharacterGen"] = CharacterGenScene.instance()
+
+func getCharacterGen():
+	return container["CharacterGen"]
 	
 func sceneCall(scene_name, func_name, params):
 	return container[scene_name].callv(func_name, params)

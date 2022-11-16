@@ -7,7 +7,6 @@ func gameInit():
 	GlobalSetting.loadGlobalSetting()
 	CardTemplate.loadCards()
 	SceneContainer.createMainMenu()
-	SceneContainer.createBattle()
 	UnitTools.toolInit()
 
 func _ready():

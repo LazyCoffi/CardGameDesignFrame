@@ -32,7 +32,8 @@ func setBackground():
 	$MainMenuBackground.texture = bg
 
 func setConnection():
-	pass
+	$StartButton.connect("pressed", self, "switchToCharacterGen")
 
-func switchToBattle():
-	emit_signal("changeSceneSignal", SceneContainer.getBattle())
+func switchToCharacterGen():
+	SceneContainer.createCharacterGen()
+	emit_signal("changeSceneSignal", SceneContainer.getCharacterGen())

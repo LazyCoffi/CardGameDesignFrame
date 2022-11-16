@@ -5,16 +5,16 @@ var strength setget setStrength
 var agility setget setAgility
 var insight setget setInsight
 var intelligence setget setIntelligence
-var perserverance
-var mystery
-var belief
-var physique
-var speed
+var perserverance setget setPerserverance
+var mystery setget setMystery
+var belief setget setBelief
+var physique setget setPhysique
+var speed setget setSpeed
 
-var survive
-var social
-var dexterity
-var knowledge
+var survive setget setSurvive
+var social setget setSocial
+var dexterity setget setDexterity
+var knowledge setget setKnowledge
 
 func setStrength(strength_):
 	assert(strength_ > 0)

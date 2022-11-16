@@ -21,6 +21,16 @@
 				"res://asserts/main_menu/main_menu_btn_hover.png"
 			]
 
-        }
-    }
+        },
+		"character_gen" : {
+			"title" : {
+				"title_text" : "角色创建",
+				"font" : {
+					"font" : "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+					"font_size" : 60
+				},
+				"font_color" : "#a0a0a4"
+			},
+		},
+    },
 }
