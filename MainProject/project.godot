@@ -10,6 +10,16 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
+"class": "Attr",
+"language": "GDScript",
+"path": "res://class/Attr.gd"
+}, {
+"base": "Node",
+"class": "Card",
+"language": "GDScript",
+"path": "res://class/Card.gd"
+}, {
+"base": "Node",
 "class": "CharacterAttr",
 "language": "GDScript",
 "path": "res://class/CharacterAttr.gd"
@@ -50,6 +60,11 @@ _global_script_classes=[ {
 "path": "res://class/EquipmentRequire.gd"
 }, {
 "base": "Node",
+"class": "Function",
+"language": "GDScript",
+"path": "res://class/Function.gd"
+}, {
+"base": "Node",
 "class": "ItemAttr",
 "language": "GDScript",
 "path": "res://class/ItemAttr.gd"
@@ -63,6 +78,16 @@ _global_script_classes=[ {
 "class": "ItemInfo",
 "language": "GDScript",
 "path": "res://class/ItemInfo.gd"
+}, {
+"base": "Node",
+"class": "LocalFunction",
+"language": "GDScript",
+"path": "res://class/LocalFunction.gd"
+}, {
+"base": "Node",
+"class": "ScriptTree",
+"language": "GDScript",
+"path": "res://class/ScriptTree.gd"
 }, {
 "base": "Node",
 "class": "SkillAttr",
@@ -80,6 +105,8 @@ _global_script_classes=[ {
 "path": "res://class/SkillInfo.gd"
 } ]
 _global_script_class_icons={
+"Attr": "",
+"Card": "",
 "CharacterAttr": "",
 "CharacterCard": "",
 "CharacterInfo": "",
@@ -88,9 +115,12 @@ _global_script_class_icons={
 "EquipmentCard": "",
 "EquipmentInfo": "",
 "EquipmentRequire": "",
+"Function": "",
 "ItemAttr": "",
 "ItemCard": "",
 "ItemInfo": "",
+"LocalFunction": "",
+"ScriptTree": "",
 "SkillAttr": "",
 "SkillCard": "",
 "SkillInfo": ""
@@ -113,6 +143,7 @@ SkillCondition="*res://class/SkillCondition.gd"
 SkillEffect="*res://class/SkillEffect.gd"
 GlobalSetting="*res://scene/GlobalSetting/GlobalSetting.tscn"
 UnitTools="*res://class/UnitTools.gd"
+Exception="*res://class/Exception.gd"
 
 [display]
 

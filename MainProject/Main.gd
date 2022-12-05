@@ -13,8 +13,3 @@ func _ready():
 	gameInit()
 	var main_menu = SceneContainer.getMainMenu()
 	$SceneController.changeScene(main_menu)
-	
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
