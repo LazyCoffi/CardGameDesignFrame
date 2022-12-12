@@ -3,20 +3,20 @@ class_name LocalFunction
 
 var functions = []
 
+var Function = load("res://class/Function.gd")
+var ScriptTree = load("res://class/ScriptTree.gd")
+
 func _ready():
 	pass
 
-func loadScript(script):
-	var raw_functions = script.getScriptArray()
-	var Function = load("res://class/Function.gd")
-	for raw_function in raw_functions:
-		var function = Function.new()
-		function.loadScript(raw_function)
-		functions.append(function)
-
 func pack():
-	var script = Script.new()
-	script.addScriptArray("functions", functions)
+	var script_tree = ScriptTree.new()
 
-	return script
+	script_tree.addObjectArray("functions", functions)
+
+	return script_tree
+
+func loadScript(script_tree):
+	functions = script_tree.getObjectArray("functions", Function)
+
 

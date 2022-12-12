@@ -1,7 +1,14 @@
 extends Node
 
+var scene_tree 
+
+func setSceneTree(scene_tree_):
+	scene_tree = scene_tree_
+
 func assert(flag, msg := ""):
 	if flag == true:
 		return
-	print_debug("Runtime error! " + msg)
-	get_tree().free()
+	push_error("Exception error: " + msg)
+	print_debug("Stack trace")
+
+	scene_tree.quit()

@@ -3,14 +3,18 @@ class_name ScriptTree
 
 var root
 
-func _ready():
-	pass
-
+func _init():
+	root = {}
+	
 func setRoot(root_):
+	Exception.assert(root_ is Dictionary)
 	root = root_
 
 func getRoot():
 	return root
+
+func has(name_):
+	return root.has(name_)
 
 func loadFromJson(path):
 	var file = File.new()
@@ -22,70 +26,76 @@ func loadFromJson(path):
 	Exception.assert(json_ret.error == 0)
 	root = json_ret.result
 
-func findNode(path_str):
-	var path = path_str.split("/")
-	var cur_node = root 
-	for next_index in path:
-		Exception.assert(cur_node.has(next_index))
-		cur_node = cur_node[next_index]
+func getAttr(obj_name):
+	Exception.assert(root.has(obj_name))
+	return root[obj_name]
+
+func getObject(obj_name, obj_type):
+	Exception.assert(root.has(obj_name))
+
+	var ScriptTree = load("res://class/ScriptTree.gd")
+	var script_tree = ScriptTree.new()
+	script_tree.setRoot(root[obj_name])
+
+	var obj = obj_type.new()
+	obj.loadScript(script_tree)
+
+	return obj
+
+func getObjectDict(dict_name, obj_type):
+	Exception.assert(root.has(dict_name))
+
+	var cur_dict = root[dict_name]
+	Exception.assert(cur_dict is Dictionary)
+
+	var dict = {}
+	var ScriptTree = load("res://class/ScriptTree.gd")
+	for key in cur_dict.keys():
+		var script_tree = ScriptTree.new()
+		script_tree.setRoot(cur_dict[key])
+
+		var obj = obj_type.new()
+		obj.loadScript(script_tree)
+
+		dict[key] = obj
 	
-	return cur_node
+	return dict
 
-func add(param_name, param, path_str := ""):
-	Exception.assert(root is Dictionary)
-	var cur_node = findNode(path_str)
-	cur_node[param_name] = param
+func getObjectArray(arr_name, obj_type):
+	Exception.assert(root.has(arr_name))
 
-func addScript(param_name, param, path_str := ""):
-	Exception.assert(root is Dictionary)
-	var cur_node = findNode(path_str)
-	cur_node[param_name] = param.pack().getRoot()
+	var cur_arr = root[arr_name]
+	Exception.assert(cur_arr is Array)
 
-func addScriptDict(param_name, param, path_str := ""):
-	Exception.assert(root is Dictionary)
-	var cur_node = findNode(path_str)
-	var script_dict = {}
-	for key in param.keys():
-		script_dict[key] = param[key].pack().getRoot()
+	var arr = {}
+	var ScriptTree = load("res://class/ScriptTree.gd")
+	for raw_script in arr:
+		var script_tree = ScriptTree.setRoot(raw_script)
+
+		var obj = obj_type.new()
+		obj.loadScript(script_tree)
+
+		arr.append(obj)
 	
-	cur_node[param_name] = script_dict
+	return arr
 
-func addScriptArray(param_name, params, path_str := ""):
-	Exception.assert(root is Dictionary)
-	var cur_node = findNode(path_str)
-	var script_array = []
-	for param in params:
-		script_array.append(param.pack().getRoot())
 
-	cur_node[param_name] = script_array
+func addAttr(attr_name, attr):
+	root[attr_name] = attr
 
-func get(path_str):
-	Exception.assert(root is Dictionary)
-	return findNode(path_str)
+func addObject(obj_name, obj):
+	root[obj_name] = obj.pack()
+
+func addObjectDict(obj_name, cur_dict):
+	var dict = {}
+	for key in cur_dict.keys():
+		dict[key] = cur_dict[key].pack()
 	
-func getScript(path_str):
-	Exception.assert(root is Dictionary)
-	var script = Script.new()
-	script.setRoot(findNode(path_str))
-	return script
+	root[obj_name] = dict
 
-func getScriptDict(path_str):
-	Exception.assert(root is Dictionary)
-	var scriptDict = findNode(path_str)
-	Exception.assert(scriptDict is Dictionary)
-	var ret = {}
-	for key in scriptDict.keys():
-		var script = Script.new()
-		ret[key] = script.setRoot(scriptDict[key])
+func addObjectArray(obj_name, cur_arr):
+	var arr = []
+	for obj in cur_arr:
+		arr.append(obj.pack())
 	
-	return ret
-
-func getScriptArray():
-	Exception.assert(root is Array)
-	var ret = []
-	for raw_script in root:
-		var script = Script.new()
-		script.setRoot(raw_script)
-		ret.append(script)
-	
-	return ret
+	root[obj_name] = arr

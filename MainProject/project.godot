@@ -15,49 +15,59 @@ _global_script_classes=[ {
 "path": "res://class/Attr.gd"
 }, {
 "base": "Node",
+"class": "BaseFunction",
+"language": "GDScript",
+"path": "res://class/BaseFunction.gd"
+}, {
+"base": "Node",
 "class": "Card",
 "language": "GDScript",
 "path": "res://class/Card.gd"
 }, {
 "base": "Node",
+"class": "Category",
+"language": "GDScript",
+"path": "res://class/Category.gd"
+}, {
+"base": "Node",
 "class": "CharacterAttr",
 "language": "GDScript",
-"path": "res://class/CharacterAttr.gd"
+"path": "res://class/trash/CharacterAttr.gd"
 }, {
 "base": "Node",
 "class": "CharacterCard",
 "language": "GDScript",
-"path": "res://class/CharacterCard.gd"
+"path": "res://class/trash/CharacterCard.gd"
 }, {
 "base": "Node",
 "class": "CharacterInfo",
 "language": "GDScript",
-"path": "res://class/CharacterInfo.gd"
+"path": "res://class/trash/CharacterInfo.gd"
 }, {
 "base": "Node",
 "class": "CharacterState",
 "language": "GDScript",
-"path": "res://class/CharacterState.gd"
+"path": "res://class/trash/CharacterState.gd"
 }, {
 "base": "Node",
 "class": "EquipmentAttr",
 "language": "GDScript",
-"path": "res://class/EquipmentAttr.gd"
+"path": "res://class/trash/EquipmentAttr.gd"
 }, {
 "base": "Node",
 "class": "EquipmentCard",
 "language": "GDScript",
-"path": "res://class/EquipmentCard.gd"
+"path": "res://class/trash/EquipmentCard.gd"
 }, {
 "base": "Node",
 "class": "EquipmentInfo",
 "language": "GDScript",
-"path": "res://class/EquipmentInfo.gd"
+"path": "res://class/trash/EquipmentInfo.gd"
 }, {
 "base": "Node",
 "class": "EquipmentRequire",
 "language": "GDScript",
-"path": "res://class/EquipmentRequire.gd"
+"path": "res://class/trash/EquipmentRequire.gd"
 }, {
 "base": "Node",
 "class": "Function",
@@ -67,17 +77,17 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "ItemAttr",
 "language": "GDScript",
-"path": "res://class/ItemAttr.gd"
+"path": "res://class/trash/ItemAttr.gd"
 }, {
 "base": "Node",
 "class": "ItemCard",
 "language": "GDScript",
-"path": "res://class/ItemCard.gd"
+"path": "res://class/trash/ItemCard.gd"
 }, {
 "base": "Node",
 "class": "ItemInfo",
 "language": "GDScript",
-"path": "res://class/ItemInfo.gd"
+"path": "res://class/trash/ItemInfo.gd"
 }, {
 "base": "Node",
 "class": "LocalFunction",
@@ -92,21 +102,28 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "SkillAttr",
 "language": "GDScript",
-"path": "res://class/SkillAttr.gd"
+"path": "res://class/trash/SkillAttr.gd"
 }, {
 "base": "Node",
 "class": "SkillCard",
 "language": "GDScript",
-"path": "res://class/SkillCard.gd"
+"path": "res://class/trash/SkillCard.gd"
 }, {
 "base": "Node",
 "class": "SkillInfo",
 "language": "GDScript",
-"path": "res://class/SkillInfo.gd"
+"path": "res://class/trash/SkillInfo.gd"
+}, {
+"base": "Node",
+"class": "ValRange",
+"language": "GDScript",
+"path": "res://class/ValRange.gd"
 } ]
 _global_script_class_icons={
 "Attr": "",
+"BaseFunction": "",
 "Card": "",
+"Category": "",
 "CharacterAttr": "",
 "CharacterCard": "",
 "CharacterInfo": "",
@@ -123,7 +140,8 @@ _global_script_class_icons={
 "ScriptTree": "",
 "SkillAttr": "",
 "SkillCard": "",
-"SkillInfo": ""
+"SkillInfo": "",
+"ValRange": ""
 }
 
 [application]
@@ -134,15 +152,6 @@ config/icon="res://icon.png"
 
 [autoload]
 
-SceneContainer="*res://scene/SceneContainer/SceneContainer.tscn"
-CardTemplate="*res://scene/CardTemplate/CardTemplate.tscn"
-ResourceTool="*res://class/ResourceTool.gd"
-CharacterBuff="*res://class/CharacterBuff.gd"
-EquipmentExtraAttr="*res://class/EquipmentExtraAttr.gd"
-SkillCondition="*res://class/SkillCondition.gd"
-SkillEffect="*res://class/SkillEffect.gd"
-GlobalSetting="*res://scene/GlobalSetting/GlobalSetting.tscn"
-UnitTools="*res://class/UnitTools.gd"
 Exception="*res://class/Exception.gd"
 
 [display]
