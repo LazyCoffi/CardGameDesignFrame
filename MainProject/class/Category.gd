@@ -22,6 +22,9 @@ func add(path):
 	Exception.assert(category is Array)
 	category.append_array(path.split("/"))
 
+func getCategory():
+	return category
+
 func pack():
 	var script_tree = ScriptTree.new()
 

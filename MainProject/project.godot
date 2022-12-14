@@ -15,9 +15,9 @@ _global_script_classes=[ {
 "path": "res://class/Attr.gd"
 }, {
 "base": "Node",
-"class": "BaseFunction",
+"class": "AttrFunctionalSet",
 "language": "GDScript",
-"path": "res://class/BaseFunction.gd"
+"path": "res://class/AttrFunctionalSet.gd"
 }, {
 "base": "Node",
 "class": "Card",
@@ -70,9 +70,14 @@ _global_script_classes=[ {
 "path": "res://class/trash/EquipmentRequire.gd"
 }, {
 "base": "Node",
-"class": "Function",
+"class": "Functional",
 "language": "GDScript",
-"path": "res://class/Function.gd"
+"path": "res://class/Functional.gd"
+}, {
+"base": "Node",
+"class": "FunctionalGraph",
+"language": "GDScript",
+"path": "res://class/FunctionalGraph.gd"
 }, {
 "base": "Node",
 "class": "ItemAttr",
@@ -121,7 +126,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Attr": "",
-"BaseFunction": "",
+"AttrFunctionalSet": "",
 "Card": "",
 "Category": "",
 "CharacterAttr": "",
@@ -132,7 +137,8 @@ _global_script_class_icons={
 "EquipmentCard": "",
 "EquipmentInfo": "",
 "EquipmentRequire": "",
-"Function": "",
+"Functional": "",
+"FunctionalGraph": "",
 "ItemAttr": "",
 "ItemCard": "",
 "ItemInfo": "",
@@ -153,6 +159,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Exception="*res://class/Exception.gd"
+FunctionalCategory="*res://class/FunctionalCategory.gd"
 
 [display]
 

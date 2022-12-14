@@ -19,5 +19,8 @@ func IsTest():
 	var a = 1
 	print(a is int)
 
-func run(func_name):
+func exec(func_name):
 	self.call(func_name)
+
+func run():
+	pass
