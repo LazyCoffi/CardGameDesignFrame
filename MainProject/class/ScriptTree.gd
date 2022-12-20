@@ -26,6 +26,26 @@ func loadFromJson(path):
 	Exception.assert(json_ret.error == 0)
 	root = json_ret.result
 
+func addAttr(attr_name, attr):
+	root[attr_name] = attr
+
+func addObject(obj_name, obj):
+	root[obj_name] = obj.pack()
+
+func addObjectDict(obj_name, cur_dict):
+	var dict = {}
+	for key in cur_dict.keys():
+		dict[key] = cur_dict[key].pack()
+	
+	root[obj_name] = dict
+
+func addObjectArray(obj_name, cur_arr):
+	var arr = []
+	for obj in cur_arr:
+		arr.append(obj.pack())
+	
+	root[obj_name] = arr
+
 func getAttr(obj_name):
 	Exception.assert(root.has(obj_name))
 	return root[obj_name]
@@ -78,24 +98,3 @@ func getObjectArray(arr_name, obj_type):
 		arr.append(obj)
 	
 	return arr
-
-
-func addAttr(attr_name, attr):
-	root[attr_name] = attr
-
-func addObject(obj_name, obj):
-	root[obj_name] = obj.pack()
-
-func addObjectDict(obj_name, cur_dict):
-	var dict = {}
-	for key in cur_dict.keys():
-		dict[key] = cur_dict[key].pack()
-	
-	root[obj_name] = dict
-
-func addObjectArray(obj_name, cur_arr):
-	var arr = []
-	for obj in cur_arr:
-		arr.append(obj.pack())
-	
-	root[obj_name] = arr

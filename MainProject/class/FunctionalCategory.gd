@@ -1,15 +1,16 @@
 extends Node
 
-var attr_functional_set = load("res://class/AttrFunctionalSet.gd").new()
+var attr_function_set = load("res://class/AttrFunctionSet.gd").new()
 
-var func_tree = {}
+var func_tree
 
 func _init():
+	func_tree = {}
 	initFunctionalType()
 
 func initFunctionalType():
-	func_tree["FunctionalSet"] = {}
-	func_tree["FunctionalSet"]["AttrFunctionalSet"] = attr_functional_set
+	func_tree["FunctionSet"] = {}
+	func_tree["FunctionSet"]["AttrFunctionSet"] = attr_function_set
 
 func getFunctionalSet(category):
 	var arr = category.getCategory()
@@ -29,5 +30,5 @@ func getParamsType(category, func_name):
 
 func exec(f_name, category, params):
 	var functional_set = getFunctionalSet(category)
-	return functional.callv(f_name, params)
+	return functional_set.callv(f_name, params)
 

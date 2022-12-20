@@ -15,14 +15,19 @@ _global_script_classes=[ {
 "path": "res://class/Attr.gd"
 }, {
 "base": "Node",
-"class": "AttrFunctionalSet",
+"class": "AttrFunctionSet",
 "language": "GDScript",
-"path": "res://class/AttrFunctionalSet.gd"
+"path": "res://class/AttrFunctionSet.gd"
 }, {
 "base": "Node",
 "class": "Card",
 "language": "GDScript",
 "path": "res://class/Card.gd"
+}, {
+"base": "Node",
+"class": "CardInterfaceSet",
+"language": "GDScript",
+"path": "res://class/CardInterfaceSet.gd"
 }, {
 "base": "Node",
 "class": "Category",
@@ -70,14 +75,19 @@ _global_script_classes=[ {
 "path": "res://class/trash/EquipmentRequire.gd"
 }, {
 "base": "Node",
-"class": "Functional",
+"class": "Function",
 "language": "GDScript",
-"path": "res://class/Functional.gd"
+"path": "res://class/Function.gd"
 }, {
 "base": "Node",
 "class": "FunctionalGraph",
 "language": "GDScript",
 "path": "res://class/FunctionalGraph.gd"
+}, {
+"base": "Node",
+"class": "FunctionalInterface",
+"language": "GDScript",
+"path": "res://class/FunctionalInterface.gd"
 }, {
 "base": "Node",
 "class": "ItemAttr",
@@ -126,8 +136,9 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Attr": "",
-"AttrFunctionalSet": "",
+"AttrFunctionSet": "",
 "Card": "",
+"CardInterfaceSet": "",
 "Category": "",
 "CharacterAttr": "",
 "CharacterCard": "",
@@ -137,8 +148,9 @@ _global_script_class_icons={
 "EquipmentCard": "",
 "EquipmentInfo": "",
 "EquipmentRequire": "",
-"Functional": "",
+"Function": "",
 "FunctionalGraph": "",
+"FunctionalInterface": "",
 "ItemAttr": "",
 "ItemCard": "",
 "ItemInfo": "",
@@ -160,6 +172,8 @@ config/icon="res://icon.png"
 
 Exception="*res://class/Exception.gd"
 FunctionalCategory="*res://class/FunctionalCategory.gd"
+InterfaceCategory="*res://class/InterfaceCategory.gd"
+TypeUnit="*res://class/TypeUnit.gd"
 
 [display]
 

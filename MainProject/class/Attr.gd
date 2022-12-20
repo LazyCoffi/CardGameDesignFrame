@@ -1,66 +1,21 @@
 extends Node
 class_name Attr
 
-var attr
-var type
-var val_range
-
 var ScriptTree = load("res://class/ScriptTree.gd")
 var ValRange = load("res://class/ValRange.gd")
 
+var attr
+var attr_type
+var val_range
+
 func _init():
 	attr = {}
-	type = {}
+	attr_type = {}
 	val_range = {}
 
-func _ready():
-	pass
-
-func adaptType(val, attr_name):
-	var val_type = type[attr_name]
-	match val_type:
-		"int":
-			return val as int
-		"float":
-			return val as float
-		"String":
-			return val
-		"Attr":
-			return val
-		_:
-			return false
-
-func isAdaptable(val, attr_name):
-	var val_type = type[attr_name]
-	match val_type:
-		"int":
-			return val is int or val is float
-		"float":
-			return val is int or val is float
-		"String":
-			return val is String
-		"Attr":
-			return val is Attr
-		_:
-			return false
-
-func isType(val, attr_name):
-	var val_type = type[attr_name]
-	match val_type:
-		"int":
-			return val is int
-		"float":
-			return val is float
-		"String":
-			return val is String
-		"Attr":
-			return val is Attr
-		_:
-			return false
-
 func getType(attr_name):
-	Exception.assert(type.has(attr_name))
-	return type[attr_name]
+	Exception.assert(attr_type.has(attr_name))
+	return attr_type[attr_name]
 
 func getRange(attr_name):
 	Exception.assert(val_range.has(attr_name))
@@ -72,21 +27,22 @@ func getAttr(attr_name):
 
 func setAttr(val, attr_name):
 	Exception.assert(attr.has(attr_name))
-	Exception.assert(type.has(attr_name))
+	Exception.assert(attr_type.has(attr_name))
 	
-	val = adaptType(val, attr_name)
 	attr[attr_name] = val
 
 func setUpper(val, attr_name):
-	val = adaptType(val, attr_name)
+	Exception.assert(TypeUnit.isType(val, attr_type[attr_name]))
+
 	val_range[attr_name].setUpper(val)
 
 func setLower(val, attr_name):
-	val = adaptType(val, attr_name)
+	Exception.assert(TypeUnit.isType(val, attr_type[attr_name]))
+
 	val_range[attr_name].setLower(val)
 
 func upper(attr_name):
-	return val_range[attr_name].lower()
+	return val_range[attr_name].upper()
 
 func lower(attr_name):
 	return val_range[attr_name].lower()

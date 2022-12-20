@@ -1,5 +1,5 @@
 extends Node
-class_name AttrFunctionalSet
+class_name AttrFunctionSet
 
 var func_form = {}
 
@@ -27,7 +27,7 @@ func getParamsType(func_name):
 	return func_form[func_name]["params"]
 
 func getRetType(func_name):
-	if not hasFunc(func_name)
+	if not hasFunc(func_name):
 		Exception.assert(false, "Wrong functional_name")
 
 	return func_form[func_name]["ret"]
@@ -35,37 +35,25 @@ func getRetType(func_name):
 func hasFunc(func_name):
 	return func_form.has(func_name)
 
-func typeAssert(card, attr_name, val):
-	if not card.attr.isType(val, attr_name):	
-		Exception.assert(false, "Attr to be changed must be same type")
-	
-func adaptAssert(card, attr_name, val):
-	if not card.attr.isAdaptable(val, attr_name):
-		Exception.assert(false, "Attr to be changed must be adaptable")
-
 func setAttr(card, attr_name, val):
-	typeAssert(card, attr_name, val)	
-
-	if val is int or val is float:
+	if TypeUnit.isType(val, "int") or TypeUnit.isType(val, "float"):
 		var upper = card.attr.getRange(attr_name).upper()
 		var lower = card.attr.getRange(attr_name).lower()
 		card.attr.setAttr(attr_name, max(lower, min(upper, val)))
 	else:
 		card.attr.setAttr(val)
+	
+	return [card]
 
 func addAttr(card, attr_name, val):
-	adaptAssert(card, attr_name, val)	
-
 	var upper = card.attr.upper(attr_name)
 	var lower = card.attr.lower(attr_name)
 	var attr = card.attr.getAttr(attr_name)
 	card.attr.setAttr(attr_name, max(lower, min(upper, attr + val)))
 
-	return card
+	return [card]
 
 func mulAttr(card, attr_name, val):
-	adaptAssert(card, attr_name, val)	
-
 	var upper = card.attr.upper(attr_name)
 	var lower = card.attr.lower(attr_name)
 	var attr = card.attr.getAttr(attr_name)
@@ -73,23 +61,19 @@ func mulAttr(card, attr_name, val):
 	card.attr.setAttr(attr_name, max(lower, min(upper, attr * val)))
  
 func setAttrUpperBound(card, attr_name, val):
-	adaptAssert(card, attr_name, val)	
-	
 	var lower = val
 	if card.attr.hasLower(attr_name):
 		lower = card.attr.lower(val, attr_name)
 	
 	card.attr.setUpper(max(lower, val), attr_name)
 	
-	return card
+	return [card]
 
 func setAttrLowerBound(card, attr_name, val):
-	typeAssert(card, attr_name, val)	
-	
 	var upper = val
 	if card.attr.hasUpper(attr_name):
 		upper = card.attr.upper(attr_name)
 	
 	card.attr.setLower(min(upper, val), attr_name)
 	
-	return card
+	return [card]

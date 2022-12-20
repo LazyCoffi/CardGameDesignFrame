@@ -8,22 +8,16 @@ var ScriptTree = load("res://class/ScriptTree.gd")
 func _ready():
 	pass
 
-func parsePath(path):
-	category = path.split("/")
-
-func genPath():
-	var ret = ""
-	for index in category:
-		ret += index + "/"
-
-	return ret
-
-func add(path):
-	Exception.assert(category is Array)
-	category.append_array(path.split("/"))
+func addCategory(category_):
+	Exception.assert(TypeUnit.isType(category_, "Array"))
+	category.append_array(category_)
 
 func getCategory():
 	return category
+
+func setCategory(category_):
+	Exception.assert(TypeUnit.isType(category_, "Array"))
+	category = category_
 
 func pack():
 	var script_tree = ScriptTree.new()

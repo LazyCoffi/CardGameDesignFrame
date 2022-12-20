@@ -15,12 +15,22 @@ func ExceptionTest():
 	Exception.warning(false, "false test")
 	Exception.error(false, "exit")
 
-func IsTest():
-	var a = 1
-	print(a is int)
+func isTest():
+	var Type = load("res://class/Attr.gd")
+	var attr = Type.new()
+	print(attr is Type)
+
+func __paramTest(arr):
+	var arr_ = arr
+	arr_[2] = 5
+
+func paramTest():
+	var arr = [1, 2, 3, 4]
+	__paramTest(arr)
+	print(arr)
 
 func exec(func_name):
 	self.call(func_name)
 
 func run():
-	pass
+	exec("paramTest")
