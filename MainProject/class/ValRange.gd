@@ -81,5 +81,3 @@ func loadScript(script_tree):
 	if hasUpper() and hasLower():
 		Exception.assert(lower_bound < upper_bound, 
 						"lower_bound must be smaller than upper_bound")
-
-

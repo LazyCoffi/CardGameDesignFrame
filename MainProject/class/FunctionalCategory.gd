@@ -20,6 +20,10 @@ func getFunctionalSet(category):
 	
 	return cur_node
 
+func isVariable(category, func_name):
+	var functional_set = getFunctionalSet(category)
+	return functional_set.isVariable()
+
 func getRetType(category, func_name):
 	var functional_set = getFunctionalSet(category)
 	return functional_set.getRetType(func_name)

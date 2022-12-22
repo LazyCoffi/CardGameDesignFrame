@@ -1,12 +1,15 @@
 extends Node
 class_name LocalFunction
 
-
 var FunctionalInterface = load("res://class/FunctionalInterface.gd")
 var ScriptTree = load("res://class/ScriptTree.gd")
 
-var interfaces = []
+var func_name
+var interfaces
 var condition_interface
+
+func _init():
+	interfaces = []
 
 func isExecuable(condition_params_):
 	var condition_params = condition_params_.duplicate()
@@ -15,8 +18,7 @@ func isExecuable(condition_params_):
 
 	return ret
 
-func exec(params_arr_, condition_params_):
-	Exception.assert(isExecuable(condition_params_))
+func exec(params_arr_):
 	Exception.assert(params_arr_.size() == interfaces.size())
 	var params_arr = params_arr_.duplicate()
 	
@@ -28,6 +30,10 @@ func exec(params_arr_, condition_params_):
 		index += 1
 	
 	return ret_arr
+
+func setFuncName(func_name_):
+	Exception.assert(TypeUnit.isType(func_name_, "String"))
+	func_name = func_name_
 
 func setInterfaces(interfaces_):
 	interfaces = interfaces_
@@ -42,19 +48,32 @@ func getConditionInterface():
 	return condition_interface
 
 func getRequirement():
-	pass
+	var requirement = []
+	for interface in interfaces:
+		requirement.append(interface.getParamsType())
+	
+	return requirement
+
+func getRetRequirement():
+	var requirement = []
+	for interface in interfaces:
+		requirement.append(interface.getRetType())
+	
+	return requirement
 
 func getConditionRequirement():
-	pass
-
+	return condition_interface.getParamsType()
 
 func pack():
 	var script_tree = ScriptTree.new()
 
-	# TODO
+	script_tree.addAttr("func_name", func_name)
+	script_tree.addObjectArray("interfaces", interfaces)
+	script_tree.addObject("condition_interface", condition_interface)
 
 	return script_tree
 
 func loadScript(script_tree):
-	# TODO
-
+	func_name = script_tree.getAttr("func_name")
+	interfaces = script_tree.getObjectArray("interfaces", FunctionalInterface)
+	condition_interface = script_tree.getObject("condition_interface", FunctionalInterface)

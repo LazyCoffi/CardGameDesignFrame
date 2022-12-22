@@ -1,79 +1,92 @@
-extends Node
+extends "res://class/FunctionalSet.gd"
 class_name AttrFunctionSet
 
-var func_form = {}
-
 func _init():
-	initFuncForm()
+	func_form = {}
+	__initFuncForm()
 
-func initFuncForm():
-	addFuncForm("setAttr", ["Card"], ["Card", "String", "Object"])
-	addFuncForm("addAttr", ["Card"], ["Card", "String", "Number"])
-	addFuncForm("mulAttr", ["Card"], ["Card", "String", "Number"])
-	addFuncForm("setAttrUpperBound", ["Card"], ["Card", "String", "Number"])
-	addFuncForm("setAttrLowerBound", ["Card"], ["Card", "String", "Number"])
+func __initFuncForm():
+	addFuncForm("setAttr", false, "Attr", ["Attr", "String", "all"])
+	addFuncForm("plusAttrInt", false, "Attr", ["Attr", "String", "int"])
+	addFuncForm("plusAttrFloat", false, "Attr", ["Attr", "String", "float"])
+	addFuncForm("mulAttrInt", false, "Attr", ["Attr", "String", "float"])
+	addFuncForm("setAttrUpperBoundInt", false, "Attr", ["Attr", "String", "int"])
+	addFuncForm("setAttrUpperBoundFloat", false, "Attr", ["Attr", "String", "float"])
+	addFuncForm("setAttrLowerBoundInt", false, "Attr", ["Attr", "String", "int"])
+	addFuncForm("setAttrLowerBoundFloat", false, "Attr", ["Attr", "String", "float"])
 
-func addFuncForm(func_name, ret_form, params_form):
-	var cur_form = {}
-	cur_form["params"] = params_form
-	cur_form["ret"] = ret_form
-
-	func_form[func_name] = cur_form
-
-func getParamsType(func_name):
-	if not hasFunc(func_name):
-		Exception.assert(false, "Wrong functional_name")
-
-	return func_form[func_name]["params"]
-
-func getRetType(func_name):
-	if not hasFunc(func_name):
-		Exception.assert(false, "Wrong functional_name")
-
-	return func_form[func_name]["ret"]
-	
-func hasFunc(func_name):
-	return func_form.has(func_name)
-
-func setAttr(card, attr_name, val):
+func setAttr(attr, attr_name, val):
 	if TypeUnit.isType(val, "int") or TypeUnit.isType(val, "float"):
-		var upper = card.attr.getRange(attr_name).upper()
-		var lower = card.attr.getRange(attr_name).lower()
-		card.attr.setAttr(attr_name, max(lower, min(upper, val)))
+		var upper = attr.getRange(attr_name).upper()
+		var lower = attr.getRange(attr_name).lower()
+		attr.setAttr(attr_name, max(lower, min(upper, val)))
 	else:
-		card.attr.setAttr(val)
+		attr.setAttr(val)
 	
-	return [card]
+	return [attr]
 
-func addAttr(card, attr_name, val):
-	var upper = card.attr.upper(attr_name)
-	var lower = card.attr.lower(attr_name)
-	var attr = card.attr.getAttr(attr_name)
-	card.attr.setAttr(attr_name, max(lower, min(upper, attr + val)))
+func plusAttrInt(attr, attr_name, val):
+	Exception.assert(TypeUnit.isType(val, "int"))
+	return __plusAttr(attr, attr_name, val)
 
-	return [card]
+func plusAttrFloat(attr, attr_name, val):
+	Exception.assert(TypeUnit.isType(val, "float"))
+	return __plusAttr(attr, attr_name, val)
+	
+func __plusAttr(attr, attr_name, val):
+	var upper = attr.upper(attr_name)
+	var lower = attr.lower(attr_name)
 
-func mulAttr(card, attr_name, val):
-	var upper = card.attr.upper(attr_name)
-	var lower = card.attr.lower(attr_name)
-	var attr = card.attr.getAttr(attr_name)
+	attr.setAttr(attr_name, max(lower, min(upper, attr + val)))
 
-	card.attr.setAttr(attr_name, max(lower, min(upper, attr * val)))
- 
-func setAttrUpperBound(card, attr_name, val):
+	return [attr]
+
+func mulAttrInt(attr, attr_name, val):
+	Exception.assert(TypeUnit.isType(val, "int"))
+	return __mulAttr(attr, attr_name, val)
+
+func mulAttrFloat(attr, attr_name, val):
+	Exception.assert(TypeUnit.isType(val, "float"))
+	return __mulAttr(attr, attr_name, val)
+
+func __mulAttr(attr, attr_name, val):
+	var upper = attr.upper(attr_name)
+	var lower = attr.lower(attr_name)
+
+	attr.setAttr(attr_name, max(lower, min(upper, attr * val)))
+	
+	return [attr]
+
+func setAttrUpperBoundInt(attr, attr_name, val):
+	Exception.assert(TypeUnit.isType(val, "int"))
+	return __setAttrUpperBound(attr, attr_name, val)
+
+func setAttrUpperBoundFloat(attr, attr_name, val):
+	Exception.assert(TypeUnit.isType(val, "float"))
+	return __setAttrUpperBound(attr, attr_name, val)
+
+func __setAttrUpperBound(attr, attr_name, val):
 	var lower = val
-	if card.attr.hasLower(attr_name):
-		lower = card.attr.lower(val, attr_name)
+	if attr.hasLower(attr_name):
+		lower = attr.lower(val, attr_name)
 	
-	card.attr.setUpper(max(lower, val), attr_name)
+	attr.setUpper(max(lower, val), attr_name)
 	
-	return [card]
+	return [attr]
 
-func setAttrLowerBound(card, attr_name, val):
+func setAttrLowerBoundInt(attr, attr_name, val):
+	Exception.assert(TypeUnit.isType(val, "int"))
+	return __setAttrLowerBound(attr, attr_name, val)
+
+func setAttrLowerBoundFloat(attr, attr_name, val):
+	Exception.assert(TypeUnit.isType(val, "float"))
+	return __setAttrLowerBound(attr, attr_name, val)
+
+func __setAttrLowerBound(attr, attr_name, val):
 	var upper = val
-	if card.attr.hasUpper(attr_name):
-		upper = card.attr.upper(attr_name)
+	if attr.hasUpper(attr_name):
+		upper = attr.upper(attr_name)
 	
-	card.attr.setLower(min(upper, val), attr_name)
+	attr.setLower(min(upper, val), attr_name)
 	
-	return [card]
+	return [attr]

@@ -5,19 +5,19 @@ var category
 
 var ScriptTree = load("res://class/ScriptTree.gd")
 
-func _ready():
-	pass
+func _init():
+	category = []
 
 func addCategory(category_):
 	Exception.assert(TypeUnit.isType(category_, "Array"))
 	category.append_array(category_)
 
-func getCategory():
-	return category
-
 func setCategory(category_):
 	Exception.assert(TypeUnit.isType(category_, "Array"))
 	category = category_
+
+func getCategory():
+	return category
 
 func pack():
 	var script_tree = ScriptTree.new()

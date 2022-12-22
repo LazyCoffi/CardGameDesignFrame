@@ -1,5 +1,7 @@
 extends Node
 
+## TODO: 设置百搭Type类型，比如Object匹配所有对象，Number匹配float与int
+
 func getTypeByName(type_name):
 	var type = load("res://class/" + type_name + ".gd")
 	Exception.assert(type != null)
@@ -7,6 +9,8 @@ func getTypeByName(type_name):
 
 func isType(val, type_name):
 	match type_name:
+		"all":	
+			return true
 		"int":
 			return val is int
 		"float":
@@ -15,6 +19,8 @@ func isType(val, type_name):
 			return val is bool
 		"null":
 			return val == null
+		"Number":
+			return val is int or val is float
 		"String":
 			return val is String
 		"Array":
