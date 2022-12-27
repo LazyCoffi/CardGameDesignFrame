@@ -135,6 +135,11 @@ _global_script_classes=[ {
 "path": "res://class/MathFunctionSet.gd"
 }, {
 "base": "Node",
+"class": "SceneFactory",
+"language": "GDScript",
+"path": "res://class/SceneFactory.gd"
+}, {
+"base": "Node",
 "class": "ScriptTree",
 "language": "GDScript",
 "path": "res://class/ScriptTree.gd"
@@ -185,6 +190,7 @@ _global_script_class_icons={
 "ItemInfo": "",
 "LocalFunction": "",
 "MathFunctionSet": "",
+"SceneFactory": "",
 "ScriptTree": "",
 "SkillAttr": "",
 "SkillCard": "",
@@ -205,6 +211,8 @@ FunctionalCategory="*res://class/FunctionalCategory.gd"
 InterfaceCategory="*res://class/InterfaceCategory.gd"
 TypeUnit="*res://class/TypeUnit.gd"
 MathUnit="*res://class/MathUnit.gd"
+SceneCache="*res://class/SceneCache.gd"
+ResourceUnit="*res://class/ResourceUnit.gd"
 
 [display]
 

@@ -1,10 +1,10 @@
 extends TextureButton
 
-func _ready():
-	setButtonIcon()
+func loadResource(s_name, c_name):
+	setButtonIcon(s_name, c_name)
+	$SettingButtonText.loadResource(s_name, "SettingButtonText")
 
-func setButtonIcon():
-	var btn_paths = GlobalSetting.getRes("main_menu/btn_icons")
-	texture_normal = ResourceTool.loadTexture(btn_paths[0])
-	texture_hover = ResourceTool.loadTexture(btn_paths[1])
+func setButtonIcon(s_name, c_name):
+	texture_normal = ResourceUnit.loadTexture(s_name, c_name, "texture_normal")
+	texture_hover = ResourceUnit.loadTexture(s_name, c_name, "texture_hover")
 

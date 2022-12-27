@@ -30,7 +30,7 @@ func isGreaterEqualFloat(attr, attr_name, val):
 	return __isGreaterEqual(attr, attr_name, val)
 
 func isEqual(attr, attr_name, val):
-	return attr.getAttr() == val
+	return attr.getAttr(attr_name) == val
 	
 func __isLower(attr, attr_name, val):
 	return attr.getAttr(attr_name) < val

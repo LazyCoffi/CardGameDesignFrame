@@ -15,6 +15,22 @@ func ExceptionTest():
 	Exception.warning(false, "false test")
 	Exception.error(false, "exit")
 
+class Con:
+	var a
+
+func ObjectTest():
+	var a = Con.new()
+	a.a = 1
+	__ObjectTest(a)
+	print(a.a)
+	var b = a
+	b.a = 3
+	print(a.a)
+
+func __ObjectTest(obj):
+	obj.a = 2
+	
+
 func isTest():
 	var Type = load("res://class/Attr.gd")
 	var attr = Type.new()
@@ -33,4 +49,4 @@ func exec(func_name):
 	self.call(func_name)
 
 func run():
-	exec("paramTest")
+	exec("ObjectTest")

@@ -1,14 +1,13 @@
 extends Label
 
-func _ready():
-	setButtonText()
+func loadResource(s_name, c_name):
+	setButtonText(s_name, c_name)
 
-func setButtonText():
-	var font_data = GlobalSetting.getRes("main_menu/font")
-	var font = ResourceTool.loadFont(font_data)
-	var font_color_name = GlobalSetting.getRes("main_menu/font_color")
-	var font_color = ResourceTool.loadColor(font_color_name)
+func setButtonText(s_name, c_name):
+	var font = ResourceUnit.loadFont(s_name, c_name, "font")
+	var font_color = ResourceUnit.loadColor(s_name, c_name, "font_color")
+	var font_text = ResourceUnit.loadText(s_name, c_name, "font_text")
+
 	add_font_override("font", font)
 	add_color_override("font_color", font_color)
-	var font_text = GlobalSetting.getRes("main_menu/btn_texts")
-	self.text = font_text[0]
+	self.text = font_text

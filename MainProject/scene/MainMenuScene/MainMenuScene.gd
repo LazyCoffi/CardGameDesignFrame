@@ -3,6 +3,19 @@ extends Node2D
 signal changeSceneSignal
 
 var is_registered
+var scene_name
+
+func _init():
+	is_registered = false
+
+func loadResource():
+	setBackground()
+	setTitle()
+	
+	var siz = self.get_child_count()
+	for index in range(siz):
+		var child = self.get_child(index)
+		child.loadResource(scene_name, child.name)
 
 func isRegistered():
 	return is_registered
@@ -10,30 +23,11 @@ func isRegistered():
 func register():
 	is_registered = true
 
-func _init():
-	is_registered = false
-
-func _ready():
-	setConnection()
-	setBackground()
-	setTitle()
-
 func setTitle():
-	var title_path = GlobalSetting.getRes("main_menu/title")
-	var title = ResourceTool.loadTexture(title_path)
-	
+	var title = ResourceUnit.loadTexture(scene_name, scene_name, "title")
 	$MainMenuTitle.texture = title
 
 func setBackground():
-	var backgrounds_path = GlobalSetting.getRes("main_menu/backgrounds")
-	var bg_num = backgrounds_path.size()
-	var bg = ResourceTool.loadTexture(backgrounds_path[UnitTools.rrange(bg_num)])
-	
+	var bg = ResourceUnit.loadTexture(scene_name, scene_name, "background")
 	$MainMenuBackground.texture = bg
 
-func setConnection():
-	$StartButton.connect("pressed", self, "switchToCharacterGen")
-
-func switchToCharacterGen():
-	SceneContainer.createCharacterGen()
-	emit_signal("changeSceneSignal", SceneContainer.getCharacterGen())

@@ -6,8 +6,9 @@ var ScriptTree = load("res://class/ScriptTree.gd")
 var root
 var request_params
 var node_index
-
 var __exec_graph
+
+## TODO: 添加node结构注释
 
 func _init():
 	root = null
