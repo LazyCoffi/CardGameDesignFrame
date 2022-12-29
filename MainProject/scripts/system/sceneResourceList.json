@@ -1,0 +1,94 @@
+{
+	"resource_path" : {
+		"main_menu_1" : {
+			"main_menu_1" : {
+				"title" : {
+					"texture" : "res://asserts/main_menu/title.png"
+				},
+				"background" : {
+					"texture" : "res://asserts/main_menu/bg2.jpg"
+				},
+			},
+			"StartButton" : {
+				"texture_normal" : {
+					"texture" : "res://asserts/main_menu/main_menu_btn.png"
+				},
+				"texture_hover" : {
+					"texture" : "res://asserts/main_menu/main_menu_btn_hover.png"
+				}
+			},
+			"StartButtonText" : {
+				"font" : {
+					"font" : "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+					"font_size" : 60
+				},
+				"font_color" : {
+					"color_name" : "#d1992d"
+				},
+				"font_text" : {
+					"text" : "新的旅途"
+				}
+			},
+			"ContinueButton" : {
+				"texture_normal" : {
+					"texture" : "res://asserts/main_menu/main_menu_btn.png"
+				},
+				"texture_hover" : {
+					"texture" : "res://asserts/main_menu/main_menu_btn_hover.png"
+				}
+			},
+			"ContinueButtonText" : {
+				"font" : {
+					"font" : "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+					"font_size" : 60
+				},
+				"font_color" : {
+					"color_name" : "#d1992d"
+				},
+				"font_text" : {
+					"text" : "继续征程"
+				}
+			},
+			"SettingButton" : {
+				"texture_normal" : {
+					"texture" : "res://asserts/main_menu/main_menu_btn.png"
+				},
+				"texture_hover" : {
+					"texture" : "res://asserts/main_menu/main_menu_btn_hover.png"
+				}
+			},
+			"SettingButtonText" : {
+				"font" : {
+					"font" : "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+					"font_size" : 60
+				},
+				"font_color" : {
+					"color_name" : "#d1992d"
+				},
+				"font_text" : {
+					"text" : "游戏设置"
+				}
+			},
+			"ExitButton" : {
+				"texture_normal" : {
+					"texture" : "res://asserts/main_menu/main_menu_btn.png"
+				},
+				"texture_hover" : {
+					"texture" : "res://asserts/main_menu/main_menu_btn_hover.png"
+				}
+			},
+			"ExitButtonText" : {
+				"font" : {
+					"font" : "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+					"font_size" : 60
+				},
+				"font_color" : {
+					"color_name" : "#d1992d"
+				},
+				"font_text" : {
+					"text" : "离开游戏"
+				}
+			},
+		},
+	}
+}

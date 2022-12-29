@@ -1,16 +1,16 @@
 extends Node
 class_name Card
 
+var Category = load("res://class/entity/Category.gd")
+var Info = load("res://class/entity/Info.gd")
+var Attr = load("res://class/entity/Attr.gd")
+var LocalFunction = load("res://class/functionalSystem/LocalFunction.gd")
+var ScriptTree = load("res://class/entity/ScriptTree.gd")
+
 var category				# 卡牌类型
 var info 					# 卡牌信息
 var attr					# 卡牌参数
 var local_functions = {}	# 本地函数
-
-var Category = load("res://class/Category.gd")
-var Info = load("res://class/Info.gd")
-var Attr = load("res://class/Attr.gd")
-var LocalFunction = load("res://class/LocalFunction.gd")
-var ScriptTree = load("res://class/ScriptTree.gd")
 
 func _ready():
 	pass # Replace with function body.

@@ -1,8 +1,8 @@
 extends Node
 class_name Attr
 
-var ScriptTree = load("res://class/ScriptTree.gd")
-var ValRange = load("res://class/ValRange.gd")
+var ScriptTree = load("res://class/entity/ScriptTree.gd")
+var ValRange = load("res://class/entity/ValRange.gd")
 
 var attr
 var attr_type
@@ -63,12 +63,12 @@ func pack():
 	var script_tree = ScriptTree.new()
 
 	script_tree.addAttr("attr", attr)
-	script_tree.addAttr("type", type)
+	script_tree.addAttr("attr_type", attr_type)
 	script_tree.addObject("val_range", val_range)
 
 	return script_tree
 
 func loadScript(script_tree):
 	attr = script_tree.getAttr("attr")
-	type = script_tree.getAttr("type")
+	attr_type = script_tree.getAttr("attr_type")
 	script_tree = script_tree.getObject("val_range", ValRange)

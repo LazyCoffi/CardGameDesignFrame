@@ -12,42 +12,42 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Attr",
 "language": "GDScript",
-"path": "res://class/Attr.gd"
+"path": "res://class/entity/Attr.gd"
 }, {
 "base": "Node",
 "class": "AttrConditionSet",
 "language": "GDScript",
-"path": "res://class/AttrConditionSet.gd"
+"path": "res://class/functionalSystem/AttrConditionSet.gd"
 }, {
 "base": "Node",
 "class": "AttrFunctionSet",
 "language": "GDScript",
-"path": "res://class/AttrFunctionSet.gd"
+"path": "res://class/functionalSystem/AttrFunctionSet.gd"
 }, {
 "base": "Node",
 "class": "BaseConditionSet",
 "language": "GDScript",
-"path": "res://class/BaseConditionSet.gd"
+"path": "res://class/functionalSystem/BaseConditionSet.gd"
 }, {
 "base": "Node",
 "class": "BaseFunctionSet",
 "language": "GDScript",
-"path": "res://class/BaseFunctionSet.gd"
+"path": "res://class/functionalSystem/BaseFunctionSet.gd"
 }, {
 "base": "Node",
 "class": "Card",
 "language": "GDScript",
-"path": "res://class/Card.gd"
+"path": "res://class/entity/Card.gd"
 }, {
 "base": "Node",
 "class": "CardInterfaceSet",
 "language": "GDScript",
-"path": "res://class/CardInterfaceSet.gd"
+"path": "res://class/functionalSystem/CardInterfaceSet.gd"
 }, {
 "base": "Node",
 "class": "Category",
 "language": "GDScript",
-"path": "res://class/Category.gd"
+"path": "res://class/entity/Category.gd"
 }, {
 "base": "Node",
 "class": "CharacterAttr",
@@ -92,22 +92,22 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Function",
 "language": "GDScript",
-"path": "res://class/Function.gd"
+"path": "res://class/functionalSystem/Function.gd"
 }, {
 "base": "Node",
 "class": "FunctionalGraph",
 "language": "GDScript",
-"path": "res://class/FunctionalGraph.gd"
+"path": "res://class/functionalSystem/FunctionalGraph.gd"
 }, {
 "base": "Node",
 "class": "FunctionalInterface",
 "language": "GDScript",
-"path": "res://class/FunctionalInterface.gd"
+"path": "res://class/functionalSystem/FunctionalInterface.gd"
 }, {
 "base": "Node",
 "class": "FunctionalSet",
 "language": "GDScript",
-"path": "res://class/FunctionalSet.gd"
+"path": "res://class/functionalSystem/FunctionalSet.gd"
 }, {
 "base": "Node",
 "class": "ItemAttr",
@@ -127,22 +127,22 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "LocalFunction",
 "language": "GDScript",
-"path": "res://class/LocalFunction.gd"
+"path": "res://class/functionalSystem/LocalFunction.gd"
 }, {
-"base": "",
+"base": "Node",
 "class": "MathFunctionSet",
 "language": "GDScript",
-"path": "res://class/MathFunctionSet.gd"
+"path": "res://class/functionalSystem/MathFunctionSet.gd"
 }, {
 "base": "Node",
 "class": "SceneFactory",
 "language": "GDScript",
-"path": "res://class/SceneFactory.gd"
+"path": "res://class/sceneUnit/SceneFactory.gd"
 }, {
 "base": "Node",
 "class": "ScriptTree",
 "language": "GDScript",
-"path": "res://class/ScriptTree.gd"
+"path": "res://class/entity/ScriptTree.gd"
 }, {
 "base": "Node",
 "class": "SkillAttr",
@@ -162,7 +162,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "ValRange",
 "language": "GDScript",
-"path": "res://class/ValRange.gd"
+"path": "res://class/entity/ValRange.gd"
 } ]
 _global_script_class_icons={
 "Attr": "",
@@ -206,13 +206,13 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Exception="*res://class/Exception.gd"
-FunctionalCategory="*res://class/FunctionalCategory.gd"
-InterfaceCategory="*res://class/InterfaceCategory.gd"
-TypeUnit="*res://class/TypeUnit.gd"
-MathUnit="*res://class/MathUnit.gd"
-SceneCache="*res://class/SceneCache.gd"
-ResourceUnit="*res://class/ResourceUnit.gd"
+Exception="*res://class/toolUnit/Exception.gd"
+SceneCache="*res://class/sceneUnit/SceneCache.gd"
+InterfaceCategory="*res://class/functionalSystem/InterfaceCategory.gd"
+FunctionalCategory="*res://class/functionalSystem/FunctionalCategory.gd"
+TypeUnit="*res://class/toolUnit/TypeUnit.gd"
+ResourceUnit="*res://class/toolUnit/ResourceUnit.gd"
+MathUnit="*res://class/toolUnit/MathUnit.gd"
 
 [display]
 

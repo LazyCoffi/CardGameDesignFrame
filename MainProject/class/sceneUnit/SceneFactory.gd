@@ -1,7 +1,7 @@
 extends Node
 class_name SceneFactory
 
-var ScriptTree = load("res://class/ScriptTree.gd")
+var ScriptTree = load("res://class/entity/ScriptTree.gd")
 var MainMenuScene = load("res://scene/MainMenuScene/MainMenuScene.tscn")
 
 var raw_scene_scripts
@@ -13,7 +13,7 @@ func _init():
 
 func getSceneNode(scene_name):
 	var raw_info = raw_scene_scripts[scene_name]
-	var scene_type = raw_info["type"]
+	var scene_type = type_table[raw_info["type"]]
 	var raw_script = raw_info["script"]
 
 	var script_tree = ScriptTree.new()

@@ -1,8 +1,8 @@
 extends Node
 class_name LocalFunction
 
-var FunctionalInterface = load("res://class/FunctionalInterface.gd")
-var ScriptTree = load("res://class/ScriptTree.gd")
+var FunctionalInterface = load("res://class/functionalSystem/FunctionalInterface.gd")
+var ScriptTree = load("res://class/entity/ScriptTree.gd")
 
 var func_name
 var interfaces

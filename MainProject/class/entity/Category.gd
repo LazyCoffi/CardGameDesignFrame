@@ -3,7 +3,7 @@ class_name Category
 
 var category
 
-var ScriptTree = load("res://class/ScriptTree.gd")
+var ScriptTree = load("res://class/entity/ScriptTree.gd")
 
 func _init():
 	category = []

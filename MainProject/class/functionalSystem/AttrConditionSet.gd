@@ -1,4 +1,4 @@
-extends "res://class/FunctionalSet.gd"
+extends "res://class/functionalSystem/FunctionalSet.gd"
 class_name AttrConditionSet
 
 func _init():

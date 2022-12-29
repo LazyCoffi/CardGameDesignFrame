@@ -6,7 +6,7 @@ var introduction
 
 # TODO: 考虑是否添加长文本类
 
-var ScriptTree = load("res://class/ScriptTree.gd")
+var ScriptTree = load("res://class/entity/ScriptTree.gd")
 
 func _ready():
 	pass
@@ -18,7 +18,7 @@ func setAvator(avator_):
 	# TODO: 添加图片类与图片类的assert
 	avator = avator_
 
-func setIntroduction(introduction):
+func setIntroduction(introduction_):
 	# TODO: 确定Introduction所属类后添加assert
 	introduction = introduction_
 

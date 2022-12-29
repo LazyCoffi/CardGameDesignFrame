@@ -6,7 +6,7 @@ var lower_bound
 var has_upper
 var has_lower
 
-var ScriptTree = load("res://class/ScriptTree.gd")
+var ScriptTree = load("res://class/entity/ScriptTree.gd")
 
 func _init():
 	has_upper = false

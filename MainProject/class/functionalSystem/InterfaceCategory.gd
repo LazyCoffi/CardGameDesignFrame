@@ -2,7 +2,7 @@ extends Node
 
 var interface_tree
 
-var card_interface_set = load("res://class/CardInterfaceSet.gd").new()
+var card_interface_set = load("res://class/functionalSystem/CardInterfaceSet.gd").new()
 
 func _init():
 	interface_tree = {}

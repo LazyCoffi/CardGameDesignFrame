@@ -1,6 +1,6 @@
 extends Node
 
-var attr_function_set = load("res://class/AttrFunctionSet.gd").new()
+var attr_function_set = load("res://class/functionalSystem/AttrFunctionSet.gd").new()
 
 var func_tree
 
@@ -22,7 +22,7 @@ func getFunctionalSet(category):
 
 func isVariable(category, func_name):
 	var functional_set = getFunctionalSet(category)
-	return functional_set.isVariable()
+	return functional_set.isVariable(func_name)
 
 func getRetType(category, func_name):
 	var functional_set = getFunctionalSet(category)

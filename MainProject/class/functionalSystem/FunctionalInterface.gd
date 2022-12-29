@@ -1,9 +1,9 @@
 extends Node
 class_name FunctionalInterface
 
-var ScriptTree = load("res://class/ScriptTree.gd")
-var Category = load("res://class/Category.gd")
-var FunctionalGraph = load("res://class/FunctionalGraph.gd")
+var ScriptTree = load("res://class/entity/ScriptTree.gd")
+var Category = load("res://class/entity/Category.gd")
+var FunctionalGraph = load("res://class/functionalSystem/FunctionalGraph.gd")
 
 var interface_name
 var category

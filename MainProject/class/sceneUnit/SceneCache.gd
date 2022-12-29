@@ -1,6 +1,6 @@
 extends Node
 
-var SceneFactory = load("res://class/SceneFactory.gd")
+var SceneFactory = load("res://class/sceneUnit/SceneFactory.gd")
 
 var scene_container
 var cur_scene
@@ -38,4 +38,4 @@ func getScene(scene_name):
 	return scene_container[scene_name]
 		
 func loadScene(scene_name):
-	cur_scene = scene_factory.getSceneNode(scene_name)
+	scene_container[scene_name] = scene_factory.getSceneNode(scene_name)

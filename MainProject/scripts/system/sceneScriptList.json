@@ -1,3 +1,10 @@
 {
-	"raw_scene_script" : {}
+	"raw_scene_script" : {
+		"main_menu_1" : {
+			"type" : "MainMenuScene",
+			"script" : {
+				"scene_name" : "main_menu_1"
+			}
+		}
+	}
 }

@@ -1,10 +1,10 @@
 extends Node
 
 func ScriptTreeTest():
-	var ScriptTree = load("res://class/ScriptTree.gd")
+	var ScriptTree = load("res://class/entity/ScriptTree.gd")
 	var script_tree = ScriptTree.new()
 	script_tree.loadFromJson("res://scripts/debug.json")
-	var Card = load("res://class/Card.gd")
+	var Card = load("res://class/entity/Card.gd")
 	var card = Card.new()
 	card.loadScript(script_tree)
 	
@@ -32,7 +32,7 @@ func __ObjectTest(obj):
 	
 
 func isTest():
-	var Type = load("res://class/Attr.gd")
+	var Type = load("res://class/entity/Attr.gd")
 	var attr = Type.new()
 	print(attr is Type)
 
@@ -49,4 +49,4 @@ func exec(func_name):
 	self.call(func_name)
 
 func run():
-	exec("ObjectTest")
+	pass

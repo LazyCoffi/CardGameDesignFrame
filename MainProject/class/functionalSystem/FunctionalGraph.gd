@@ -1,7 +1,7 @@
 extends Node
 class_name FunctionalGraph
 
-var ScriptTree = load("res://class/ScriptTree.gd")
+var ScriptTree = load("res://class/entity/ScriptTree.gd")
 
 var root
 var request_params

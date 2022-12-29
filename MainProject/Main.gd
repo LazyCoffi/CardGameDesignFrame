@@ -4,9 +4,8 @@ extends Node
 ## 创建主菜单场景，并将控制权交给主菜单场景
 
 ## TODO:
-## 1. 由于对象的传值默认为引用传值，需要修改Functional系统的参数和返回值模式
-## 2. 修改脚本，尝试启动MainMenuScene
-## 3. 添加BattleScene
+## 1. 修改脚本，尝试启动MainMenuScene
+## 2. 添加BattleScene
 
 func debug():
 	var Debug = load("res://class/Test.gd")
@@ -24,6 +23,7 @@ func _init():
 
 func _ready():
 	gameInit()
+	$SceneDispatcher.switch("main_menu_1")
 
 func quit():
 	get_tree().quit()

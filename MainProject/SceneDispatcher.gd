@@ -8,7 +8,8 @@ func _ready():
 func registerScene(scene):
 	if scene.isRegistered():
 		return
-	scene.connect("switchSceneSignal", self, "switchScene")
+	scene.connect("switchSignal", self, "switch")
+	scene.connect("switchWithoutRefreshSignal", self, "switchWithoutRefresh")
 	scene.register()
 
 func switch(scene_name):
