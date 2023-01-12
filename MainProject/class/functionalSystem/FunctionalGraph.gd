@@ -9,16 +9,19 @@ var node_index
 var __exec_graph
 
 ## TODO: 添加node结构注释
+class innerNode:
+	var __func
+	var __ch
 
 func _init():
-	root = null
+	root = innerNode.new()
 	node_index = 0
 
 func setRoot(functional):
 	root = {}
-	root["func"] = functional
-	root["ch"] = []
-	root["ch"].resize(functional.getParamsNum())
+	root.__func = functional
+	root.__ch = []
+	root.__ch.resize(functional.getParamsNum())
 	constructGraph()
 
 func constructGraph():
@@ -44,28 +47,31 @@ func isVariableAdaptable(child_func, parent_func):
 	return ret_type == params_type[0]
 
 func connectNode(child_node, parent_node, param_index):
-	Exception.assert(isAdaptable(child_node["func"], parent_node["func"], param_index))
+	Exception.assert(isAdaptable(child_node.__func, parent_node.__func, param_index))
 
-	parent_node["ch"][param_index] = child_node
+	parent_node.__ch[param_index] = child_node
 	
 	constructGraph()
 
 func connectVariableNode(child_node, parent_node):
-	Exception.assert(isVariableAdaptable(child_node["func"], parent_node["func"]))
+	Exception.assert(isVariableAdaptable(child_node.__func, parent_node.__func))
 
-	parent_node["ch"].append(child_node)
+	parent_node.__ch.append(child_node)
 
 	constructGraph()
 
 func disconnectNode(parent_node, param_index):
 	Exception.assert(param_index < parent_node["ch"].size())
 
-	parent_node["ch"][param_index] = null
+	parent_node.__ch[param_index] = null
 
 	constructGraph()
 
-func getRequestParams():
+func getParamsType():
 	return request_params
+
+func getRetType():
+	return root.getRetType()
 	
 func exec(params):
 	__exec_graph = {}
@@ -74,14 +80,20 @@ func exec(params):
 func pack():
 	var script_tree = ScriptTree.new()
 
-	script_tree.addAttr("root", root)
+	var root_dict = {}
+	root_dict["func"] = root.__func
+	root_dict["ch"] = root.__ch
+
+	script_tree.addAttr("root", root_dict)
 	script_tree.addAttr("request_params", request_params)
 	script_tree.addAttr("node_index", node_index)
 
 	return script_tree
 
 func loadScript(script_tree):
-	root = script_tree.getAttr("root")
+	var root_dict = script_tree.getAttr("root")
+	root.__func = root_dict["func"]
+	root.__ch = root_dict["ch"]
 	request_params = script_tree.getAttr("request_params", request_params)
 	node_index = script_tree.getAttr("node_index", node_index)
 

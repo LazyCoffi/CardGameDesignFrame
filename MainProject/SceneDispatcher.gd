@@ -12,18 +12,19 @@ func registerScene(scene):
 	scene.connect("switchWithoutRefreshSignal", self, "switchWithoutRefresh")
 	scene.register()
 
-func switch(scene_name):
+func switch(scene_name, scene_pack):
 	if cur_scene != null:
 		SceneCache.store(cur_scene)
 	
-	__switchScene(scene_name)
+	__switchScene(scene_name, scene_pack)
 
-func switchWithoutRefresh(scene_name):
-	__switchScene(scene_name)
+func switchWithoutRefresh(scene_name, scene_pack):
+	__switchScene(scene_name, scene_pack)
 
-func __switchScene(scene_name):
+func __switchScene(scene_name, scene_pack):
 	var scene_node = SceneCache.getScene(scene_name)
 	var	scene = scene_node["scene"]
+	scene.refreshScenePack(scene_pack)
 
 	if not scene.isRegistered():
 		registerScene(scene)

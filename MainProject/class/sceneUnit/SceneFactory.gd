@@ -20,7 +20,7 @@ func getSceneNode(scene_name):
 	script_tree.setRoot(raw_script)
 
 	var scene = scene_type.instance()
-	scene.loadScript(script_tree)
+	scene.initScript(script_tree)
 
 	var scene_node = {}
 	scene_node["type"] = scene_type
