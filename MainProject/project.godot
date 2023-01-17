@@ -175,6 +175,11 @@ _global_script_classes=[ {
 "path": "res://class/functionalSystem/LocalFunction.gd"
 }, {
 "base": "Node",
+"class": "MainMenuModel",
+"language": "GDScript",
+"path": "res://scene/MainMenuScene/MainMenuModel.gd"
+}, {
+"base": "Node",
 "class": "MathFunctionSet",
 "language": "GDScript",
 "path": "res://class/functionalSystem/MathFunctionSet.gd"
@@ -203,6 +208,11 @@ _global_script_classes=[ {
 "class": "SkillInfo",
 "language": "GDScript",
 "path": "res://class/trash/SkillInfo.gd"
+}, {
+"base": "Node",
+"class": "SwitchTargetTable",
+"language": "GDScript",
+"path": "res://class/entity/SwitchTargetTable.gd"
 }, {
 "base": "Node",
 "class": "TriggerTimer",
@@ -248,12 +258,14 @@ _global_script_class_icons={
 "LinearBattleModel": "",
 "LinearBattleService": "",
 "LocalFunction": "",
+"MainMenuModel": "",
 "MathFunctionSet": "",
 "SceneFactory": "",
 "ScriptTree": "",
 "SkillAttr": "",
 "SkillCard": "",
 "SkillInfo": "",
+"SwitchTargetTable": "",
 "TriggerTimer": "",
 "ValRange": ""
 }
@@ -267,12 +279,12 @@ config/icon="res://icon.png"
 [autoload]
 
 Exception="*res://class/toolUnit/Exception.gd"
-SceneCache="*res://class/sceneUnit/SceneCache.gd"
 FunctionalCategory="*res://class/functionalSystem/FunctionalCategory.gd"
 TypeUnit="*res://class/toolUnit/TypeUnit.gd"
 ResourceUnit="*res://class/toolUnit/ResourceUnit.gd"
 MathUnit="*res://class/toolUnit/MathUnit.gd"
 GlobalSetting="*res://class/toolUnit/GlobalSetting.gd"
+SceneCache="*res://class/sceneUnit/SceneCache.gd"
 
 [display]
 

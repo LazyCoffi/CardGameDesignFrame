@@ -1,6 +1,6 @@
 extends Node
 
-var cur_scene
+var ScriptTree = load("res://class/entity/ScriptTree.gd")
 
 func _ready():
 	pass
@@ -10,27 +10,33 @@ func registerScene(scene):
 		return
 	scene.connect("switchSignal", self, "switch")
 	scene.connect("switchWithoutRefreshSignal", self, "switchWithoutRefresh")
+	scene.connect("switchWithCleanSignal", self, "switchWithClean")
 	scene.register()
 
-func switch(scene_name, scene_pack):
-	if cur_scene != null:
-		SceneCache.store(cur_scene)
+func switch(scene_name):
+	if not SceneCache.hasCurScene():
+		SceneCache.setCurScene(scene_name)
 	
-	__switchScene(scene_name, scene_pack)
+	__switchScene(scene_name)
 
-func switchWithoutRefresh(scene_name, scene_pack):
-	__switchScene(scene_name, scene_pack)
+func switchWithoutRefresh(scene_name):
+	__switchScene(scene_name)
 
-func __switchScene(scene_name, scene_pack):
-	var scene_node = SceneCache.getScene(scene_name)
-	var	scene = scene_node["scene"]
-	scene.refreshScenePack(scene_pack)
+func switchWithClean(scene_name):
+	SceneCache.delete(scene_name)
+
+	__switchScene(scene_name)
+
+func __switchScene(scene_name):
+	var scene_node = SceneCache.get(scene_name)
+	var	scene = scene_node.getScene()
 
 	if not scene.isRegistered():
 		registerScene(scene)
 		
-	if cur_scene != null:
+	if SceneCache.hasCurScene():
+		var cur_scene = SceneCache.getCurScene()
 		remove_child(cur_scene)
 
 	add_child(scene)
-	cur_scene = scene
+	SceneCache.setCurScene(scene_name)

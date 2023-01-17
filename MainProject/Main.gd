@@ -9,7 +9,13 @@ extends Node
 ## 3. 完善Interface, 设计LinearBattleInterface
 ## 4. 推进LinearBattleScene的SceneDispatcher
 ## 5. 现有基础上完成MainMenuScene到LinearBattleScene的跳转，并实现卡牌的展示
-## 6. 添加Log
+## 6. 添加CharacterWarehouseScene
+## 7. 整理删除ScenePack后的代码和脚本
+## 7. 添加Log
+
+var ScriptTree = load("res://class/entity/ScriptTree.gd")
+
+var init_scene_name
 
 func debug():
 	var Debug = load("res://class/Test.gd")
@@ -18,16 +24,26 @@ func debug():
 	
 func gameEarlyInit():
 	pass
-	
-func gameInit():
-	Exception.setSceneTree(get_tree())
 
 func _init():
 	debug()
 
 func _ready():
 	gameInit()
-	$SceneDispatcher.switch("main_menu_1")
+
+func gameInit():
+	Exception.setSceneTree(get_tree())
+	initScript()
+	gameStart()
+
+func gameStart():
+	$SceneDispatcher.switch(init_scene_name, scene_pack)
+
+func initScript():
+	var script_tree = ScriptTree.new()
+	script_tree.loadFromJson("res://scripts/system/main.json")
+
+	init_scene_name = script_tree.getAttr("init_scene_name")
 
 func quit():
 	get_tree().quit()

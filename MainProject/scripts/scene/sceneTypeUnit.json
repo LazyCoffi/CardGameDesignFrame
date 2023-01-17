@@ -1,0 +1,6 @@
+{
+	"MainMenuScene" : [],
+	"LinearBattleScene" : [
+		["character_warehouse", "cur_character_group"]
+	]
+}

@@ -1,9 +1,18 @@
 extends Label
 
-func loadResource(s_name, c_name):
-	setButtonText(s_name, c_name)
+var s_name
+var c_name
 
-func setButtonText(s_name, c_name):
+func _init():
+	c_name = "SettingButtonText"
+
+func setSceneName(s_name_):
+	s_name = s_name_
+
+func loadResource():
+	setButtonText()
+
+func setButtonText():
 	var font = ResourceUnit.loadFont(s_name, c_name, "font")
 	var font_color = ResourceUnit.loadColor(s_name, c_name, "font_color")
 	var font_text = ResourceUnit.loadText(s_name, c_name, "font_text")

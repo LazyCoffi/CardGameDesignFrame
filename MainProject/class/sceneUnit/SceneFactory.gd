@@ -2,18 +2,17 @@ extends Node
 class_name SceneFactory
 
 var ScriptTree = load("res://class/entity/ScriptTree.gd")
-var MainMenuScene = load("res://scene/MainMenuScene/MainMenuScene.tscn")
+var SceneCache = load("res://class/sceneUnit/SceneCache.gd")
 
 var raw_scene_scripts
-var type_table
 
 func _init():
-	__initTypeTable()
-	__preloadScript()
+	__initScript()
 
 func getSceneNode(scene_name):
 	var raw_info = raw_scene_scripts[scene_name]
-	var scene_type = type_table[raw_info["type"]]
+	var type = raw_info["type"]
+	var scene_type = TypeUnit.getTypeByName(type)
 	var raw_script = raw_info["script"]
 
 	var script_tree = ScriptTree.new()
@@ -22,20 +21,15 @@ func getSceneNode(scene_name):
 	var scene = scene_type.instance()
 	scene.initScript(script_tree)
 
-	var scene_node = {}
-	scene_node["type"] = scene_type
-	scene_node["scene_name"] = scene_name
-	scene_node["scene"] = scene
+	var scene_node = SceneCache.SceneNode.new()	
+	scene_node.type = type
+	scene_node.scene_name = scene_name
+	scene_node.scene = scene
 
 	return scene_node
 
-func __initTypeTable():
-	type_table = {}
-	type_table["MainMenuScene"] = MainMenuScene
-
-func __preloadScript():
+func __initScript():
 	raw_scene_scripts = {}
 	var script_tree = ScriptTree.new()
-	script_tree.loadFromJson("res://scripts/system/sceneScriptList.json")
+	script_tree.loadFromJson("res://scripts/scene/sceneFactory.json")
 	raw_scene_scripts = script_tree.getAttr("raw_scene_script")
-

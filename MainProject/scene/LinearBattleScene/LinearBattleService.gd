@@ -4,9 +4,6 @@ class_name LinearBattleService
 var __scene_ref
 var __model_ref
 
-class CharacterRectPack:
-	var rect_name
-	var rect
 
 func setRef(scene):
 	__scene_ref = scene
@@ -16,7 +13,7 @@ func initCharacterRect():
 	var rect_size_arr = __model_ref.getSettingAttr("character_card_rect_size")
 	var rect_size = Vector2(rect_size_arr[0], rect_size_arr[1])
 	var group_num = __model_ref.getGroupNum()
-	var rect_position = __getCharacterCardPosition(group_num)
+	var rect_position = __getCharacterCardRectPosition(group_num)
 
 	var character_groups = __model_ref.getCharacterGroups()
 	var character_rect_groups = [[], []]
@@ -34,7 +31,7 @@ func initCharacterRect():
 			character_rect.rect_position = rect_pos
 			__scene_ref.add_child(character_rect)
 			
-			var character_rect_pack = CharacterRectPack.new()
+			var character_rect_pack = __model_ref.RectPack().new()
 			character_rect_pack.rect_name = card_name
 			character_rect_pack.rect = character_rect
 			character_rect_groups[i].append(character_rect_pack)
@@ -79,6 +76,7 @@ func setCurHandCardsRect():
 	var rect_size_arr = __model_ref.getSettingAttr("hand_card_rect_size")
 	var rect_size = Vector2(rect_size_arr[0], rect_size_arr[1])
 	var rect_position = __getHandCardRectPosition(cur_hand_cards.size(), rect_size)
+	var hand_card_rect = {}
 
 	var index = 0
 	for hand_card in cur_hand_cards:
@@ -92,10 +90,17 @@ func setCurHandCardsRect():
 		card_rect.texture = texture
 
 		var rect_pos_arr = rect_position[index]
-		var rect_pos = Vector2D(rect_pos_arr[0], rect_pos_arr[1])
+		var rect_pos = Vector2(rect_pos_arr[0], rect_pos_arr[1])
 		card_rect.rect_position = rect_pos
 
+		var rect_pack = __scene_ref.RectPack().new()
+		rect_pack.rect_name = card_name
+		rect_pack.rect = card_rect
+		hand_card_rect.append(rect_pack)
+
 		__scene_ref.add_child(card_rect)
+	
+	__model_ref.setHandCardRectGroup(hand_card_rect)
 
 
 func __getCharacterCardRectPosition(group_num):
@@ -107,11 +112,13 @@ func __getCharacterCardRectPosition(group_num):
 	var h_half = MathUnit.toInt(width * 0.5)
 
 	var ret = [[], []]
-	var gap = MathUnit.toInt(h_half / group_num[i])
+	var gap = []
+	gap.append(MathUnit.toInt(h_half / group_num[0]))
+	gap.append(MathUnit.toInt(h_half / group_num[1]))
 	for index in range(group_num[0]):
-		ret[0].append([(index + 1) * gap, v_pos])
+		ret[0].append([(index + 1) * gap[0], v_pos])
 	for index in range(group_num[1]):
-		ret[1].append([half + (index + 1) * gap, v_pos])
+		ret[1].append([h_half + (index + 1) * gap[1], v_pos])
 	return ret
 
 func __getHandCardRectPosition(card_num, rect_size):

@@ -108,6 +108,15 @@ func __initTypeTable():
 	__addType("functionalSystem", "MathFunctionSet")
 	__addType("sceneUnit", "SceneFactory")
 
+	__addSceneType("MainMenuScene")
+	__addSceneType("LinearBattleScene")
+	__addSceneType("CharacterWarehouseScene")
+
 func __addType(dict, type_name):
 	var type = load("res://class/" + dict + "/" + type_name + ".gd")
 	type_table[type_name] = type
+
+func __addSceneType(type_name):
+	var type = load("res://scene/" + type + "/" + type + ".tscn")
+	return type_table[type_name] = type
+

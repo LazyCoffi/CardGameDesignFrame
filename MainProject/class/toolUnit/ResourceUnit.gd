@@ -2,10 +2,10 @@ extends Node
 
 var ScriptTree = load("res://class/entity/ScriptTree.gd")
 
-var resource_path
+var resource_path	# Dict
 
 func _init():
-	__preloadResourcePath()
+	__initScript()
 
 func loadTexture(s_name, c_name, r_name):
 	var res = __getRes(s_name, c_name, r_name)
@@ -24,6 +24,11 @@ func loadFont(s_name, c_name, r_name):
 	font.size = res["font_size"]
 
 	return font
+
+func __initScript():
+	var script_tree = ScriptTree.new()
+	script_tree.loadFromJson("res://scripts/system/resourceUnit.json")
+	resource_path = script_tree.getAttr("resource_path")
 
 func loadColor(s_name, c_name, r_name):
 	var res = __getRes(s_name, c_name, r_name)
@@ -48,9 +53,4 @@ func __getRes(s_name, c_name, r_name):
 	 Exception.assert(resource_path[s_name][c_name].has(r_name))
 	 return resource_path[s_name][c_name][r_name]
 
-func __preloadResourcePath():
-	resource_path = {}
-	var script_tree = ScriptTree.new()
-	script_tree.loadFromJson("res://scripts/system/sceneResourceList.json")
-	resource_path = script_tree.getAttr("resource_path")
 

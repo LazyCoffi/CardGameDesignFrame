@@ -1,6 +1,8 @@
 extends Node
 class_name ScriptTree
 
+var ScriptTree = load("res://class/entity/ScriptTree.gd")
+
 var root
 
 func _init():
@@ -46,6 +48,9 @@ func addObjectArray(obj_name, cur_arr):
 	
 	root[obj_name] = arr
 
+func addScriptTree(script_name, script_tree):
+	addAttr(script_name, script_tree.getRoot())
+
 func getAttr(obj_name):
 	Exception.assert(root.has(obj_name))
 	return root[obj_name]
@@ -53,7 +58,6 @@ func getAttr(obj_name):
 func getObject(obj_name, obj_type):
 	Exception.assert(root.has(obj_name))
 
-	var ScriptTree = load("res://class/ScriptTree.gd")
 	var script_tree = ScriptTree.new()
 	script_tree.setRoot(root[obj_name])
 
@@ -69,7 +73,6 @@ func getObjectDict(dict_name, obj_type):
 	Exception.assert(cur_dict is Dictionary)
 
 	var dict = {}
-	var ScriptTree = load("res://class/ScriptTree.gd")
 	for key in cur_dict.keys():
 		var script_tree = ScriptTree.new()
 		script_tree.setRoot(cur_dict[key])
@@ -88,7 +91,6 @@ func getObjectArray(arr_name, obj_type):
 	Exception.assert(cur_arr is Array)
 
 	var arr = {}
-	var ScriptTree = load("res://class/ScriptTree.gd")
 	for raw_script in arr:
 		var script_tree = ScriptTree.setRoot(raw_script)
 
@@ -98,3 +100,12 @@ func getObjectArray(arr_name, obj_type):
 		arr.append(obj)
 	
 	return arr
+
+func getScriptTree(script_name):
+	Exception.assert(root.has(script_name))
+	var script_tree = ScriptTree.new()
+
+	script_tree.setRoot(root[script_name])
+
+	return script_tree
+	
