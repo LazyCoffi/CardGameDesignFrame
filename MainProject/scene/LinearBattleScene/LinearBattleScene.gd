@@ -31,8 +31,8 @@ func isRegistered():
 func register():
 	is_registered = true
 
-func switchScene(signal_name, next_scene_name, scene_pack_):
-	emit_signal(signal_name, next_scene_name, scene_pack_)
+func switchScene(signal_name, next_scene_name):
+	emit_signal(signal_name, next_scene_name)
 
 func setRef(scene):
 	scene_service.setRef(scene)
@@ -68,7 +68,6 @@ func loadScript(script_tree):
 func initScript(script_tree):
 	scene_name = script_tree.getAttr("scene_name")
 	switch_target_table = script_tree.getObject("switch_target_table", SwitchTargetTable)
-
-	scene_model = LinearBattleModel.new()
+	scene_model = script_tree.initObject("scene_model")
 	scene_service = LinearBattleService.new()
 	scene_dispatcher = LinearBattleDispatcher.new()

@@ -5,8 +5,8 @@ var ScriptTree = load("res://class/entity/ScriptTree.gd")
 
 signal timeout_signal
 
-var timer		# int
-var is_active
+var timer			# int
+var is_active		# bool
 
 func _init():
 	timer = 0
@@ -43,5 +43,5 @@ func pack():
 	return script_tree
 
 func loadScript(script_tree):
-	timer = script_tree.loadAttr("timer")
-	is_active = script_tree.loadAttr("is_active")
+	timer = script_tree.getInt("timer")
+	is_active = script_tree.getBool("is_active")

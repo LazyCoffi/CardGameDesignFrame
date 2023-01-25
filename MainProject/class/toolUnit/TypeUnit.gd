@@ -102,7 +102,7 @@ func __initTypeTable():
 	__addType("functionalSystem", "CardInterfaceSet")
 	__addType("functionalSystem", "Function")
 	__addType("functionalSystem", "FunctionalGraph")
-	__addType("functionalSystem", "FunctionalInterface")
+	__addType("functionalSystem", "Interface")
 	__addType("functionalSystem", "FunctionalSet")
 	__addType("functionalSystem", "LocalFunction")
 	__addType("functionalSystem", "MathFunctionSet")
@@ -117,6 +117,6 @@ func __addType(dict, type_name):
 	type_table[type_name] = type
 
 func __addSceneType(type_name):
-	var type = load("res://scene/" + type + "/" + type + ".tscn")
-	return type_table[type_name] = type
+	var type = load("res://scene/" + type_name + "/" + type_name + ".tscn")
+	type_table[type_name] = type
 

@@ -2,14 +2,16 @@ extends Node
 class_name Function
 
 var ScriptTree = load("res://class/entity/ScriptTree.gd")
+var Category = load("res://class/entity/Category.gd")
 
-var func_name
-var category
-var static_params
+var func_name			# String
+var category			# Category
+var static_params		# Array
 
 func _init():
 	static_params = []
 
+## TODO: 包装参数数组
 func exec(params):
 	if isVariable():
 		return __variableExec(params)
@@ -55,8 +57,8 @@ func pack():
 	return script_tree
 
 func loadScript(script_tree):
-	func_name = script_tree.getAttr("func_name")
-	category = script_tree.getObject("category")
+	func_name = script_tree.getStr("func_name")
+	category = script_tree.getObject("category", Category)
 
 func __exec(params):
 	var index = 0

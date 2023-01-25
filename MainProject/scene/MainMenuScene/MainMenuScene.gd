@@ -50,10 +50,6 @@ func loadScript(script_tree):
 	switch_target_table = script_tree.getObject("switch_target_table", SwitchTargetTable)
 	scene_model = script_tree.getObject("model", MainMenuModel)
 
-func initScript(script_tree):
-	scene_name = script_tree.getAttr("scene_name")
-	switch_target_table = script_Tree.getObject("switch_target_table", SwitchTargetTable)
-
 func __setSceneName():
 	$StartButton.setSceneName(scene_name)
 	$ContinueButton.setSceneName(scene_name)
@@ -72,7 +68,6 @@ func __setSwitchConnection():
 	$StartButton.connect("pressed", self, "__startButtonSwitch")
 	$ContinueButton.connect("pressed", self, "__continueButtonSwitch")
 	$SettingButton.connect("pressed", self, "__settingButtonSwitch")
-	$ExitButton.connect("pressed", self, "__exitButtonSwitch")
 
 func __startButtonSwitch():
 	var target_pack = switch_target_table.getTarget("StartButton")
@@ -86,11 +81,7 @@ func __settingButtonSwitch():
 	var target_pack = switch_target_table.getTarget("SettingButton")
 	__buttonSwitch(target_pack)
 
-func __exitButtonSwitch():
-	var target_pack = switch_target_table.getTarget("ExitButton")
-	__buttonSwitch(target_pack)
-
-func __buttonSwitch(target_pack)
+func __buttonSwitch(target_pack):
 	var signal_name = target_pack.getSceneName() 
 	var next_scene_name = target_pack.getSceneName()
 	switchScene(signal_name, next_scene_name)

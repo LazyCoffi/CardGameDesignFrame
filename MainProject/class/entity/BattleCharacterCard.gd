@@ -9,10 +9,7 @@ var card_pile 			# BattleSkillCardPile
 var equipment_set		# EquipmentCard_Dict
 var buff_set			# BuffCard_Dict
 
-func _init():
-	equipment_set = {}
-	buff_set = {}
-
+# TODO: 包装参数列表
 func getCards(upper_bound):
 	return card_pile.deal([upper_bound])
 	
@@ -24,7 +21,7 @@ func addBuff(buff_card):
 	buff_set[card_name] = buff_card
 
 func getBuffSet():
-	return buff_set
+	return buff_set.duplicate()
 
 func equip(equipment_card):
 	if equipment_card.isEquipConditon([self]):

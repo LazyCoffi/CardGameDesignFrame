@@ -1,16 +1,14 @@
 extends Node
 class_name Filter
 
-
 var FunctionalGraph = load("res://class/functionalSystem/FunctionalGraph.gd")
 var ScriptTree = load("res://class/entity/ScriptTree.gd")
 
-var graph
-var param_map
+var graph		# FunctionalGraph
+var param_map	# Array
 
-func exec(params_):
-	var params = params_.depulicate()
-
+# TODO: 包装参数数组
+func exec(params):
 	for index in range(params.size()):
 		__swap(index, param_map[index], params)
 
@@ -21,7 +19,7 @@ func setGraph(graph_):
 	graph = graph_
 
 func getGraph():
-	return graph
+	return graph.duplicate()
 
 func setParamMap(map):
 	var params_type = graph.getParamsType()
@@ -29,7 +27,7 @@ func setParamMap(map):
 	param_map = map
 
 func getParamMap():
-	return param_map
+	return param_map.duplicate()
 
 func getParamsType():
 	var params_type = graph.getParamsType()
@@ -46,11 +44,13 @@ func pack():
 	var script_tree = ScriptTree.new()
 
 	script_tree.addObject("graph", graph)
+	script_tree.addAttr("param_map", param_map)
 
 	return script_tree
 
 func loadScript(script_tree):
-	graph = script_tree.loadObject("graph", FunctionalGraph)
+	graph = script_tree.getObject("graph", FunctionalGraph)
+	param_map = script_tree.getArray("param_map")
 
 func __swap(first, second, arr):
 	Exception.assert(first < arr.size())

@@ -10,13 +10,10 @@ func _init():
 	__initScript()
 
 func getSceneNode(scene_name):
-	var raw_info = raw_scene_scripts[scene_name]
-	var type = raw_info["type"]
+	var raw_script_tree = raw_scene_scripts.getScriptTree("scene_name")
+	var type = raw_script_tree.getAttr("type")
 	var scene_type = TypeUnit.getTypeByName(type)
-	var raw_script = raw_info["script"]
-
-	var script_tree = ScriptTree.new()
-	script_tree.setRoot(raw_script)
+	var script_tree = raw_script_tree.getScriptTree("script")
 
 	var scene = scene_type.instance()
 	scene.initScript(script_tree)

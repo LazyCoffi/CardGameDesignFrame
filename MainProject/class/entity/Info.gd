@@ -1,15 +1,13 @@
 extends Node
-
-var card_name
-var avator_name
-var introduction
-
-# TODO: 考虑是否添加长文本类
+class_name Info
 
 var ScriptTree = load("res://class/entity/ScriptTree.gd")
 
-func _ready():
-	pass
+var card_name 		# String
+var avator_name		# String
+var introduction	# String
+
+# TODO: 考虑是否添加长文本类
 
 func setCardName(card_name_):
 	card_name = card_name_
@@ -40,7 +38,6 @@ func pack():
 	return script_tree
 
 func loadScript(script_tree):
-	Exception.assert(script_tree is ScriptTree)
-	card_name = script_tree.getAttr("card_name")
-	avator_name = script_tree.getAttr("avator_name")
-	introduction = script_tree.getAttr("introduction")
+	card_name = script_tree.getStr("card_name")
+	avator_name = script_tree.getStr("avator_name")
+	introduction = script_tree.getStr("introduction")

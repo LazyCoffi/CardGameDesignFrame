@@ -10,5 +10,3 @@ func assert(flag, msg := ""):
 		return
 	push_error("Exception error: " + msg)
 	print_debug("Stack trace")
-
-	scene_tree.quit()

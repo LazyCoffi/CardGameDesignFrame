@@ -1,0 +1,16 @@
+{
+	"true" : true ,
+	"false" : false,
+	"number" : 123,
+	"string" : "hello",
+	"array" : [
+		1,
+		2,
+		3
+	],
+	"object" : {
+		"1" : 1,
+		"2" : 2,
+		"3" : 3
+	}
+}

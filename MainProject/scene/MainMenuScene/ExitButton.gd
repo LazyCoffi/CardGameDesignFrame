@@ -11,7 +11,7 @@ func setSceneName(s_name_):
 	$ExitButtonText.setSceneName(s_name)
 
 func loadResource():
-	setButtonIcon(s_name, c_name)
+	setButtonIcon()
 	$ExitButtonText.loadResource()
 
 func setButtonIcon():

@@ -45,11 +45,6 @@ _global_script_classes=[ {
 "path": "res://class/entity/BattleSkillCard.gd"
 }, {
 "base": "Node",
-"class": "BattleSkillCardPile",
-"language": "GDScript",
-"path": "res://class/entity/BattleSkillCardPile.gd"
-}, {
-"base": "Node",
 "class": "BuffCard",
 "language": "GDScript",
 "path": "res://class/entity/BuffCard.gd"
@@ -95,6 +90,16 @@ _global_script_classes=[ {
 "path": "res://class/trash/CharacterState.gd"
 }, {
 "base": "Node",
+"class": "CharacterWarehouseModel",
+"language": "GDScript",
+"path": "res://scene/CharacterWarehouseScene/CharacterWarehouseModel.gd"
+}, {
+"base": "Node",
+"class": "DictArray",
+"language": "GDScript",
+"path": "res://class/dataStruct/DictArray.gd"
+}, {
+"base": "Node",
 "class": "EquipmentAttr",
 "language": "GDScript",
 "path": "res://class/trash/EquipmentAttr.gd"
@@ -133,6 +138,26 @@ _global_script_classes=[ {
 "class": "FunctionalSet",
 "language": "GDScript",
 "path": "res://class/functionalSystem/FunctionalSet.gd"
+}, {
+"base": "Reference",
+"class": "GutHookScript",
+"language": "GDScript",
+"path": "res://addons/gut/hook_script.gd"
+}, {
+"base": "Reference",
+"class": "GutTest",
+"language": "GDScript",
+"path": "res://addons/gut/test.gd"
+}, {
+"base": "Node",
+"class": "Heap",
+"language": "GDScript",
+"path": "res://class/dataStruct/Heap.gd"
+}, {
+"base": "Node",
+"class": "Info",
+"language": "GDScript",
+"path": "res://class/entity/Info.gd"
 }, {
 "base": "Node",
 "class": "Interface",
@@ -185,6 +210,11 @@ _global_script_classes=[ {
 "path": "res://class/functionalSystem/MathFunctionSet.gd"
 }, {
 "base": "Node",
+"class": "OrderedSet",
+"language": "GDScript",
+"path": "res://class/dataStruct/OrderedSet.gd"
+}, {
+"base": "Node",
 "class": "SceneFactory",
 "language": "GDScript",
 "path": "res://class/sceneUnit/SceneFactory.gd"
@@ -193,6 +223,11 @@ _global_script_classes=[ {
 "class": "ScriptTree",
 "language": "GDScript",
 "path": "res://class/entity/ScriptTree.gd"
+}, {
+"base": "Node",
+"class": "SettingTable",
+"language": "GDScript",
+"path": "res://class/entity/SettingTable.gd"
 }, {
 "base": "Node",
 "class": "SkillAttr",
@@ -232,7 +267,6 @@ _global_script_class_icons={
 "BaseFunctionSet": "",
 "BattleCharacterCard": "",
 "BattleSkillCard": "",
-"BattleSkillCardPile": "",
 "BuffCard": "",
 "Card": "",
 "CardInterfaceSet": "",
@@ -242,6 +276,8 @@ _global_script_class_icons={
 "CharacterCard": "",
 "CharacterInfo": "",
 "CharacterState": "",
+"CharacterWarehouseModel": "",
+"DictArray": "",
 "EquipmentAttr": "",
 "EquipmentCard": "",
 "EquipmentInfo": "",
@@ -250,6 +286,10 @@ _global_script_class_icons={
 "Function": "",
 "FunctionalGraph": "",
 "FunctionalSet": "",
+"GutHookScript": "",
+"GutTest": "",
+"Heap": "",
+"Info": "",
 "Interface": "",
 "ItemAttr": "",
 "ItemCard": "",
@@ -260,8 +300,10 @@ _global_script_class_icons={
 "LocalFunction": "",
 "MainMenuModel": "",
 "MathFunctionSet": "",
+"OrderedSet": "",
 "SceneFactory": "",
 "ScriptTree": "",
+"SettingTable": "",
 "SkillAttr": "",
 "SkillCard": "",
 "SkillInfo": "",
@@ -272,7 +314,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="DistantSong"
+config/name="CardGameDesignFrame"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
@@ -290,6 +332,10 @@ SceneCache="*res://class/sceneUnit/SceneCache.gd"
 
 window/size/width=1920
 window/size/height=1080
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/gut/plugin.cfg" )
 
 [gui]
 

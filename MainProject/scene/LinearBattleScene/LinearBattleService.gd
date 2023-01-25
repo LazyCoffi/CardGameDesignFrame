@@ -1,9 +1,10 @@
 extends Node
 class_name LinearBattleService
 
+var DictArray = load("res://class/entity/DictArray.gd")
+
 var __scene_ref
 var __model_ref
-
 
 func setRef(scene):
 	__scene_ref = scene
@@ -16,12 +17,12 @@ func initCharacterRect():
 	var rect_position = __getCharacterCardRectPosition(group_num)
 
 	var character_groups = __model_ref.getCharacterGroups()
-	var character_rect_groups = [[], []]
+	var character_rect_groups = [DictArray.new(), DictArray.new()]
 	for i in 2:
 		var j = 0
-		for card_name in character_groups.keys():
+		for card_name in character_groups[i].keys():
 			var character_rect = TextureRect.new()
-			var avator_name = character_groups[card_name].getAvatorName()
+			var avator_name = character_groups[i].get(card_name).getAvatorName()
 			var texture = ResourceUnit.loadTexture(card_name, card_name, avator_name)
 			character_rect.texture = texture
 			character_rect.rect_size = rect_size
@@ -31,18 +32,14 @@ func initCharacterRect():
 			character_rect.rect_position = rect_pos
 			__scene_ref.add_child(character_rect)
 			
-			var character_rect_pack = __model_ref.RectPack().new()
-			character_rect_pack.rect_name = card_name
-			character_rect_pack.rect = character_rect
-			character_rect_groups[i].append(character_rect_pack)
+			character_rect_groups[i].append(card_name, character_rect)
 		
 	__model_ref.setCharacterRectGroups(character_rect_groups)
 
 func initCharacterCardGroup():
-	var scene_pack = __model_ref.getScenePack()
 	var character_deal_filter = __model_ref.getCharacterDealFilter()
-	var character_cards = character_deal_filter.exec([scene_pack["init_character_cards"]])
-	__model_ref.setCardGroup(character_cards[0], character_cards[1])
+	var character_cards_groups = character_deal_filter.exec([])
+	__model_ref.setCharacterGroup(character_cards_groups)
 
 func setBackground():
 	var scene_name = __scene_ref.getSceneName()
@@ -52,7 +49,7 @@ func setBackground():
 func setCurCharacterCard(cur_character_card):
 	__model_ref.setCurCharacterCard(cur_character_card)
 
-func getCurCharacterCard():
+func popCurCharacterCard():
 	return __model_ref.popCurRoundCard()
 
 func markCurCharacter(character_card):
@@ -76,10 +73,10 @@ func setCurHandCardsRect():
 	var rect_size_arr = __model_ref.getSettingAttr("hand_card_rect_size")
 	var rect_size = Vector2(rect_size_arr[0], rect_size_arr[1])
 	var rect_position = __getHandCardRectPosition(cur_hand_cards.size(), rect_size)
-	var hand_card_rect = {}
+	var hand_card_rect = DictArray.new()
 
 	var index = 0
-	for hand_card in cur_hand_cards:
+	for hand_card in cur_hand_cards.values():
 		var card_rect = TextureRect.new()
 
 		card_rect.rect_size = rect_size
@@ -93,15 +90,11 @@ func setCurHandCardsRect():
 		var rect_pos = Vector2(rect_pos_arr[0], rect_pos_arr[1])
 		card_rect.rect_position = rect_pos
 
-		var rect_pack = __scene_ref.RectPack().new()
-		rect_pack.rect_name = card_name
-		rect_pack.rect = card_rect
-		hand_card_rect.append(rect_pack)
+		hand_card_rect.append(card_name, rect_pack)
 
 		__scene_ref.add_child(card_rect)
 	
 	__model_ref.setHandCardRectGroup(hand_card_rect)
-
 
 func __getCharacterCardRectPosition(group_num):
 	var screen_size = GlobalSetting.getAttr("screen_size")

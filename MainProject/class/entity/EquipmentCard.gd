@@ -15,7 +15,7 @@ func isEquipCondition(params):
 	return equip_condition.exec(params)
 
 func pack():
-	var script_tree = ScriptTree.new()
+	var script_tree = .pack()
 
 	script_tree.addObject("equip_func", equip_func)
 	script_tree.addObject("unequip_func", unequip_func)
@@ -24,6 +24,7 @@ func pack():
 	return script_tree
 
 func loadScript(script_tree):
+	.loadScript(script_tree)
 	equip_func = script_tree.loadObject("equip_func", LocalFunction)
 	unequip_func = script_tree.loadObject("unequip_func", LocalFunction)
 	equip_condition = script_tree.loadObject("equip_condition", Filter)

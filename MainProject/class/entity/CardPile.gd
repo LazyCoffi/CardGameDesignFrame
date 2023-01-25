@@ -1,16 +1,23 @@
 extends Node
 class_name CardPile
 
+var ScriptTree = load("res://class/entity/ScriptTree.gd")
+var Filter = load("res://class/functionalSystem/Filter.gd")
+
 var card_pile
 var trash_pile
 var is_random
-
 var pop_num_filter
+
+var param_type
 
 func _init():
 	card_pile = []
 	trash_pile = []
 	is_random = true
+
+func setParamType(param_type_):
+	param_type = param_type_
 
 func randomOn():
 	is_random = true
@@ -75,3 +82,19 @@ func shufflePile():
 func shuffleTrash():
 	randomize()
 	trash_pile.shuffle()
+
+func pack():
+	var script_tree = ScriptTree.new()
+
+	script_tree.addObjectArray("card_pile", card_pile)
+	script_tree.addObjectArray("trash_pile", trash_pile)
+	script_tree.addAttr("is_random", is_random)
+	script_tree.addObject("pop_num_filter", pop_num_filter)
+
+	return script_tree
+
+func loadScript(script_tree):
+	script_tree.getObjectArray("card_pile", param_type)
+	script_tree.getObjectArray("trash_pile", param_type)
+	script_tree.getBool("is_random")
+	script_tree.getObject("pop_num_filter", Filter)

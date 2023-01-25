@@ -12,13 +12,13 @@ class SceneNode:
 	var scene_name
 	var scene
 
-	func getType()
+	func getType():
 		return type
 	
 	func getSceneName():
 		return scene_name
 	
-	func getScene();
+	func getScene():
 		return scene
 	
 	func setType(type_):
@@ -53,7 +53,7 @@ func _init():
 	scene_factory = SceneFactory.new()
 
 func hasCurScene():
-	return cur_scene != null:
+	return cur_scene != null
 
 func getCurScene():
 	return cur_scene.getScene()
@@ -109,6 +109,3 @@ func pack():
 func loadScript(script_tree):
 	scene_cache = script_tree.loadObjectDict("scene_cache", scene_cache)
 	cur_scene = script_tree.loadObject("cur_scene", SceneNode)
-
-func initScript():
-	pass

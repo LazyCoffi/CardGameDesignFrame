@@ -21,6 +21,15 @@ func getCardName():
 func getAvatorName():
 	return info.getAvatorName()
 
+func getCategory():
+	return category.duplicate()
+
+func getInfo():
+	return info.duplicate()
+
+func getAttr():
+	return attr.duplicate()
+
 func pack():
 	var script_tree = ScriptTree.new()
 

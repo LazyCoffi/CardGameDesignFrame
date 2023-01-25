@@ -21,8 +21,7 @@ func setRetMap(map):
 	Exception.assert(__verifyMap(map, graphs.size()))
 	ret_map = map
 
-func exec(params_):
-	var params = params_.duplicate()
+func exec(params):
 	var ret_arr = []
 
 	for index in range(params.size()):

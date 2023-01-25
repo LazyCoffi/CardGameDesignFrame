@@ -1,16 +1,27 @@
 extends Node
 class_name ValRange
 
-var upper_bound
-var lower_bound
-var has_upper
-var has_lower
+var attr_type		# String
+var has_bound		# bool
+var has_upper		# bool
+var has_lower		# bool
+var upper_bound		# attr
+var lower_bound		# attr
 
 var ScriptTree = load("res://class/entity/ScriptTree.gd")
 
 func _init():
 	has_upper = false
 	has_lower = false
+
+func setAttrType(attr_type_):
+	attr_type = attr_type_
+
+func hasBound():
+	return has_bound
+
+func activeBound():
+	has_bound = true
 
 func hasUpper():
 	return has_upper
@@ -55,29 +66,19 @@ func delLower():
 func pack():
 	var script_tree = ScriptTree.new()
 
-	if hasUpper():
-		script_tree.addAttr("upper_bound", upper_bound)
-	if hasLower():
-		script_tree.addAttr("lower_bound", lower_bound)
+	script_tree.addAttr("attr_type", attr_type)
+	script_tree.addAttr("has_bound", has_bound)
+	script_tree.addAttr("has_upper", has_upper)
+	script_tree.addAttr("has_lower", has_lower)
+	script_tree.addAttr("upper_bound", upper_bound)
+	script_tree.addAttr("lower_bound", lower_bound)
 	
 	return script_tree
 
 func loadScript(script_tree):
-	if script_tree.has("upper_bound"):
-		has_upper = true
-		upper_bound = script_tree.getAttr("upper_bound")
-	if script_tree.has("lower_bound"):
-		has_lower = true
-		lower_bound = script_tree.getAttr("lower_bound")
-	
-	if hasUpper():
-		Exception.assert(upper_bound is int or upper_bound is float, 
-						"Range must be int or float")
-
-	if hasLower():
-		Exception.assert(lower_bound is int or lower_bound is float, 
-						"Range must be int or float")
-	
-	if hasUpper() and hasLower():
-		Exception.assert(lower_bound < upper_bound, 
-						"lower_bound must be smaller than upper_bound")
+	attr_type = script_tree.getStr("attr_type")
+	has_bound = script_tree.getBool("has_bound")
+	has_upper = script_tree.getBool("has_upper")
+	has_lower = script_tree.getBool("has_lower")
+	upper_bound = script_tree.getAttr("upper_bound", attr_type)
+	lower_bound = script_tree.getAttr("lower_bound", attr_type)

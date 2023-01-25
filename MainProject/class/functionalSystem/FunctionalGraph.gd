@@ -2,26 +2,55 @@ extends Node
 class_name FunctionalGraph
 
 var ScriptTree = load("res://class/entity/ScriptTree.gd")
+var Function = load("res://class/functionalSystem/Function.gd")
 
-var root
-var request_params
-var node_index
-var __exec_graph
+var root				# InnerNode
+var request_params		# Array
+var node_index			# int
+var exec_graph			# Dict
 
-## TODO: 添加node结构注释
-class innerNode:
-	var __func
-	var __ch
+class InnerNode:
+	var functional		# Function
+	var ch				# InnerNode_Array
+	var index			# int
+
+	func getFunctiontal():
+		return functional.duplicate()
+	
+	func setFunctional(functional_):
+		functional = functional_
+	
+	func getCh():
+		return ch.duplicate()
+	
+	func addCh(inner_node):
+		ch.append(inner_node)
+	
+	## TODO: 添加访问接口
+	
+	func pack():
+		var script_tree = ScriptTree.new()
+
+		script_tree.addObject("functional", functional)
+		script_tree.addObjectArray("ch", ch)
+		script_tree.addAttr("index", index)
+
+		return script_tree
+	
+	func loadScript(script_tree):
+		functional = script_tree.getObject("functional", Function)
+		ch = script_tree.getObjectArray("ch", InnerNode)
+		index = script_tree.getInt("index")
 
 func _init():
-	root = innerNode.new()
+	root = InnerNode.new()
 	node_index = 0
 
 func setRoot(functional):
 	root = {}
-	root.__func = functional
-	root.__ch = []
-	root.__ch.resize(functional.getParamsNum())
+	root.functional = functional
+	root.ch = []
+	root.ch.resize(functional.getParamsNum())
 	constructGraph()
 
 func constructGraph():
@@ -47,95 +76,89 @@ func isVariableAdaptable(child_func, parent_func):
 	return ret_type == params_type[0]
 
 func connectNode(child_node, parent_node, param_index):
-	Exception.assert(isAdaptable(child_node.__func, parent_node.__func, param_index))
+	Exception.assert(isAdaptable(child_node.functional, parent_node.functional, param_index))
 
-	parent_node.__ch[param_index] = child_node
+	parent_node.ch[param_index] = child_node
 	
 	constructGraph()
 
 func connectVariableNode(child_node, parent_node):
-	Exception.assert(isVariableAdaptable(child_node.__func, parent_node.__func))
+	Exception.assert(isVariableAdaptable(child_node.functional, parent_node.functional))
 
-	parent_node.__ch.append(child_node)
+	parent_node.ch.append(child_node)
 
 	constructGraph()
 
 func disconnectNode(parent_node, param_index):
 	Exception.assert(param_index < parent_node["ch"].size())
 
-	parent_node.__ch[param_index] = null
+	parent_node.ch[param_index] = null
 
 	constructGraph()
 
 func getParamsType():
-	return request_params
+	return request_params.duplicate()
 
 func getRetType():
 	return root.getRetType()
 	
 func exec(params):
-	__exec_graph = {}
+	exec_graph = {}
 	return __dfsExec(root, params)
 
 func pack():
 	var script_tree = ScriptTree.new()
 
-	var root_dict = {}
-	root_dict["func"] = root.__func
-	root_dict["ch"] = root.__ch
-
-	script_tree.addAttr("root", root_dict)
+	script_tree.addObject("root", root)
 	script_tree.addAttr("request_params", request_params)
 	script_tree.addAttr("node_index", node_index)
 
 	return script_tree
 
 func loadScript(script_tree):
-	var root_dict = script_tree.getAttr("root")
-	root.__func = root_dict["func"]
-	root.__ch = root_dict["ch"]
-	request_params = script_tree.getAttr("request_params", request_params)
-	node_index = script_tree.getAttr("node_index", node_index)
+	root = script_tree.getObject("root", InnerNode)
+	request_params = script_tree.getAttr("request_params")
+	node_index = script_tree.getAttr("node_index")
 
 func __dfsConstruct(u):
 	node_index += 1
-	u["index"] = node_index
+	u.index = node_index
 
-	var cur_func = u["func"]
+	var cur_func = u.functional
 	var cur_request_params = cur_func.getParamsType()
 	
-	cur_request_params.resize(u["ch"].size())
+	cur_request_params.resize(u.ch.size())
 	
 	# 处理可变参数函数的情况
-	for index in range(u["ch"].size()):
+	for index in range(u.ch.size()):
 		if cur_request_params == null:
 			cur_request_params[index] = cur_request_params[0]
 
 	var param_index = 0
 	for type in cur_request_params:
-		if u["ch"][param_index] == null:
+		if u.ch[param_index] == null:
 			if not cur_func.hasStaticParam(param_index):
 				request_params[str(node_index) + "_" + str(param_index)] = type
 		else:
-			__dfsConstruct(u["ch"][param_index])
+			__dfsConstruct(u.ch[param_index])
 
 		param_index += 1
 
 func __dfsExec(u, params):
-	var cur_func = u["func"]
-	var cur_index = u["index"]
+	var cur_func = u.functional
+	var cur_index = u.index
 	var cur_params = []
 
-	if __exec_graph.has(cur_index):
-		return __exec_graph[cur_index]
+	if exec_graph.has(cur_index):
+		return exec_graph[cur_index]
 	
-	for param_index in range(u["ch"].size()):
-		if not u["ch"][param_index] == null:
-			cur_params[param_index] = __dfsExec(u["ch"][param_index], params)
+	for param_index in range(u.ch.size()):
+		if not u.ch[param_index] == null:
+			cur_params[param_index] = __dfsExec(u.ch[param_index], params)
 		else:
 			cur_params[param_index] = params[str(cur_index) + "_" + str(param_index)]
 
 	var ret = cur_func.exec(cur_params)
-	__exec_graph[cur_index] = ret
+	exec_graph[cur_index] = ret
 
 	return ret
