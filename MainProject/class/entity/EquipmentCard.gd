@@ -5,6 +5,11 @@ var equip_func 			# LocalFunction
 var unequip_func 		# LocalFunction
 var equip_condition		# Filter 
 
+func _init():
+	equip_func = LocalFunction.new()
+	unequip_func = LocalFunction.new()
+	equip_condition = Filter.new()
+
 func equip(params):
 	return equip_func.exec(params)
 

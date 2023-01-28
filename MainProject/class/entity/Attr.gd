@@ -50,13 +50,10 @@ class AttrNode:
 		val_range.activeBound()
 	
 	func getValRange():
-		return val_range.duplicate()
+		return val_range
 	
 	func hasBound():
 		return val_range.hasBound()
-	
-	func activeBound():
-		val_range.activeBound()
 	
 	func pack():
 		var script_tree = ScriptTree.new()
@@ -75,7 +72,7 @@ class AttrNode:
 		val_range = script_tree.getObject("val_range", ValRange)
 
 func _init():
-	attr = {}
+	table = {}
 
 func getVal(attr_name):
 	Exception.assert(table.has(attr_name))
@@ -127,9 +124,6 @@ func delLower(attr_name):
 
 	table[attr_name].delLower()
 	
-func getValRange(attr_name):
-	return table[attr_name].getValRange()
-
 func pack():
 	var script_tree = ScriptTree.new()
 

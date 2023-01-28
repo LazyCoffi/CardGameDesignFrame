@@ -9,6 +9,7 @@ var category			# Category
 var static_params		# Array
 
 func _init():
+	category = Category.new()
 	static_params = []
 
 ## TODO: 包装参数数组
@@ -23,8 +24,14 @@ func setFuncName(func_name_):
 	func_name = func_name_
 
 func setCategory(category_):
-	Exception.assert(TypeUnit.isType(category_, "Category"))
+	# Exception.assert(TypeUnit.isType(category_, "Category"))
 	category = category_
+
+func initStaticParams():
+	static_params.resize(getParamsNum())
+
+func addStaticParam(index, val):
+	static_params[index] = val
 
 func setStaticParams(params):
 	Exception.assert(params.size() == getParamsNum())
@@ -35,6 +42,15 @@ func hasStaticParam(index):
 
 func isVariable():
 	return FunctionalCategory.isVariable(category, func_name)
+
+func getFuncName():
+	return func_name
+
+func getCategory():
+	return category
+
+func getStaticParam(index):
+	return static_params[index]
 
 func getRetType():
 	return FunctionalCategory.getRetType(category, func_name)
@@ -61,12 +77,6 @@ func loadScript(script_tree):
 	category = script_tree.getObject("category", Category)
 
 func __exec(params):
-	var index = 0
-	for static_param in static_params:
-		if static_param != null:
-			params[index] = static_param
-		index += 1
-	
 	var params_form = getParamsType()
 
 	Exception.assert(TypeUnit.verifyParamsAdaptable(params, params_form))

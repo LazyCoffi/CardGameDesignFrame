@@ -12,6 +12,7 @@ func _init():
 	is_continuous = true
 	is_active = false
 	effect_func = LocalFunction.new()
+	deactive_trigger = TriggerTimer.new()
 
 	## TODO: 考虑此处是否需要直接连接信号
 	self.connect("deactive", deactive_trigger, "timeout_signal")

@@ -34,13 +34,9 @@ func __addParam(param_name, param):
 func pack():
 	var script_tree = ScriptTree.new()
 	
-	script_tree.addContainer("cur_character_group", cur_character_group)
+	script_tree.addTypeObject("cur_character_group", cur_character_group)
 
 	return script_tree
 
 func loadScript(script_tree):
-	cur_character_group = script_tree.getContainer("cur_character_group", DictArray, BattleCharacterCard)
-
-func initScript(script_tree := null):
-	cur_character_group = DictArray.new()
-	cur_character_group.setParamType(BattleCharacterCard)
+	cur_character_group = script_tree.getTypeObject("cur_character_group", DictArray, BattleCharacterCard)

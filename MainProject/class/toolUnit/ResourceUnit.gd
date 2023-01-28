@@ -28,7 +28,7 @@ func loadFont(s_name, c_name, r_name):
 func __initScript():
 	var script_tree = ScriptTree.new()
 	script_tree.loadFromJson("res://scripts/system/resourceUnit.json")
-	resource_path = script_tree.getAttr("resource_path")
+	resource_path = script_tree.getStr("resource_path")
 
 func loadColor(s_name, c_name, r_name):
 	var res = __getRes(s_name, c_name, r_name)

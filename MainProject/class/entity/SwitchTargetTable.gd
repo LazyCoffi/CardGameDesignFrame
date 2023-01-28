@@ -7,7 +7,7 @@ class TargetPack:
 	var scene_type		# String
 	var scene_name		# String
 	var switch_signal	# String
-	
+
 	func getSceneType():
 		return scene_type
 

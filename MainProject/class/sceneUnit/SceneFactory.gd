@@ -29,4 +29,4 @@ func __initScript():
 	raw_scene_scripts = {}
 	var script_tree = ScriptTree.new()
 	script_tree.loadFromJson("res://scripts/scene/sceneFactory.json")
-	raw_scene_scripts = script_tree.getAttr("raw_scene_script")
+	raw_scene_scripts = script_tree.getStr("raw_scene_script")

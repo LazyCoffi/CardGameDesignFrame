@@ -102,7 +102,6 @@ func __initTypeTable():
 	__addType("functionalSystem", "CardInterfaceSet")
 	__addType("functionalSystem", "Function")
 	__addType("functionalSystem", "FunctionalGraph")
-	__addType("functionalSystem", "Interface")
 	__addType("functionalSystem", "FunctionalSet")
 	__addType("functionalSystem", "LocalFunction")
 	__addType("functionalSystem", "MathFunctionSet")

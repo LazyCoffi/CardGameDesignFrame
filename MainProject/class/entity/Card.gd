@@ -8,12 +8,14 @@ var LocalFunction = load("res://class/functionalSystem/LocalFunction.gd")
 var ScriptTree = load("res://class/entity/ScriptTree.gd")
 var Filter = load("res://class/functionalSystem/Filter.gd")
 
-var category				# 卡牌类型
-var info 					# 卡牌信息
-var attr					# 卡牌参数
+var category				# Category
+var info 					# Info
+var attr					# Attr
 
-func _ready():
-	pass # Replace with function body.
+func _init():
+	category = category.new()
+	info = Info.new()
+	attr = Attr.new()
 
 func getCardName():
 	return info.getCardName()
@@ -22,13 +24,13 @@ func getAvatorName():
 	return info.getAvatorName()
 
 func getCategory():
-	return category.duplicate()
+	return category
 
 func getInfo():
-	return info.duplicate()
+	return info
 
 func getAttr():
-	return attr.duplicate()
+	return attr
 
 func pack():
 	var script_tree = ScriptTree.new()
@@ -40,7 +42,6 @@ func pack():
 	return script_tree
 
 func loadScript(script_tree):
-	Exception.assert(script_tree is ScriptTree)
 	category = script_tree.getObject("category", Category)
 	info = script_tree.getObject("info", Info)
 	attr = script_tree.getObject("attr", Attr)

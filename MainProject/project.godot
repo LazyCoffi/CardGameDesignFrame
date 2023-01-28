@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
+"class": "ArrangeMap",
+"language": "GDScript",
+"path": "res://class/entity/ArrangeMap.gd"
+}, {
+"base": "Node",
 "class": "Attr",
 "language": "GDScript",
 "path": "res://class/entity/Attr.gd"
@@ -95,9 +100,19 @@ _global_script_classes=[ {
 "path": "res://scene/CharacterWarehouseScene/CharacterWarehouseModel.gd"
 }, {
 "base": "Node",
+"class": "CharacterWarehouseService",
+"language": "GDScript",
+"path": "res://scene/CharacterWarehouseScene/CharacterWarehouseService.gd"
+}, {
+"base": "Node",
 "class": "DictArray",
 "language": "GDScript",
 "path": "res://class/dataStruct/DictArray.gd"
+}, {
+"base": "Node",
+"class": "DictMap",
+"language": "GDScript",
+"path": "res://class/entity/DictMap.gd"
 }, {
 "base": "Node",
 "class": "EquipmentAttr",
@@ -158,11 +173,6 @@ _global_script_classes=[ {
 "class": "Info",
 "language": "GDScript",
 "path": "res://class/entity/Info.gd"
-}, {
-"base": "Node",
-"class": "Interface",
-"language": "GDScript",
-"path": "res://class/functionalSystem/Interface.gd"
 }, {
 "base": "Node",
 "class": "ItemAttr",
@@ -260,6 +270,7 @@ _global_script_classes=[ {
 "path": "res://class/entity/ValRange.gd"
 } ]
 _global_script_class_icons={
+"ArrangeMap": "",
 "Attr": "",
 "AttrConditionSet": "",
 "AttrFunctionSet": "",
@@ -277,7 +288,9 @@ _global_script_class_icons={
 "CharacterInfo": "",
 "CharacterState": "",
 "CharacterWarehouseModel": "",
+"CharacterWarehouseService": "",
 "DictArray": "",
+"DictMap": "",
 "EquipmentAttr": "",
 "EquipmentCard": "",
 "EquipmentInfo": "",
@@ -290,7 +303,6 @@ _global_script_class_icons={
 "GutTest": "",
 "Heap": "",
 "Info": "",
-"Interface": "",
 "ItemAttr": "",
 "ItemCard": "",
 "ItemInfo": "",

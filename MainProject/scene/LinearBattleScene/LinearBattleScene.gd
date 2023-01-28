@@ -61,13 +61,6 @@ func pack():
 	return script_tree
 
 func loadScript(script_tree):
-	scene_name = script_tree.getAttr("scene_name")
+	scene_name = script_tree.getStr("scene_name")
 	scene_model = script_tree.getObject("scene_model", LinearBattleModel)
 	scene_service = script_tree.getObject("scene_service", LinearBattleService)
-
-func initScript(script_tree):
-	scene_name = script_tree.getAttr("scene_name")
-	switch_target_table = script_tree.getObject("switch_target_table", SwitchTargetTable)
-	scene_model = script_tree.initObject("scene_model")
-	scene_service = LinearBattleService.new()
-	scene_dispatcher = LinearBattleDispatcher.new()

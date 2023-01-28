@@ -45,8 +45,8 @@ func pack():
 	return script_tree
 
 func loadScript(script_tree):
-	scene_name = script_tree.getAttr("scene_name")
-	is_registered = script_tree.getAttr("is_registered")
+	scene_name = script_tree.getStr("scene_name")
+	is_registered = script_tree.getBool("is_registered")
 	switch_target_table = script_tree.getObject("switch_target_table", SwitchTargetTable)
 	scene_model = script_tree.getObject("model", MainMenuModel)
 

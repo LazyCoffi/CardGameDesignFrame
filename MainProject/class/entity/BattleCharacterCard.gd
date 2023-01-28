@@ -9,6 +9,11 @@ var card_pile 			# BattleSkillCardPile
 var equipment_set		# EquipmentCard_Dict
 var buff_set			# BuffCard_Dict
 
+func _init():
+	card_pile = BattleSkillCardPile.new()
+	equipment_set = {}
+	buff_set = {}
+
 # TODO: 包装参数列表
 func getCards(upper_bound):
 	return card_pile.deal([upper_bound])

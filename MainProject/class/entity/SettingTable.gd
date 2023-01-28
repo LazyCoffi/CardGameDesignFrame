@@ -32,4 +32,4 @@ func pack():
 	return script_tree
 
 func loadScript(script_tree):
-	table = script_tree.getDict("table")
+	table = script_tree.getRawAttr("table")

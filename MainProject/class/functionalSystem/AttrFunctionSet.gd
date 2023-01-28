@@ -5,17 +5,7 @@ func _init():
 	func_form = {}
 	__initFuncForm()
 
-func __initFuncForm():
-	addFuncForm("setAttr", false, "Attr", ["Attr", "String", "all"])
-	addFuncForm("plusAttrInt", false, "Attr", ["Attr", "String", "int"])
-	addFuncForm("plusAttrFloat", false, "Attr", ["Attr", "String", "float"])
-	addFuncForm("mulAttrInt", false, "Attr", ["Attr", "String", "float"])
-	addFuncForm("setAttrUpperBoundInt", false, "Attr", ["Attr", "String", "int"])
-	addFuncForm("setAttrUpperBoundFloat", false, "Attr", ["Attr", "String", "float"])
-	addFuncForm("setAttrLowerBoundInt", false, "Attr", ["Attr", "String", "int"])
-	addFuncForm("setAttrLowerBoundFloat", false, "Attr", ["Attr", "String", "float"])
-
-func setAttr(attr, attr_name, val):
+func setConst(attr, attr_name, val):
 	if TypeUnit.isType(val, "int") or TypeUnit.isType(val, "float"):
 		var upper = attr.getRange(attr_name).upper()
 		var lower = attr.getRange(attr_name).lower()
@@ -23,70 +13,80 @@ func setAttr(attr, attr_name, val):
 	else:
 		attr.setAttr(val)
 	
-	return [attr]
+	return attr
 
-func plusAttrInt(attr, attr_name, val):
+func plusConstInt(attr, attr_name, val):
 	Exception.assert(TypeUnit.isType(val, "int"))
-	return __plusAttr(attr, attr_name, val)
+	return __plusConst(attr, attr_name, val)
 
-func plusAttrFloat(attr, attr_name, val):
+func plusConstFloat(attr, attr_name, val):
 	Exception.assert(TypeUnit.isType(val, "float"))
-	return __plusAttr(attr, attr_name, val)
-	
-func __plusAttr(attr, attr_name, val):
+	return __plusConst(attr, attr_name, val)
+
+func mulConstInt(attr, attr_name, val):
+	Exception.assert(TypeUnit.isType(val, "int"))
+	return __mulConst(attr, attr_name, val)
+
+func mulConstFloat(attr, attr_name, val):
+	Exception.assert(TypeUnit.isType(val, "float"))
+	return __mulConst(attr, attr_name, val)
+
+func settUpperBoundConstInt(attr, attr_name, val):
+	Exception.assert(TypeUnit.isType(val, "int"))
+	return __setUpperBoundConst(attr, attr_name, val)
+
+func setUpperBoundConstFloat(attr, attr_name, val):
+	Exception.assert(TypeUnit.isType(val, "float"))
+	return __setUpperBoundConst(attr, attr_name, val)
+
+func setLowerBoundConstInt(attr, attr_name, val):
+	Exception.assert(TypeUnit.isType(val, "int"))
+	return __setLowerBoundConst(attr, attr_name, val)
+
+func setLowerBoundConstFloat(attr, attr_name, val):
+	Exception.assert(TypeUnit.isType(val, "float"))
+	return __setLowerBoundConst(attr, attr_name, val)
+
+func __plusConst(attr, attr_name, val):
 	var upper = attr.upper(attr_name)
 	var lower = attr.lower(attr_name)
 
 	attr.setAttr(attr_name, max(lower, min(upper, attr + val)))
 
-	return [attr]
+	return attr
 
-func mulAttrInt(attr, attr_name, val):
-	Exception.assert(TypeUnit.isType(val, "int"))
-	return __mulAttr(attr, attr_name, val)
-
-func mulAttrFloat(attr, attr_name, val):
-	Exception.assert(TypeUnit.isType(val, "float"))
-	return __mulAttr(attr, attr_name, val)
-
-func __mulAttr(attr, attr_name, val):
+func __mulConst(attr, attr_name, val):
 	var upper = attr.upper(attr_name)
 	var lower = attr.lower(attr_name)
 
 	attr.setAttr(attr_name, max(lower, min(upper, attr * val)))
 	
-	return [attr]
+	return attr
 
-func setAttrUpperBoundInt(attr, attr_name, val):
-	Exception.assert(TypeUnit.isType(val, "int"))
-	return __setAttrUpperBound(attr, attr_name, val)
-
-func setAttrUpperBoundFloat(attr, attr_name, val):
-	Exception.assert(TypeUnit.isType(val, "float"))
-	return __setAttrUpperBound(attr, attr_name, val)
-
-func __setAttrUpperBound(attr, attr_name, val):
+func __setUpperBoundConst(attr, attr_name, val):
 	var lower = val
 	if attr.hasLower(attr_name):
 		lower = attr.lower(val, attr_name)
 	
 	attr.setUpper(max(lower, val), attr_name)
 	
-	return [attr]
+	return attr
 
-func setAttrLowerBoundInt(attr, attr_name, val):
-	Exception.assert(TypeUnit.isType(val, "int"))
-	return __setAttrLowerBound(attr, attr_name, val)
-
-func setAttrLowerBoundFloat(attr, attr_name, val):
-	Exception.assert(TypeUnit.isType(val, "float"))
-	return __setAttrLowerBound(attr, attr_name, val)
-
-func __setAttrLowerBound(attr, attr_name, val):
+func __setLowerBoundConst(attr, attr_name, val):
 	var upper = val
 	if attr.hasUpper(attr_name):
 		upper = attr.upper(attr_name)
 	
 	attr.setLower(min(upper, val), attr_name)
 	
-	return [attr]
+	return attr
+
+func __initFuncForm():
+	addFuncForm("setConst", false, "Attr", ["Attr", "String", "all"])
+	addFuncForm("plusIntConst", false, "Attr", ["Attr", "String", "int"])
+	addFuncForm("plusFloatConst", false, "Attr", ["Attr", "String", "float"])
+	addFuncForm("mulConstInt", false, "Attr", ["Attr", "String", "float"])
+	addFuncForm("setUpperBoundConstInt", false, "Attr", ["Attr", "String", "int"])
+	addFuncForm("setUpperBoundConstFloat", false, "Attr", ["Attr", "String", "float"])
+	addFuncForm("setLowerBoundConstInt", false, "Attr", ["Attr", "String", "int"])
+	addFuncForm("setLowerBoundConstFloat", false, "Attr", ["Attr", "String", "float"])

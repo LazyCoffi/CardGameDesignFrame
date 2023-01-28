@@ -1,9 +1,12 @@
 extends Node
 class_name Category
 
-var category 	# Array
+var category 		# Array
 
 var ScriptTree = load("res://class/entity/ScriptTree.gd")
+
+func _init():
+	category = []
 
 func addCategory(category_):
 	Exception.assert(TypeUnit.isType(category_, "Array"))
@@ -24,4 +27,4 @@ func pack():
 	return script_tree
 
 func loadScript(script_tree):
-	category = script_tree.getArray("category")
+	category = script_tree.getStrArray("category")

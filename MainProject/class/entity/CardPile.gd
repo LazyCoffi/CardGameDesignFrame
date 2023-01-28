@@ -4,10 +4,10 @@ class_name CardPile
 var ScriptTree = load("res://class/entity/ScriptTree.gd")
 var Filter = load("res://class/functionalSystem/Filter.gd")
 
-var card_pile
-var trash_pile
-var is_random
-var pop_num_filter
+var card_pile			# Array
+var trash_pile			# Array
+var is_random			# bool
+var pop_num_filter		# Filter
 
 var param_type
 

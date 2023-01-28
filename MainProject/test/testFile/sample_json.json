@@ -1,12 +1,18 @@
 {
 	"true" : true ,
 	"false" : false,
-	"number" : 123,
+	"int" : 123,
+	"float" : 123.456,
 	"string" : "hello",
-	"array" : [
+	"int_array" : [
 		1,
 		2,
 		3
+	],
+	"float_array" : [
+		1.1,
+		2.2,
+		3.3
 	],
 	"object" : {
 		"1" : 1,

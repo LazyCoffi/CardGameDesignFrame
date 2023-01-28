@@ -33,19 +33,19 @@ func addAttr(attr_name, attr):
 	root[attr_name] = attr
 
 func addObject(obj_name, obj):
-	root[obj_name] = null
+	root[obj_name] = obj.pack().__getRoot()
 
 func addObjectDict(dict_name, cur_dict):
 	var dict = {}
 	for key in cur_dict.keys():
-		dict[key] = cur_dict[key].pack()
+		dict[key] = cur_dict[key].pack().__getRoot()
 	
 	root[dict_name] = dict
 
 func addObjectArray(arr_name, cur_arr):
 	var arr = []
 	for obj in cur_arr:
-		arr.append(obj.pack())
+		arr.append(obj.pack().__getRoot())
 	
 	root[arr_name] = arr
 
@@ -70,40 +70,88 @@ func addScriptTreeArray(arr_name, cur_arr):
 
 	root[arr_name] = arr
 
-func addContainer(container_name, container):
+func addTypeObject(container_name, container):
 	addObject(container_name, container)
 
-func addContainerDict(dict_name, cur_dict):
+func addTypeObjectDict(dict_name, cur_dict):
 	addObjectDict(dict_name, cur_dict)
 
-func addContainerArray(arr_name, cur_arr):
+func addTypeObjectArray(arr_name, cur_arr):
 	addObjectArray(arr_name, cur_arr)
 
 func getInt(obj_name):
 	Exception.assert(root.has(obj_name))
 	return int(root[obj_name])
 
+func getIntDict(dict_name):
+	Exception.assert(root.has(dict_name))
+	for key in root[dict_name].keys():
+		root[dict_name][key] = int(root[dict_name][key])
+	
+	return root[dict_name]
+
+func getIntArray(arr_name):
+	Exception.assert(root.has(arr_name))
+	for index in range(root[arr_name].size()):
+		root[arr_name][index] = int(root[arr_name][index])
+	
+	return root[arr_name]
+
 func getFloat(obj_name):
 	Exception.assert(root.has(obj_name))
 	return float(root[obj_name])
+
+func getFloatDict(dict_name):
+	Exception.assert(root.has(dict_name))
+	for key in root[dict_name].keys():
+		root[dict_name][key] = float(root[dict_name][key])
+	
+	return root[dict_name]
+
+func getFloatArray(arr_name):
+	Exception.assert(root.has(arr_name))
+	for index in range(root[arr_name].size()):
+		root[arr_name][index] = float(root[arr_name][index])
+	
+	return root[arr_name]
 
 func getStr(obj_name):
 	Exception.assert(root.has(obj_name))
 	return str(root[obj_name])
 
-func getDict(obj_name):
-	Exception.assert(root.has(obj_name))
-	Exception.assert(root[obj_name] is Dictionary)
-	return root[obj_name]
+func getStrDict(dict_name):
+	Exception.assert(root.has(dict_name))
+	for key in root[dict_name].keys():
+		root[dict_name][key] = str(root[dict_name][key])
+	
+	return root[dict_name]
 
-func getArray(obj_name):
-	Exception.assert(root.has(obj_name))
-	Exception.assert(root[obj_name] is Array)
-	return root[obj_name]
+func getStrArray(arr_name):
+	Exception.assert(root.has(arr_name))
+	for index in range(root[arr_name].size()):
+		root[arr_name][index] = str(root[arr_name][index])
+	
+	return root[arr_name]
+
 
 func getBool(obj_name):
 	Exception.assert(root.has(obj_name))
+	Exception.assert(root[obj_name] is bool)
 	return root[obj_name]
+
+func getBoolDict(dict_name):
+	Exception.assert(root.has(dict_name))
+	for obj in root[dict_name].values():
+		Exception.assert(obj is bool)
+	
+	return root[dict_name]
+
+func getBoolArray(arr_name):
+	Exception.assert(root.has(arr_name))
+	for obj in root[arr_name]:
+		Exception.assert(obj is bool)
+	
+	return root[arr_name]
 
 func getAttr(attr_name, attr_type):
 	match attr_type:
@@ -115,6 +163,32 @@ func getAttr(attr_name, attr_type):
 			return getStr(attr_name)
 		"bool":
 			return getBool(attr_name)
+	
+	Exception.assert(false)
+
+func getAttrDict(dict_name, attr_type):
+	match attr_type:
+		"int":
+			return getIntDict(dict_name)
+		"float":
+			return getFloatDict(dict_name)
+		"String":
+			return getStrDict(dict_name)
+		"bool":
+			return getBoolDict(dict_name)
+	
+	Exception.assert(false)
+
+func getAttrArray(arr_name, attr_type):
+	match attr_type:
+		"int":
+			return getIntArray(arr_name)
+		"float":
+			return getFloatArray(arr_name)
+		"String":
+			return getStrArray(arr_name)
+		"bool":
+			return getBoolArray(arr_name)
 	
 	Exception.assert(false)
 
@@ -205,7 +279,7 @@ func getTypeObject(obj_name, obj_type, inner_type):
 	var script_tree = ScriptTree.new()
 	script_tree.__setRoot(root[obj_name])
 
-	container.loadScript(script_tree)
+	obj.loadScript(script_tree)
 
 	return obj
 
@@ -240,6 +314,11 @@ func getTypeObjectArray(arr_name, obj_type, inner_type):
 		ret.append(obj)
 	
 	return ret
+
+func getRawAttr(attr_name):
+	Exception.assert(root.has(attr_name))
+	
+	return root[attr_name]
 
 func __setRoot(root_):
 	Exception.assert(root_ is Dictionary)

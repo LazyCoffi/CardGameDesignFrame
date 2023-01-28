@@ -9,7 +9,12 @@ var play_type					# int
 var effect_func					# LocalFunction 
 
 func _init():
+	play_condition = Filter.new()
+	target_condition = Filter.new()
+	counter_condition = Filter.new()
+	counter_target_condition = Filter.new()
 	play_type = 0
+	effect_func = LocalFunction.new()
 
 ## TODO: 用接口代替直接的Filter/LocalFunction调用
 func isPlayCondition(params):

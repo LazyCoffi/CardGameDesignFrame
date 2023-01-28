@@ -2,16 +2,19 @@ extends Node2D
 
 var ScriptTree = load("res://class/entity/ScriptTree.gd")
 var SwitchTargetTable = load("res://class/entity/SwitchTargetTable.gd")
+var CharacterWarehouseModel = load("res://scene/CharacterWarehouseScene/CharacterWarehouseModel.gd")
+var CharacterWarehouseService = load("res://scene/CharacterWarehouseScene/CharacterWarehouseService.gd")
 
 var is_registered
 var switch_target_table
 
-var scene_name
-var scene_model
-var scene_service
+var scene_name			# String
+var scene_model			# CharacterWarehouseModel
+var scene_service		# CharacterWarehouseService
 
-func _ready():
-	pass
+func _init():
+	scene_model = CharacterWarehouseModel.new()
+	scene_service = CharacterWarehouseService.new()
 
 func isRegistered():
 	return is_registered
