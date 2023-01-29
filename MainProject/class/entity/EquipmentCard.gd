@@ -10,6 +10,18 @@ func _init():
 	unequip_func = LocalFunction.new()
 	equip_condition = Filter.new()
 
+func copy():
+	var ret = TypeUnit.type("EquipmentCard").new()
+	ret.category = category.copy()
+	ret.info = info.copy()
+	ret.attr = attr.copy()
+	ret.equip_func = equip_func.copy()
+	ret.unequip_func = unequip_func.copy()
+	ret.equip_condition = equip_condition.copy()
+
+	return ret
+
+## TODO: params替换为确定参数
 func equip(params):
 	return equip_func.exec(params)
 

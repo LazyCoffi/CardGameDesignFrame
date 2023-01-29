@@ -1,12 +1,20 @@
 extends Node
 class_name Heap
 
-var ScriptTree = load("res://class/entity/SceneTree.gd")
+var ScriptTree = TypeUnit.type("ScriptTree")
 
 class HeapNode:
 	var val
 	var order
 	var param_type
+
+	func copy():
+		var ret = HeapNode.new()
+		ret.val = val.copy()
+		ret.order = order
+		ret.param_type = param_type
+		
+		return ret
 
 	func setParamType(param_type_):
 		param_type = param_type_
@@ -35,12 +43,20 @@ class HeapNode:
 		val = script_tree.getObject("val", param_type)
 		order = script_tree.getInt("order")
 
-var heap
+var heap 			# Array
 
 var param_type
 
 func _init():
 	heap = []
+
+func copy():
+	var ret = TypeUnit.type("Heap").new()
+	ret.heap = []
+	for node in heap:
+		ret.heap.append(node.copy())
+	
+	return ret
 
 func setParamType(type):
 	param_type = type

@@ -11,7 +11,9 @@ func getParam(param_name):
 	return param_map[param_name]
 
 func pack():
-	pass
+	var script_tree = ScriptTree.new()
+
+	return script_tree
 
 func loadScript(script_tree):
 	pass

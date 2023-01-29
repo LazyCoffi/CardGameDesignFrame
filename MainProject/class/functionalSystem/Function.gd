@@ -1,62 +1,60 @@
 extends Node
 class_name Function
 
-var ScriptTree = load("res://class/entity/ScriptTree.gd")
-var Category = load("res://class/entity/Category.gd")
+var ScriptTree = TypeUnit.type("ScriptTree")
+var Category = TypeUnit.type("Category")
+var ParamList = TypeUnit.type("ParamList")
 
 var func_name			# String
 var category			# Category
-var static_params		# Array
+var default_params		# ParamList 
 
 func _init():
 	category = Category.new()
-	static_params = []
+	default_params = ParamList.new()
 
-## TODO: 包装参数数组
+func copy():
+	var ret = TypeUnit.type("Function").new()
+	ret.func_name = func_name
+	ret.category = category.copy()
+	ret.default_params = default_params.copy()
+	return ret
+
 func exec(params):
-	if isVariable():
-		return __variableExec(params)
-	else:
-		return __exec(params)
-	
-func setFuncName(func_name_):
-	Exception.assert(TypeUnit.isType(func_name_, "String"))
-	func_name = func_name_
+	return FunctionalCategory.exec(func_name, category, params)
 
-func setCategory(category_):
-	# Exception.assert(TypeUnit.isType(category_, "Category"))
-	category = category_
-
-func initStaticParams():
-	static_params.resize(getParamsNum())
-
-func addStaticParam(index, val):
-	static_params[index] = val
-
-func setStaticParams(params):
-	Exception.assert(params.size() == getParamsNum())
-	static_params = params
-
-func hasStaticParam(index):
-	return static_params[index] != null
-
-func isVariable():
-	return FunctionalCategory.isVariable(category, func_name)
-
+# func_name
 func getFuncName():
 	return func_name
 
+func setFuncName(func_name_):
+	func_name = func_name_
+
+# category
 func getCategory():
 	return category
 
-func getStaticParam(index):
-	return static_params[index]
+func setCategory(category_):
+	category = category_
+
+# default_params
+func initDefaultParams():
+	default_params.resize(getParamsNum())
+
+func getDefaultParams():
+	return default_params
+
+func setDefaultParams():
+	return default_params
+
+func hasDefaultParam(index):
+	return default_params.hasParam(index)
+
+func getDefaultParam(index):
+	return default_params.getParam(index)
 
 func getRetType():
 	return FunctionalCategory.getRetType(category, func_name)
-
-func getRetNum():
-	return getRetType().size()
 
 func getParamsType():
 	return FunctionalCategory.getParamsType(category, func_name)
@@ -69,24 +67,11 @@ func pack():
 
 	script_tree.addAttr("func_name", func_name)
 	script_tree.addObject("category", category)
+	script_tree.addObject("default_params", default_params)
 
 	return script_tree
 
 func loadScript(script_tree):
 	func_name = script_tree.getStr("func_name")
 	category = script_tree.getObject("category", Category)
-
-func __exec(params):
-	var params_form = getParamsType()
-
-	Exception.assert(TypeUnit.verifyParamsAdaptable(params, params_form))
-
-	return FunctionalCategory.exec(func_name, category, params)
-
-func __variableExec(params):
-	var param_type = getParamsType()[0]
-	for param in params:
-		Exception.assert(TypeUnit.isType(param, param_type))
-	
-	return FunctionalCategory.exec(func_name, category, [params])
-
+	default_params = script_tree.getObject("default_params", ParamList)

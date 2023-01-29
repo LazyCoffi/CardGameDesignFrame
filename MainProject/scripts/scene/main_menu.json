@@ -1,0 +1,26 @@
+{
+	"scene_name": "main_menu",
+	"is_registered": false,
+	"switch_target_table": {
+		"table": {
+			"StartButton": {
+				"scene_type": "LinearBattleScene",
+				"scene_name": "linear_battle",
+				"signal_name": "switchSignal"
+			},
+			"ContinueButton": {
+				"scene_type": "LinearBattleScene",
+				"scene_name": "linear_battle",
+				"signal_name": "switchSignal"
+			},
+			"SettingButton": {
+				"scene_type": "LinearBattleScene",
+				"scene_name": "linear_battle",
+				"signal_name": "switchSignal"
+			}
+		}
+	},
+	"scene_model": {
+
+	}
+}

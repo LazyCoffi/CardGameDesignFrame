@@ -1,7 +1,7 @@
 extends Node
 class_name LocalFunction
 
-var Filter = load("res://class/funtionalSystem/Filter.gd")
+var Filter = load("res://class/functionalSystem/Filter.gd")
 var ScriptTree = load("res://class/entity/ScriptTree.gd")
 var ArrangeMap = load("res://class/entity/ArrangeMap.gd")
 
@@ -14,6 +14,18 @@ func _init():
 	filters = []
 	param_map = ArrangeMap.new()
 	ret_map = ArrangeMap.new()
+
+func copy():
+	var ret = TypeUnit.type("LocalFunction").new()
+	ret.func_name = func_name
+	ret.filters = []
+	for node in filters:
+		ret.filters.append(node.copy())
+	
+	ret.param_map = param_map.copy()
+	ret.ret_map = param_map.copy()
+
+	return ret
 
 func setParamMap(param_map_):
 	param_map = param_map_

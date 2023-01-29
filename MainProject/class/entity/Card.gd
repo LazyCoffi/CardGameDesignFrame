@@ -1,21 +1,29 @@
 extends Node
 class_name Card
 
-var Category = load("res://class/entity/Category.gd")
-var Info = load("res://class/entity/Info.gd")
-var Attr = load("res://class/entity/Attr.gd")
-var LocalFunction = load("res://class/functionalSystem/LocalFunction.gd")
-var ScriptTree = load("res://class/entity/ScriptTree.gd")
-var Filter = load("res://class/functionalSystem/Filter.gd")
+var Category = TypeUnit.type("Category")
+var Info = TypeUnit.type("Info")
+var Attr = TypeUnit.type("Attr")
+var LocalFunction = TypeUnit.type("LocalFunction")
+var ScriptTree = TypeUnit.type("ScriptTree")
+var Filter = TypeUnit.type("Filter")
 
 var category				# Category
 var info 					# Info
 var attr					# Attr
 
 func _init():
-	category = category.new()
+	category = Category.new()
 	info = Info.new()
 	attr = Attr.new()
+
+func copy():
+	var ret = TypeUnit.type("Card").new()
+	ret.category = category.copy()
+	ret.info = info.copy()
+	ret.attr = attr.copy()
+
+	return ret
 
 func getCardName():
 	return info.getCardName()

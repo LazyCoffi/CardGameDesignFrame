@@ -2,12 +2,12 @@ extends Node
 class_name LinearBattleModel
 
 var Heap = load("res://class/dataStruct/Heap.gd")
-var ScriptTree = load("res://class/entity/ScriptTree")
+var ScriptTree = load("res://class/entity/ScriptTree.gd")
 var BattleCharacterCard = load("res://class/entity/BattleCharacterCard.gd")
 var BattleSkillCard = load("res://class/entity/BattleSkillCard.gd")
 var Filter = load("res://class/functionalSystem/Filter.gd")
 var DictArray = load("res://class/dataStruct/DictArray.gd")
-var SettingTable = load("res://class/entity/SettingTable")
+var SettingTable = load("res://class/entity/SettingTable.gd")
 
 var MAX_GROUP_SIZE = 4
 
@@ -46,8 +46,10 @@ func getParam(param_name):
 func getSettingAttr(attr_name):
 	return setting[attr_name]
 
-# character_groups
+func setSetting(setting_):
+	setting = setting_
 
+# character_groups
 func getCharacterGroups():
 	return character_groups
 
@@ -91,6 +93,12 @@ func setCurCharacterCard(cur_character_card_):
 	cur_character_card = cur_character_card_
 
 # hand_cards_table
+func getHandCardsTable():
+	return hand_cards_table
+
+func setHandCardsTable(hand_cards_table_):
+	hand_cards_table = hand_cards_table_
+
 func getHandCards(character_name):
 	return hand_cards_table[character_name]
 
@@ -98,12 +106,12 @@ func getCurHandCards():
 	return hand_cards_table[cur_character_card.getCardName()]
 
 func getHandCardsNum(character_name):
-	return hand_cards[character_name].size()
+	return hand_cards_table[character_name].size()
 
 func getCurHandCardsNum():
-	return hand_cards[cur_character_card.getCardName()].size()
+	return hand_cards_table[cur_character_card.getCardName()].size()
 
-func setHandCards(charcter_name, hand_cards):
+func setHandCards(character_name, hand_cards):
 	hand_cards_table[character_name] = hand_cards
 
 # total
@@ -140,7 +148,7 @@ func pack():
 	script_tree.addObject("order_filter", order_filter)
 	script_tree.addObject("character_deal_filter", character_deal_filter)
 	script_tree.addObject("cur_character_card", cur_character_card)
-	script_tree.addTypeObjectDict("hand_cards", hand_cards)
+	script_tree.addTypeObjectDict("hand_cards_table", hand_cards_table)
 	script_tree.addAttr("total_round", total_round)
 
 	return script_tree
@@ -156,6 +164,7 @@ func loadScript(script_tree):
 	total_round = script_tree.getInt("total_round")
 
 func __setParamTable():
+	param_table = {}
 	__addParam("setting", setting)
 	__addParam("character_groups", character_groups)
 	__addParam("order_queue", order_queue)

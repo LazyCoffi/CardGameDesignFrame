@@ -16,6 +16,20 @@ func _init():
 	play_type = 0
 	effect_func = LocalFunction.new()
 
+func copy():
+	var ret = TypeUnit.type("BattleSkillCard").new()
+	ret.category = category.copy()
+	ret.info = info.copy()
+	ret.attr = attr.copy()
+	ret.play_condition = play_condition.copy()
+	ret.target_condition = target_condition.copy()
+	ret.counter_condition = counter_condition.copy()
+	ret.counter_target_condition = counter_target_condition.copy()
+	ret.play_type = play_type
+	ret.effect_func = effect_func.copy()
+
+	return ret
+
 ## TODO: 用接口代替直接的Filter/LocalFunction调用
 func isPlayCondition(params):
 	return play_condition.exec(params)
@@ -62,5 +76,3 @@ func loadScript(script_tree):
 	counter_target_condition = script_tree.getObject("counter_target_condition", Filter)
 	play_type = script_tree.getInt("play_type")
 	effect_func = script_tree.getObject("effect_func", LocalFunction)
-
-

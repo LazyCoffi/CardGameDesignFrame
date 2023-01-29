@@ -12,5 +12,5 @@ func staticVal(val):
 	return val
 
 func __initFuncForm():
-	addFuncForm("packArray", true, "all_Array", "all")
-	addFuncForm("staticVal", false, "all", "all")
+	addFuncForm("packArray", "all_Array", ["all"])
+	addFuncForm("staticVal", "all", ["all"])

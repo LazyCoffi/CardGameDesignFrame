@@ -1,7 +1,7 @@
 extends Node
 class_name TriggerTimer
 
-var ScriptTree = load("res://class/entity/ScriptTree.gd")
+var ScriptTree = TypeUnit.type("ScriptTree")
 
 signal timeout_signal
 
@@ -11,6 +11,13 @@ var is_active		# bool
 func _init():
 	timer = 0
 	is_active = false
+
+func copy():
+	var ret = TypeUnit.type("TriggerTimer").new()
+	ret.timer = timer
+	ret.is_active = is_active
+
+	return ret
 
 func setTimer(time):
 	TypeUnit.isType(time, "int")

@@ -5,8 +5,6 @@ extends Node
 
 var ScriptTree = load("res://class/entity/ScriptTree.gd")
 
-var init_scene_name
-
 func debug():
 	var Debug = load("res://class/Test.gd")
 	var debug_runner = Debug.new()
@@ -22,17 +20,17 @@ func _ready():
 	gameInit()
 
 func gameInit():
-	init_scene_name = GlobalSetting.getAttr("init_scene_name")
+	preloadScene()
 	gameStart()
 
+func preloadScene():
+	var preload_scene_list = GlobalSetting.getAttr("preload_scene_list")
+	for scene_name in preload_scene_list:
+		SceneCache.create(scene_name)
+
 func gameStart():
+	var init_scene_name = GlobalSetting.getAttr("init_scene_name")
 	$SceneDispatcher.switch(init_scene_name)
-
-func loadScript():
-	var script_tree = ScriptTree.new()
-	script_tree.loadFromJson("res://scripts/system/main.json")
-
-	init_scene_name = script_tree.getAttr("init_scene_name")
 
 func quit():
 	get_tree().quit()

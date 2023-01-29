@@ -1,48 +1,6 @@
 {
-	"raw_scene_script" : {
-		"main_menu" : {
-			"scene_name" : "menu_menu",
-			"switch_target_table" : {
-				"table" : {
-					"StartButton" : {
-						"scene_type" : "LinearBattleScene",
-						"scene_name" : "linear_battle",
-						"switch_signal" : "switchSignal"
-					},
-					"ContinueButton" : {
-						"scene_type" : "LinearBattleScene",
-						"scene_name" : "linear_battle",
-						"switch_signal" : "switchSignal"
-					},
-					"SettingButton" : {
-						"scene_type" : "LinearBattleScene",
-						"scene_name" : "linear_battle",
-						"switch_signal" : "switchSignal"
-					},
-					"ExitButton" : {
-						"scene_type" : "LinearBattleScene",
-						"scene_name" : "linear_battle",
-						"switch_signal" : "switchSignal"
-					}
-				}
-			}
-		},
-		"linear_battle" : {
-			"scene_name" : "linear_battle",
-			"switch_target_table" : {
-				"table" : {
-				}
-			},
-			"scene_model" : {
-				"setting" : {
-					"hand_cards_upper" : 8,
-					"hand_card_rect_size" : [90, 160]
-				},
-				"order_filter" : {
-				},
-				"character_deal_filter" : {
-				}
-			}
-		}
+	"main_menu" : {
+		"type" : "MainMenuScene",
+		"path" : "res://scripts/scene/main_menu.json"
 	}
 }

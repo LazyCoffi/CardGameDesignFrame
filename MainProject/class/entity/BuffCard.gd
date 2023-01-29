@@ -1,7 +1,7 @@
 extends "res://class/entity/Card.gd"
 class_name BuffCard
 
-var TriggerTimer = load("res://class/entity/TriggerTimer.gd")
+var TriggerTimer = TypeUnit.type("TriggerTimer")
 
 var is_active			# bool
 var is_continuous		# bool
@@ -16,6 +16,18 @@ func _init():
 
 	## TODO: 考虑此处是否需要直接连接信号
 	self.connect("deactive", deactive_trigger, "timeout_signal")
+
+func copy():
+	var ret = TypeUnit.type("BuffCard").new()
+	ret.category = category.copy()
+	ret.info = info.copy()
+	ret.attr = attr.copy()
+	ret.is_active = is_active
+	ret.is_continuous = is_continuous
+	ret.effect_func = effect_func.copy()
+	ret.deactive_trigger = deactive_trigger.copy()
+
+	return ret
 
 func isExcuable():
 	if is_continuous:

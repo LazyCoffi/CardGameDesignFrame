@@ -22,17 +22,36 @@ func _ready():
 	__setSceneName()
 	__loadResource()
 
+# is_registered
 func isRegistered():
 	return is_registered
 
 func register():
 	is_registered = true
 
+# scene_name
+func getSceneName():
+	return scene_name
+
+func setSceneName(scene_name_):
+	scene_name = scene_name_
+
+# switch_target_table
+func getSwitchTargetTable():
+	return switch_target_table
+
+func setSwitchTargetTable(switch_target_table_):
+	switch_target_table = switch_target_table_
+
 func switchScene(signal_name, next_scene_name):
 	emit_signal(signal_name, next_scene_name)
 
+# model
 func model():
 	return scene_model
+
+func setModel(scene_model_):
+	scene_model = scene_model_
 
 func pack():
 	var script_tree = ScriptTree.new()
@@ -65,9 +84,9 @@ func __loadResource():
 	__setTitle()
 
 func __setSwitchConnection():
-	$StartButton.connect("pressed", self, "__startButtonSwitch")
-	$ContinueButton.connect("pressed", self, "__continueButtonSwitch")
-	$SettingButton.connect("pressed", self, "__settingButtonSwitch")
+	Exception.assert($StartButton.connect("pressed", self, "__startButtonSwitch") == 0, "Signal connect fail!")
+	Exception.assert($ContinueButton.connect("pressed", self, "__continueButtonSwitch") == 0, "Signal connect fail!")
+	Exception.assert($SettingButton.connect("pressed", self, "__settingButtonSwitch") == 0, "Signal connect fail!")
 
 func __startButtonSwitch():
 	var target_pack = switch_target_table.getTarget("StartButton")

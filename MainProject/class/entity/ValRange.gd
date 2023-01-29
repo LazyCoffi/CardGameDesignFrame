@@ -8,11 +8,22 @@ var has_lower		# bool
 var upper_bound		# attr
 var lower_bound		# attr
 
-var ScriptTree = load("res://class/entity/ScriptTree.gd")
+var ScriptTree = TypeUnit.type("ScriptTree")
 
 func _init():
 	has_upper = false
 	has_lower = false
+
+func copy():
+	var ret = TypeUnit.type("ValRange").new()
+	ret.attr_type = attr_type
+	ret.has_bound = has_bound
+	ret.has_upper = has_upper
+	ret.has_lower = has_lower
+	ret.upper_bound = upper_bound
+	ret.lower_bound = lower_bound
+
+	return ret
 
 func setAttrType(attr_type_):
 	attr_type = attr_type_

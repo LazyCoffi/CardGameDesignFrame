@@ -1,0 +1,16 @@
+extends Node
+class_name NullPack
+
+var ScriptTree = TypeUnit.type("ScriptTree")
+
+func copy():
+	return TypeUnit.type("NullPack").new()
+
+func getVal():
+	return null
+
+func pack():
+	return ScriptTree.new()
+
+func loadScript(script_tree):
+	scirpt_tree = null

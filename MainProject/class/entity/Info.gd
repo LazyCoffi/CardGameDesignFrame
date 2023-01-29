@@ -1,13 +1,21 @@
 extends Node
 class_name Info
 
-var ScriptTree = load("res://class/entity/ScriptTree.gd")
+var ScriptTree = TypeUnit.type("ScriptTree")
 
 var card_name 		# String
 var avator_name		# String
 var introduction	# String
 
 # TODO: 考虑是否添加长文本类
+
+func copy():
+	var ret = TypeUnit.type("Info").new()
+	ret.card_name = card_name
+	ret.avator_name = avator_name
+	ret.introduction = introduction
+
+	return ret
 
 func setCardName(card_name_):
 	card_name = card_name_

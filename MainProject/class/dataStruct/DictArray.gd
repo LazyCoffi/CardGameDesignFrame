@@ -1,7 +1,7 @@
 extends Node
 class_name DictArray
 
-var ScriptTree = load("res://class/entity/ScriptTree.gd")
+var ScriptTree = TypeUnit.type("ScriptTree")
 
 class ArrayNode:
 	var param_name
@@ -12,7 +12,13 @@ class ArrayNode:
 
 	func _init():
 		order = null
-
+	
+	func copy():
+		var ret = ArrayNode.new()
+		ret.param_name = param_name
+		ret.param = param.copy()
+		ret.order = order
+	
 	func setParamType(param_type_):
 		param_type = param_type_
 		
@@ -36,6 +42,17 @@ var param_type
 func _init():
 	table = {}
 	arr = []
+
+func copy():
+	var ret = TypeUnit.type("DictArray").new()
+	ret.table = {}
+	for key in table.keys():
+		ret.table[key] = table[key].copy()
+	ret.arr = []
+	for node in arr:
+		ret.arr.append(node.copy())
+	
+	return ret
 
 func setParamType(param_type_):
 	param_type = param_type_

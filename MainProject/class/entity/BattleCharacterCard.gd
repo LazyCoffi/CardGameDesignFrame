@@ -1,18 +1,34 @@
 extends "res://class/entity/Card.gd"
 class_name BattleCharacterCard
 
-var BattleSkillCardPile = load("res://class/entity/BattleSkillCardPile.gd")
-var EquipmentCard = load("res://class/entity/EquipmentCard.gd")
-var BuffCard = load("res://class/entity/BuffCard.gd")
+var BattleSkillCard = TypeUnit.type("BattleSkillCard")
+var EquipmentCard = TypeUnit.type("EquipmentCard")
+var BuffCard = TypeUnit.type("BuffCard")
 
 var card_pile 			# BattleSkillCardPile
 var equipment_set		# EquipmentCard_Dict
 var buff_set			# BuffCard_Dict
 
 func _init():
-	card_pile = BattleSkillCardPile.new()
+	card_pile = CardPile.new()
+	card_pile.setParamType(BattleSkillCard)
 	equipment_set = {}
 	buff_set = {}
+
+func copy():
+	var ret = TypeUnit.type("BattleCharacterCard").new()
+	ret.category = category.copy()
+	ret.info = info.copy()
+	ret.attr = attr.copy()
+	ret.card_pile = card_pile.copy() 
+	ret.equipment_set = {}
+	for key in equipment_set.keys():
+		ret.equipment_set[key] = equipment_set[key].copy()
+	ret.buff_set = {}
+	for key in buff_set:
+		ret.buff_set[key] = buff_set[key].copy()
+	
+	return ret
 
 # TODO: 包装参数列表
 func getCards(upper_bound):
@@ -64,6 +80,6 @@ func pack():
 
 func loadScript(script_tree):
 	.loadScript(script_tree)
-	card_pile = script_tree.loadObject("card_pile", CardPile)
-	equipment_set = script_tree.loadObjectDict("equipment_set", equipment_set)
-	buff_set = script_tree.loadObjectDict("buff_set", buff_set)
+	card_pile = script_tree.loadObject("card_pile", CardPile, BattleSkillCard)
+	equipment_set = script_tree.loadObjectDict("equipment_set", EquipmentCard)
+	buff_set = script_tree.loadObjectDict("buff_set", BuffCard)

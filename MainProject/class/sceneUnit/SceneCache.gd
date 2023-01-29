@@ -4,7 +4,7 @@ var SceneFactory = load("res://class/sceneUnit/SceneFactory.gd")
 var ScriptTree = load("res://class/entity/ScriptTree.gd")
 
 var scene_cache		# SceneNode_Dict
-var cur_scene		# SceneNode
+var cur_scene_name	# String
 var scene_factory	# SceneFactory
 
 class SceneNode:
@@ -52,20 +52,28 @@ func _init():
 	scene_cache = {}
 	scene_factory = SceneFactory.new()
 
-func hasCurScene():
-	return cur_scene != null
+func genSceneNode(type, scene_name, scene):
+	var scene_node = SceneNode.new()	
+	scene_node.type = type
+	scene_node.scene_name = scene_name
+	scene_node.scene = scene
 
-func getCurScene():
-	return cur_scene.getScene()
+	return scene_node
+
+func hasCurScene():
+	return cur_scene_name != null
 
 func getCurSceneName():
-	return cur_scene.getSceneName()
+	return cur_scene_name
+
+func getCurScene():
+	return scene_cache[cur_scene_name].getScene()
 
 func getCurSceneType():
-	return cur_scene.getType()
+	return scene_cache[cur_scene_name].getType()
 
 func setCurScene(scene_name):
-	cur_scene = get(scene_name)
+	cur_scene_name = scene_name
 
 func store(scene_node):
 	var scene_name = scene_node.getSceneName()
@@ -102,10 +110,10 @@ func pack():
 	var script_tree = ScriptTree.new()
 
 	script_tree.addObjectDict("scene_cache", scene_cache)
-	script_tree.addObject("cur_scene", cur_scene)
+	script_tree.addAttr("cur_scene_name", cur_scene_name)
 
 	return script_tree
 
 func loadScript(script_tree):
-	scene_cache = script_tree.loadObjectDict("scene_cache", scene_cache)
-	cur_scene = script_tree.loadObject("cur_scene", SceneNode)
+	scene_cache = script_tree.getObjectDict("scene_cache", SceneNode)
+	cur_scene_name = script_tree.getStr("cur_scene_name")

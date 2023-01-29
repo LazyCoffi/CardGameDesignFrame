@@ -82,11 +82,11 @@ func __setLowerBoundConst(attr, attr_name, val):
 	return attr
 
 func __initFuncForm():
-	addFuncForm("setConst", false, "Attr", ["Attr", "String", "all"])
-	addFuncForm("plusIntConst", false, "Attr", ["Attr", "String", "int"])
-	addFuncForm("plusFloatConst", false, "Attr", ["Attr", "String", "float"])
-	addFuncForm("mulConstInt", false, "Attr", ["Attr", "String", "float"])
-	addFuncForm("setUpperBoundConstInt", false, "Attr", ["Attr", "String", "int"])
-	addFuncForm("setUpperBoundConstFloat", false, "Attr", ["Attr", "String", "float"])
-	addFuncForm("setLowerBoundConstInt", false, "Attr", ["Attr", "String", "int"])
-	addFuncForm("setLowerBoundConstFloat", false, "Attr", ["Attr", "String", "float"])
+	addFuncForm("setConst", "Attr", ["Attr", "String", "all"])
+	addFuncForm("plusIntConst", "Attr", ["Attr", "String", "int"])
+	addFuncForm("plusFloatConst", "Attr", ["Attr", "String", "float"])
+	addFuncForm("mulConstInt", "Attr", ["Attr", "String", "float"])
+	addFuncForm("setUpperBoundConstInt", "Attr", ["Attr", "String", "int"])
+	addFuncForm("setUpperBoundConstFloat", "Attr", ["Attr", "String", "float"])
+	addFuncForm("setLowerBoundConstInt", "Attr", ["Attr", "String", "int"])
+	addFuncForm("setLowerBoundConstFloat", "Attr", ["Attr", "String", "float"])

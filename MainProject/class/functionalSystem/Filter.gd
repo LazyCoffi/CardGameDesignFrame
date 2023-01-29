@@ -1,9 +1,9 @@
 extends Node
 class_name Filter
 
-var FunctionalGraph = load("res://class/functionalSystem/FunctionalGraph.gd")
-var ScriptTree = load("res://class/entity/ScriptTree.gd")
-var DictMap = load("res://class/entity/DictMap.gd")
+var FunctionalGraph = TypeUnit.type("FunctionalGraph")
+var ScriptTree = TypeUnit.type("ScriptTree")
+var DictMap = TypeUnit.type("DictMap")
 
 var graph		# FunctionalGraph
 var param_map	# DictMap
@@ -11,6 +11,13 @@ var param_map	# DictMap
 func _init():
 	graph = FunctionalGraph.new()
 	param_map = DictMap.new()
+
+func copy():
+	var ret = TypeUnit.type("DictMap").new()
+	ret.graph = graph.copy()
+	ret.param_map = param_map.copy()
+
+	return ret
 
 func exec(params):
 	return graph.exec(param_map.trans(params))

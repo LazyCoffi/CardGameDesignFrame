@@ -3,11 +3,10 @@ class_name FunctionalSet
 
 var func_form
 
-func addFuncForm(func_name, variable, ret_form, params_form):
+func addFuncForm(func_name, ret_form, params_form):
 	var cur_form = {}
 	cur_form["params"] = params_form
 	cur_form["ret"] = ret_form
-	cur_form["variable"] = variable
 
 	func_form[func_name] = cur_form
 
@@ -22,8 +21,5 @@ func getRetType(func_name):
 
 	return func_form[func_name]["ret"]
 
-func isVariable(func_name):
-	return func_form[func_name]["variable"]
-	
 func hasFunc(func_name):
 	return func_form.has(func_name)

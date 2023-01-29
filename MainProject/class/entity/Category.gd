@@ -3,10 +3,16 @@ class_name Category
 
 var category 		# Array
 
-var ScriptTree = load("res://class/entity/ScriptTree.gd")
+var ScriptTree = TypeUnit.type("ScriptTree")
 
 func _init():
 	category = []
+
+func copy():
+	var ret = TypeUnit.type("Category").new()
+	ret.category = category.duplicate(true)
+
+	return ret
 
 func addCategory(category_):
 	Exception.assert(TypeUnit.isType(category_, "Array"))

@@ -5,7 +5,7 @@ var type_table
 func _init():
 	__initTypeTable()
 
-func getTypeByName(type_name):
+func type(type_name):
 	Exception.assert(type_table.has(type_name))
 	return type_table[type_name]
 
@@ -47,7 +47,7 @@ func isType(val, type_name):
 	elif types.size() > 2:
 		return false
 
-	return val is getTypeByName(type_name)
+	return val is type(type_name)
 
 func isAdaptable(val, type_name):
 	if isType(val, type_name):
@@ -89,22 +89,42 @@ func verifyParamsAdaptable(params, params_form):
 
 func __initTypeTable():
 	type_table = {}
+	__addType("dataStruct", "CardPile")
+	__addType("dataStruct", "DictArray")
+	__addType("dataStruct", "Heap")
+	__addType("entity", "ArrangeMap")
 	__addType("entity", "Attr")
+	__addType("entity", "BattleCharacterCard")
+	__addType("entity", "BattleSkillCard")
+	__addType("entity", "BuffCard")
 	__addType("entity", "Card")
 	__addType("entity", "Category")
+	__addType("entity", "DictMap")
+	__addType("entity", "EquipmentCard")
+	__addType("entity", "Float")
 	__addType("entity", "Info")
+	__addType("entity", "Integer")
+	__addType("entity", "NullPack")
+	__addType("entity", "ParamList")
 	__addType("entity", "ScriptTree")
+	__addType("entity", "SettingTable")
+	__addType("entity", "StringPack")
+	__addType("entity", "SwitchTargetTable")
+	__addType("entity", "TriggerTimer")
 	__addType("entity", "ValRange")
+	__addType("functionalSystem", "ArrayOperFunctionSet")
 	__addType("functionalSystem", "AttrConditionSet")
 	__addType("functionalSystem", "AttrFunctionSet")
 	__addType("functionalSystem", "BaseConditionSet")
 	__addType("functionalSystem", "BaseFunctionSet")
-	__addType("functionalSystem", "CardInterfaceSet")
+	__addType("functionalSystem", "BattleFunctionSet")
+	__addType("functionalSystem", "Filter")
 	__addType("functionalSystem", "Function")
 	__addType("functionalSystem", "FunctionalGraph")
 	__addType("functionalSystem", "FunctionalSet")
 	__addType("functionalSystem", "LocalFunction")
 	__addType("functionalSystem", "MathFunctionSet")
+	__addType("functionalSystem", "SceneOperFunctionSet")
 	__addType("sceneUnit", "SceneFactory")
 
 	__addSceneType("MainMenuScene")

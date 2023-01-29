@@ -1,8 +1,8 @@
 extends Node
 class_name CardPile
 
-var ScriptTree = load("res://class/entity/ScriptTree.gd")
-var Filter = load("res://class/functionalSystem/Filter.gd")
+var ScriptTree = TypeUnit.type("ScriptTree")
+var Filter = TypeUnit.type("Filter")
 
 var card_pile			# Array
 var trash_pile			# Array
@@ -16,8 +16,20 @@ func _init():
 	trash_pile = []
 	is_random = true
 
-func setParamType(param_type_):
-	param_type = param_type_
+func copy():
+	var ret = TypeUnit.type("CardPile").new()
+	ret.card_pile = []
+	for card in card_pile:
+		ret.card_pile.append(card.copy())
+	
+	ret.trash_pile = []
+	for card in trash_pile:
+		ret.trash_pile.append(card.copy())
+	
+	ret.is_random = is_random
+	ret.pop_num_filter = pop_num_filter.copy()
+
+	return ret
 
 func randomOn():
 	is_random = true

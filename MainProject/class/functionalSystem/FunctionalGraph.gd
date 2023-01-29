@@ -4,7 +4,7 @@ class_name FunctionalGraph
 var ScriptTree = load("res://class/entity/ScriptTree.gd")
 var Function = load("res://class/functionalSystem/Function.gd")
 
-var root				# InnerNode
+var root				# FuncGraphNode
 var request_params		# Dict
 var node_index			# int
 var exec_graph			# Dict
@@ -17,14 +17,24 @@ class FuncGraphNode:
 	func _init():
 		functional = Function.new()
 		ch = []
+	
+	func copy():
+		var ret = FuncGraphNode.new()
+		ret.functional = functional.copy()
+		ret.ch = []
+		for node in ch:
+			ret.ch.append(node.copy())
+
+		ret.index = index
+
+		return ret
 
 	func getFunctional():
 		return functional
 	
 	func setFunctional(functional_):
 		functional = functional_
-		if not functional_.isVariable():
-			ch.resize(functional.getParamsNum())
+		ch.resize(functional.getParamsNum())
 	
 	func getCh():
 		return ch.duplicate()
@@ -41,20 +51,10 @@ class FuncGraphNode:
 	func getIndex():
 		return index
 
-	func isVariable():
-		return functional.isVariable()
-	
 	func connectNode(child_node, param_index):
-		Exception.assert(not isVariable())
 		Exception.assert(__isAdaptable(child_node, param_index))
 
 		__setChNode(param_index, child_node)
-	
-	func varConnectNode(child_node):
-		Exception.assert(isVariable())
-		Exception.assert(__isVariableAdaptable(child_node))
-
-		__appendChNode(child_node)
 	
 	func disconnectNode(param_index):
 		Exception.assert(param_index < ch.size())
@@ -86,12 +86,6 @@ class FuncGraphNode:
 	
 		return ret_type == params_type[param_index]
 	
-	func __isVariableAdaptable(child_node):
-		var ret_type = child_node.getFunctional().getRetType()
-		var params_type = functional.getParamsType()
-
-		return ret_type == params_type[0]
-
 	func pack():
 		var script_tree = ScriptTree.new()
 
@@ -105,6 +99,17 @@ class FuncGraphNode:
 		functional = script_tree.getObject("functional", Function)
 		ch = script_tree.getObjectArray("ch", FuncGraphNode)
 		index = script_tree.getInt("index")
+	
+func copy():
+	var ret = TypeUnit.type("FunctionalGraph").new()
+	ret.root = root.copy()
+	ret.request_params = request_params.duplicate(true)
+	ret.node_index = node_index
+	ret.exec_graph = {}
+	for key in exec_graph.keys():
+		ret.exec_graph[key] = exec_graph[key].copy()
+	
+	return ret
 
 func genNode(functional):
 	var node = FuncGraphNode.new()
@@ -154,13 +159,8 @@ func __dfsConstruct(u):
 	var cur_func = u.getFunctional()
 	var cur_request_params = cur_func.getParamsType()
 	
-	cur_request_params.resize(u.ch.size())
+	cur_request_params.resize(u.getChSize())
 	
-	# 处理可变参数函数的情况
-	for index in range(u.getChSize()):
-		if cur_request_params == null:
-			cur_request_params[index] = cur_request_params[0]
-
 	var param_index = 0
 	for type in cur_request_params:
 		if u.getCh()[param_index] == null:
@@ -184,8 +184,8 @@ func __dfsExec(u, params):
 		if not u.getCh()[param_index] == null:
 			cur_params[param_index] = __dfsExec(u.getCh()[param_index], params)
 		else:
-			if cur_func.hasStaticParam(param_index):
-				cur_params[param_index] = cur_func.getStaticParam(param_index)
+			if cur_func.hasDefaultParam(param_index):
+				cur_params[param_index] = cur_func.getDefaultParam(param_index)
 			else:
 				cur_params[param_index] = params[cur_func.getFuncName() + "_" + str(cur_index) + "_" + str(param_index)]
 

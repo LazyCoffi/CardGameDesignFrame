@@ -1,10 +1,18 @@
 extends Node
 class_name ArrangeMap 
 
+var ScriptTree = TypeUnit.type("ScriptTree")
+
 var map
 
 func _init():
 	map = []
+
+func copy():
+	var ret = TypeUnit.type("ArrangeMap").new()
+	ret.map = map.duplicate(true)
+	
+	return ret
 
 func resizeMap(size):
 	map.resize(size)
@@ -32,3 +40,13 @@ func trans(params):
 		ret[map[index]] = params[index] 
 	
 	return ret
+
+func pack():
+	var script_tree = ScriptTree.new()
+
+	script_tree.addAttr("map", map)
+
+	return script_tree
+
+func loadScript(script_tree):
+	map = script_tree.getIntArray("map")

@@ -1,12 +1,15 @@
 extends Node
 class_name ScriptTree
 
-var ScriptTree = load("res://class/entity/ScriptTree.gd")
-
 var root
 
 func _init():
 	root = {}
+
+func copy():
+	var ret = TypeUnit.type("ScriptTree").new()
+	ret.root = root.duplicate(true)
+	return ret
 
 func has(name_):
 	return root.has(name_)

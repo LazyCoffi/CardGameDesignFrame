@@ -45,11 +45,11 @@ func __isGreaterEqual(attr, attr_name, val):
 	return attr.getAttr(attr_name) >= val
 
 func __initFuncForm():
-	addFuncForm("isLowerInt", false, "bool", ["Attr", "String", "int"])
-	addFuncForm("isLowerFloat", false, "bool", ["Attr", "String", "float"])
-	addFuncForm("isGreaterInt", false, "bool", ["Attr", "String", "int"])
-	addFuncForm("isGreaterFloat", false, "bool", ["Attr", "String", "float"])
-	addFuncForm("isLowerEqualInt", false, "bool", ["Attr", "String", "int"])
-	addFuncForm("isLowerEqualFloat", false, "bool", ["Attr", "String", "float"])
-	addFuncForm("isGreaterEqualInt", false, "bool", ["Attr", "String", "int"])
-	addFuncForm("isGreaterEqualFloat", false, "bool", ["Attr", "String", "float"])
+	addFuncForm("isLowerInt", "bool", ["Attr", "String", "int"])
+	addFuncForm("isLowerFloat", "bool", ["Attr", "String", "float"])
+	addFuncForm("isGreaterInt", "bool", ["Attr", "String", "int"])
+	addFuncForm("isGreaterFloat", "bool", ["Attr", "String", "float"])
+	addFuncForm("isLowerEqualInt", "bool", ["Attr", "String", "int"])
+	addFuncForm("isLowerEqualFloat", "bool", ["Attr", "String", "float"])
+	addFuncForm("isGreaterEqualInt", "bool", ["Attr", "String", "int"])
+	addFuncForm("isGreaterEqualFloat", "bool", ["Attr", "String", "float"])

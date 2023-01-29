@@ -1,8 +1,8 @@
 extends Node
 class_name Attr
 
-var ScriptTree = load("res://class/entity/ScriptTree.gd")
-var ValRange = load("res://class/entity/ValRange.gd")
+var ScriptTree = TypeUnit.type("ScriptTree")
+var ValRange = TypeUnit.type("ValRange")
 
 var table
 
@@ -14,6 +14,15 @@ class AttrNode:
 
 	func _init():
 		val_range = ValRange.new()
+
+	func copy():
+		var ret = AttrNode.new()
+		ret.attr_name = attr_name
+		ret.val = val
+		ret.val_type = val_type
+		ret.val_range = val_range.copy()
+
+		return ret
 	
 	func getAttrName():
 		return attr_name
@@ -73,6 +82,14 @@ class AttrNode:
 
 func _init():
 	table = {}
+
+func copy():
+	var ret = TypeUnit.type("Attr").new()
+	ret.table = {}
+	for key in table.keys():
+		ret.table[key] = table[key].copy()
+	
+	return ret
 
 func getVal(attr_name):
 	Exception.assert(table.has(attr_name))

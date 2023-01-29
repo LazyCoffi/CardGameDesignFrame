@@ -38,17 +38,40 @@ func setRef(scene):
 	scene_service.setRef(scene)
 	scene_dispatcher.setRef(scene)
 
+# scene_name
+func getSceneName():
+	return scene_name
+
+func setSceneName(scene_name_):
+	scene_name = scene_name_
+
+# switch_target_table
+func getSwitchTargetTable():
+	return switch_target_table
+
+func setSwitchTargetTable(switch_target_table_):
+	switch_target_table = switch_target_table_	
+
+# scene_model
 func model():
 	return scene_model
 
+func setSceneModel(scene_model_):
+	scene_model = scene_model_
+
+# scene_service
 func service():
 	return scene_service
 
+func setSceneService(scene_service_):
+	scene_service = scene_service_
+
+# scene_dispatcher
 func dispatcher():
 	return scene_dispatcher
 
-func getSceneName():
-	return scene_name
+func setDispatcher(scene_dispatcher_):
+	scene_dispatcher = scene_dispatcher_
 
 func pack():
 	var script_tree = ScriptTree.new()

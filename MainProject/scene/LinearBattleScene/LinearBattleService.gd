@@ -41,7 +41,7 @@ func initCharacterRect():
 			var avator_name = character_groups[i].get(card_name).getAvatorName()
 			var texture = ResourceUnit.loadTexture(card_name, card_name, avator_name)
 			var rect_pos = Vector2(rect_position[i][j][0], rect_position[i][j][1])
-			var character_rect = __buildCharacterRect(texture, rect_pos, rect_size)
+			var character_rect = __buildCardRect(texture, rect_pos, rect_size)
 			__scene_ref.add_child(character_rect)
 			character_rect_groups[i].append(card_name, character_rect)
 			j += 1
