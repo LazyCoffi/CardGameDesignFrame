@@ -1,4 +1,4 @@
-extends "res://class/functionalSystem/FunctionalSet.gd"
+extends "res://class/functional/FunctionalSet.gd"
 class_name AttrFunctionSet
 
 func _init():

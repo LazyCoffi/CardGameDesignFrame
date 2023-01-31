@@ -1,6 +1,6 @@
 extends GutTest
 
-var ScriptTree = load("res://class/entity/ScriptTree.gd")
+var ScriptTree = TypeUnit.type("ScriptTree")
 
 func test_loadFromJson():
 	var path = "res://test/testFile/sample_json.json"
@@ -20,7 +20,6 @@ func test_getAttr():
 	assert_eq(script_tree.getIntArray("int_array"), [1, 2, 3])
 	assert_eq(script_tree.getFloatArray("float_array"), [1.1, 2.2, 3.3])
 	assert_eq_deep(script_tree.getIntDict("object"), {"1" : 1, "2": 2, "3" : 3})
-
 
 func test_addAttr():
 	var script_tree = ScriptTree.new()

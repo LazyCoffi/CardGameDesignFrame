@@ -3,6 +3,9 @@ class_name NullPack
 
 var ScriptTree = TypeUnit.type("ScriptTree")
 
+func _init():
+	pass
+
 func copy():
 	return TypeUnit.type("NullPack").new()
 
@@ -13,4 +16,4 @@ func pack():
 	return ScriptTree.new()
 
 func loadScript(script_tree):
-	scirpt_tree = null
+	script_tree = null

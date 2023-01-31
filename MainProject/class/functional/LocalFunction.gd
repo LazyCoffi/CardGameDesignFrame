@@ -1,9 +1,9 @@
 extends Node
 class_name LocalFunction
 
-var Filter = load("res://class/functionalSystem/Filter.gd")
-var ScriptTree = load("res://class/entity/ScriptTree.gd")
-var ArrangeMap = load("res://class/entity/ArrangeMap.gd")
+var Filter = TypeUnit.type("Filter")
+var ScriptTree = TypeUnit.type("ScriptTree")
+var ArrangeMap = TypeUnit.type("ArrangeMap")
 
 var func_name			# String
 var filters				# FunctionalGraph_Array

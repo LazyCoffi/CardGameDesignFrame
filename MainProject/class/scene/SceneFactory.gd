@@ -2,7 +2,6 @@ extends Node
 class_name SceneFactory
 
 var ScriptTree = load("res://class/entity/ScriptTree.gd")
-var SceneCache = load("res://class/sceneUnit/SceneCache.gd")
 
 var script_tree
 

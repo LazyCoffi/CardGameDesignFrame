@@ -1,12 +1,13 @@
 extends GutTest
 
-var Filter = load("res://class/functionalSystem/Filter.gd")
-var FunctionalGraph = load("res://class/functionalSystem/FunctionalGraph.gd")
-var Function = load("res://class/functionalSystem/Function.gd")
-var Category = load("res://class/entity/Category.gd")
-var ArrangeMap = load("res://class/entity/ArrangeMap.gd")
-var DictMap = load("res://class/entity/DictMap.gd")
-var LocalFunction = load("res://class/functionalSystem/LocalFunction.gd")
+var Filter = TypeUnit.type("Filter")
+var FunctionalGraph = TypeUnit.type("FunctionalGraph")
+var Function = TypeUnit.type("Function")
+var Category = TypeUnit.type("Category")
+var ArrangeMap = TypeUnit.type("ArrangeMap")
+var DictMap = TypeUnit.type("DictMap")
+var LocalFunction = TypeUnit.type("LocalFunction")
+var ParamList = TypeUnit.type("ParamList")
 
 func test_graphTest1():
 	var random_function = Function.new()
@@ -16,16 +17,13 @@ func test_graphTest1():
 	random_function.setCategory(random_category)
 
 	random_function.setFuncName("randInt")
-	random_function.initStaticParams()
-
+	random_function.initDefaultParams()
 
 	var graph = FunctionalGraph.new()
 
 	var func_graph_node = graph.genNode(random_function)
 
 	graph.setRoot(func_graph_node)
-
-	print(graph.getParamsType())
 
 	print(graph.exec({"randInt_1_0" : 1, "randInt_1_1" : 10}))
 	print(graph.exec({"randInt_1_0" : 2, "randInt_1_1" : 9}))
@@ -38,23 +36,23 @@ func test_graphTest2():
 	const_category.setCategory(["FunctionSet", "MathFunctionSet"])
 	const_function.setCategory(const_category)
 	const_function.setFuncName("constVal")
-	const_function.initStaticParams()
-	const_function.addStaticParam(0, 4)
+	const_function.initDefaultParams()
+	const_function.setDefaultParam(0, "Integer", 4)
 
 	var const_function_ = Function.new()
 	var const_category_ = Category.new()
 	const_category_.setCategory(["FunctionSet", "MathFunctionSet"])
 	const_function_.setCategory(const_category)
 	const_function_.setFuncName("constVal")
-	const_function_.initStaticParams()
-	const_function_.addStaticParam(0, 3)
+	const_function_.initDefaultParams()
+	const_function_.setDefaultParam(0, "Integer", 3)
 
 	var mul_function = Function.new()
 	var mul_category = Category.new()
 	mul_category.setCategory(["FunctionSet", "MathFunctionSet"])
 	mul_function.setCategory(mul_category)
 	mul_function.setFuncName("mulInt")
-	mul_function.initStaticParams()
+	mul_function.initDefaultParams()
 
 	var graph = FunctionalGraph.new()
 
@@ -75,23 +73,23 @@ func __getTestGraph1():
 	const_category.setCategory(["FunctionSet", "MathFunctionSet"])
 	const_function.setCategory(const_category)
 	const_function.setFuncName("constVal")
-	const_function.initStaticParams()
-	const_function.addStaticParam(0, 4)
+	const_function.initDefaultParams()
+	const_function.setDefaultParam(0, "Integer", 4)
 
 	var const_function_ = Function.new()
 	var const_category_ = Category.new()
 	const_category_.setCategory(["FunctionSet", "MathFunctionSet"])
 	const_function_.setCategory(const_category)
 	const_function_.setFuncName("constVal")
-	const_function_.initStaticParams()
-	const_function_.addStaticParam(0, 3)
+	const_function_.initDefaultParams()
+	const_function_.setDefaultParam(0, "Integer", 3)
 
 	var plus_function = Function.new()
 	var plus_category = Category.new()
 	plus_category.setCategory(["FunctionSet", "MathFunctionSet"])
 	plus_function.setCategory(plus_category)
 	plus_function.setFuncName("plusInt")
-	plus_function.initStaticParams()
+	plus_function.initDefaultParams()
 
 	var graph = FunctionalGraph.new()
 
@@ -112,21 +110,21 @@ func __getTestGraph2():
 	plus_category.setCategory(["FunctionSet", "MathFunctionSet"])
 	plus_function.setCategory(plus_category)
 	plus_function.setFuncName("plusInt")
-	plus_function.initStaticParams()
+	plus_function.initDefaultParams()
 
 	var mul_function = Function.new()
 	var mul_category = Category.new()
 	mul_category.setCategory(["FunctionSet", "MathFunctionSet"])
 	mul_function.setCategory(mul_category)
 	mul_function.setFuncName("mulInt")
-	mul_function.initStaticParams()
+	mul_function.initDefaultParams()
 
 	var minus_function = Function.new()
 	var minus_category = Category.new()
 	minus_category.setCategory(["FunctionSet", "MathFunctionSet"])
 	minus_function.setCategory(mul_category)
 	minus_function.setFuncName("minusInt")
-	minus_function.initStaticParams()
+	minus_function.initDefaultParams()
 
 	var graph = FunctionalGraph.new()
 
@@ -147,7 +145,8 @@ func __getTestGraph3():
 	plus_category.setCategory(["FunctionSet", "MathFunctionSet"])
 	plus_function.setCategory(plus_category)
 	plus_function.setFuncName("plusInt")
-	plus_function.initStaticParams()
+	plus_function.initDefaultParams()
+
 	var graph = FunctionalGraph.new()
 	var plus_node = graph.genNode(plus_function)
 	graph.setRoot(plus_node)

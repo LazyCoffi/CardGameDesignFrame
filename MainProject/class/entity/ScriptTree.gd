@@ -198,7 +198,7 @@ func getAttrArray(arr_name, attr_type):
 func getObject(obj_name, obj_type):
 	Exception.assert(root.has(obj_name))
 
-	var script_tree = ScriptTree.new()
+	var script_tree = TypeUnit.type("ScriptTree").new()
 	script_tree.__setRoot(root[obj_name])
 
 	var obj = obj_type.new()
@@ -214,7 +214,7 @@ func getObjectDict(dict_name, obj_type):
 
 	var dict = {}
 	for key in cur_dict.keys():
-		var script_tree = ScriptTree.new()
+		var script_tree = TypeUnit.type("ScriptTree").new()
 		script_tree.__setRoot(cur_dict[key])
 
 		var obj = obj_type.new()
@@ -232,7 +232,8 @@ func getObjectArray(arr_name, obj_type):
 
 	var arr = {}
 	for raw_script in arr:
-		var script_tree = ScriptTree.__setRoot(raw_script)
+		var script_tree = TypeUnit.type("ScriptTree").new()
+		script_tree.__setRoot(raw_script)
 
 		var obj = obj_type.new()
 		obj.loadScript(script_tree)
@@ -244,7 +245,7 @@ func getObjectArray(arr_name, obj_type):
 func getScriptTree(script_name):
 	Exception.assert(root.has(script_name))
 
-	var script_tree = ScriptTree.new()
+	var script_tree = TypeUnit.type("ScriptTree").new()
 
 	script_tree.__setRoot(root[script_name])
 
@@ -256,7 +257,7 @@ func getScripTreeDict(dict_name):
 	var script_dict = root[dict_name]
 	var ret = {}
 	for key in script_dict.keys():
-		var script_tree = ScriptTree.new()
+		var script_tree = TypeUnit.type("ScriptTree").new()
 		script_tree.__setRoot(script_dict[key])
 		ret[key] = script_tree
 	
@@ -268,7 +269,7 @@ func getScriptTreeArray(arr_name):
 	var script_arr = root[arr_name]
 	var ret = []
 	for raw_script in script_arr:
-		var script_tree = ScriptTree.new()
+		var script_tree = TypeUnit.type("ScriptTree").new()
 		script_tree.__setRoot(raw_script)
 	
 	return ret
@@ -279,7 +280,7 @@ func getTypeObject(obj_name, obj_type, inner_type):
 	var obj = obj_type.new()
 	obj.setParamType(inner_type)
 	
-	var script_tree = ScriptTree.new()
+	var script_tree = TypeUnit.type("ScriptTree").new()
 	script_tree.__setRoot(root[obj_name])
 
 	obj.loadScript(script_tree)
@@ -292,7 +293,7 @@ func getTypeObjectDict(dict_name, obj_type, inner_type):
 	var ret = {}
 	var cur_dict = root[dict_name]
 	for key in cur_dict.keys():
-		var script_tree = ScriptTree.new()
+		var script_tree = TypeUnit.type("ScriptTree").new()
 		script_tree.__setRoot(cur_dict[key])
 		
 		var obj = obj_type.new()
@@ -308,7 +309,7 @@ func getTypeObjectArray(arr_name, obj_type, inner_type):
 	var ret = []
 	var cur_arr = root[arr_name]
 	for raw_script in cur_arr:
-		var script_tree = ScriptTree.new()
+		var script_tree = TypeUnit.type("ScriptTree").new()
 		script_tree.__setRoot(raw_script)
 
 		var obj = obj_type.new()

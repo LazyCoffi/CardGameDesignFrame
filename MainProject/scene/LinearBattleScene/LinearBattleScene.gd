@@ -1,29 +1,35 @@
 extends Node2D
 
-var ScriptTree = load("res://class/entity/ScriptTree.gd")
-var SwitchTargetTable = load("res://class/entity/SwitchTargetTable.gd")
-var LinearBattleModel = load("res://scene/LinearBattleScene/LinearBattleModel.gd")
-var LinearBattleService = load("res://scene/LinearBattleScene/LinearBattleService.gd")
-var LinearBattleDispatcher = load("res://scene/LinearBattleScene/LinearBattleDispatcher.gd")
-var BattleCharacterCard = load("res://class/entity/BattleCharacterCard.gd")
+var ScriptTree = TypeUnit.type("ScriptTree")
+var SwitchTargetTable = TypeUnit.type("SwitchTargetTable")
+var LinearBattleDispatcher = TypeUnit.type("LinearBattleDispatcher")
+var LinearBattleModel = TypeUnit.type("LinearBattleModel")
+var LinearBattleRender = TypeUnit.type("LinearBattleRender")
+var LinearBattleService = TypeUnit.type("LinearBattleService")
 
 signal switchSignal
 signal switchWithoutRefreshSignal
 signal switchWithCleanSignal
 
 var is_registered
+var scene_name
 var switch_target_table
 
-var scene_name
-var scene_model
-var scene_service
 var scene_dispatcher
+var scene_model
+var scene_render
+var scene_service
 
 func _init():
-	pass
+	is_registered = false
+	scene_dispatcher = LinearBattleDispatcher.new()
+	scene_model = LinearBattleModel.new()
+	scene_render = LinearBattleRender.new()
+	scene_service = LinearBattleService.new()
+	__setRef()
 
 func _ready():
-	pass
+	scene_dispatcher.launch()
 
 func isRegistered():
 	return is_registered
@@ -33,10 +39,6 @@ func register():
 
 func switchScene(signal_name, next_scene_name):
 	emit_signal(signal_name, next_scene_name)
-
-func setRef(scene):
-	scene_service.setRef(scene)
-	scene_dispatcher.setRef(scene)
 
 # scene_name
 func getSceneName():
@@ -52,12 +54,26 @@ func getSwitchTargetTable():
 func setSwitchTargetTable(switch_target_table_):
 	switch_target_table = switch_target_table_	
 
+# scene_dispatcher
+func dispatcher():
+	return scene_dispatcher
+
+func setDispatcher(scene_dispatcher_):
+	scene_dispatcher = scene_dispatcher_
+
 # scene_model
 func model():
 	return scene_model
 
 func setSceneModel(scene_model_):
 	scene_model = scene_model_
+
+# scene_render
+func render():
+	return scene_render
+
+func setSceneRender(scene_render_):
+	scene_render = scene_render_
 
 # scene_service
 func service():
@@ -66,24 +82,20 @@ func service():
 func setSceneService(scene_service_):
 	scene_service = scene_service_
 
-# scene_dispatcher
-func dispatcher():
-	return scene_dispatcher
-
-func setDispatcher(scene_dispatcher_):
-	scene_dispatcher = scene_dispatcher_
-
 func pack():
 	var script_tree = ScriptTree.new()
 
 	script_tree.addAttr("scene_name", scene_name)
 	script_tree.addObject("switch_target_table", switch_target_table)
 	script_tree.addObject("scene_model", scene_model)
-	script_tree.addObject("scene_service", scene_service)
 
 	return script_tree
 
 func loadScript(script_tree):
 	scene_name = script_tree.getStr("scene_name")
+	switch_target_table = script_tree.getObject("switch_target_table", SwitchTargetTable)
 	scene_model = script_tree.getObject("scene_model", LinearBattleModel)
-	scene_service = script_tree.getObject("scene_service", LinearBattleService)
+
+func __setRef(scene):
+	scene_service.setRef(scene)
+	scene_dispatcher.setRef(scene)

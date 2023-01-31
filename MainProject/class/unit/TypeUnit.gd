@@ -9,6 +9,24 @@ func type(type_name):
 	Exception.assert(type_table.has(type_name))
 	return type_table[type_name]
 
+func packBaseParam(val):
+	var ret
+	if val is int:
+		ret = type("Integer").new()
+		ret.setVal(val)
+	elif val is float:
+		ret = type("Float").new()
+		ret.setVal(val)
+	elif val is String:
+		ret = type("StringPack").new()
+		ret.setVal(val)
+	elif val == null:
+		ret = type("NullPack").new()
+	else:
+		ret = val
+	
+	return ret
+
 func isType(val, type_name):
 	match type_name:
 		"all":	
@@ -89,9 +107,10 @@ func verifyParamsAdaptable(params, params_form):
 
 func __initTypeTable():
 	type_table = {}
-	__addType("dataStruct", "CardPile")
-	__addType("dataStruct", "DictArray")
-	__addType("dataStruct", "Heap")
+	__addType("container", "CardPile")
+	__addType("container", "DictArray")
+	__addType("container", "Heap")
+	__addType("container", "PollingBucket")
 	__addType("entity", "ArrangeMap")
 	__addType("entity", "Attr")
 	__addType("entity", "BattleCharacterCard")
@@ -112,30 +131,43 @@ func __initTypeTable():
 	__addType("entity", "SwitchTargetTable")
 	__addType("entity", "TriggerTimer")
 	__addType("entity", "ValRange")
-	__addType("functionalSystem", "ArrayOperFunctionSet")
-	__addType("functionalSystem", "AttrConditionSet")
-	__addType("functionalSystem", "AttrFunctionSet")
-	__addType("functionalSystem", "BaseConditionSet")
-	__addType("functionalSystem", "BaseFunctionSet")
-	__addType("functionalSystem", "BattleFunctionSet")
-	__addType("functionalSystem", "Filter")
-	__addType("functionalSystem", "Function")
-	__addType("functionalSystem", "FunctionalGraph")
-	__addType("functionalSystem", "FunctionalSet")
-	__addType("functionalSystem", "LocalFunction")
-	__addType("functionalSystem", "MathFunctionSet")
-	__addType("functionalSystem", "SceneOperFunctionSet")
-	__addType("sceneUnit", "SceneFactory")
+	__addType("functional", "ArrayOperFunctionSet")
+	__addType("functional", "AttrConditionSet")
+	__addType("functional", "AttrFunctionSet")
+	__addType("functional", "BaseConditionSet")
+	__addType("functional", "BaseFunctionSet")
+	__addType("functional", "BattleFunctionSet")
+	__addType("functional", "Filter")
+	__addType("functional", "Function")
+	__addType("functional", "FunctionalGraph")
+	__addType("functional", "FunctionalSet")
+	__addType("functional", "LocalFunction")
+	__addType("functional", "MathFunctionSet")
+	__addType("functional", "SceneOperFunctionSet")
+	__addType("scene", "SceneFactory")
 
-	__addSceneType("MainMenuScene")
-	__addSceneType("LinearBattleScene")
-	__addSceneType("CharacterWarehouseScene")
+	__addSceneType("MainMenuScene", "MainMenuDispatcher")
+	__addSceneType("MainMenuScene", "MainMenuModel")
+	__addSceneType("MainMenuScene", "MainMenuRender")
+	__addSceneType("MainMenuScene", "MainMenuService")
+	__addSceneType("LinearBattleScene", "LinearBattleDispatcher")
+	__addSceneType("LinearBattleScene", "LinearBattleModel")
+	__addSceneType("LinearBattleScene", "LinearBattleRender")
+	__addSceneType("LinearBattleScene", "LinearBattleService")
+	__addSceneType("CharacterWarehouseScene", "CharacterWarehouseModel")
+
+	__addSceneInstance("MainMenuScene")
+	__addSceneInstance("LinearBattleScene")
+	__addSceneInstance("CharacterWarehouseScene")
 
 func __addType(dict, type_name):
 	var type = load("res://class/" + dict + "/" + type_name + ".gd")
 	type_table[type_name] = type
 
-func __addSceneType(type_name):
-	var type = load("res://scene/" + type_name + "/" + type_name + ".tscn")
+func __addSceneType(dict, type_name):
+	var type = load("res://scene/" + dict + "/" + type_name + ".gd")
 	type_table[type_name] = type
 
+func __addSceneInstance(type_name):
+	var type = load("res://scene/" + type_name + "/" + type_name + ".tscn")
+	type_table[type_name] = type

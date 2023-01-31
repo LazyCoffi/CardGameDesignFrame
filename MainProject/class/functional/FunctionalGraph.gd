@@ -1,8 +1,8 @@
 extends Node
 class_name FunctionalGraph
 
-var ScriptTree = load("res://class/entity/ScriptTree.gd")
-var Function = load("res://class/functionalSystem/Function.gd")
+var ScriptTree = TypeUnit.type("ScriptTree")
+var Function = TypeUnit.type("Function")
 
 var root				# FuncGraphNode
 var request_params		# Dict
@@ -164,7 +164,7 @@ func __dfsConstruct(u):
 	var param_index = 0
 	for type in cur_request_params:
 		if u.getCh()[param_index] == null:
-			if not cur_func.hasStaticParam(param_index):
+			if not cur_func.hasDefaultParam(param_index):
 				request_params[cur_func.getFuncName() + "_" + str(node_index) + "_" + str(param_index)] = type
 		else:
 			__dfsConstruct(u.getCh()[param_index])

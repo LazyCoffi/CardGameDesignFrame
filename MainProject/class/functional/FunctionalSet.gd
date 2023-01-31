@@ -3,6 +3,9 @@ class_name FunctionalSet
 
 var func_form
 
+func _init():
+	func_form = {}
+
 func addFuncForm(func_name, ret_form, params_form):
 	var cur_form = {}
 	cur_form["params"] = params_form

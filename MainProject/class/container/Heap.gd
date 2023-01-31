@@ -52,6 +52,7 @@ func _init():
 
 func copy():
 	var ret = TypeUnit.type("Heap").new()
+	ret.param_type = param_type
 	ret.heap = []
 	for node in heap:
 		ret.heap.append(node.copy())
@@ -103,6 +104,14 @@ func pop():
 		__swap(index, target)
 		index = target
 	
+	return ret
+
+func getSorted():
+	var ret = []
+
+	while not empty():
+		ret.append(pop())
+
 	return ret
 
 func size():

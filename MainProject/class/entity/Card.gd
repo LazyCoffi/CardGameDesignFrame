@@ -25,20 +25,35 @@ func copy():
 
 	return ret
 
+# info
+func getInfo():
+	return info
+
+func setInfo(info_):
+	info = info_
+
 func getCardName():
 	return info.getCardName()
+
+func setCardName(card_name):
+	info.setCardName(card_name)
 
 func getAvatorName():
 	return info.getAvatorName()
 
+# category
 func getCategory():
 	return category
 
-func getInfo():
-	return info
+func setCategory(category_):
+	category = category_
 
+# attr
 func getAttr():
 	return attr
+
+func setAttr(attr_):
+	attr = attr_
 
 func pack():
 	var script_tree = ScriptTree.new()

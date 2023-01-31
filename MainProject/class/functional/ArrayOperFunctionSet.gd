@@ -1,5 +1,7 @@
-extends "res://class/functionalSystem/FunctionalSet.gd"
+extends "res://class/functional/FunctionalSet.gd"
 class_name ArrayOperFunctionSet
+
+var Heap = TypeUnit.type("Heap")
 
 func _init():
 	__initFuncForm()
@@ -7,6 +9,15 @@ func _init():
 func parallelOper(array, functional):
 	for index in range(array.size()):
 		array[index] = functional.exec(array[index])
+	
+	return array
+
+func parallelMultiOper(array, functional_list):
+	for index in range(array.size()):
+		var result = array[index]
+		for functional in functional_list:
+			result = functional.exec(result)
+		array[index] = result
 	
 	return array
 
@@ -67,10 +78,50 @@ func arrayDeepCopy(first):
 
 	return ret
 
+func shuffle(first):
+	return first.sort()
+
+func shuffleOper(first, functional):
+	var heap = Heap.new()
+
+	for node in first:
+		var order = functional.exec(node)
+		heap.append(node, order)
+	
+	return heap.getSorted()
+
+func shuffleMultiOper(first, functional_list):
+	var heap = Heap.new()
+
+	for node in first:
+		var order = node
+		for functional in functional_list:
+			order = functional.exec(order)
+
+		heap.append(node, order)
+	
+	return heap.getSorted()
+
+func randomShuffle(first):
+	for index in range(first.size()):
+		var next_index = MathUnit.randInt(index, first.size() - 1)
+		__swap(first, index, next_index)
+	
+	return first
+
+func __swap(array, first, second):
+	var temp = array[first]
+	array[first] = array[second]
+	array[second] = temp
+
 func __initFuncForm():
 	addFuncForm("parallelOper", "Array", ["Array", "Function"])
 	addFuncForm("parallelOperArray", "Array", ["Array", "Array", "Function"])
 	addFuncForm("parallelOperArrayOverride", "Array", ["Array", "Array", "Function"])
+	addFuncForm("shuffle", "Array", ["Array"])
+	addFuncForm("shuffleOper", "Array", ["Array", "Function"])
+	addFuncForm("shuffleMultiOper", "Array", ["Array", "Array"])
+	addFuncForm("randomShuffle", "Array", ["Array"])
 	addFuncForm("linearOper", "all", ["Array", "Function"])
 	addFuncForm("packArray", "Array", ["all"])
 	addFuncForm("appendArray", "Array", ["Array", "Array"])

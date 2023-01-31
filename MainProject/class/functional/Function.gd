@@ -38,13 +38,7 @@ func setCategory(category_):
 	category = category_
 
 # default_params
-func initDefaultParams():
-	default_params.resize(getParamsNum())
-
 func getDefaultParams():
-	return default_params
-
-func setDefaultParams():
 	return default_params
 
 func hasDefaultParam(index):
@@ -52,6 +46,27 @@ func hasDefaultParam(index):
 
 func getDefaultParam(index):
 	return default_params.getParam(index)
+
+func setDefaultParams():
+	return default_params
+
+func initDefaultParams():
+	default_params.resize(getParamsNum())
+
+func setDefaultParam(index, param_type, param):
+	default_params.setParam(index, param_type, param)
+
+func addDefaultParam(param_type, param):
+	default_params.addParam(param_type, param)
+
+func addDefaultParamGap():
+	default_params.addGap()
+
+func delDefaultParam(index):
+	default_params.delParam(index)
+
+func removeDefaultParam(index):
+	default_params.removeParam(index)
 
 func getRetType():
 	return FunctionalCategory.getRetType(category, func_name)

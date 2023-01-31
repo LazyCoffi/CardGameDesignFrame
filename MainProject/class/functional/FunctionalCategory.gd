@@ -1,14 +1,14 @@
 extends Node
 
-var array_oper_function_set = load("res://class/functionalSystem/ArrayOperFunctionSet.gd").new()
-var attr_function_set = load("res://class/functionalSystem/AttrFunctionSet.gd").new()
-var base_function_set = load("res://class/functionalSystem/BaseFunctionSet.gd").new()
-var math_function_set = load("res://class/functionalSystem/MathFunctionSet.gd").new()
-var battle_function_set = load("res://class/functionalSystem/BattleFunctionSet.gd").new()
-var scene_oper_function_set = load("res://class/functionalSystem/SceneOperFunctionSet.gd").new()
+var array_oper_function_set = load("res://class/functional/ArrayOperFunctionSet.gd").new()
+var attr_function_set = load("res://class/functional/AttrFunctionSet.gd").new()
+var base_function_set = load("res://class/functional/BaseFunctionSet.gd").new()
+var math_function_set = load("res://class/functional/MathFunctionSet.gd").new()
+var battle_function_set = load("res://class/functional/BattleFunctionSet.gd").new()
+var scene_oper_function_set = load("res://class/functional/SceneOperFunctionSet.gd").new()
 
-var attr_condition_set = load("res://class/functionalSystem/AttrConditionSet.gd").new()
-var base_condition_set = load("res://class/functionalSystem/BaseConditionSet.gd").new()
+var attr_condition_set = load("res://class/functional/AttrConditionSet.gd").new()
+var base_condition_set = load("res://class/functional/BaseConditionSet.gd").new()
 
 var func_tree
 
@@ -38,6 +38,7 @@ func exec(f_name, category, params):
 
 func __initFunctionalType():
 	func_tree["FunctionSet"] = {}
+	func_tree["ConditionSet"] = {}
 	__addFunctionalSet("FunctionSet", "ArrayOperFunctionSet", array_oper_function_set)
 	__addFunctionalSet("FunctionSet", "AttrFunctionSet", attr_function_set)
 	__addFunctionalSet("FunctionSet", "BaseFunctionSet", base_function_set)

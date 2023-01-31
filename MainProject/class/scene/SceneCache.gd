@@ -1,6 +1,6 @@
 extends Node
 
-var SceneFactory = load("res://class/sceneUnit/SceneFactory.gd")
+var SceneFactory = load("res://class/scene/SceneFactory.gd")
 var ScriptTree = load("res://class/entity/ScriptTree.gd")
 
 var scene_cache		# SceneNode_Dict

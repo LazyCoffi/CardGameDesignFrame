@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "ArrayOperFunctionSet",
 "language": "GDScript",
-"path": "res://class/functionalSystem/ArrayOperFunctionSet.gd"
+"path": "res://class/functional/ArrayOperFunctionSet.gd"
 }, {
 "base": "Node",
 "class": "Attr",
@@ -27,22 +27,22 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "AttrConditionSet",
 "language": "GDScript",
-"path": "res://class/functionalSystem/AttrConditionSet.gd"
+"path": "res://class/functional/AttrConditionSet.gd"
 }, {
 "base": "Node",
 "class": "AttrFunctionSet",
 "language": "GDScript",
-"path": "res://class/functionalSystem/AttrFunctionSet.gd"
+"path": "res://class/functional/AttrFunctionSet.gd"
 }, {
 "base": "Node",
 "class": "BaseConditionSet",
 "language": "GDScript",
-"path": "res://class/functionalSystem/BaseConditionSet.gd"
+"path": "res://class/functional/BaseConditionSet.gd"
 }, {
 "base": "Node",
 "class": "BaseFunctionSet",
 "language": "GDScript",
-"path": "res://class/functionalSystem/BaseFunctionSet.gd"
+"path": "res://class/functional/BaseFunctionSet.gd"
 }, {
 "base": "Node",
 "class": "BattleCharacterCard",
@@ -52,7 +52,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "BattleFunctionSet",
 "language": "GDScript",
-"path": "res://class/functionalSystem/BattleFunctionSet.gd"
+"path": "res://class/functional/BattleFunctionSet.gd"
 }, {
 "base": "Node",
 "class": "BattleSkillCard",
@@ -77,7 +77,27 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "CardPile",
 "language": "GDScript",
-"path": "res://class/dataStruct/CardPile.gd"
+"path": "res://class/container/CardPile.gd"
+}, {
+"base": "Node",
+"class": "CardTemplateDispatcher",
+"language": "GDScript",
+"path": "res://scene/CardTemplateScene/CardTemplateDispatcher.gd"
+}, {
+"base": "Node",
+"class": "CardTemplateModel",
+"language": "GDScript",
+"path": "res://scene/CardTemplateScene/CardTemplateModel.gd"
+}, {
+"base": "Node",
+"class": "CardTemplateRender",
+"language": "GDScript",
+"path": "res://scene/CardTemplateScene/CardTemplateRender.gd"
+}, {
+"base": "Node",
+"class": "CardTemplateService",
+"language": "GDScript",
+"path": "res://scene/CardTemplateScene/CardTemplateService.gd"
 }, {
 "base": "Node",
 "class": "Category",
@@ -105,9 +125,19 @@ _global_script_classes=[ {
 "path": "res://class/trash/CharacterState.gd"
 }, {
 "base": "Node",
+"class": "CharacterWarehouseDispatcher",
+"language": "GDScript",
+"path": "res://scene/CharacterWarehouseScene/CharacterWarehouseDispatcher.gd"
+}, {
+"base": "Node",
 "class": "CharacterWarehouseModel",
 "language": "GDScript",
 "path": "res://scene/CharacterWarehouseScene/CharacterWarehouseModel.gd"
+}, {
+"base": "Node",
+"class": "CharacterWarehouseRender",
+"language": "GDScript",
+"path": "res://scene/CharacterWarehouseScene/CharacterWarehouseRender.gd"
 }, {
 "base": "Node",
 "class": "CharacterWarehouseService",
@@ -117,7 +147,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "DictArray",
 "language": "GDScript",
-"path": "res://class/dataStruct/DictArray.gd"
+"path": "res://class/container/DictArray.gd"
 }, {
 "base": "Node",
 "class": "DictMap",
@@ -147,7 +177,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Filter",
 "language": "GDScript",
-"path": "res://class/functionalSystem/Filter.gd"
+"path": "res://class/functional/Filter.gd"
 }, {
 "base": "Node",
 "class": "Float",
@@ -157,17 +187,17 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Function",
 "language": "GDScript",
-"path": "res://class/functionalSystem/Function.gd"
+"path": "res://class/functional/Function.gd"
 }, {
 "base": "Node",
 "class": "FunctionalGraph",
 "language": "GDScript",
-"path": "res://class/functionalSystem/FunctionalGraph.gd"
+"path": "res://class/functional/FunctionalGraph.gd"
 }, {
 "base": "Node",
 "class": "FunctionalSet",
 "language": "GDScript",
-"path": "res://class/functionalSystem/FunctionalSet.gd"
+"path": "res://class/functional/FunctionalSet.gd"
 }, {
 "base": "Reference",
 "class": "GutHookScript",
@@ -182,7 +212,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Heap",
 "language": "GDScript",
-"path": "res://class/dataStruct/Heap.gd"
+"path": "res://class/container/Heap.gd"
 }, {
 "base": "Node",
 "class": "Info",
@@ -220,6 +250,11 @@ _global_script_classes=[ {
 "path": "res://scene/LinearBattleScene/LinearBattleModel.gd"
 }, {
 "base": "Node",
+"class": "LinearBattleRender",
+"language": "GDScript",
+"path": "res://scene/LinearBattleScene/LinearBattleRender.gd"
+}, {
+"base": "Node",
 "class": "LinearBattleService",
 "language": "GDScript",
 "path": "res://scene/LinearBattleScene/LinearBattleService.gd"
@@ -227,7 +262,12 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "LocalFunction",
 "language": "GDScript",
-"path": "res://class/functionalSystem/LocalFunction.gd"
+"path": "res://class/functional/LocalFunction.gd"
+}, {
+"base": "Node",
+"class": "MainMenuDispatcher",
+"language": "GDScript",
+"path": "res://scene/MainMenuScene/MainMenuDispatcher.gd"
 }, {
 "base": "Node",
 "class": "MainMenuModel",
@@ -235,9 +275,19 @@ _global_script_classes=[ {
 "path": "res://scene/MainMenuScene/MainMenuModel.gd"
 }, {
 "base": "Node",
+"class": "MainMenuRender",
+"language": "GDScript",
+"path": "res://scene/MainMenuScene/MainMenuRender.gd"
+}, {
+"base": "Node",
+"class": "MainMenuService",
+"language": "GDScript",
+"path": "res://scene/MainMenuScene/MainMenuService.gd"
+}, {
+"base": "Node",
 "class": "MathFunctionSet",
 "language": "GDScript",
-"path": "res://class/functionalSystem/MathFunctionSet.gd"
+"path": "res://class/functional/MathFunctionSet.gd"
 }, {
 "base": "Node",
 "class": "NullPack",
@@ -247,7 +297,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "OrderedSet",
 "language": "GDScript",
-"path": "res://class/dataStruct/OrderedSet.gd"
+"path": "res://class/container/OrderedSet.gd"
 }, {
 "base": "Node",
 "class": "ParamList",
@@ -255,14 +305,19 @@ _global_script_classes=[ {
 "path": "res://class/entity/ParamList.gd"
 }, {
 "base": "Node",
+"class": "PollingBucket",
+"language": "GDScript",
+"path": "res://class/container/PollingBucket.gd"
+}, {
+"base": "Node",
 "class": "SceneFactory",
 "language": "GDScript",
-"path": "res://class/sceneUnit/SceneFactory.gd"
+"path": "res://class/scene/SceneFactory.gd"
 }, {
 "base": "Node",
 "class": "SceneOperFunctionSet",
 "language": "GDScript",
-"path": "res://class/functionalSystem/SceneOperFunctionSet.gd"
+"path": "res://class/functional/SceneOperFunctionSet.gd"
 }, {
 "base": "Node",
 "class": "ScriptTree",
@@ -324,12 +379,18 @@ _global_script_class_icons={
 "Card": "",
 "CardInterfaceSet": "",
 "CardPile": "",
+"CardTemplateDispatcher": "",
+"CardTemplateModel": "",
+"CardTemplateRender": "",
+"CardTemplateService": "",
 "Category": "",
 "CharacterAttr": "",
 "CharacterCard": "",
 "CharacterInfo": "",
 "CharacterState": "",
+"CharacterWarehouseDispatcher": "",
 "CharacterWarehouseModel": "",
+"CharacterWarehouseRender": "",
 "CharacterWarehouseService": "",
 "DictArray": "",
 "DictMap": "",
@@ -352,13 +413,18 @@ _global_script_class_icons={
 "ItemInfo": "",
 "LinearBattleDispatcher": "",
 "LinearBattleModel": "",
+"LinearBattleRender": "",
 "LinearBattleService": "",
 "LocalFunction": "",
+"MainMenuDispatcher": "",
 "MainMenuModel": "",
+"MainMenuRender": "",
+"MainMenuService": "",
 "MathFunctionSet": "",
 "NullPack": "",
 "OrderedSet": "",
 "ParamList": "",
+"PollingBucket": "",
 "SceneFactory": "",
 "SceneOperFunctionSet": "",
 "ScriptTree": "",
@@ -380,13 +446,14 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Exception="*res://class/toolUnit/Exception.gd"
-FunctionalCategory="*res://class/functionalSystem/FunctionalCategory.gd"
-TypeUnit="*res://class/toolUnit/TypeUnit.gd"
-ResourceUnit="*res://class/toolUnit/ResourceUnit.gd"
-MathUnit="*res://class/toolUnit/MathUnit.gd"
-GlobalSetting="*res://class/toolUnit/GlobalSetting.gd"
-SceneCache="*res://class/sceneUnit/SceneCache.gd"
+Exception="*res://class/unit/Exception.gd"
+TypeUnit="*res://class/unit/TypeUnit.gd"
+FunctionalCategory="*res://class/functional/FunctionalCategory.gd"
+ResourceUnit="*res://class/unit/ResourceUnit.gd"
+MathUnit="*res://class/unit/MathUnit.gd"
+GlobalSetting="*res://class/unit/GlobalSetting.gd"
+SceneCache="*res://class/scene/SceneCache.gd"
+CardCache="*res://class/unit/CardCache.gd"
 
 [display]
 

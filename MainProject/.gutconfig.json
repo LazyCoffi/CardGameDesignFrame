@@ -3,5 +3,5 @@
 	"log_level" : 4,
 	"prefix" : "test_",
 	"suffix" : ".gd",
-	"should_exit_on_success" : true
+	"should_exit" : true
 }

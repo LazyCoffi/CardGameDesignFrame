@@ -1,4 +1,4 @@
-extends "res://class/functionalSystem/FunctionalSet.gd"
+extends "res://class/functional/FunctionalSet.gd"
 class_name SceneOperFunctionSet
 
 func fetchFromScene(scene_name, param_name):

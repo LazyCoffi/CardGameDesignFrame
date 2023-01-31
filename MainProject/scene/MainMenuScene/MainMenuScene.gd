@@ -1,8 +1,11 @@
 extends Node2D
 
-var ScriptTree = load("res://class/entity/ScriptTree.gd")
-var SwitchTargetTable = load("res://class/entity/SwitchTargetTable.gd")
-var MainMenuModel = load("res://scene/MainMenuScene/MainMenuModel.gd")
+var ScriptTree = TypeUnit.type("ScriptTree")
+var SwitchTargetTable = TypeUnit.type("SwitchTargetTable")
+var MainMenuDispatcher = TypeUnit.type("MainMenuDispatcher")
+var MainMenuModel = TypeUnit.type("MainMenuModel")
+var MainMenuRender = TypeUnit.type("MainMenuRender")
+var MainMenuService = TypeUnit.type("MainMenuService")
 
 signal switchSignal
 signal switchWithoutRefreshSignal
@@ -12,15 +15,21 @@ var is_registered
 var scene_name
 var switch_target_table
 
+var scene_dispatcher
 var scene_model
+var scene_render
+var scene_service
 
 func _init():
 	is_registered = false
+	scene_dispatcher = MainMenuDispatcher.new()
 	scene_model = MainMenuModel.new()
+	scene_render = MainMenuRender.new()
+	scene_service = MainMenuService.new()
+	__setRef()
 
 func _ready():
-	__setSceneName()
-	__loadResource()
+	scene_dispatcher.launch()
 
 # is_registered
 func isRegistered():
@@ -28,6 +37,9 @@ func isRegistered():
 
 func register():
 	is_registered = true
+
+func switchScene(signal_name, next_scene_name):
+	emit_signal(signal_name, next_scene_name)
 
 # scene_name
 func getSceneName():
@@ -43,15 +55,19 @@ func getSwitchTargetTable():
 func setSwitchTargetTable(switch_target_table_):
 	switch_target_table = switch_target_table_
 
-func switchScene(signal_name, next_scene_name):
-	emit_signal(signal_name, next_scene_name)
-
 # model
 func model():
 	return scene_model
 
 func setModel(scene_model_):
 	scene_model = scene_model_
+
+# render
+func render():
+	return scene_render
+
+func setRender(scene_render_):
+	scene_model = scene_render_
 
 func pack():
 	var script_tree = ScriptTree.new()
@@ -69,19 +85,9 @@ func loadScript(script_tree):
 	switch_target_table = script_tree.getObject("switch_target_table", SwitchTargetTable)
 	scene_model = script_tree.getObject("model", MainMenuModel)
 
-func __setSceneName():
-	$StartButton.setSceneName(scene_name)
-	$ContinueButton.setSceneName(scene_name)
-	$SettingButton.setSceneName(scene_name)
-	$ExitButton.setSceneName(scene_name)
-
-func __loadResource():
-	$StartButton.loadResource()
-	$ContinueButton.loadResource()
-	$SettingButton.loadResource()
-	$ExitButton.loadResource()
-	__setBackground()
-	__setTitle()
+func __setRef():
+	scene_render.setRef(self)
+	scene_service.setRef(self)
 
 func __setSwitchConnection():
 	Exception.assert($StartButton.connect("pressed", self, "__startButtonSwitch") == 0, "Signal connect fail!")
@@ -101,14 +107,6 @@ func __settingButtonSwitch():
 	__buttonSwitch(target_pack)
 
 func __buttonSwitch(target_pack):
-	var signal_name = target_pack.getSceneName() 
+	var signal_name = target_pack.getSignalName() 
 	var next_scene_name = target_pack.getSceneName()
 	switchScene(signal_name, next_scene_name)
-
-func __setTitle():
-	var title = ResourceUnit.loadTexture(scene_name, scene_name, "title")
-	$MainMenuTitle.texture = title
-
-func __setBackground():
-	var bg = ResourceUnit.loadTexture(scene_name, scene_name, "background")
-	$MainMenuBackground.texture = bg

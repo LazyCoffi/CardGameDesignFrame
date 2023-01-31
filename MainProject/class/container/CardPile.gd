@@ -31,6 +31,9 @@ func copy():
 
 	return ret
 
+func setParamType(param_type_):
+	param_type = param_type_
+
 func randomOn():
 	is_random = true
 
