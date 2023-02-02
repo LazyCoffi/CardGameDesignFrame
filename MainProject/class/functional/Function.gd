@@ -2,26 +2,27 @@ extends Node
 class_name Function
 
 var ScriptTree = TypeUnit.type("ScriptTree")
-var Category = TypeUnit.type("Category")
 var ParamList = TypeUnit.type("ParamList")
 
-var func_name			# String
-var category			# Category
-var default_params		# ParamList 
+var func_name				# String
+var func_set_name			# String
+var default_params			# ParamList 
 
 func _init():
-	category = Category.new()
+	func_name = ""
+	func_set_name = ""
 	default_params = ParamList.new()
 
 func copy():
 	var ret = TypeUnit.type("Function").new()
 	ret.func_name = func_name
-	ret.category = category.copy()
+	ret.func_set_name = func_set_name
 	ret.default_params = default_params.copy()
+
 	return ret
 
 func exec(params):
-	return FunctionalCategory.exec(func_name, category, params)
+	return FunctionalCategory.exec(func_name, func_set_name, params)
 
 # func_name
 func getFuncName():
@@ -30,25 +31,19 @@ func getFuncName():
 func setFuncName(func_name_):
 	func_name = func_name_
 
-# category
-func getCategory():
-	return category
+# func_set_name
+func getFuncSetName():
+	return func_set_name
 
-func setCategory(category_):
-	category = category_
+func setFuncSetName(func_set_name_):
+	func_set_name = func_set_name_
 
 # default_params
-func getDefaultParams():
-	return default_params
-
 func hasDefaultParam(index):
 	return default_params.hasParam(index)
 
 func getDefaultParam(index):
 	return default_params.getParam(index)
-
-func setDefaultParams():
-	return default_params
 
 func initDefaultParams():
 	default_params.resize(getParamsNum())
@@ -56,23 +51,14 @@ func initDefaultParams():
 func setDefaultParam(index, param_type, param):
 	default_params.setParam(index, param_type, param)
 
-func addDefaultParam(param_type, param):
-	default_params.addParam(param_type, param)
-
-func addDefaultParamGap():
-	default_params.addGap()
-
 func delDefaultParam(index):
 	default_params.delParam(index)
 
-func removeDefaultParam(index):
-	default_params.removeParam(index)
-
 func getRetType():
-	return FunctionalCategory.getRetType(category, func_name)
+	return FunctionalCategory.getRetType(func_set_name, func_name)
 
 func getParamsType():
-	return FunctionalCategory.getParamsType(category, func_name)
+	return FunctionalCategory.getParamsType(func_set_name, func_name)
 
 func getParamsNum():
 	return getParamsType().size()
@@ -81,12 +67,12 @@ func pack():
 	var script_tree = ScriptTree.new()
 
 	script_tree.addAttr("func_name", func_name)
-	script_tree.addObject("category", category)
+	script_tree.addAttr("func_set_name", func_set_name)
 	script_tree.addObject("default_params", default_params)
 
 	return script_tree
 
 func loadScript(script_tree):
 	func_name = script_tree.getStr("func_name")
-	category = script_tree.getObject("category", Category)
+	func_set_name = script_tree.getStr("func_set_name")
 	default_params = script_tree.getObject("default_params", ParamList)

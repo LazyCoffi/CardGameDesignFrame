@@ -11,7 +11,9 @@ class ArrayNode:
 	var param_type
 
 	func _init():
-		order = null
+		param_name = ""
+		param = null
+		order = 0
 	
 	func copy():
 		var ret = ArrayNode.new()
@@ -21,6 +23,27 @@ class ArrayNode:
 	
 	func setParamType(param_type_):
 		param_type = param_type_
+	
+	# param_name
+	func getParamName():
+		return param_name
+	
+	func setParamName(param_name_):
+		param_name = param_name_
+	
+	# param
+	func getParam():
+		return param
+	
+	func setParam(param_):
+		param = param_
+
+	# order
+	func getOrder():
+		return order
+	
+	func setOrder(orrder_):
+		order = order_
 		
 	func pack():
 		var script_tree = ScriptTree.new()
@@ -28,6 +51,8 @@ class ArrayNode:
 		script_tree.addAttr("param_name", param_name)
 		script_tree.addObject("param", param)
 		script_tree.addAttr("order", order)
+
+		return script_tree
 	
 	func loadScript(script_tree):
 		param_name = script_tree.getStr("param_name")
@@ -54,63 +79,14 @@ func copy():
 	
 	return ret
 
-func setParamType(param_type_):
-	param_type = param_type_
-
-func loadFromDict(param_dict):
-	for param_name in param_dict:
-		append(param_name, param_dict[param_name])
-	
-func loadFromArray(param_arr):
-	for raw_node in param_arr:
-		append(raw_node[0], raw_node[1])
-
-func append(param_name, param):
-	var node = ArrayNode.new()
-	node.param_name = param_name
-	node.param = param
-
-	arr.append(node)
-	table[param_name] = param
-
-func append_array(dict_array):
-	var raw_arr = dict_array.getRawArray()
-	for raw_node in raw_arr:
-		append(raw_node[0], raw_node[1])
-
-func push_back(param_name, param):
-	append(param_name, param)
-
-func push_front(param_name, param):
-	var node = ArrayNode.new()
-	node.param_name = param_name
-	node.param = param
-
-	arr.push_front(node)
-	table[param_name] = param
-
 func get(param_name):
 	return table[param_name]
 
 func get_at(index):
 	return arr[index].param
 
-func set(param_name, param):
-	table[param_name] = param
-	for node in arr:
-		if node.param_name == param_name:
-			node.param = param
-			break
-
 func size():
 	return arr.size()
-
-func del(param_name):
-	table.erase(param_name)
-	for node in arr:
-		if node.param_name == param_name:
-			arr.erase(node)
-			return node
 
 func front():
 	return arr.front().param
@@ -154,6 +130,56 @@ func getRawArray():
 		ret.append([node.param_name, node.param])
 	
 	return ret
+
+func setParamType(param_type_):
+	param_type = param_type_
+
+func loadFromDict(param_dict):
+	for param_name in param_dict:
+		append(param_name, param_dict[param_name])
+	
+func loadFromArray(param_arr):
+	for raw_node in param_arr:
+		append(raw_node[0], raw_node[1])
+
+func append(param_name, param):
+	var node = ArrayNode.new()
+	node.param_name = param_name
+	node.param = param
+
+	arr.append(node)
+	table[param_name] = param
+
+func append_array(dict_array):
+	var raw_arr = dict_array.getRawArray()
+	for raw_node in raw_arr:
+		append(raw_node[0], raw_node[1])
+
+func push_back(param_name, param):
+	append(param_name, param)
+
+func push_front(param_name, param):
+	var node = ArrayNode.new()
+	node.param_name = param_name
+	node.param = param
+
+	arr.push_front(node)
+	table[param_name] = param
+
+func set(param_name, param):
+	table[param_name] = param
+	for node in arr:
+		if node.param_name == param_name:
+			node.param = param
+			break
+
+func del(param_name):
+	table.erase(param_name)
+	for node in arr:
+		if node.param_name == param_name:
+			arr.erase(node)
+			return node
+
 
 func pack():
 	var script_tree = ScriptTree.new()

@@ -8,6 +8,7 @@ func _init():
 
 func setSceneName(s_name_):
 	s_name = s_name_
+	$ContinueButtonText.setSceneName(s_name)
 
 func loadResource():
 	setButtonIcon()

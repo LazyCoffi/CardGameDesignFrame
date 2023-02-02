@@ -11,9 +11,10 @@ var param_map			# ArrangeMap
 var ret_map				# ArrangeMap
 
 func _init():
+	func_name = ""
 	filters = []
-	param_map = ArrangeMap.new()
-	ret_map = ArrangeMap.new()
+	param_map = null
+	ret_map = null
 
 func copy():
 	var ret = TypeUnit.type("LocalFunction").new()
@@ -45,6 +46,10 @@ func exec(params):
 		ret.append(filter.exec(filter_params))
 
 	return ret_map.trans(ret)
+
+# func_name
+func getFuncName():
+	return func_name
 
 func setFuncName(func_name_):
 	func_name = func_name_

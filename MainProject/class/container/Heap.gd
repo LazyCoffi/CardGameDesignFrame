@@ -8,6 +8,10 @@ class HeapNode:
 	var order
 	var param_type
 
+	func _init():
+		val = null
+		order = 0
+
 	func copy():
 		var ret = HeapNode.new()
 		ret.val = val.copy()
@@ -19,15 +23,17 @@ class HeapNode:
 	func setParamType(param_type_):
 		param_type = param_type_
 	
+	# val
 	func getVal():
 		return val
-	
-	func getOrder():
-		return order
 
 	func setVal(val_):
 		val = val_
-	
+
+	# order
+	func getOrder():
+		return order
+
 	func setOrder(order_):
 		order = order_
 
@@ -62,6 +68,24 @@ func copy():
 func setParamType(type):
 	param_type = type
 
+func getSorted():
+	var ret = []
+
+	while not empty():
+		ret.append(pop())
+
+	return ret
+
+func size():
+	return heap.size()
+
+func empty():
+	return heap.empty()
+
+func top():
+	Exception.assert(not heap.empty())
+	return heap[0].val
+
 func append(val, order):
 	Exception.assert(TypeUnit.isType(order, "int"))
 	var heap_node = HeapNode.new()
@@ -78,10 +102,6 @@ func append(val, order):
 			index = __fa(index)
 		else:
 			break
-
-func top():
-	Exception.assert(not heap.empty())
-	return heap[0].val
 
 func pop():
 	Exception.assert(not heap.empty())
@@ -106,19 +126,6 @@ func pop():
 	
 	return ret
 
-func getSorted():
-	var ret = []
-
-	while not empty():
-		ret.append(pop())
-
-	return ret
-
-func size():
-	return heap.size()
-
-func empty():
-	return heap.empty()
 
 func pack():
 	var script_tree = ScriptTree.new()

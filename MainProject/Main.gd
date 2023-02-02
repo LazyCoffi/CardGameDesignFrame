@@ -5,17 +5,6 @@ extends Node
 
 var ScriptTree = load("res://class/entity/ScriptTree.gd")
 
-func debug():
-	var Debug = load("res://class/Test.gd")
-	var debug_runner = Debug.new()
-	debug_runner.run()
-	
-func gameEarlyInit():
-	pass
-
-func _init():
-	debug()
-
 func _ready():
 	gameInit()
 

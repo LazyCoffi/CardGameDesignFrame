@@ -8,8 +8,6 @@ var MainMenuRender = TypeUnit.type("MainMenuRender")
 var MainMenuService = TypeUnit.type("MainMenuService")
 
 signal switchSignal
-signal switchWithoutRefreshSignal
-signal switchWithCleanSignal
 
 var is_registered
 var scene_name
@@ -29,6 +27,7 @@ func _init():
 	__setRef()
 
 func _ready():
+	__setSwitchConnection()
 	scene_dispatcher.launch()
 
 # is_registered
@@ -38,8 +37,8 @@ func isRegistered():
 func register():
 	is_registered = true
 
-func switchScene(signal_name, next_scene_name):
-	emit_signal(signal_name, next_scene_name)
+func switchScene(next_scene_name):
+	emit_signal("switchSignal", next_scene_name)
 
 # scene_name
 func getSceneName():
@@ -55,6 +54,13 @@ func getSwitchTargetTable():
 func setSwitchTargetTable(switch_target_table_):
 	switch_target_table = switch_target_table_
 
+# dispatcher
+func dispatcher():
+	return scene_dispatcher
+
+func setDispatcher(scene_dispatcher_):
+	scene_dispatcher = scene_dispatcher_
+
 # model
 func model():
 	return scene_model
@@ -69,6 +75,13 @@ func render():
 func setRender(scene_render_):
 	scene_model = scene_render_
 
+# service
+func service():
+	return scene_service
+
+func setService(scene_service_):
+	scene_service = scene_service_
+
 func pack():
 	var script_tree = ScriptTree.new()
 
@@ -80,12 +93,14 @@ func pack():
 	return script_tree
 
 func loadScript(script_tree):
+	print(script_tree.__getRoot())
 	scene_name = script_tree.getStr("scene_name")
 	is_registered = script_tree.getBool("is_registered")
 	switch_target_table = script_tree.getObject("switch_target_table", SwitchTargetTable)
-	scene_model = script_tree.getObject("model", MainMenuModel)
+	scene_model = script_tree.getObject("scene_model", MainMenuModel)
 
 func __setRef():
+	scene_dispatcher.setRef(self)
 	scene_render.setRef(self)
 	scene_service.setRef(self)
 
@@ -95,18 +110,16 @@ func __setSwitchConnection():
 	Exception.assert($SettingButton.connect("pressed", self, "__settingButtonSwitch") == 0, "Signal connect fail!")
 
 func __startButtonSwitch():
-	var target_pack = switch_target_table.getTarget("StartButton")
-	__buttonSwitch(target_pack)
+	var target_scene_name = switch_target_table.getTargetSceneName("StartButton")
+	__buttonSwitch(target_scene_name)
 
 func __continueButtonSwitch():
-	var target_pack = switch_target_table.getTarget("ContinueButton")
-	__buttonSwitch(target_pack)
+	var target_scene_name = switch_target_table.getTargetSceneName("ContinueButton")
+	__buttonSwitch(target_scene_name)
 
 func __settingButtonSwitch():
-	var target_pack = switch_target_table.getTarget("SettingButton")
-	__buttonSwitch(target_pack)
+	var target_scene_name = switch_target_table.getTarget("SettingButton")
+	__buttonSwitch(target_scene_name)
 
-func __buttonSwitch(target_pack):
-	var signal_name = target_pack.getSignalName() 
-	var next_scene_name = target_pack.getSceneName()
-	switchScene(signal_name, next_scene_name)
+func __buttonSwitch(target_scene_name):
+	switchScene(target_scene_name)

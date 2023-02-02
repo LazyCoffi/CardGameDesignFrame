@@ -7,40 +7,67 @@ var NullPack = TypeUnit.type("NullPack")
 var list
 
 class ParamNode:
-	var type
-	var val
+	var param_type
+	var param
 
-	func getType():
-		return type
-	
-	func setType(type_):
-		type = type_
+	func _init():
+		param_type = ""
+		param = null
 
-	func getVal():
-		return val
+	func getParamType():
+		return param_type
 	
-	func setVal(val_):
-		val = val_
+	func setParamType(param_type_):
+		param_type = param_type_
+
+	func getParam():
+		match param_type:
+			"Integer":
+				return param.getVal()
+			"Float":
+				return param.getVal()
+			"StringPack":
+				return param.getVal()
+			"NullPack":
+				return param.getVal()
+			_:
+				return param 
+	
+	func setParam(param_):
+		match param_type:
+			"Integer":
+				param = TypeUnit.type("Integer").new()
+				param.setVal(param_)
+			"Float":
+				param = TypeUnit.type("Float").new()
+				param.setVal(param_)
+			"StringPack":
+				param = TypeUnit.type("StringPack").new()
+				param.setVal(param_)
+			"NullPack":
+				param = TypeUnit.type("NullPack").new()
+			_:
+				param = param_
 		
 	func copy():
 		var ret = ParamNode.new()
-		ret.type = type
-		ret.val = val.copy()
+		ret.param_type = param_type
+		ret.param = param.copy()
 
 		return ret
 	
 	func pack():
 		var script_tree = ScriptTree.new()
 
-		script_tree.addAttr("type", type)
-		script_tree.addObject("val", val)
+		script_tree.addAttr("param_type", param_type)
+		script_tree.addObject("param", param)
 
 		return script_tree
 	
 	func loadScript(script_tree):
-		type = script_tree.getStr("type")
-		var param_type = TypeUnit.type("typ")
-		val = script_tree.getObject("val", param_type)
+		param_type = script_tree.getStr("param_type")
+		var type = TypeUnit.type("type")
+		param = script_tree.getObject("param", type)
 
 func _init():
 	list = []
@@ -56,67 +83,50 @@ func copy():
 func resize(size):
 	if size > list.size():
 		while size > 0:
-			list.append(__genNullNode())
+			list.append(__nullNode())
 			size -= 1
 	else:
 		list.resize(size)
 
 func hasParam(index):
 	Exception.assert(index < list.size())
+
 	return list[index].getType() != "NullPack"
 
 func getParam(index):
 	Exception.assert(index < list.size())
-	var param_node = list[index]
-	if param_node.getType() == "Integer" or param_node.getType() == "Float" or param_node.getType() == "StringPack":
-		return param_node.getVal().getVal()
-	
-	return param_node.getVal()
+
+	return list[index].getParam()
 
 func addParam(param_type, param):
-	var val = __getVal(param_type, param)
-	var param_node = __genParamNode(param_type, val)
+	var param_node = ParamNode.new()
+	param_node.setParamType(param_type)
+	param_node.setParam(param)
 	list.append(param_node)
 
 func addGap():
-	list.append(__genNullNode())
+	list.append(__nullNode())
 
 func setParam(index, param_type, param):
 	Exception.assert(index < list.size())
-	var val = __getVal(param_type, param)
-	var param_node = __genParamNode(param_type, val)
+	var param_node = ParamNode.new()
+	param_node.setParamType(param_type)
+	param_node.setParam(param)
 	list[index] = param_node
 
 func delParam(index):
 	Exception.assert(index < list.size())
-	list[index] = __genNullNode()
+	list[index] = __nullNode()
 
 func removeParam(index):
 	list.remove(index)
 
-func __genParamNode(type, val):
-	var param_node = ParamNode.new()
-	param_node.setType(type)
-	param_node.setVal(val)
-
-	return param_node
-
-func __genNullNode():
+func __nullNode():
 	var null_node = ParamNode.new()
 	null_node.setType("NullPack")
-	null_node.setVal(NullPack.new())
+	null_node.setVal(null)
 
 	return null_node
-
-func __getVal(param_type, param):
-	var val	
-	if param_type == "Integer" or param_type == "Float" or param_type == "StringPack":
-		val = TypeUnit.type(param_type).new()	
-		val.setVal(param)
-	else:
-		val = param
-
-	return val
 
 func pack():
 	var script_tree = ScriptTree.new()

@@ -2,12 +2,10 @@ extends Node
 class_name CardPile
 
 var ScriptTree = TypeUnit.type("ScriptTree")
-var Filter = TypeUnit.type("Filter")
 
 var card_pile			# Array
 var trash_pile			# Array
 var is_random			# bool
-var pop_num_filter		# Filter
 
 var param_type
 
@@ -27,28 +25,33 @@ func copy():
 		ret.trash_pile.append(card.copy())
 	
 	ret.is_random = is_random
-	ret.pop_num_filter = pop_num_filter.copy()
 
 	return ret
 
 func setParamType(param_type_):
 	param_type = param_type_
 
+# is_random
 func randomOn():
 	is_random = true
 
 func randomOff():
 	is_random = false
 
-func drawCards(cards):
-	card_pile.append_array(cards)
+# card_pile
+func getAllCards():
+	var ret = card_pile.duplicate()
+	ret.append_array(trash_pile)
+	
+	return ret
 
-func deal(params):
-	TypeUnit.isType(pop_num_filter, "Functional")
-	var num = pop_num_filter.exec(params)
-	return dealCards(num)
+func getCardPile():
+	return card_pile.duplicate()
 
-func dealCards(num):
+func getTrashPile():
+	return trash_pile.duplicate()
+
+func deal(num):
 	if num > card_pile.size() + trash_pile.size():
 		# TODO: 添加warning
 		num = card_pile.size() + trash_pile.size()
@@ -84,11 +87,17 @@ func dealTrash(num):
 	
 	return ret
 
-func getAllCards():
-	var ret = card_pile.duplicate()
-	ret.append_array(trash_pile)
-	
-	return ret
+func drawFront(card):
+	card_pile.push_front(card)
+
+func drawBack(card):
+	card_pile.push_back(card)
+
+func drawTrashFront(card):
+	trash_pile.push_front(card)
+
+func drawTrashBack(card):
+	trash_pile.push_back(card)
 
 func shufflePile():
 	randomize()
@@ -104,7 +113,6 @@ func pack():
 	script_tree.addObjectArray("card_pile", card_pile)
 	script_tree.addObjectArray("trash_pile", trash_pile)
 	script_tree.addAttr("is_random", is_random)
-	script_tree.addObject("pop_num_filter", pop_num_filter)
 
 	return script_tree
 
@@ -112,4 +120,3 @@ func loadScript(script_tree):
 	script_tree.getObjectArray("card_pile", param_type)
 	script_tree.getObjectArray("trash_pile", param_type)
 	script_tree.getBool("is_random")
-	script_tree.getObject("pop_num_filter", Filter)

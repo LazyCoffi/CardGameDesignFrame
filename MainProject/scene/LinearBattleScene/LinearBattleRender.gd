@@ -93,4 +93,4 @@ func __buildCardRect(texture, rect_pos, rect_size):
 func setBackground():
 	var scene_name = scene_ref.getSceneName()
 	var bg = ResourceUnit.loadTexture(scene_name, scene_name, "background")
-	scene_ref.$LinearBattleBackground.texture = bg
+	scene_ref.get_node("LinearBattleBackground").texture = bg

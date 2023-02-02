@@ -1,70 +1,99 @@
 extends Node
 class_name Card
 
-var Category = TypeUnit.type("Category")
 var Info = TypeUnit.type("Info")
 var Attr = TypeUnit.type("Attr")
 var LocalFunction = TypeUnit.type("LocalFunction")
 var ScriptTree = TypeUnit.type("ScriptTree")
 var Filter = TypeUnit.type("Filter")
 
-var category				# Category
-var info 					# Info
-var attr					# Attr
+var card_name 				# String
+var avator_name				# String
+var introduction			# String
+var template_name			# String
+var card_attr				# Attr
 
 func _init():
-	category = Category.new()
-	info = Info.new()
-	attr = Attr.new()
+	card_name = ""
+	avator_name = ""
+	introduction = ""
+	template_name = ""
+	card_attr = Attr.new()
 
 func copy():
 	var ret = TypeUnit.type("Card").new()
-	ret.category = category.copy()
-	ret.info = info.copy()
-	ret.attr = attr.copy()
+	ret.card_name = card_name
+	ret.avator_name = avator_name
+	ret.introduction = introduction
+	ret.template_name = template_name
+	ret.card_attr = card_attr.copy()
 
 	return ret
 
-# info
-func getInfo():
-	return info
-
-func setInfo(info_):
-	info = info_
-
+# card_name
 func getCardName():
-	return info.getCardName()
+	return card_name
 
-func setCardName(card_name):
-	info.setCardName(card_name)
+func setCardName(card_name_):
+	card_name = card_name_
 
+# avator_name
 func getAvatorName():
-	return info.getAvatorName()
+	return avator_name
 
-# category
-func getCategory():
-	return category
+func setAvatorName(avator_name_):
+	avator_name = avator_name_
 
-func setCategory(category_):
-	category = category_
+# introduction
+func getIntroduction():
+	return introduction
+
+func setIntroduction(introduction_):
+	introduction = introduction_
+
+# template_name
+func getTemplateName():
+	return template_name
+
+func setTemplateName(template_name_):
+	template_name = template_name_
 
 # attr
-func getAttr():
-	return attr
+func getAttr(attr_name):
+	return card_attr.getAttr(attr_name)
 
-func setAttr(attr_):
-	attr = attr_
+func getAttrList():
+	return card_attr.getAttrList()
+
+func getAttrIndexList():
+	return card_attr.getIndexList()
+
+func getAttrFullIndexList():
+	return card_attr.getFullIndexList()
+
+func setAttr(attr_name, attr):
+	card_attr.setAttr(attr)
+
+func delAttr(attr_name):
+	return card_attr.delAttr(attr_)
+
+func setCardAttr(card_attr_):
+	card_attr = card_attr_
 
 func pack():
 	var script_tree = ScriptTree.new()
 
-	script_tree.addObject("category", category)
-	script_tree.addObject("info", info)
-	script_tree.addObject("attr", attr)
+	script_tree.addAttr("card_name", card_name)
+	script_tree.addAttr("avator_name", avator_name)
+	script_tree.addAttr("introduction", introduction)
+	script_tree.addAttr("template_name", template_name)
+	script_tree.addObject("card_attr", card_attr)
 	
 	return script_tree
 
 func loadScript(script_tree):
-	category = script_tree.getObject("category", Category)
-	info = script_tree.getObject("info", Info)
-	attr = script_tree.getObject("attr", Attr)
+	card_name = script_tree.getStr("card_name")
+	avator_name = script_tree.getStr("avator_name")
+	introduction = script_tree.getStr("introduction")
+	template_name = script_tree.getStr("template_name")
+	card_attr = script_tree.getObject("card_attr", Attr)

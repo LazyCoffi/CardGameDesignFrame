@@ -3,8 +3,10 @@ class_name FunctionalGraph
 
 var ScriptTree = TypeUnit.type("ScriptTree")
 var Function = TypeUnit.type("Function")
+var NullPack = TypeUnit.type("NullPack")
 
 var root				# FuncGraphNode
+var graph				# Array
 var request_params		# Dict
 var node_index			# int
 var exec_graph			# Dict
@@ -15,8 +17,9 @@ class FuncGraphNode:
 	var index			# int
 
 	func _init():
-		functional = Function.new()
+		functional = null
 		ch = []
+		index = 0
 	
 	func copy():
 		var ret = FuncGraphNode.new()
@@ -24,7 +27,6 @@ class FuncGraphNode:
 		ret.ch = []
 		for node in ch:
 			ret.ch.append(node.copy())
-
 		ret.index = index
 
 		return ret
@@ -36,73 +38,54 @@ class FuncGraphNode:
 		functional = functional_
 		ch.resize(functional.getParamsNum())
 	
-	func getCh():
+	func getCh(idx):
+		return ch[idx]
+	
+	func getChList():
 		return ch.duplicate()
 	
 	func getChSize():
 		return ch.size()
-		
-	func cleanChNode(node_index):
-		ch[node_index] = null
+	
+	func setCh(idx, param):
+		ch[idx] = param
+
+	# index
+	func getIndex():
+		return index
 
 	func setIndex(index_):
 		index = index_	
 	
-	func getIndex():
-		return index
-
 	func connectNode(child_node, param_index):
-		Exception.assert(__isAdaptable(child_node, param_index))
-
-		__setChNode(param_index, child_node)
+		ch[param_index] = child_node
 	
 	func disconnectNode(param_index):
-		Exception.assert(param_index < ch.size())
-		__removeChNode(param_index)
-	
-	func disconnectBackNode():
-		ch.pop_back()
-
-	func __removeChNode(node_index):
-		## TODO: 添加warning
-		ch.remove(node_index)
-
-	func __setChNode(node_index, inner_node):
-		Exception.assert(node_index < ch.size())
-
-		ch[node_index] = inner_node
-	
-	func __popBackNode():
-		ch.pop_back()
-
-	func __appendChNode(inner_node):
-		ch.append(inner_node)
-
-	func __isAdaptable(child_node, param_index):
-		Exception.assert(param_index < functional.getParamsNum())
-
-		var ret_type = child_node.getFunctional().getRetType()
-		var params_type = functional.getParamsType()
-	
-		return ret_type == params_type[param_index]
+		ch[param_index] = null
 	
 	func pack():
 		var script_tree = ScriptTree.new()
 
 		script_tree.addObject("functional", functional)
-		script_tree.addObjectArray("ch", ch)
 		script_tree.addAttr("index", index)
 
 		return script_tree
 	
 	func loadScript(script_tree):
 		functional = script_tree.getObject("functional", Function)
-		ch = script_tree.getObjectArray("ch", FuncGraphNode)
 		index = script_tree.getInt("index")
+
+func _init():
+	node_index = 0
+	root = null
+	graph = [null]
+	request_params = {}
+	exec_graph = {}
 	
 func copy():
 	var ret = TypeUnit.type("FunctionalGraph").new()
 	ret.root = root.copy()
+	ret.graph = graph
 	ret.request_params = request_params.duplicate(true)
 	ret.node_index = node_index
 	ret.exec_graph = {}
@@ -141,35 +124,58 @@ func exec(params):
 func pack():
 	var script_tree = ScriptTree.new()
 
-	script_tree.addObject("root", root)
+	script_tree.addAttr("graph", graph)
 	script_tree.addAttr("request_params", request_params)
 	script_tree.addAttr("node_index", node_index)
+
+	var flat_tree = []
+	flat_tree.resize(node_index)
+	__getFlatTree(root, flat_tree)
+	script_tree.addObjectArray("flat_tree", flat_tree)
 
 	return script_tree
 
 func loadScript(script_tree):
-	root = script_tree.getObject("root", FuncGraphNode)
+	graph = script_tree.getRawAttr("graph")
 	request_params = script_tree.getStrDict("request_params")
 	node_index = script_tree.getInt("node_index")
+
+	var flat_tree = script_tree.getObjectArray("flat_tree", FuncGraphNode)
+	__reconstructTree(flat_tree)
 
 func __dfsConstruct(u):
 	node_index += 1
 	u.setIndex(node_index)
 
+	graph.append([])
+
 	var cur_func = u.getFunctional()
 	var cur_request_params = cur_func.getParamsType()
 	
-	cur_request_params.resize(u.getChSize())
-	
 	var param_index = 0
 	for type in cur_request_params:
-		if u.getCh()[param_index] == null:
+		if u.getCh(param_index) == null:
 			if not cur_func.hasDefaultParam(param_index):
-				request_params[cur_func.getFuncName() + "_" + str(node_index) + "_" + str(param_index)] = type
+				request_params[__name(cur_func.getFuncName(), u.getIndex(), param_index)] = type
+			graph[u.getIndex()].append(0) 
 		else:
-			__dfsConstruct(u.getCh()[param_index])
+			__dfsConstruct(u.getCh(param_index))
+			graph[u.getIndex()].append(u.getCh(param_index).getIndex())
 
 		param_index += 1
+	
+func __getFlatTree(u, flat_tree):
+	var cur_index = u.getIndex()
+	flat_tree[cur_index - 1] = u
+	for node in u.getChList():
+		if node != null:
+			__getFlatTree(node, flat_tree)
+
+func __reconstructTree(flat_tree):
+	for i in range(1, graph.size()):
+		for j in range(graph[i].size()):
+			if graph[i][j] != 0:
+				flat_tree[i - 1].connectNode(flat_tree[graph[i][j] - 1], j)
 
 func __dfsExec(u, params):
 	var cur_func = u.getFunctional()
@@ -181,15 +187,18 @@ func __dfsExec(u, params):
 		return exec_graph[cur_index]
 	
 	for param_index in range(u.getChSize()):
-		if not u.getCh()[param_index] == null:
-			cur_params[param_index] = __dfsExec(u.getCh()[param_index], params)
+		if u.getCh(param_index) != null:
+			cur_params[param_index] = __dfsExec(u.getCh(param_index), params)
 		else:
 			if cur_func.hasDefaultParam(param_index):
 				cur_params[param_index] = cur_func.getDefaultParam(param_index)
 			else:
-				cur_params[param_index] = params[cur_func.getFuncName() + "_" + str(cur_index) + "_" + str(param_index)]
+				cur_params[param_index] = params[__name(cur_func.getFuncName(), cur_index, param_index)]
 
 	var ret = cur_func.exec(cur_params)
 	exec_graph[cur_index] = ret
 
 	return ret
+
+func __name(func_name, cur_index, param_index):
+	return func_name + "_" + str(cur_index) + "_" + str(param_index)

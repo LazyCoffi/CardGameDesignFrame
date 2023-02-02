@@ -17,7 +17,7 @@ func copy():
 func getAttr(attr_name):
 	Exception.assert(table.has(attr_name))
 
-	return attr_name
+	return table[attr_name]
 
 func setAttr(attr_name, attr):
 	Exception.assert(table.has(attr_name))
@@ -33,7 +33,7 @@ func getKeys():
 func pack():
 	var script_tree = ScriptTree.new()
 
-	script_tree.addAttr(table)
+	script_tree.addAttr("table", table)
 
 	return script_tree
 

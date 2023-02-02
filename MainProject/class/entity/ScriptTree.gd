@@ -84,6 +84,8 @@ func addTypeObjectArray(arr_name, cur_arr):
 
 func getInt(obj_name):
 	Exception.assert(root.has(obj_name))
+	if root[obj_name] == null:
+		return null
 	return int(root[obj_name])
 
 func getIntDict(dict_name):
@@ -102,6 +104,8 @@ func getIntArray(arr_name):
 
 func getFloat(obj_name):
 	Exception.assert(root.has(obj_name))
+	if root[obj_name] == null:
+		return null
 	return float(root[obj_name])
 
 func getFloatDict(dict_name):
@@ -120,6 +124,8 @@ func getFloatArray(arr_name):
 
 func getStr(obj_name):
 	Exception.assert(root.has(obj_name))
+	if root[obj_name] == null:
+		return null
 	return str(root[obj_name])
 
 func getStrDict(dict_name):
@@ -230,8 +236,8 @@ func getObjectArray(arr_name, obj_type):
 	var cur_arr = root[arr_name]
 	Exception.assert(cur_arr is Array)
 
-	var arr = {}
-	for raw_script in arr:
+	var arr = []
+	for raw_script in cur_arr:
 		var script_tree = TypeUnit.type("ScriptTree").new()
 		script_tree.__setRoot(raw_script)
 

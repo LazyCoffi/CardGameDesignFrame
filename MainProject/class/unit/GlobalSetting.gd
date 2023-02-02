@@ -18,14 +18,7 @@ func pack():
 
 	return script_tree
 
-static func initSettingList():
-	var temp = load("res://class/entity/SettingTable.gd").new()
-
-	temp.addListNode("init_scene_name")
-
-	return temp.getList()
-
 func __initSetting():
 	var script_tree = ScriptTree.new()
-	script_tree.loadFromJson("res://scripts/system/globalSetting.json")
+	script_tree.loadFromJson("res://scripts/system/global_setting.json")
 	setting = script_tree.getObject("setting", SettingTable)

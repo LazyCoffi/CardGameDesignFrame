@@ -1,0 +1,113 @@
+{
+	"category_tree": {
+		"root": {
+			"test": {
+				"testCard": {
+					"Null": null
+				}
+			}
+		},
+		"table": {
+			"Null": [
+				"test",
+				"testCard"
+			]
+		}
+	},
+	"table": {
+		"Null": {
+			"template_name": null,
+			"card_type": "BattleCharacterCard",
+			"card_template": {
+				"card_name": null,
+				"template_name": "ch",
+				"info": {
+					"avator_name": "ch_avator",
+					"introduction": "test card"
+				},
+				"attr": {
+					"table": {
+
+					}
+				},
+				"card_pile": {
+					"card_pile": [
+
+					],
+					"trash_pile": [
+
+					],
+					"is_random": true,
+					"pop_num_filter": {
+						"graph": {
+							"root": {
+								"functional": {
+									"func_name": null,
+									"func_set_name": null,
+									"default_params": {
+										"list": [
+
+										]
+									}
+								},
+								"ch": [
+
+								],
+								"index": null
+							},
+							"request_params": null,
+							"node_index": null
+						},
+						"param_map": {
+							"map": [
+
+							]
+						}
+					}
+				},
+				"equipment_set": {
+
+				},
+				"buff_set": {
+
+				}
+			},
+			"copy_count": 0,
+			"revise_filter": {
+				"graph": {
+					"root": {
+						"functional": {
+							"func_name": "returnVal",
+							"func_set_name": "BaseFunctionSet",
+							"default_params": {
+								"list": [
+									{
+										"type": "NullPack",
+										"val": {
+
+										}
+									}
+								]
+							}
+						},
+						"ch": [
+							{
+
+							}
+						],
+						"index": 1
+					},
+					"request_params": {
+						"returnVal_1_0": "all"
+					},
+					"node_index": 1
+				},
+				"param_map": {
+					"map": [
+						"returnVal_0_0"
+					]
+				}
+			}
+		}
+	}
+}

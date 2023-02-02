@@ -18,7 +18,8 @@ func _init():
 
 func copy():
 	var ret = TypeUnit.type("BattleSkillCard").new()
-	ret.category = category.copy()
+	ret.card_name = card_name
+	ret.template_name = template_name
 	ret.info = info.copy()
 	ret.attr = attr.copy()
 	ret.play_condition = play_condition.copy()

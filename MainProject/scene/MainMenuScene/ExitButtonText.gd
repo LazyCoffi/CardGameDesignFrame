@@ -4,7 +4,7 @@ var s_name
 var c_name
 
 func _init():
-	c_name = "TextureButtonText"
+	c_name = "ExitButtonText"
 
 func setSceneName(s_name_):
 	s_name = s_name_

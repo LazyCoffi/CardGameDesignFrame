@@ -5,6 +5,9 @@ var ScriptTree = TypeUnit.type("ScriptTree")
 
 var val
 
+func _init():
+	val = ""
+
 func copy():
 	var ret = TypeUnit.type("StringPack").new()
 	ret.val = val

@@ -1,12 +1,15 @@
 extends Node
 
 var ScriptTree = TypeUnit.type("ScriptTree")
+var Filter = TypeUnit.type("Filter")
+var CategoryTree = TypeUnit.type("CategoryTree")
 
 class CacheNode:
 	var template_name
 	var card_type
 	var card_template
 	var copy_count
+	var revise_filter
 
 	func _init():
 		copy_count = 0
@@ -31,7 +34,7 @@ class CacheNode:
 		var card = card_template.copy()
 		card.setCardName(card_name)
 
-		return card
+		return revise(card)
 	
 	func getCardWithDefaultName():
 		copy_count += 1
@@ -39,7 +42,7 @@ class CacheNode:
 		var card = card_template.copy()
 		card.setCardName(card_name)
 
-		return [card_name, card]
+		return [card_name, revise(card)]
 	
 	func getCategory():
 		return card_template.getCategory()
@@ -51,6 +54,16 @@ class CacheNode:
 	func getCopyCount():
 		return copy_count
 	
+	# revise_filter
+	func revise(card):
+		return revise_filter.exec([card])
+
+	func getReviseFilter():
+		return revise_filter
+	
+	func setReviseFilter(revise_filter_):
+		revise_filter = revise_filter_
+	
 	func pack():
 		var script_tree = ScriptTree.new()
 
@@ -58,6 +71,7 @@ class CacheNode:
 		script_tree.addAttr("card_type", card_type)
 		script_tree.addObject("card_template", card_template)
 		script_tree.addAttr("copy_count", copy_count)
+		script_tree.addObject("revise_filter", revise_filter)
 
 		return script_tree
 
@@ -67,95 +81,46 @@ class CacheNode:
 		var param_type = TypeUnit.type(card_type)
 		card_template = script_tree.getObject("card_template", param_type)
 		copy_count = script_tree.getInt("copy_count")
+		revise_filter = script_tree.getObject("revise_filter", Filter)
 
+var category_tree
 var table
 	
 func _init():
+	category_tree = CategoryTree.new()
 	table = {}
 
 # table
-func getCard(category, template_name, card_name):
-	var node = __getNode(category, template_name)
+func getCard(template_name, card_name):
+	return table[template_name].getCard(card_name)
 
-	return node.getCard(card_name)
+func getCardWithDefaultName(template_name):
+	return table[template_name].getCardWithDefaultName()
 
-func getCardWithDefaultName(category, template_name):
-	var node = __getNode(category, template_name)
-
-	return node.getCardWithDefaultName()
-
-func addTemplate(template_name, card_type, card_template):
+func addTemplate(card_type, card_template, revise_filter, index_list):
 	var node = CacheNode.new()
-	node.setTemplateName(template_name)
+	node.setTemplateName(node.getTemplateName())
 	node.setCardType(card_type)
 	node.setCardTemplate(card_template)
+	node.setReviseFilter(revise_filter)
 
-	__insertNode(node)
+	table[node.getTemplateName()] = node
 
-func setTable(table_):
-	table = table_
+	category_tree.addEntry(index_list, node.getTemplateName())
 
 func pack():
 	var script_tree = ScriptTree.new()
 
-	var flat_table = __getFlatTable(table)
-	script_tree.addObjectArray("table", flat_table)
+	script_tree.addObject("category_tree", category_tree)
+	script_tree.addObjectDict("table", table)
 
 	return script_tree
 
 func loadScript(script_tree):
-	var flat_table = script_tree.getObjectArray("table", CacheNode)
-	table = __constructTable(flat_table)
+	category_tree = script_tree.getObject("category_tree", CategoryTree)
+	table = script_tree.getObjectDict("table", CacheNode)
 
 func __initScript():
 	var script_tree = ScriptTree.new()
-	script_tree.loadFromJson("res://scripts/system/cardTemplates.json")
+	script_tree.loadFromJson("res://scripts/system/card_templates.json")
 	loadScript(script_tree)
-
-func __getNode(category, template_name):
-	var dict = table
-
-	for index in category.getCategory():
-		Exception.assert(dict.has(index))
-		dict = dict[index]
-	
-	Exception.assert(dict.has(template_name))
-	return dict[template_name]
-
-func __insertNode(node):
-	var category = node.getCategory()
-	var template_name = node.getTemplateName()
-
-	var dict = table
-	for index in category.getCategory():
-		if not dict.has(index):
-			dict[index] = {}
-
-		dict = dict[index]
-	
-	dict[template_name] = node
-
-func __getFlatTable(u):
-	var ret = []
-
-	for node in u.values():
-		if not node is Dictionary:
-			ret.append(node)
-		else:
-			ret.append_array(__getFlatTable(node))
-	
-	return ret
-
-func __constructTable(flat_table):
-	var ret = {}
-	for node in flat_table:
-		var category = node.getCategory().getCategory()
-		var dict = ret
-		for index in category:
-			if not dict.has(index):
-				dict[index] = {}
-			dict = dict[index]
-
-		dict[node.getTemplateName()] = node
-
-	return ret

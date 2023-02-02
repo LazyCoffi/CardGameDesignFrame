@@ -11,15 +11,13 @@ var deactive_trigger	# TriggerTimer
 func _init():
 	is_continuous = true
 	is_active = false
-	effect_func = LocalFunction.new()
-	deactive_trigger = TriggerTimer.new()
-
-	## TODO: 考虑此处是否需要直接连接信号
-	self.connect("deactive", deactive_trigger, "timeout_signal")
+	effect_func = null
+	deactive_trigger = null
 
 func copy():
 	var ret = TypeUnit.type("BuffCard").new()
-	ret.category = category.copy()
+	ret.card_name = card_name
+	ret.template_name = template_name
 	ret.info = info.copy()
 	ret.attr = attr.copy()
 	ret.is_active = is_active
@@ -44,13 +42,17 @@ func active():
 func deactive():
 	is_active = false
 
-## TODO: 包装参数数组
-func exec(params):
+# effect_func
+func exec():
 	if not is_continuous:
 		active()
 	
-	return effect_func.exec(params)
+	return effect_func.exec()
 
+func setEffectFunc(effect_func_):
+	effect_func = effect_func_
+
+# deactive_trigger
 func setTimer(time):
 	deactive_trigger.setTimer(time)
 
@@ -59,6 +61,9 @@ func stopTimer():
 
 func tickTimer():
 	deactive_trigger.tick()
+
+func setDeactiveTrigger(deactive_trigger):
+	deactive_trigger = deactive_trigger_
 
 func pack():
 	var script_tree = .pack()

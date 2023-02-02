@@ -3,7 +3,6 @@ extends GutTest
 var Filter = TypeUnit.type("Filter")
 var FunctionalGraph = TypeUnit.type("FunctionalGraph")
 var Function = TypeUnit.type("Function")
-var Category = TypeUnit.type("Category")
 var ArrangeMap = TypeUnit.type("ArrangeMap")
 var DictMap = TypeUnit.type("DictMap")
 var LocalFunction = TypeUnit.type("LocalFunction")
@@ -11,11 +10,7 @@ var ParamList = TypeUnit.type("ParamList")
 
 func test_graphTest1():
 	var random_function = Function.new()
-
-	var random_category = Category.new()
-	random_category.setCategory(["FunctionSet", "MathFunctionSet"])
-	random_function.setCategory(random_category)
-
+	random_function.setFuncSetName("MathFunctionSet")
 	random_function.setFuncName("randInt")
 	random_function.initDefaultParams()
 
@@ -32,25 +27,19 @@ func test_graphTest1():
 
 func test_graphTest2():
 	var const_function = Function.new()
-	var const_category = Category.new()
-	const_category.setCategory(["FunctionSet", "MathFunctionSet"])
-	const_function.setCategory(const_category)
+	const_function.setFuncSetName("MathFunctionSet")
 	const_function.setFuncName("constVal")
 	const_function.initDefaultParams()
 	const_function.setDefaultParam(0, "Integer", 4)
 
 	var const_function_ = Function.new()
-	var const_category_ = Category.new()
-	const_category_.setCategory(["FunctionSet", "MathFunctionSet"])
-	const_function_.setCategory(const_category)
+	const_function_.setFuncSetName("MathFunctionSet")
 	const_function_.setFuncName("constVal")
 	const_function_.initDefaultParams()
 	const_function_.setDefaultParam(0, "Integer", 3)
 
 	var mul_function = Function.new()
-	var mul_category = Category.new()
-	mul_category.setCategory(["FunctionSet", "MathFunctionSet"])
-	mul_function.setCategory(mul_category)
+	mul_function.setFuncSetName("MathFunctionSet")
 	mul_function.setFuncName("mulInt")
 	mul_function.initDefaultParams()
 
@@ -69,25 +58,19 @@ func test_graphTest2():
 
 func __getTestGraph1():
 	var const_function = Function.new()
-	var const_category = Category.new()
-	const_category.setCategory(["FunctionSet", "MathFunctionSet"])
-	const_function.setCategory(const_category)
+	const_function.setFuncSetName("MathFunctionSet")
 	const_function.setFuncName("constVal")
 	const_function.initDefaultParams()
 	const_function.setDefaultParam(0, "Integer", 4)
 
 	var const_function_ = Function.new()
-	var const_category_ = Category.new()
-	const_category_.setCategory(["FunctionSet", "MathFunctionSet"])
-	const_function_.setCategory(const_category)
+	const_function_.setFuncSetName("MathFunctionSet")
 	const_function_.setFuncName("constVal")
 	const_function_.initDefaultParams()
 	const_function_.setDefaultParam(0, "Integer", 3)
 
 	var plus_function = Function.new()
-	var plus_category = Category.new()
-	plus_category.setCategory(["FunctionSet", "MathFunctionSet"])
-	plus_function.setCategory(plus_category)
+	plus_function.setFuncSetName("MathFunctionSet")
 	plus_function.setFuncName("plusInt")
 	plus_function.initDefaultParams()
 
@@ -106,23 +89,17 @@ func __getTestGraph1():
 
 func __getTestGraph2():
 	var plus_function = Function.new()
-	var plus_category = Category.new()
-	plus_category.setCategory(["FunctionSet", "MathFunctionSet"])
-	plus_function.setCategory(plus_category)
+	plus_function.setFuncSetName("MathFunctionSet")
 	plus_function.setFuncName("plusInt")
 	plus_function.initDefaultParams()
 
 	var mul_function = Function.new()
-	var mul_category = Category.new()
-	mul_category.setCategory(["FunctionSet", "MathFunctionSet"])
-	mul_function.setCategory(mul_category)
+	mul_function.setFuncSetName("MathFunctionSet")
 	mul_function.setFuncName("mulInt")
 	mul_function.initDefaultParams()
 
 	var minus_function = Function.new()
-	var minus_category = Category.new()
-	minus_category.setCategory(["FunctionSet", "MathFunctionSet"])
-	minus_function.setCategory(mul_category)
+	minus_function.setFuncSetName("MathFunctionSet")
 	minus_function.setFuncName("minusInt")
 	minus_function.initDefaultParams()
 
@@ -141,9 +118,7 @@ func __getTestGraph2():
 
 func __getTestGraph3():
 	var plus_function = Function.new()
-	var plus_category = Category.new()
-	plus_category.setCategory(["FunctionSet", "MathFunctionSet"])
-	plus_function.setCategory(plus_category)
+	plus_function.setFuncSetName("MathFunctionSet")
 	plus_function.setFuncName("plusInt")
 	plus_function.initDefaultParams()
 

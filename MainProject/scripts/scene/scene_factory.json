@@ -1,0 +1,10 @@
+{
+	"main_menu" : {
+		"type" : "MainMenuScene",
+		"path" : "res://scripts/scene/main_menu.json"
+	},
+	"linear_battle" : {
+		"type" : "LinearBattleScene",
+		"path" : "res://scripts/scene/linear_battle.json"
+	}
+}

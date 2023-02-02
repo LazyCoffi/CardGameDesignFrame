@@ -5,6 +5,9 @@ var ScriptTree = TypeUnit.type("ScriptTree")
 
 var val
 
+func _init():
+	val = 0
+
 func getVal():
 	return val
 

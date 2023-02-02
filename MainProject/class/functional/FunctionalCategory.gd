@@ -1,53 +1,53 @@
 extends Node
 
-var array_oper_function_set = load("res://class/functional/ArrayOperFunctionSet.gd").new()
-var attr_function_set = load("res://class/functional/AttrFunctionSet.gd").new()
-var base_function_set = load("res://class/functional/BaseFunctionSet.gd").new()
-var math_function_set = load("res://class/functional/MathFunctionSet.gd").new()
-var battle_function_set = load("res://class/functional/BattleFunctionSet.gd").new()
-var scene_oper_function_set = load("res://class/functional/SceneOperFunctionSet.gd").new()
+var array_oper_function_set = TypeUnit.type("ArrayOperFunctionSet").new()
+var attr_function_set = TypeUnit.type("AttrFunctionSet").new()
+var base_function_set = TypeUnit.type("BaseFunctionSet").new()
+var battle_function_set = TypeUnit.type("BattleFunctionSet").new()
+var card_oper_function_set = TypeUnit.type("CardOperFunctionSet").new()
+var math_function_set = TypeUnit.type("MathFunctionSet").new()
+var scene_oper_function_set = TypeUnit.type("SceneOperFunctionSet").new()
 
-var attr_condition_set = load("res://class/functional/AttrConditionSet.gd").new()
-var base_condition_set = load("res://class/functional/BaseConditionSet.gd").new()
+var attr_condition_set = TypeUnit.type("AttrConditionSet").new()
+var base_condition_set = TypeUnit.type("BaseConditionSet").new()
 
-var func_tree
+var category_tree = TypeUnit.type("CategoryTree").new()
+var table 
 
 func _init():
-	func_tree = {}
 	__initFunctionalType()
 
-func getFunctionalSet(category):
-	var arr = category.getCategory()
-	var cur_node = func_tree.duplicate()
-	for key in arr:
-		cur_node = cur_node[key]
-	
-	return cur_node
+func getIndexList(func_set_name):
+	return category_tree.getIndexList(func_set_name)
 
-func getRetType(category, func_name):
-	var functional_set = getFunctionalSet(category)
+func getFunctionalSet(func_set_name):
+	return table[func_set_name]
+
+func getRetType(func_set_name, func_name):
+	var functional_set = getFunctionalSet(func_set_name)
 	return functional_set.getRetType(func_name)
 
-func getParamsType(category, func_name):
-	var functional_set = getFunctionalSet(category)
+func getParamsType(func_set_name, func_name):
+	var functional_set = getFunctionalSet(func_set_name)
 	return functional_set.getParamsType(func_name)
 
-func exec(f_name, category, params):
-	var functional_set = getFunctionalSet(category)
+func exec(f_name, func_set_name, params):
+	var functional_set = getFunctionalSet(func_set_name)
 	return functional_set.callv(f_name, params)
 
 func __initFunctionalType():
-	func_tree["FunctionSet"] = {}
-	func_tree["ConditionSet"] = {}
-	__addFunctionalSet("FunctionSet", "ArrayOperFunctionSet", array_oper_function_set)
-	__addFunctionalSet("FunctionSet", "AttrFunctionSet", attr_function_set)
-	__addFunctionalSet("FunctionSet", "BaseFunctionSet", base_function_set)
-	__addFunctionalSet("FunctionSet", "BattleFunctionSet", battle_function_set)
-	__addFunctionalSet("FunctionSet", "MathFunctionSet", math_function_set)
-	__addFunctionalSet("FunctionSet", "SceneOperFunctionSet", scene_oper_function_set)
+	table = {}
+	__addFunctionalSet(["FunctionSet"], "ArrayOperFunctionSet", array_oper_function_set)
+	__addFunctionalSet(["FunctionSet"], "AttrFunctionSet", attr_function_set)
+	__addFunctionalSet(["FunctionSet"], "BaseFunctionSet", base_function_set)
+	__addFunctionalSet(["FunctionSet"], "BattleFunctionSet", battle_function_set)
+	__addFunctionalSet(["FunctionSet"], "CardOperFunctionSet", card_oper_function_set)
+	__addFunctionalSet(["FunctionSet"], "MathFunctionSet", math_function_set)
+	__addFunctionalSet(["FunctionSet"], "SceneOperFunctionSet", scene_oper_function_set)
 
-	__addFunctionalSet("ConditionSet", "AttrConditionSet", attr_function_set)
-	__addFunctionalSet("ConditionSet", "BaseConditionSet", base_condition_set)
+	__addFunctionalSet(["ConditionSet"], "AttrConditionSet", attr_function_set)
+	__addFunctionalSet(["ConditionSet"], "BaseConditionSet", base_condition_set)
 
-func __addFunctionalSet(type, func_name, functional):
-	func_tree[type][func_name] = functional
+func __addFunctionalSet(index_list, func_set_name, functional):
+	table[func_set_name] = functional
+	category_tree.addEntry(index_list, func_set_name)

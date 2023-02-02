@@ -5,7 +5,7 @@ class_name PollingBucket
 
 var ScriptTree = TypeUnit.type("ScriptTree")
 var Filter = TypeUnit.type("Filter")
-var Ingeter = TypeUnit.type("Ingeter")
+var Integer = TypeUnit.type("Integer")
 var Float = TypeUnit.type("Float")
 var StringPack = TypeUnit.type("StringPack")
 var NullPack = TypeUnit.type("NullPack")
@@ -15,6 +15,10 @@ class BucketNode:
 	var param
 
 	var param_type
+
+	func _init():
+		param_name = ""
+		param = null
 	
 	func copy():
 		var ret = BucketNode.new()
@@ -64,8 +68,8 @@ func _init():
 	pointer = 0
 	bucket = []
 	buffer = []
-	init_shuffle_filter = Filter.new()
-	regular_shuffle_filter = Filter.new()
+	init_shuffle_filter = null
+	regular_shuffle_filter = null
 
 func copy():
 	var ret = TypeUnit.type("PollingBucket")
@@ -83,13 +87,16 @@ func copy():
 	
 	return ret
 
-func isAccessable():
-	return pointer < bucket.size()
-
 func setParamType(param_type_):
 	param_type = param_type_
 
+func active():
+	__initConstruct()
+
 # pointer
+func isAccessable():
+	return pointer < bucket.size()
+
 func getPointer():
 	return pointer
 
@@ -114,19 +121,16 @@ func setBuffer(buffer_):
 func getInitShuffleFilter():
 	return init_shuffle_filter
 
-func setInitShuffleFilter(shuffle_filter_):
-	shuffle_filter = shuffle_filter_
+func setInitShuffleFilter(init_shuffle_filter_):
+	init_shuffle_filter = init_shuffle_filter_
 
 # regular_shuffle_filter
-
 func getRegularShuffleFilter():
 	return regular_shuffle_filter
 
 func setRegularShuffleFilter(regular_shuffle_filter_):
 	 regular_shuffle_filter = regular_shuffle_filter_
 
-func active():
-	__initConstruct()
 
 func getParamName():
 	Exception.assert(pointer < bucket.size())
@@ -161,8 +165,7 @@ func append(param_name, param):
 	buffer.append(__genNode(param_name, param))
 
 func del(param_name):
-	var index = 0
-	for index in bucket.size():
+	for index in range(bucket.size()):
 		if bucket[index].getParamName() == param_name:
 			var ret = bucket[index]
 			bucket.remove(index)

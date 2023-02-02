@@ -1,0 +1,404 @@
+{
+	"scene_name": "linear_battle",
+	"switch_target_table": {
+		"table": {
+
+		}
+	},
+	"scene_model": {
+		"setting": {
+			"table": {
+				"hand_cards_upper": 10,
+				"hand_card_rect_size": [
+					90,
+					160
+				],
+				"character_card_rect_size": [
+					90,
+					160
+				]
+			}
+		},
+		"character_groups": [
+
+		],
+		"order_bucket": {
+			"pointer": 0,
+			"bucket": [
+
+			],
+			"buffer": [
+
+			],
+			"init_shuffle_filter": {
+				"graph": {
+					"graph": [
+						null,
+						[
+							0
+						]
+					],
+					"request_params": {
+						"randomShuffle_1_0": "Array"
+					},
+					"node_index": 1,
+					"flat_tree": [
+						{
+							"functional": {
+								"func_name": "randomShuffle",
+								"func_set_name": "ArrayOperFunctionSet",
+								"default_params": {
+									"list": [
+										{
+											"type": "NullPack",
+											"val": {
+
+											}
+										}
+									]
+								}
+							},
+							"index": 1
+						}
+					]
+				},
+				"param_map": {
+					"map": [
+
+					]
+				}
+			},
+			"regular_shuffle_filter": {
+				"graph": {
+					"graph": [
+						null,
+						[
+							0
+						]
+					],
+					"request_params": {
+						"returnVal_1_0": "all"
+					},
+					"node_index": 1,
+					"flat_tree": [
+						{
+							"functional": {
+								"func_name": "returnVal",
+								"func_set_name": "BaseFunctionSet",
+								"default_params": {
+									"list": [
+										{
+											"type": "NullPack",
+											"val": {
+
+											}
+										}
+									]
+								}
+							},
+							"index": 1
+						}
+					]
+				},
+				"param_map": {
+					"map": [
+
+					]
+				}
+			}
+		},
+		"character_deal_filter": {
+			"graph": {
+				"graph": [
+					null,
+					[
+						2,
+						7
+					],
+					[
+						3
+					],
+					[
+						4,
+						6
+					],
+					[
+						5
+					],
+					[
+						0
+					],
+					[
+						0
+					],
+					[
+						8,
+						10
+					],
+					[
+						9
+					],
+					[
+						0
+					],
+					[
+						0
+					]
+				],
+				"request_params": {
+
+				},
+				"node_index": 10,
+				"flat_tree": [
+					{
+						"functional": {
+							"func_name": "appendVal",
+							"func_set_name": "ArrayOperFunctionSet",
+							"default_params": {
+								"list": [
+									{
+										"type": "NullPack",
+										"val": {
+
+										}
+									},
+									{
+										"type": "NullPack",
+										"val": {
+
+										}
+									}
+								]
+							}
+						},
+						"index": 1
+					},
+					{
+						"functional": {
+							"func_name": "packArray",
+							"func_set_name": "ArrayOperFunctionSet",
+							"default_params": {
+								"list": [
+									{
+										"type": "NullPack",
+										"val": {
+
+										}
+									}
+								]
+							}
+						},
+						"index": 2
+					},
+					{
+						"functional": {
+							"func_name": "appendVal",
+							"func_set_name": "ArrayOperFunctionSet",
+							"default_params": {
+								"list": [
+									{
+										"type": "NullPack",
+										"val": {
+
+										}
+									},
+									{
+										"type": "NullPack",
+										"val": {
+
+										}
+									}
+								]
+							}
+						},
+						"index": 3
+					},
+					{
+						"functional": {
+							"func_name": "packArray",
+							"func_set_name": "ArrayOperFunctionSet",
+							"default_params": {
+								"list": [
+									{
+										"type": "NullPack",
+										"val": {
+
+										}
+									}
+								]
+							}
+						},
+						"index": 4
+					},
+					{
+						"functional": {
+							"func_name": "getCardWithDefaultName",
+							"func_set_name": "CardOperFunctionSet",
+							"default_params": {
+								"list": [
+									{
+										"type": "StringPack",
+										"val": {
+											"val": "ch"
+										}
+									}
+								]
+							}
+						},
+						"index": 5
+					},
+					{
+						"functional": {
+							"func_name": "getCardWithDefaultName",
+							"func_set_name": "CardOperFunctionSet",
+							"default_params": {
+								"list": [
+									{
+										"type": "StringPack",
+										"val": {
+											"val": "ch"
+										}
+									}
+								]
+							}
+						},
+						"index": 6
+					},
+					{
+						"functional": {
+							"func_name": "appendVal",
+							"func_set_name": "ArrayOperFunctionSet",
+							"default_params": {
+								"list": [
+									{
+										"type": "NullPack",
+										"val": {
+
+										}
+									},
+									{
+										"type": "NullPack",
+										"val": {
+
+										}
+									}
+								]
+							}
+						},
+						"index": 7
+					},
+					{
+						"functional": {
+							"func_name": "packArray",
+							"func_set_name": "ArrayOperFunctionSet",
+							"default_params": {
+								"list": [
+									{
+										"type": "NullPack",
+										"val": {
+
+										}
+									}
+								]
+							}
+						},
+						"index": 8
+					},
+					{
+						"functional": {
+							"func_name": "getCardWithDefaultName",
+							"func_set_name": "CardOperFunctionSet",
+							"default_params": {
+								"list": [
+									{
+										"type": "StringPack",
+										"val": {
+											"val": "ch"
+										}
+									}
+								]
+							}
+						},
+						"index": 9
+					},
+					{
+						"functional": {
+							"func_name": "getCardWithDefaultName",
+							"func_set_name": "CardOperFunctionSet",
+							"default_params": {
+								"list": [
+									{
+										"type": "StringPack",
+										"val": {
+											"val": "ch"
+										}
+									}
+								]
+							}
+						},
+						"index": 10
+					}
+				]
+			},
+			"param_map": {
+				"map": [
+					"getCardWithDefaultName_10_0",
+					"getCardWithDefaultName_5_0",
+					"getCardWithDefaultName_6_0",
+					"getCardWithDefaultName_9_0"
+				]
+			}
+		},
+		"cur_character_card": {
+			"card_name": null,
+			"template_name": null,
+			"info": {
+				"avator_name": null,
+				"introduction": null
+			},
+			"attr": {
+				"table": {
+
+				}
+			},
+			"card_pile": {
+				"card_pile": [
+
+				],
+				"trash_pile": [
+
+				],
+				"is_random": true,
+				"pop_num_filter": {
+					"graph": {
+						"graph": [
+
+						],
+						"request_params": {
+
+						},
+						"node_index": 0,
+						"flat_tree": [
+
+						]
+					},
+					"param_map": {
+						"map": [
+
+						]
+					}
+				}
+			},
+			"equipment_set": {
+
+			},
+			"buff_set": {
+
+			}
+		},
+		"hand_cards_table": {
+
+		},
+		"total_round": null
+	}
+}

@@ -11,13 +11,14 @@ var buff_set			# BuffCard_Dict
 
 func _init():
 	card_pile = CardPile.new()
-	card_pile.setParamType(BattleSkillCard)
+	card_pile.setParamType(BattleCharacterCard)
 	equipment_set = {}
 	buff_set = {}
 
 func copy():
 	var ret = TypeUnit.type("BattleCharacterCard").new()
-	ret.category = category.copy()
+	ret.card_name = card_name
+	ret.template_name = template_name
 	ret.info = info.copy()
 	ret.attr = attr.copy()
 	ret.card_pile = card_pile.copy() 
@@ -30,45 +31,63 @@ func copy():
 	
 	return ret
 
-# TODO: 包装参数列表
-func getCards(upper_bound):
-	return card_pile.deal([upper_bound])
-	
-func getCardsByNum(card_num, upper_bound):
-	return card_pile.dealCards(min(card_num, upper_bound))
+# card_pile
+func peekCardPile():
+	return card_pile.getCardPile()
 
+func peekTrashPile():
+	return card_pile.getTrashPile()
+
+func pileRandomOn():
+	card_pile.randomOn()
+
+func pileRandomOff():
+	card_pile.randomOff()
+
+func dealCards(num):
+	return card_pile.deal(num)
+
+func dealTrashCards(num):
+	return card_pile.dealTrash(num)
+
+func drawCardFront(card):
+	card_pile.drawFront(card)
+
+func drawCardBack(card):
+	card_pile.drawBack(card)
+
+func drawTrashCardFront(card):
+	card_pile.drawTrashFront(card)
+
+func drawTrashCardBack(card):
+	card_pile.drawTrashBack(card)
+
+func shufflePile():
+	card_pile.shufflePile()
+
+func shuffleTrash():
+	card_pile.shuffleTrash()
+
+# buff_set
 func addBuff(buff_card):
 	var card_name = buff_card.getCardName()
 	buff_set[card_name] = buff_card
 
-func getBuffSet():
+func peekBuff():
 	return buff_set.duplicate()
 
+# equipment_set
 func equip(equipment_card):
-	if equipment_card.isEquipConditon([self]):
-		var new_card = equipment_card.equip([self])
-		__selfEquipRefresh(new_card)
-
-		var card_name = equipment_card.getCardName()
-		equipment_set[card_name] = equipment_card
+	equipment_card.equip(self)
+	var card_name = equipment_card.getCardName()
+	equipment_set[card_name] = equipment_card
 		
-		return true
-	
-	return false
-	
 func unequip(card_name):
 	Exception.assert(equipment_set.has(card_name))
 	var equipment_card = equipment_set[card_name]
+	equipment_card.unequip(self)
 	equipment_set.erase(card_name)
 	
-	var new_card = equipment_card.unequip([self])
-	__selfEquipRefresh(new_card)
-	
-func __selfEquipRefresh(equipment_card):
-	self.attr = equipment_card.attr
-	self.card_pile = equipment_card.card_pile
-	self.buff_set = equipment_card.buff_set
-
 func pack():
 	var script_tree = .pack()
 
@@ -80,6 +99,6 @@ func pack():
 
 func loadScript(script_tree):
 	.loadScript(script_tree)
-	card_pile = script_tree.loadObject("card_pile", CardPile, BattleSkillCard)
-	equipment_set = script_tree.loadObjectDict("equipment_set", EquipmentCard)
-	buff_set = script_tree.loadObjectDict("buff_set", BuffCard)
+	card_pile = script_tree.getTypeObject("card_pile", CardPile, BattleSkillCard)
+	equipment_set = script_tree.getObjectDict("equipment_set", EquipmentCard)
+	buff_set = script_tree.getObjectDict("buff_set", BuffCard)

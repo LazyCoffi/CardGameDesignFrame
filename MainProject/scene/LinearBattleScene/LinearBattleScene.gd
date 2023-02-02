@@ -8,8 +8,6 @@ var LinearBattleRender = TypeUnit.type("LinearBattleRender")
 var LinearBattleService = TypeUnit.type("LinearBattleService")
 
 signal switchSignal
-signal switchWithoutRefreshSignal
-signal switchWithCleanSignal
 
 var is_registered
 var scene_name
@@ -26,7 +24,7 @@ func _init():
 	scene_model = LinearBattleModel.new()
 	scene_render = LinearBattleRender.new()
 	scene_service = LinearBattleService.new()
-	__setRef()
+	__setRef(self)
 
 func _ready():
 	scene_dispatcher.launch()
@@ -37,8 +35,8 @@ func isRegistered():
 func register():
 	is_registered = true
 
-func switchScene(signal_name, next_scene_name):
-	emit_signal(signal_name, next_scene_name)
+func switchScene(next_scene_name):
+	emit_signal(next_scene_name)
 
 # scene_name
 func getSceneName():
@@ -97,5 +95,6 @@ func loadScript(script_tree):
 	scene_model = script_tree.getObject("scene_model", LinearBattleModel)
 
 func __setRef(scene):
-	scene_service.setRef(scene)
 	scene_dispatcher.setRef(scene)
+	scene_render.setRef(scene)
+	scene_service.setRef(scene)

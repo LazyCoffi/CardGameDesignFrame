@@ -9,8 +9,8 @@ var graph		# FunctionalGraph
 var param_map	# DictMap
 
 func _init():
-	graph = FunctionalGraph.new()
-	param_map = DictMap.new()
+	graph = null
+	param_map = null
 
 func copy():
 	var ret = TypeUnit.type("DictMap").new()
@@ -22,17 +22,12 @@ func copy():
 func exec(params):
 	return graph.exec(param_map.trans(params))
 
-func setGraph(graph_):
-	graph = graph_
-
+# graph
 func getGraph():
 	return graph
 
-func setParamMap(param_map_):
-	param_map = param_map_
-
-func getParamMap():
-	return param_map
+func setGraph(graph_):
+	graph = graph_
 
 func getParamsType():
 	return graph.getParamsType()
@@ -42,6 +37,13 @@ func getParamsNum():
 
 func getRetType():
 	return graph.getRetType()
+
+# param_map
+func getParamMap():
+	return param_map
+
+func setParamMap(param_map_):
+	param_map = param_map_
 
 func pack():
 	var script_tree = ScriptTree.new()

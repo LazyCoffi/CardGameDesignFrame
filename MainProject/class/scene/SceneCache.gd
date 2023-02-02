@@ -41,7 +41,7 @@ class SceneNode:
 	
 	func loadScript(script_tree):
 		type = script_tree.getAttr("type")
-		var scene_type = TypeUnit.getTypeByName(type)
+		var scene_type = TypeUnit.type(type)
 		scene_name = script_tree.getAttr("scene_name")
 		scene = script_tree.getObject("scene", scene_type)
 	
@@ -53,7 +53,7 @@ func _init():
 	scene_factory = SceneFactory.new()
 
 func genSceneNode(type, scene_name, scene):
-	var scene_node = SceneNode.new()	
+	var scene_node = SceneNode.new()
 	scene_node.type = type
 	scene_node.scene_name = scene_name
 	scene_node.scene = scene

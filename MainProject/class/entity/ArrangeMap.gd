@@ -14,12 +14,6 @@ func copy():
 	
 	return ret
 
-func resizeMap(size):
-	map.resize(size)
-
-func setMap(map_):
-	map = map_
-
 func isFilled():
 	var val = []
 	val.resize(map.size())
@@ -29,6 +23,12 @@ func isFilled():
 		val[index] = index
 	
 	return true
+
+func resizeMap(size):
+	map.resize(size)
+
+func setMap(map_):
+	map = map_
 
 func setIndex(from, to):
 	map[from] = to

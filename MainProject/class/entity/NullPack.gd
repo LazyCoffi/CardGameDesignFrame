@@ -16,4 +16,4 @@ func pack():
 	return ScriptTree.new()
 
 func loadScript(script_tree):
-	script_tree = null
+	return

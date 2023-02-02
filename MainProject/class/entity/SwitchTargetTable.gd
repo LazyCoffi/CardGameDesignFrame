@@ -6,38 +6,43 @@ var ScriptTree = TypeUnit.type("ScriptTree")
 class TargetPack:
 	var scene_type		# String
 	var scene_name		# String
-	var signal_name	# String
+
+	func _init():
+		scene_type = ""
+		scene_name = ""
 
 	func copy():
 		var ret = TargetPack.new()
 		ret.scene_type = scene_type
 		ret.scene_type = scene_type
-		ret.signal_name = signal_name
 
 		return ret
 
+	# scene_type
 	func getSceneType():
 		return scene_type
+	
+	func setSceneType(scene_type_):
+		scene_type = scene_type_
 
+	# scene_name
 	func getSceneName():
 		return scene_name
-
-	func getSignalName():
-		return signal_name
+	
+	func setSceneName(scene_name_):
+		scene_name = scene_name_
 
 	func pack():
 		var script_tree = ScriptTree.new()
 
 		script_tree.addAttr("scene_type", scene_type)
 		script_tree.addAttr("scene_name", scene_name)
-		script_tree.addAttr("signal_name", signal_name)
 
 		return script_tree
 
 	func loadScript(script_tree):
 		scene_type = script_tree.getStr("scene_type")
 		scene_name = script_tree.getStr("scene_name")
-		signal_name = script_tree.getStr("signal_name")
 		
 var table	# Dict
 
@@ -52,16 +57,19 @@ func copy():
 	
 	return ret
 
-func getTarget(target_name):
+func getTargetSceneType(target_name):
 	Exception.assert(table.has(target_name))
-	return table[target_name]
+	return table[target_name].getSceneType()
 
-func addTarget(target_name, scene_type, scene_name, signal_name):
+func getTargetSceneName(target_name):
+	Exception.assert(table.has(target_name))
+	return table[target_name].getSceneName()
+
+func addTarget(target_name, scene_type, scene_name):
 	var target_pack = TargetPack.new()
 
-	target_pack.scene_type = scene_type
-	target_pack.scene_name = scene_name
-	target_pack.signal_name = signal_name
+	target_pack.setSceneType(scene_type)
+	target_pack.setSceneName(scene_name)
 
 	table[target_name] = target_pack
 
@@ -73,4 +81,4 @@ func pack():
 	return script_tree
 
 func loadScript(script_tree):
-	script_tree.getObjectDict("table", TargetPack)
+	table = script_tree.getObjectDict("table", TargetPack)

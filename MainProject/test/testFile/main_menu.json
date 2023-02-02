@@ -5,18 +5,15 @@
 		"table": {
 			"StartButton": {
 				"scene_type": "LinearBattleScene",
-				"scene_name": "linear_battle",
-				"signal_name": "switchSignal"
+				"scene_name": "linear_battle"
 			},
 			"ContinueButton": {
 				"scene_type": "LinearBattleScene",
-				"scene_name": "linear_battle",
-				"signal_name": "switchSignal"
+				"scene_name": "linear_battle"
 			},
 			"SettingButton": {
 				"scene_type": "LinearBattleScene",
-				"scene_name": "linear_battle",
-				"signal_name": "switchSignal"
+				"scene_name": "linear_battle"
 			}
 		}
 	},

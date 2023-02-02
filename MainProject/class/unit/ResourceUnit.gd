@@ -2,7 +2,7 @@ extends Node
 
 var ScriptTree = load("res://class/entity/ScriptTree.gd")
 
-var resource_path	# Dict
+var resource_table	# Dict
 
 func _init():
 	__initScript()
@@ -27,8 +27,8 @@ func loadFont(s_name, c_name, r_name):
 
 func __initScript():
 	var script_tree = ScriptTree.new()
-	script_tree.loadFromJson("res://scripts/system/resourceUnit.json")
-	resource_path = script_tree.getStr("resource_path")
+	script_tree.loadFromJson("res://scripts/system/resource_unit.json")
+	resource_table = script_tree.getRawAttr("resource_table")
 
 func loadColor(s_name, c_name, r_name):
 	var res = __getRes(s_name, c_name, r_name)
@@ -48,9 +48,7 @@ func loadColor(s_name, c_name, r_name):
 		return Color(rgba[0], rgba[1], rgba[2], rgba[3])
 
 func __getRes(s_name, c_name, r_name):
-	 Exception.assert(resource_path.has(s_name))
-	 Exception.assert(resource_path[s_name].has(c_name))
-	 Exception.assert(resource_path[s_name][c_name].has(r_name))
-	 return resource_path[s_name][c_name][r_name]
-
-
+	 Exception.assert(resource_table.has(s_name))
+	 Exception.assert(resource_table[s_name].has(c_name))
+	 Exception.assert(resource_table[s_name][c_name].has(r_name))
+	 return resource_table[s_name][c_name][r_name]

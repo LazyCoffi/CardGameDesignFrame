@@ -1,6 +1,0 @@
-{
-	"main_menu" : {
-		"type" : "MainMenuScene",
-		"path" : "res://scripts/scene/main_menu.json"
-	}
-}
