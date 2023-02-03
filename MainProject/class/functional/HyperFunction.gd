@@ -1,27 +1,27 @@
 extends Node
-class_name LocalFunction
+class_name HyperFunction
 
-var Filter = TypeUnit.type("Filter")
+var Function = TypeUnit.type("Function")
 var ScriptTree = TypeUnit.type("ScriptTree")
 var ArrangeMap = TypeUnit.type("ArrangeMap")
 
 var func_name			# String
-var filters				# FunctionalGraph_Array
+var functions			# FunctionGraph_Array
 var param_map			# ArrangeMap 
 var ret_map				# ArrangeMap
 
 func _init():
 	func_name = ""
-	filters = []
+	functions = []
 	param_map = ArrangeMap.new()
 	ret_map = ArrangeMap.new()
 
 func copy():
 	var ret = TypeUnit.type("LocalFunction").new()
 	ret.func_name = func_name
-	ret.filters = []
-	for node in filters:
-		ret.filters.append(node.copy())
+	ret.functions = []
+	for node in functions:
+		ret.functions.append(node.copy())
 	
 	ret.param_map = param_map.copy()
 	ret.ret_map = param_map.copy()
@@ -49,7 +49,7 @@ func setRetMap(map):
 	ret_map.setMap(map)
 
 func initRetMap():
-	var size = getFiltersNum()
+	var size = getFunctionsNum()
 	var map = []
 	for index in size:
 		map.append(index)
@@ -60,12 +60,12 @@ func exec(params):
 	var cur_params = param_map.trans(params)
 	var ret = []
 
-	for filter in filters:
-		var param_type = filter.getParamsType()
-		var filter_params = []
+	for function in functions:
+		var param_type = function.getParamsType()
+		var function_params = []
 		for _index in range(param_type.size()):
-			filter_params.append(cur_params.pop_front()) 
-		ret.append(filter.exec(filter_params))
+			function_params.append(cur_params.pop_front()) 
+		ret.append(function.exec(function_params))
 
 	return ret_map.trans(ret)
 
@@ -76,47 +76,47 @@ func getFuncName():
 func setFuncName(func_name_):
 	func_name = func_name_
 
-func addFilter(filter):
-	filters.append(filter)
+func addFunction(function):
+	functions.append(function)
 
-func removeFilter(index):
-	filters.remove(index)
+func removeFunction(index):
+	functions.remove(index)
 
-func setFilter(index, filter):
-	Exception.assert(index < filters.size(), "Index out of size")
-	filters[index] = filter
+func setFunction(index, function):
+	Exception.assert(index < functions.size(), "Index out of size")
+	functions[index] = function
 
-func getFilters():
-	return filters.duplicate()
+func getFunctions():
+	return functions.duplicate()
 
-func getFilter(index):
-	Exception.assert(index < filters.size(), "Index out of size")
+func getFunction(index):
+	Exception.assert(index < functions.size(), "Index out of size")
 
-	return filters[index]
+	return functions[index]
 
 func getParamsType():
 	var params_type = []
-	for filter in filters:
-		params_type.append_array(filter.getParamsType())
+	for function in functions:
+		params_type.append_array(function.getParamsType())
 	
 	return params_type
 
 func getParamsNum():
 	var ret = 0
 
-	for filter in filters:
-		ret += filter.getParamNum()
+	for function in functions:
+		ret += function.getParamNum()
 	
 	return ret
 
-func getFiltersNum():
-	return filters.size()
+func getFunctionsNum():
+	return functions.size()
 
 func getRetType():
 	var ret_type = []
 
-	for filter in filters:
-		ret_type.append(filters.getRetType())
+	for function in functions:
+		ret_type.append(function.getRetType())
 	
 	return ret_type
 
@@ -124,7 +124,7 @@ func pack():
 	var script_tree = ScriptTree.new()
 
 	script_tree.addAttr("func_name", func_name)
-	script_tree.addObjectArray("filters", filters)
+	script_tree.addObjectArray("functions", functions)
 	script_tree.addObject("param_map", param_map)
 	script_tree.addObject("ret_map", ret_map)
 
@@ -132,6 +132,6 @@ func pack():
 
 func loadScript(script_tree):
 	func_name = script_tree.getStr("func_name")
-	filters = script_tree.getObjectArray("filters", Filter)
+	functions = script_tree.getObjectArray("functions", Function)
 	param_map = script_tree.getObject("param_map", ArrangeMap)
 	ret_map = script_tree.getObject("ret_map", ArrangeMap)

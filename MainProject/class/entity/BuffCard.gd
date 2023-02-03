@@ -5,7 +5,7 @@ var TriggerTimer = TypeUnit.type("TriggerTimer")
 
 var is_active			# bool
 var is_continuous		# bool
-var effect_func			# LocalFunction
+var effect_func			# HyperFunction
 var deactive_trigger	# TriggerTimer 
 
 func _init():
@@ -80,5 +80,5 @@ func loadScript(script_tree):
 	.loadScript(script_tree)
 	is_active = script_tree.getBool("is_active")
 	is_continuous = script_tree.getBool("is_continuous")
-	effect_func = script_tree.getObject("effect_func", LocalFunction)
+	effect_func = script_tree.getObject("effect_func", HyperFunction)
 	deactive_trigger = script_tree.getObject("deactive_trigger", TriggerTimer)

@@ -1,8 +1,8 @@
 extends Node
-class_name FunctionalGraph
+class_name FunctionGraph
 
 var ScriptTree = TypeUnit.type("ScriptTree")
-var Function = TypeUnit.type("Function")
+var FuncUnit = TypeUnit.type("FuncUnit")
 var NullPack = TypeUnit.type("NullPack")
 
 var root				# FuncGraphNode
@@ -12,18 +12,18 @@ var node_index			# int
 var exec_graph			# Dict
 
 class FuncGraphNode:
-	var functional		# Function
+	var func_unit		# Function
 	var ch				# InnerNode_Array
 	var index			# int
 
 	func _init():
-		functional = null
+		func_unit = null
 		ch = []
 		index = 0
 	
 	func copy():
 		var ret = FuncGraphNode.new()
-		ret.functional = functional.copy()
+		ret.func_unit = func_unit.copy()
 		ret.ch = []
 		for node in ch:
 			ret.ch.append(node.copy())
@@ -31,12 +31,12 @@ class FuncGraphNode:
 
 		return ret
 
-	func getFunctional():
-		return functional
+	func getFuncUnit():
+		return func_unit
 	
-	func setFunctional(functional_):
-		functional = functional_
-		ch.resize(functional.getParamsNum())
+	func setFuncUnit(func_unit_):
+		func_unit = func_unit_
+		ch.resize(func_unit.getParamsNum())
 	
 	func getCh(idx):
 		return ch[idx]
@@ -69,13 +69,13 @@ class FuncGraphNode:
 	func pack():
 		var script_tree = ScriptTree.new()
 
-		script_tree.addObject("functional", functional)
+		script_tree.addObject("func_unit", func_unit)
 		script_tree.addAttr("index", index)
 
 		return script_tree
 	
 	func loadScript(script_tree):
-		functional = script_tree.getObject("functional", Function)
+		func_unit = script_tree.getObject("func_unit", FuncUnit)
 		index = script_tree.getInt("index")
 
 func _init():
@@ -86,9 +86,9 @@ func _init():
 	exec_graph = {}
 	
 func copy():
-	var ret = TypeUnit.type("FunctionalGraph").new()
+	var ret = TypeUnit.type("FunctionGraph").new()
 	ret.root = root.copy()
-	ret.graph = graph
+	ret.graph = graph.duplicate()
 	ret.request_params = request_params.duplicate(true)
 	ret.node_index = node_index
 	ret.exec_graph = {}
@@ -97,9 +97,9 @@ func copy():
 	
 	return ret
 
-func genNode(functional):
+func genNode(func_unit):
 	var node = FuncGraphNode.new()
-	node.setFunctional(functional)
+	node.setFuncUnit(func_unit)
 	return node
 
 func setRoot(node):
@@ -118,7 +118,7 @@ func getParamsNum():
 	return request_params.size()
 
 func getRetType():
-	return root.getFunctiontal().getRetType()
+	return root.getFuncUnit().getRetType()
 	
 func exec(params):
 	exec_graph = {}
@@ -152,7 +152,7 @@ func __dfsConstruct(u):
 
 	graph.append([])
 
-	var cur_func = u.getFunctional()
+	var cur_func = u.getFuncUnit()
 	var cur_request_params = cur_func.getParamsType()
 	
 	var param_index = 0
@@ -184,7 +184,7 @@ func __reconstructTree(flat_tree):
 	setRoot(flat_tree[0])
 
 func __dfsExec(u, params):
-	var cur_func = u.getFunctional()
+	var cur_func = u.getFuncUnit()
 	var cur_index = u.getIndex()
 	var cur_params = []
 	cur_params.resize(u.getChSize())

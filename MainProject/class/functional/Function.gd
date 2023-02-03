@@ -1,78 +1,61 @@
 extends Node
 class_name Function
 
+var FuncGraph = TypeUnit.type("FuncGraph")
 var ScriptTree = TypeUnit.type("ScriptTree")
-var ParamList = TypeUnit.type("ParamList")
+var DictMap = TypeUnit.type("DictMap")
 
-var func_name				# String
-var func_set_name			# String
-var default_params			# ParamList 
+var graph		# FunctionalGraph
+var param_map	# DictMap
 
 func _init():
-	func_name = ""
-	func_set_name = ""
-	default_params = ParamList.new()
+	graph = null
+	param_map = DictMap.new()
 
 func copy():
-	var ret = TypeUnit.type("Function").new()
-	ret.func_name = func_name
-	ret.func_set_name = func_set_name
-	ret.default_params = default_params.copy()
+	var ret = TypeUnit.type("DictMap").new()
+	ret.graph = graph.copy()
+	ret.param_map = param_map.copy()
 
 	return ret
 
 func exec(params):
-	return FunctionalCategory.exec(func_name, func_set_name, params)
+	return graph.exec(param_map.trans(params))
 
-# func_name
-func getFuncName():
-	return func_name
+# graph
+func getGraph():
+	return graph
 
-func setFuncName(func_name_):
-	func_name = func_name_
-
-# func_set_name
-func getFuncSetName():
-	return func_set_name
-
-func setFuncSetName(func_set_name_):
-	func_set_name = func_set_name_
-
-# default_params
-func hasDefaultParam(index):
-	return default_params.hasParam(index)
-
-func getDefaultParam(index):
-	return default_params.getParam(index)
-
-func initDefaultParams():
-	default_params.resize(getParamsNum())
-
-func setDefaultParam(index, param_type, param):
-	default_params.setParam(index, param_type, param)
-
-func delDefaultParam(index):
-	default_params.delParam(index)
-
-func getRetType():
-	return FunctionalCategory.getRetType(func_set_name, func_name)
+func setGraph(graph_):
+	graph = graph_
 
 func getParamsType():
-	return FunctionalCategory.getParamsType(func_set_name, func_name)
+	return graph.getParamsType()
 
 func getParamsNum():
-	return getParamsType().size()
+	return graph.getParamsNum()
+
+func getRetType():
+	return graph.getRetType()
+
+# param_map
+func getParamMap():
+	return param_map
+
+func initParamMap():
+	param_map.setMap(graph.getParamsType().keys())
+
+func setMap(map):
+	param_map.setMap(map)
 
 func pack():
 	var script_tree = ScriptTree.new()
 
-	script_tree.addAttr("func_name", func_name)
-	script_tree.addAttr("func_set_name", func_set_name)
-	script_tree.addObject("default_params", default_params)
+	script_tree.addObject("graph", graph)
+	script_tree.addObject("param_map", param_map)
 
 	return script_tree
 
 func loadScript(script_tree):
-	func_name = script_tree.getStr("func_name")
-	func_set_name = script_tree.getStr("func_set_name")
-	default_params = script_tree.getObject("default_params", ParamList)
+	graph = script_tree.getObject("graph", FunctionGraph)
+	param_map = script_tree.getObject("param_map", DictMap)

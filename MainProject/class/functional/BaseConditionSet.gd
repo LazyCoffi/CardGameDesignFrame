@@ -1,4 +1,4 @@
-extends "res://class/functional/FunctionalSet.gd"
+extends "res://class/functional/FuncSet.gd"
 class_name BaseConditionSet
 
 func _init():

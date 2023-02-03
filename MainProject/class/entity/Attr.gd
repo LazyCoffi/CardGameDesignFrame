@@ -2,7 +2,7 @@ extends Node
 class_name Attr
 
 var ScriptTree = TypeUnit.type("ScriptTree")
-var Filter = TypeUnit.type("Filter")
+var Function = TypeUnit.type("Function")
 
 var table
 
@@ -10,23 +10,23 @@ class AttrNode:
 	var attr_name
 	var attr
 	var attr_type
-	var getter_filter
-	var setter_filter
+	var getter_function
+	var setter_function
 
 	func _init():
 		attr_name = ""
 		attr_type = ""
 		attr = null
-		getter_filter = null
-		setter_filter = null
+		getter_function = null
+		setter_function = null
 
 	func copy():
 		var ret = AttrNode.new()
 		ret.attr_name = attr_name
 		ret.attr_type = attr_type
 		ret.attr = attr
-		ret.getter_filter = getter_filter.copy()
-		ret.setter_filter = setter_filter.copy()
+		ret.getter_function = getter_function.copy()
+		ret.setter_function = setter_function.copy()
 
 		return ret
 	
@@ -51,19 +51,19 @@ class AttrNode:
 	func setAttr(attr_):
 		attr = setter(attr_)
 
-	# getter_filter
+	# getter_function
 	func getter(cur_attr):
-		return getter_filter.exec([cur_attr])
+		return getter_function.exec([cur_attr])
 	
-	func setGetterFilter(getter_filter_):
-		getter_filter = getter_filter_
+	func setGetterFilter(getter_function_):
+		getter_function = getter_function_
 	
-	# setter_filter
+	# setter_function
 	func setter(cur_attr):
-		return setter_filter.exec([cur_attr])
+		return setter_function.exec([cur_attr])
 
-	func setSetterFilter(setter_filter_):
-		setter_filter = setter_filter_
+	func setSetterFilter(setter_function_):
+		setter_function = setter_function_
 	
 	func pack():
 		var script_tree = ScriptTree.new()
@@ -71,8 +71,8 @@ class AttrNode:
 		script_tree.addAttr("attr_name", attr_name)
 		script_tree.addAttr("attr_type", attr_type)
 		script_tree.addAttr("attr", attr)
-		script_tree.addObject("getter_filter", getter_filter)
-		script_tree.addObject("setter_filter", setter_filter)
+		script_tree.addObject("getter_function", getter_function)
+		script_tree.addObject("setter_function", setter_function)
 
 		return script_tree
 	
@@ -80,8 +80,8 @@ class AttrNode:
 		attr_name = script_tree.getStr("attr_name")
 		attr_type = script_tree.getStr("attr_type")
 		attr = script_tree.getRawAttr("attr")
-		getter_filter = script_tree.getObject("getter_filter", Filter)
-		setter_filter = script_tree.getObjectDict("setter_filter", Filter)
+		getter_function = script_tree.getObject("getter_function", Function)
+		setter_function = script_tree.getObjectDict("setter_function", Function)
 
 func _init():
 	table = {}
@@ -111,13 +111,13 @@ func getAttrList():
 func setAttr(attr_name, attr):
 	table[attr_name].setAttr(attr)
 
-func addAttr(attr_name, attr_type, attr, getter_filter, setter_filter):
+func addAttr(attr_name, attr_type, attr, getter_function, setter_function):
 	var attr_node = AttrNode.new()
 	attr_node.setAttrName(attr_name)
 	attr_node.setAttrType(attr_type)
 	attr_node.setAttr(attr)
-	attr_node.setGetterFilter(getter_filter)
-	attr_node.setSetterFilter(setter_filter)
+	attr_node.setGetterFilter(getter_function)
+	attr_node.setSetterFilter(setter_function)
 
 	table[attr_name] = attr_node
 

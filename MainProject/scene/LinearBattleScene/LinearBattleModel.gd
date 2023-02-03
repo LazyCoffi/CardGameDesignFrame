@@ -4,7 +4,7 @@ class_name LinearBattleModel
 var ScriptTree = TypeUnit.type("ScriptTree")
 var BattleCharacterCard = TypeUnit.type("BattleCharacterCard")
 var BattleSkillCard = TypeUnit.type("BattleSkillCard")
-var Filter = TypeUnit.type("Filter")
+var Function = TypeUnit.type("Function")
 var DictArray = TypeUnit.type("DictArray")
 var SettingTable = TypeUnit.type("SettingTable")
 var PollingBucket = TypeUnit.type("PollingBucket")
@@ -16,7 +16,7 @@ var param_table				# Dict
 var setting					# SettingTable
 var character_groups		# Character_DictArray_Array
 var order_bucket			# Character_PollingBucket
-var character_deal_filter	# Filter
+var character_deal_function	# Function
 var cur_character_card		# CharacterCard
 var hand_cards_table		# SkillCard_DictArray_Dict
 var total_round				# int
@@ -26,7 +26,7 @@ func _init():
 	character_groups = []
 	order_bucket = PollingBucket.new()
 	order_bucket.setParamType(BattleCharacterCard)
-	character_deal_filter = Filter.new()
+	character_deal_function = Function.new()
 	cur_character_card = BattleCharacterCard.new()
 	hand_cards_table = {}
 	__setParamTable()
@@ -62,12 +62,12 @@ func getOrderBucket():
 func setOrderBucket(order_bucket_):
 	order_bucket = order_bucket_
 
-# character_deal_filter
+# character_deal_function
 func dealCharacter():
-	return character_deal_filter.exec([])
+	return character_deal_function.exec([])
 
-func setCharacterDealFilter(character_deal_filter_):
-	character_deal_filter = character_deal_filter_
+func setCharacterDealFunction(character_deal_function_):
+	character_deal_function = character_deal_function_
 
 # cur_character_card
 func getCurCharacterCard():
@@ -117,7 +117,7 @@ func pack():
 	script_tree.addObject("setting", setting)
 	script_tree.addTypeObjectArray("character_groups", character_groups)
 	script_tree.addTypeObject("order_bucket", order_bucket)
-	script_tree.addObject("character_deal_filter", character_deal_filter)
+	script_tree.addObject("character_deal_function", character_deal_function)
 	script_tree.addObject("cur_character_card", cur_character_card)
 	script_tree.addTypeObjectDict("hand_cards_table", hand_cards_table)
 	script_tree.addAttr("total_round", total_round)
@@ -128,7 +128,7 @@ func loadScript(script_tree):
 	setting = script_tree.getObject("setting", SettingTable)
 	character_groups = script_tree.getTypeObjectArray("character_groups", DictArray, BattleCharacterCard)
 	order_bucket = script_tree.getTypeObject("order_bucket", PollingBucket, BattleCharacterCard)
-	character_deal_filter = script_tree.getObject("character_deal_filter", Filter)
+	character_deal_function = script_tree.getObject("character_deal_function", Function)
 	cur_character_card = script_tree.getObject("cur_character_card", BattleCharacterCard)
 	hand_cards_table = script_tree.getTypeObjectDict("hand_cards_table", DictArray, SkillCard)
 	total_round = script_tree.getInt("total_round")
@@ -138,7 +138,7 @@ func __setParamTable():
 	__addParam("setting", setting)
 	__addParam("character_groups", character_groups)
 	__addParam("order_bucket", order_bucket)
-	__addParam("character_deal_filter", character_deal_filter)
+	__addParam("character_deal_function", character_deal_function)
 	__addParam("cur_character_card", cur_character_card)
 	__addParam("hand_cards_table", hand_cards_table)
 	__addParam("total_round", total_round)

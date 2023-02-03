@@ -1,5 +1,5 @@
 extends Node
-class_name FunctionalSet
+class_name FuncSet
 
 var func_form
 

@@ -30,7 +30,7 @@
 			"buffer": [
 
 			],
-			"init_shuffle_filter": {
+			"init_shuffle_function": {
 				"graph": {
 					"graph": [
 						null,
@@ -44,9 +44,9 @@
 					"node_index": 1,
 					"flat_tree": [
 						{
-							"functional": {
+							"func_unit": {
 								"func_name": "randomShuffle",
-								"func_set_name": "ArrayOperFunctionSet",
+								"func_set_name": "ArrayOperFuncSet",
 								"default_params": {
 									"list": [
 										{
@@ -68,7 +68,7 @@
 					]
 				}
 			},
-			"regular_shuffle_filter": {
+			"regular_shuffle_function": {
 				"graph": {
 					"graph": [
 						null,
@@ -82,9 +82,9 @@
 					"node_index": 1,
 					"flat_tree": [
 						{
-							"functional": {
+							"func_unit": {
 								"func_name": "returnVal",
-								"func_set_name": "BaseFunctionSet",
+								"func_set_name": "BaseFuncSet",
 								"default_params": {
 									"list": [
 										{
@@ -107,7 +107,7 @@
 				}
 			}
 		},
-		"character_deal_filter": {
+		"character_deal_function": {
 			"graph": {
 				"graph": [
 					null,
@@ -151,9 +151,9 @@
 				"node_index": 10,
 				"flat_tree": [
 					{
-						"functional": {
+						"func_unit": {
 							"func_name": "appendVal",
-							"func_set_name": "ArrayOperFunctionSet",
+							"func_set_name": "ArrayOperFuncSet",
 							"default_params": {
 								"list": [
 									{
@@ -174,9 +174,9 @@
 						"index": 1
 					},
 					{
-						"functional": {
+						"func_unit": {
 							"func_name": "packArray",
-							"func_set_name": "ArrayOperFunctionSet",
+							"func_set_name": "ArrayOperFuncSet",
 							"default_params": {
 								"list": [
 									{
@@ -191,9 +191,9 @@
 						"index": 2
 					},
 					{
-						"functional": {
+						"func_unit": {
 							"func_name": "appendVal",
-							"func_set_name": "ArrayOperFunctionSet",
+							"func_set_name": "ArrayOperFuncSet",
 							"default_params": {
 								"list": [
 									{
@@ -214,9 +214,9 @@
 						"index": 3
 					},
 					{
-						"functional": {
+						"func_unit": {
 							"func_name": "packArray",
-							"func_set_name": "ArrayOperFunctionSet",
+							"func_set_name": "ArrayOperFuncSet",
 							"default_params": {
 								"list": [
 									{
@@ -231,9 +231,9 @@
 						"index": 4
 					},
 					{
-						"functional": {
+						"func_unit": {
 							"func_name": "getCardWithDefaultName",
-							"func_set_name": "CardOperFunctionSet",
+							"func_set_name": "CardOperFuncSet",
 							"default_params": {
 								"list": [
 									{
@@ -248,9 +248,9 @@
 						"index": 5
 					},
 					{
-						"functional": {
+						"func_unit": {
 							"func_name": "getCardWithDefaultName",
-							"func_set_name": "CardOperFunctionSet",
+							"func_set_name": "CardOperFuncSet",
 							"default_params": {
 								"list": [
 									{
@@ -265,9 +265,9 @@
 						"index": 6
 					},
 					{
-						"functional": {
+						"func_unit": {
 							"func_name": "appendVal",
-							"func_set_name": "ArrayOperFunctionSet",
+							"func_set_name": "ArrayOperFuncSet",
 							"default_params": {
 								"list": [
 									{
@@ -288,9 +288,9 @@
 						"index": 7
 					},
 					{
-						"functional": {
+						"func_unit": {
 							"func_name": "packArray",
-							"func_set_name": "ArrayOperFunctionSet",
+							"func_set_name": "ArrayOperFuncSet",
 							"default_params": {
 								"list": [
 									{
@@ -305,9 +305,9 @@
 						"index": 8
 					},
 					{
-						"functional": {
+						"func_unit": {
 							"func_name": "getCardWithDefaultName",
-							"func_set_name": "CardOperFunctionSet",
+							"func_set_name": "CardOperFuncSet",
 							"default_params": {
 								"list": [
 									{
@@ -322,9 +322,9 @@
 						"index": 9
 					},
 					{
-						"functional": {
+						"func_unit": {
 							"func_name": "getCardWithDefaultName",
-							"func_set_name": "CardOperFunctionSet",
+							"func_set_name": "CardOperFuncSet",
 							"default_params": {
 								"list": [
 									{

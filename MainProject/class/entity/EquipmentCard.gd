@@ -1,9 +1,9 @@
 extends "res://class/entity/Card.gd"
 class_name EquipmentCard
 
-var equip_func 			# LocalFunction
-var unequip_func 		# LocalFunction
-var equip_condition		# Filter 
+var equip_func 			# HyperFunction
+var unequip_func 		# HyperFunction
+var equip_condition		# Function 
 
 func _init():
 	equip_func = null
@@ -43,6 +43,6 @@ func pack():
 
 func loadScript(script_tree):
 	.loadScript(script_tree)
-	equip_func = script_tree.loadObject("equip_func", LocalFunction)
-	unequip_func = script_tree.loadObject("unequip_func", LocalFunction)
-	equip_condition = script_tree.loadObject("equip_condition", Filter)
+	equip_func = script_tree.loadObject("equip_func", HyperFunction)
+	unequip_func = script_tree.loadObject("unequip_func", HyperFunction)
+	equip_condition = script_tree.loadObject("equip_condition", Function)

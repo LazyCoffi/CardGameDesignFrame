@@ -1,7 +1,7 @@
 extends Node
 
 var ScriptTree = TypeUnit.type("ScriptTree")
-var Filter = TypeUnit.type("Filter")
+var Function = TypeUnit.type("Function")
 var CategoryTree = TypeUnit.type("CategoryTree")
 
 class CacheNode:
@@ -9,7 +9,7 @@ class CacheNode:
 	var card_type
 	var card_template
 	var copy_count
-	var revise_filter
+	var revise_function
 
 	func _init():
 		copy_count = 0
@@ -54,15 +54,15 @@ class CacheNode:
 	func getCopyCount():
 		return copy_count
 	
-	# revise_filter
+	# revise_function
 	func revise(card):
-		return revise_filter.exec([card])
+		return revise_function.exec([card])
 
-	func getReviseFilter():
-		return revise_filter
+	func getReviseFunction():
+		return revise_function
 	
-	func setReviseFilter(revise_filter_):
-		revise_filter = revise_filter_
+	func setReviseFunction(revise_function_):
+		revise_function = revise_function_
 	
 	func pack():
 		var script_tree = ScriptTree.new()
@@ -71,7 +71,7 @@ class CacheNode:
 		script_tree.addAttr("card_type", card_type)
 		script_tree.addObject("card_template", card_template)
 		script_tree.addAttr("copy_count", copy_count)
-		script_tree.addObject("revise_filter", revise_filter)
+		script_tree.addObject("revise_function", revise_function)
 
 		return script_tree
 
@@ -81,7 +81,7 @@ class CacheNode:
 		var param_type = TypeUnit.type(card_type)
 		card_template = script_tree.getObject("card_template", param_type)
 		copy_count = script_tree.getInt("copy_count")
-		revise_filter = script_tree.getObject("revise_filter", Filter)
+		revise_function = script_tree.getObject("revise_function", Function)
 
 var category_tree
 var table
@@ -97,12 +97,12 @@ func getCard(template_name, card_name):
 func getCardWithDefaultName(template_name):
 	return table[template_name].getCardWithDefaultName()
 
-func addTemplate(card_type, card_template, revise_filter, index_list):
+func addTemplate(card_type, card_template, revise_function, index_list):
 	var node = CacheNode.new()
 	node.setTemplateName(node.getTemplateName())
 	node.setCardType(card_type)
 	node.setCardTemplate(card_template)
-	node.setReviseFilter(revise_filter)
+	node.setReviseFunction(revise_function)
 
 	table[node.getTemplateName()] = node
 

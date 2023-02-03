@@ -2,9 +2,9 @@ extends Node
 class_name Card
 
 var Attr = TypeUnit.type("Attr")
-var LocalFunction = TypeUnit.type("LocalFunction")
 var ScriptTree = TypeUnit.type("ScriptTree")
-var Filter = TypeUnit.type("Filter")
+var Function = TypeUnit.type("Function")
+var HyperFunction = TypeUnit.type("HyperFunction")
 
 var card_name 				# String
 var avator_name				# String

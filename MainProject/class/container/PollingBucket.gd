@@ -4,7 +4,7 @@ class_name PollingBucket
 ## 轮询桶: 基本逻辑为一轮内当前桶内的顺序保持不变，在一轮结束前桶内只允许删除不允许增加，新加入的内容储存至缓冲区；一轮结束后，将缓冲区内容加入，重排所有内容，并从头开始轮询
 
 var ScriptTree = TypeUnit.type("ScriptTree")
-var Filter = TypeUnit.type("Filter")
+var Function = TypeUnit.type("Function")
 var Integer = TypeUnit.type("Integer")
 var Float = TypeUnit.type("Float")
 var StringPack = TypeUnit.type("StringPack")
@@ -59,8 +59,8 @@ class BucketNode:
 var pointer
 var bucket
 var buffer
-var init_shuffle_filter
-var regular_shuffle_filter
+var init_shuffle_function
+var regular_shuffle_function
 
 var param_type
 
@@ -68,8 +68,8 @@ func _init():
 	pointer = 0
 	bucket = []
 	buffer = []
-	init_shuffle_filter = null
-	regular_shuffle_filter = null
+	init_shuffle_function = null
+	regular_shuffle_function = null
 
 func copy():
 	var ret = TypeUnit.type("PollingBucket")
@@ -80,8 +80,8 @@ func copy():
 	ret.buffer = []
 	for node in buffer:
 		ret.buffer.append(node.copy())
-	ret.init_shuffle_filter = init_shuffle_filter.copy()
-	ret.regular_shuffle_filter = ret.regular_shuffle_filter.copy()
+	ret.init_shuffle_function = init_shuffle_function.copy()
+	ret.regular_shuffle_function = ret.regular_shuffle_function.copy()
 
 	ret.param_type = param_type
 	
@@ -117,20 +117,19 @@ func getBuffer():
 func setBuffer(buffer_):
 	buffer = buffer_
 
-# init_shuffle_filter
-func getInitShuffleFilter():
-	return init_shuffle_filter
+# init_shuffle_function
+func getInitShuffleFunction():
+	return init_shuffle_function
 
-func setInitShuffleFilter(init_shuffle_filter_):
-	init_shuffle_filter = init_shuffle_filter_
+func setInitShuffleFunction(init_shuffle_function_):
+	init_shuffle_function = init_shuffle_function_
 
-# regular_shuffle_filter
-func getRegularShuffleFilter():
-	return regular_shuffle_filter
+# regular_shuffle_function
+func getRegularShuffleFunction():
+	return regular_shuffle_function
 
-func setRegularShuffleFilter(regular_shuffle_filter_):
-	 regular_shuffle_filter = regular_shuffle_filter_
-
+func setRegularShuffleFunction(regular_shuffle_function_):
+	 regular_shuffle_function = regular_shuffle_function_
 
 func getParamName():
 	Exception.assert(pointer < bucket.size())
@@ -176,18 +175,18 @@ func del(param_name):
 	
 	return null
 	
-func __shuffle(filter):
-	filter.exec(bucket)
+func __shuffle(function):
+	function.exec(bucket)
 
 func __initConstruct():
 	bucket.append(buffer)
 	buffer.clear()
-	__shuffle(init_shuffle_filter)
+	__shuffle(init_shuffle_function)
 
 func __regularConstruct():
 	bucket.append(buffer)
 	buffer.clear()
-	__shuffle(regular_shuffle_filter)
+	__shuffle(regular_shuffle_function)
 
 func __genNode(param_name, param):
 	var ret = BucketNode.new()
@@ -202,8 +201,8 @@ func pack():
 	script_tree.addAttr("pointer", pointer)
 	script_tree.addTypeObjectArray("bucket", bucket)
 	script_tree.addTypeObjectArray("buffer", buffer)
-	script_tree.addObject("init_shuffle_filter", init_shuffle_filter)
-	script_tree.addObject("regular_shuffle_filter", regular_shuffle_filter)
+	script_tree.addObject("init_shuffle_function", init_shuffle_function)
+	script_tree.addObject("regular_shuffle_function", regular_shuffle_function)
 
 	return script_tree
 
@@ -211,5 +210,5 @@ func loadScript(script_tree):
 	pointer = script_tree.getInt("pointer")
 	bucket = script_tree.getTypeObjectArray("bucket", BucketNode, param_type)
 	buffer = script_tree.getTypeObjectArray("buffer", BucketNode, param_type)
-	init_shuffle_filter = script_tree.getObject("init_shuffle_filter", Filter)
-	regular_shuffle_filter = script_tree.getObject("regular_shuffle_filter", Filter)
+	init_shuffle_function = script_tree.getObject("init_shuffle_function", Function)
+	regular_shuffle_function = script_tree.getObject("regular_shuffle_function", Function)

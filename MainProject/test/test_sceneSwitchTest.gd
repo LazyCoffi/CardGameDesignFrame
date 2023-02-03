@@ -2,10 +2,10 @@ extends GutTest
 
 var SwitchTargetTable = TypeUnit.type("SwitchTargetTable")
 var SettingTable = TypeUnit.type("SettingTable")
-var Filter = TypeUnit.type("Filter")
+var Function = TypeUnit.type("Function")
 var PollingBucket = TypeUnit.type("PollingBucket")
 var BattleCharacterCard = TypeUnit.type("BattleCharacterCard")
-var FunctionalGraph = TypeUnit.type("FunctionalGraph")
+var FuncGraph = TypeUnit.type("FuncGraph")
 
 var MainMenuScene = TypeUnit.type("MainMenuScene")
 var MainMenuModel = TypeUnit.type("MainMenuModel")
@@ -50,76 +50,76 @@ func __buildOrderBucket():
 	var order_bucket = PollingBucket.new()
 	order_bucket.setParamType(BattleCharacterCard)
 
-	var init_filter = Filter.new()
-	var init_graph = FunctionalGraph.new()
-	var init_func = Function.new()
+	var init_function = Function.new()
+	var init_graph = FuncGraph.new()
+	var init_func = FuncUnit.new()
 
-	init_func.setFuncSetName("ArrayOperFunctionSet")
+	init_func.setFuncSetName("ArrayOperFuncSet")
 	init_func.setFuncName("randomShuffle")
 	init_func.initDefaultParams()
 	var init_node = init_graph.genNode(init_func)
 	init_graph.setRoot(init_node)
-	init_filter.setGraph(init_graph)
-	init_filter.initParamMap()
+	init_function.setGraph(init_graph)
+	init_function.initParamMap()
 
-	var regular_filter = Filter.new()
-	var regular_graph = FunctionalGraph.new()
-	var regular_func = Function.new()
-	regular_func.setFuncSetName("BaseFunctionSet")
+	var regular_function = Function.new()
+	var regular_graph = FuncGraph.new()
+	var regular_func = FuncUnit.new()
+	regular_func.setFuncSetName("BaseFuncSet")
 	regular_func.setFuncName("returnVal")
 	regular_func.initDefaultParams()
 	var regular_node = regular_graph.genNode(regular_func)
 	regular_graph.setRoot(regular_node)
-	regular_filter.setGraph(regular_graph)
-	regular_filter.initParamMap()
+	regular_function.setGraph(regular_graph)
+	regular_function.initParamMap()
 
-	order_bucket.setInitShuffleFilter(init_filter)
-	order_bucket.setRegularShuffleFilter(regular_filter)
+	order_bucket.setInitShuffleFunction(init_function)
+	order_bucket.setRegularShuffleFunction(regular_function)
 
 	return order_bucket
 
-func __buildGetCardFunction():
-	var card_function = Function.new()
-	card_function.setFuncSetName("CardOperFunctionSet")
+func __buildGetCardFuncUnit():
+	var card_function = FuncUnit.new()
+	card_function.setFuncSetName("CardOperFuncSet")
 	card_function.setFuncName("getCardWithDefaultName")
 	card_function.initDefaultParams()
 	card_function.setDefaultParam(0, "StringPack", "ch")
 
 	return card_function
 
-func __buildPackFunction():
-	var pack_function = Function.new()
-	pack_function.setFuncSetName("ArrayOperFunctionSet")
+func __buildPackFuncUnit():
+	var pack_function = FuncUnit.new()
+	pack_function.setFuncSetName("ArrayOperFuncSet")
 	pack_function.setFuncName("packArray")
 	pack_function.initDefaultParams()
 
 	return pack_function
 
-func __buildAppendFunction():
-	var pack_function = Function.new()
-	pack_function.setFuncSetName("ArrayOperFunctionSet")
+func __buildAppendFuncUnit():
+	var pack_function = FuncUnit.new()
+	pack_function.setFuncSetName("ArrayOperFuncSet")
 	pack_function.setFuncName("appendVal")
 	pack_function.initDefaultParams()
 
 	return pack_function
 
 
-func __buildCharacterDealFilter():
-	var character_deal_filter = Filter.new()
-	var graph = FunctionalGraph.new()
+func __buildCharacterDealFunction():
+	var character_deal_function = Function.new()
+	var graph = FuncGraph.new()
 
-	var node1 = graph.genNode(__buildGetCardFunction())
-	var node2 = graph.genNode(__buildGetCardFunction())
-	var node3 = graph.genNode(__buildGetCardFunction())
-	var node4 = graph.genNode(__buildGetCardFunction())
+	var node1 = graph.genNode(__buildGetCardFuncUnit())
+	var node2 = graph.genNode(__buildGetCardFuncUnit())
+	var node3 = graph.genNode(__buildGetCardFuncUnit())
+	var node4 = graph.genNode(__buildGetCardFuncUnit())
 
-	var pack_node1 = graph.genNode(__buildPackFunction())
-	var pack_node2 = graph.genNode(__buildPackFunction())
-	var pack_node3 = graph.genNode(__buildPackFunction())
+	var pack_node1 = graph.genNode(__buildPackFuncUnit())
+	var pack_node2 = graph.genNode(__buildPackFuncUnit())
+	var pack_node3 = graph.genNode(__buildPackFuncUnit())
 
-	var append_node1 = graph.genNode(__buildAppendFunction())
-	var append_node2 = graph.genNode(__buildAppendFunction())
-	var append_node3 = graph.genNode(__buildAppendFunction())
+	var append_node1 = graph.genNode(__buildAppendFuncUnit())
+	var append_node2 = graph.genNode(__buildAppendFuncUnit())
+	var append_node3 = graph.genNode(__buildAppendFuncUnit())
 
 	pack_node1.connectNode(node1, 0)
 	append_node1.connectNode(pack_node1, 0)
@@ -137,15 +137,15 @@ func __buildCharacterDealFilter():
 
 	print(graph.getParamsType())
 		
-	character_deal_filter.setGraph(graph)
-	character_deal_filter.setMap([
+	character_deal_function.setGraph(graph)
+	character_deal_function.setMap([
 		"getCardWithDefaultName_10_0",
 		"getCardWithDefaultName_5_0",
 		"getCardWithDefaultName_6_0",
 		"getCardWithDefaultName_9_0"
 	])
 
-	return character_deal_filter
+	return character_deal_function
 
 func test_buildLinearBattleScript():
 	var linear_battle = LinearBattleScene.instance()
@@ -165,9 +165,9 @@ func test_buildLinearBattleScript():
 	var order_bucket = __buildOrderBucket()
 	linear_battle_model.setOrderBucket(order_bucket)
 
-	# character_deal_filter
-	var character_deal_filter = __buildCharacterDealFilter()
-	linear_battle_model.setCharacterDealFilter(character_deal_filter)
+	# character_deal_function
+	var character_deal_function = __buildCharacterDealFunction()
+	linear_battle_model.setCharacterDealFunction(character_deal_function)
 
 	linear_battle.setSceneModel(linear_battle_model)
 
@@ -176,22 +176,22 @@ func test_buildLinearBattleScript():
 
 	pass_test("Create linear battle script success")
 
-func __buildReviseFilter():
-	var filter = Filter.new()
-	var val_function = Function.new()
-	val_function.setFuncSetName("BaseFunctionSet")
+func __buildReviseFunction():
+	var function = Function.new()
+	var val_function = FuncUnit.new()
+	val_function.setFuncSetName("BaseFuncSet")
 	val_function.setFuncName("returnVal")
 	val_function.initDefaultParams()
 
-	var graph = FunctionalGraph.new()
+	var graph = FuncGraph.new()
 	var node = graph.genNode(val_function)
 	graph.setRoot(node)
-	filter.setGraph(graph)
-	filter.setMap([
+	function.setGraph(graph)
+	function.setMap([
 		"returnVal_0_0"
 	])
 
-	return filter
+	return function
 
 func test_createCardTemplate():
 	var card_cache = TypeUnit.type("CardCache").new()
@@ -204,7 +204,7 @@ func test_createCardTemplate():
 	var attr = TypeUnit.type("Attr").new()
 	card.setCardAttr(attr)
 
-	card_cache.addTemplate("BattleCharacterCard", card, __buildReviseFilter(), ["test", "testCard"])
+	card_cache.addTemplate("BattleCharacterCard", card, __buildReviseFunction(), ["test", "testCard"])
 
 	var script_tree = card_cache.pack()
 	script_tree.exportAsJson("res://scripts/system/card_templates.json")

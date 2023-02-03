@@ -1,5 +1,5 @@
-extends "res://class/functional/FunctionalSet.gd"
-class_name SceneOperFunctionSet
+extends "res://class/functional/FuncSet.gd"
+class_name SceneOperFuncSet
 
 func fetchFromScene(scene_name, param_name):
 	return SceneCache.fetchParam(scene_name, param_name)

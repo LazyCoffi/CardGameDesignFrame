@@ -45,7 +45,7 @@
 				}
 			},
 			"copy_count": 0,
-			"revise_filter": {
+			"revise_function": {
 				"graph": {
 					"graph": [
 						null,
@@ -59,9 +59,9 @@
 					"node_index": 1,
 					"flat_tree": [
 						{
-							"functional": {
+							"func_unit": {
 								"func_name": "returnVal",
-								"func_set_name": "BaseFunctionSet",
+								"func_set_name": "BaseFuncSet",
 								"default_params": {
 									"list": [
 										{

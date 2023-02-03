@@ -1,48 +1,48 @@
-extends "res://class/functional/FunctionalSet.gd"
-class_name ArrayOperFunctionSet
+extends "res://class/functional/FuncSet.gd"
+class_name ArrayOperFuncSet
 
 var Heap = TypeUnit.type("Heap")
 
 func _init():
 	__initFuncForm()
 
-func parallelOper(array, functional):
+func parallelOper(array, func_unit):
 	for index in range(array.size()):
-		array[index] = functional.exec(array[index])
+		array[index] = func_unit.exec(array[index])
 	
 	return array
 
-func parallelMultiOper(array, functional_list):
+func parallelMultiOper(array, func_unit_list):
 	for index in range(array.size()):
 		var result = array[index]
-		for functional in functional_list:
-			result = functional.exec(result)
+		for func_unit in func_unit_list:
+			result = func_unit.exec(result)
 		array[index] = result
 	
 	return array
 
-func parallelOperArray(first, second, functional):
+func parallelOperArray(first, second, func_unit):
 	Exception.assert(first.size() == second.size(), "Array has different size!")
 	var ret = []
 	for index in range(first.size()):
-		ret.append(functional.exec(first[index], second[index]))
+		ret.append(func_unit.exec(first[index], second[index]))
 	
 	return ret
 
-func parallelOperArrayOverride(first, second, functional):
+func parallelOperArrayOverride(first, second, func_unit):
 	Exception.assert(first.size() == second.size(), "Arrays has different size!")
 	for index in range(first.size()):
-		first[index] = functional.exec(first[index], second[index])
+		first[index] = func_unit.exec(first[index], second[index])
 	
 	return first
 
-func linearOper(first, functional):
+func linearOper(first, func_unit):
 	if first.empty():
 		return first
 
 	var ret = first.front()
 	for index in range(1, first.size()):
-		ret = functional.exec(ret, first[index])
+		ret = func_unit.exec(ret, first[index])
 	
 	return ret
 
@@ -81,22 +81,22 @@ func arrayDeepCopy(first):
 func shuffle(first):
 	return first.sort()
 
-func shuffleOper(first, functional):
+func shuffleOper(first, func_unit):
 	var heap = Heap.new()
 
 	for node in first:
-		var order = functional.exec(node)
+		var order = func_unit.exec(node)
 		heap.append(node, order)
 	
 	return heap.getSorted()
 
-func shuffleMultiOper(first, functional_list):
+func shuffleMultiOper(first, func_unit_list):
 	var heap = Heap.new()
 
 	for node in first:
 		var order = node
-		for functional in functional_list:
-			order = functional.exec(order)
+		for func_unit in func_unit_list:
+			order = func_unit.exec(order)
 
 		heap.append(node, order)
 	

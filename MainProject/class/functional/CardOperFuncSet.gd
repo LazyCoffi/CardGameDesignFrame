@@ -1,5 +1,5 @@
-extends "res://class/functional/FunctionalSet.gd"
-class_name CardOperFunctionSet
+extends "res://class/functional/FuncSet.gd"
+class_name CardOperFuncSet
 
 func _init():
 	__initFuncForm()

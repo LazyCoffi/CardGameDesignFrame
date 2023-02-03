@@ -1,5 +1,5 @@
-extends "res://class/functional/FunctionalSet.gd"
-class_name BaseFunctionSet
+extends "res://class/functional/FuncSet.gd"
+class_name BaseFuncSet
 
 func _init():
 	func_form = {}

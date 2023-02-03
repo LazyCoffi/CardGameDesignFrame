@@ -1,23 +1,23 @@
 extends GutTest
 
-var Filter = TypeUnit.type("Filter")
-var FunctionalGraph = TypeUnit.type("FunctionalGraph")
 var Function = TypeUnit.type("Function")
+var FuncGraph = TypeUnit.type("FuncGraph")
+var FuncUnit = TypeUnit.type("FuncUnit")
 var ArrangeMap = TypeUnit.type("ArrangeMap")
 var DictMap = TypeUnit.type("DictMap")
-var LocalFunction = TypeUnit.type("LocalFunction")
+var HyperFunction = TypeUnit.type("HyperFunction")
 var ParamList = TypeUnit.type("ParamList")
 var ScriptTree = TypeUnit.type("ScriptTree")
 
 func test_graphTest1():
-	var random_function = Function.new()
-	random_function.setFuncSetName("MathFunctionSet")
-	random_function.setFuncName("randInt")
-	random_function.initDefaultParams()
+	var random_func_unit = FuncUnit.new()
+	random_func_unit.setFuncSetName("MathFuncSet")
+	random_func_unit.setFuncName("randInt")
+	random_func_unit.initDefaultParams()
 
-	var graph = FunctionalGraph.new()
+	var graph = FuncGraph.new()
 
-	var func_graph_node = graph.genNode(random_function)
+	var func_graph_node = graph.genNode(random_func_unit)
 
 	graph.setRoot(func_graph_node)
 
@@ -27,28 +27,28 @@ func test_graphTest1():
 	pass_test("Graph run success")
 
 func test_graphTest2():
-	var const_function = Function.new()
-	const_function.setFuncSetName("MathFunctionSet")
-	const_function.setFuncName("constVal")
-	const_function.initDefaultParams()
-	const_function.setDefaultParam(0, "Integer", 4)
+	var const_func_unit = FuncUnit.new()
+	const_func_unit.setFuncSetName("MathFuncSet")
+	const_func_unit.setFuncName("constVal")
+	const_func_unit.initDefaultParams()
+	const_func_unit.setDefaultParam(0, "Integer", 4)
 
-	var const_function_ = Function.new()
-	const_function_.setFuncSetName("MathFunctionSet")
-	const_function_.setFuncName("constVal")
-	const_function_.initDefaultParams()
-	const_function_.setDefaultParam(0, "Integer", 3)
+	var const_func_unit_ = FuncUnit.new()
+	const_func_unit_.setFuncSetName("MathFuncSet")
+	const_func_unit_.setFuncName("constVal")
+	const_func_unit_.initDefaultParams()
+	const_func_unit_.setDefaultParam(0, "Integer", 3)
 
-	var mul_function = Function.new()
-	mul_function.setFuncSetName("MathFunctionSet")
-	mul_function.setFuncName("mulInt")
-	mul_function.initDefaultParams()
+	var mul_func_unit = FuncUnit.new()
+	mul_func_unit.setFuncSetName("MathFuncSet")
+	mul_func_unit.setFuncName("mulInt")
+	mul_func_unit.initDefaultParams()
 
-	var graph = FunctionalGraph.new()
+	var graph = FuncGraph.new()
 
-	var mul_graph_node = graph.genNode(mul_function)
-	var const_graph_node = graph.genNode(const_function)
-	var const_graph_node_ = graph.genNode(const_function_)
+	var mul_graph_node = graph.genNode(mul_func_unit)
+	var const_graph_node = graph.genNode(const_func_unit)
+	var const_graph_node_ = graph.genNode(const_func_unit_)
 
 	mul_graph_node.connectNode(const_graph_node, 0)
 	mul_graph_node.connectNode(const_graph_node_, 1)
@@ -68,100 +68,100 @@ func test_buildGraphTest():
 	var script_tree = ScriptTree.new()
 	script_tree.loadFromJson("res://test/testFile/graphPack.json")
 
-	var graph = FunctionalGraph.new()
+	var graph = FuncGraph.new()
 	graph.loadScript(script_tree)
 
-	var filter = Filter.new()
-	filter.setGraph(graph)
-	filter.setMap([
+	var function = Function.new()
+	function.setGraph(graph)
+	function.setMap([
 		"plusInt_2_0",
 		"plusInt_2_1",
 		"mulInt_3_0",
 		"mulInt_3_1"
 	])
 
-	assert_eq(filter.exec([2, 10, 2, 4]), 4)
-	assert_eq(filter.exec([2, 3, 2, 6]), -7)
+	assert_eq(function.exec([2, 10, 2, 4]), 4)
+	assert_eq(function.exec([2, 3, 2, 6]), -7)
 
 
-func test_filterTest1():
+func test_functionTest1():
 	var graph = __getTestGraph1()
 	
-	var filter = Filter.new()
-	filter.setGraph(graph)
-	filter.initParamMap()
+	var function = Function.new()
+	function.setGraph(graph)
+	function.initParamMap()
 
-	assert_eq(filter.exec({}), 7)
+	assert_eq(function.exec({}), 7)
 
-func test_filterTest2():
+func test_functionTest2():
 	var graph = __getTestGraph2()
 	
-	var filter = Filter.new()
-	filter.setGraph(graph)
-	filter.setMap([
+	var function = Function.new()
+	function.setGraph(graph)
+	function.setMap([
 		"plusInt_2_0",
 		"plusInt_2_1",
 		"mulInt_3_0",
 		"mulInt_3_1"
 	])
 
-	assert_eq(filter.exec([2, 10, 2, 4]), 4)
-	assert_eq(filter.exec([2, 3, 2, 6]), -7)
+	assert_eq(function.exec([2, 10, 2, 4]), 4)
+	assert_eq(function.exec([2, 3, 2, 6]), -7)
 
-func test_localFunction():
+func test_hyperFunction():
 	var graph1 = __getTestGraph2()
 	var graph2 = __getTestGraph3()
 
-	var filter1 = Filter.new()
+	var function1 = Function.new()
 	
-	filter1.setGraph(graph1)
-	filter1.setMap([
+	function1.setGraph(graph1)
+	function1.setMap([
 		"plusInt_2_0",
 		"plusInt_2_1",
 		"mulInt_3_0",
 		"mulInt_3_1"
 	])
 
-	var filter2 = Filter.new()
+	var function2 = Function.new()
 	
-	filter2.setGraph(graph2)
-	filter2.setMap([
+	function2.setGraph(graph2)
+	function2.setMap([
 		"plusInt_1_1",
 		"plusInt_1_0"
 	])
 
-	var local_function = LocalFunction.new()
-	local_function.addFilter(filter1)
-	local_function.addFilter(filter2)
+	var hyper_function = HyperFunction.new()
+	hyper_function.addFunction(function1)
+	hyper_function.addFunction(function2)
 
-	local_function.setParamMap([5, 4, 3, 2, 1, 0])
-	local_function.setRetMap([1, 0])
+	hyper_function.setParamMap([5, 4, 3, 2, 1, 0])
+	hyper_function.setRetMap([1, 0])
 
-	assert_eq(local_function.exec([1, 2, 3, 4, 5, 6]), [3, -1])
+	assert_eq(hyper_function.exec([1, 2, 3, 4, 5, 6]), [3, -1])
 
 func __getTestGraph1():
-	var const_function = Function.new()
-	const_function.setFuncSetName("MathFunctionSet")
-	const_function.setFuncName("constVal")
-	const_function.initDefaultParams()
-	const_function.setDefaultParam(0, "Integer", 4)
+	var const_func_unit = FuncUnit.new()
+	const_func_unit.setFuncSetName("MathFuncSet")
+	const_func_unit.setFuncName("constVal")
+	const_func_unit.initDefaultParams()
+	const_func_unit.setDefaultParam(0, "Integer", 4)
 
-	var const_function_ = Function.new()
-	const_function_.setFuncSetName("MathFunctionSet")
-	const_function_.setFuncName("constVal")
-	const_function_.initDefaultParams()
-	const_function_.setDefaultParam(0, "Integer", 3)
+	var const_func_unit_ = FuncUnit.new()
+	const_func_unit_.setFuncSetName("MathFuncSet")
+	const_func_unit_.setFuncName("constVal")
+	const_func_unit_.initDefaultParams()
+	const_func_unit_.setDefaultParam(0, "Integer", 3)
 
-	var plus_function = Function.new()
-	plus_function.setFuncSetName("MathFunctionSet")
-	plus_function.setFuncName("plusInt")
-	plus_function.initDefaultParams()
+	var plus_func_unit = FuncUnit.new()
+	plus_func_unit.setFuncSetName("MathFuncSet")
+	plus_func_unit.setFuncName("plusInt")
+	plus_func_unit.initDefaultParams()
 
-	var graph = FunctionalGraph.new()
+	var graph = FuncGraph.new()
 
-	var plus_graph_node = graph.genNode(plus_function)
-	var const_graph_node = graph.genNode(const_function)
-	var const_graph_node_ = graph.genNode(const_function_)
+	var plus_graph_node = graph.genNode(plus_func_unit)
+	var const_graph_node = graph.genNode(const_func_unit)
+	var const_graph_node_ = graph.genNode(const_func_unit_)
 
 	plus_graph_node.connectNode(const_graph_node, 0)
 	plus_graph_node.connectNode(const_graph_node_, 1)
@@ -171,26 +171,26 @@ func __getTestGraph1():
 	return graph
 
 func __getTestGraph2():
-	var plus_function = Function.new()
-	plus_function.setFuncSetName("MathFunctionSet")
-	plus_function.setFuncName("plusInt")
-	plus_function.initDefaultParams()
+	var plus_func_unit = FuncUnit.new()
+	plus_func_unit.setFuncSetName("MathFuncSet")
+	plus_func_unit.setFuncName("plusInt")
+	plus_func_unit.initDefaultParams()
 
-	var mul_function = Function.new()
-	mul_function.setFuncSetName("MathFunctionSet")
-	mul_function.setFuncName("mulInt")
-	mul_function.initDefaultParams()
+	var mul_func_unit = FuncUnit.new()
+	mul_func_unit.setFuncSetName("MathFuncSet")
+	mul_func_unit.setFuncName("mulInt")
+	mul_func_unit.initDefaultParams()
 
-	var minus_function = Function.new()
-	minus_function.setFuncSetName("MathFunctionSet")
-	minus_function.setFuncName("minusInt")
-	minus_function.initDefaultParams()
+	var minus_func_unit = FuncUnit.new()
+	minus_func_unit.setFuncSetName("MathFuncSet")
+	minus_func_unit.setFuncName("minusInt")
+	minus_func_unit.initDefaultParams()
 
-	var graph = FunctionalGraph.new()
+	var graph = FuncGraph.new()
 
-	var plus_node = graph.genNode(plus_function)
-	var mul_node = graph.genNode(mul_function)
-	var minus_node = graph.genNode(minus_function)
+	var plus_node = graph.genNode(plus_func_unit)
+	var mul_node = graph.genNode(mul_func_unit)
+	var minus_node = graph.genNode(minus_func_unit)
 
 	minus_node.connectNode(plus_node, 0)
 	minus_node.connectNode(mul_node, 1)
@@ -200,13 +200,13 @@ func __getTestGraph2():
 	return graph	
 
 func __getTestGraph3():
-	var plus_function = Function.new()
-	plus_function.setFuncSetName("MathFunctionSet")
-	plus_function.setFuncName("plusInt")
-	plus_function.initDefaultParams()
+	var plus_func_unit = FuncUnit.new()
+	plus_func_unit.setFuncSetName("MathFuncSet")
+	plus_func_unit.setFuncName("plusInt")
+	plus_func_unit.initDefaultParams()
 
-	var graph = FunctionalGraph.new()
-	var plus_node = graph.genNode(plus_function)
+	var graph = FuncGraph.new()
+	var plus_node = graph.genNode(plus_func_unit)
 	graph.setRoot(plus_node)
 
 	return graph

@@ -1,12 +1,12 @@
 extends "res://class/entity/Card.gd"
 class_name BattleSkillCard
 
-var play_condition				# Filter
-var target_condition			# Filter
-var counter_condition			# Filter
-var counter_target_condition	# Filter
+var play_condition				# Function
+var target_condition			# Function
+var counter_condition			# Function
+var counter_target_condition	# Function
 var play_type					# int 
-var effect_func					# LocalFunction 
+var effect_func					# HyperFunction 
 
 func _init():
 	play_condition = null
@@ -14,7 +14,7 @@ func _init():
 	counter_condition = null
 	counter_target_condition = null
 	play_type = 0
-	effect_func = LocalFunction.new()
+	effect_func = HyperFunction.new()
 
 func copy():
 	var ret = TypeUnit.type("BattleSkillCard").new()
@@ -32,7 +32,7 @@ func copy():
 
 	return ret
 
-## TODO: 用接口代替直接的Filter/LocalFunction调用
+## TODO: 用接口代替直接的Function/HyperFunction调用
 func isPlayCondition(params):
 	return play_condition.exec(params)
 
@@ -72,9 +72,9 @@ func pack():
 
 func loadScript(script_tree):
 	.loadScript(script_tree)
-	play_condition = script_tree.getObject("play_condition", Filter)
-	target_condition = script_tree.getObject("target_condition", Filter)
-	counter_condition = script_tree.getObject("counter_condition", Filter)
-	counter_target_condition = script_tree.getObject("counter_target_condition", Filter)
+	play_condition = script_tree.getObject("play_condition", Function)
+	target_condition = script_tree.getObject("target_condition", Function)
+	counter_condition = script_tree.getObject("counter_condition", Function)
+	counter_target_condition = script_tree.getObject("counter_target_condition", Function)
 	play_type = script_tree.getInt("play_type")
-	effect_func = script_tree.getObject("effect_func", LocalFunction)
+	effect_func = script_tree.getObject("effect_func", HyperFunction)
