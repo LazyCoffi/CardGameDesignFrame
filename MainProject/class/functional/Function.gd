@@ -57,5 +57,5 @@ func pack():
 	return script_tree
 
 func loadScript(script_tree):
-	graph = script_tree.getObject("graph", FunctionGraph)
+	graph = script_tree.getObject("graph", FuncGraph)
 	param_map = script_tree.getObject("param_map", DictMap)

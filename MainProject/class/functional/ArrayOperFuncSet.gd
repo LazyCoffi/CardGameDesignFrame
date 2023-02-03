@@ -115,14 +115,14 @@ func __swap(array, first, second):
 	array[second] = temp
 
 func __initFuncForm():
-	addFuncForm("parallelOper", "Array", ["Array", "Function"])
-	addFuncForm("parallelOperArray", "Array", ["Array", "Array", "Function"])
-	addFuncForm("parallelOperArrayOverride", "Array", ["Array", "Array", "Function"])
+	addFuncForm("parallelOper", "Array", ["Array", "FuncUnit"])
+	addFuncForm("parallelOperArray", "Array", ["Array", "Array", "FuncUnit"])
+	addFuncForm("parallelOperArrayOverride", "Array", ["Array", "Array", "FuncUnit"])
 	addFuncForm("shuffle", "Array", ["Array"])
-	addFuncForm("shuffleOper", "Array", ["Array", "Function"])
+	addFuncForm("shuffleOper", "Array", ["Array", "FuncUnit"])
 	addFuncForm("shuffleMultiOper", "Array", ["Array", "Array"])
 	addFuncForm("randomShuffle", "Array", ["Array"])
-	addFuncForm("linearOper", "all", ["Array", "Function"])
+	addFuncForm("linearOper", "all", ["Array", "FuncUnit"])
 	addFuncForm("packArray", "Array", ["all"])
 	addFuncForm("appendArray", "Array", ["Array", "Array"])
 	addFuncForm("appendVal", "Array", ["Array", "all"])

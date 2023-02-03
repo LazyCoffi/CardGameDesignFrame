@@ -1,5 +1,5 @@
 extends Node
-class_name FunctionGraph
+class_name FuncGraph
 
 var ScriptTree = TypeUnit.type("ScriptTree")
 var FuncUnit = TypeUnit.type("FuncUnit")

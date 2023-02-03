@@ -55,14 +55,14 @@ class AttrNode:
 	func getter(cur_attr):
 		return getter_function.exec([cur_attr])
 	
-	func setGetterFilter(getter_function_):
+	func setGetterFunction(getter_function_):
 		getter_function = getter_function_
 	
 	# setter_function
 	func setter(cur_attr):
 		return setter_function.exec([cur_attr])
 
-	func setSetterFilter(setter_function_):
+	func setSetterFunction(setter_function_):
 		setter_function = setter_function_
 	
 	func pack():
@@ -116,8 +116,8 @@ func addAttr(attr_name, attr_type, attr, getter_function, setter_function):
 	attr_node.setAttrName(attr_name)
 	attr_node.setAttrType(attr_type)
 	attr_node.setAttr(attr)
-	attr_node.setGetterFilter(getter_function)
-	attr_node.setSetterFilter(setter_function)
+	attr_node.setGetterFunction(getter_function)
+	attr_node.setSetterFunction(setter_function)
 
 	table[attr_name] = attr_node
 
