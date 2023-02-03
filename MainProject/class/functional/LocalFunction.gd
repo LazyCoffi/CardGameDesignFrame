@@ -13,8 +13,8 @@ var ret_map				# ArrangeMap
 func _init():
 	func_name = ""
 	filters = []
-	param_map = null
-	ret_map = null
+	param_map = ArrangeMap.new()
+	ret_map = ArrangeMap.new()
 
 func copy():
 	var ret = TypeUnit.type("LocalFunction").new()
@@ -28,11 +28,33 @@ func copy():
 
 	return ret
 
-func setParamMap(param_map_):
-	param_map = param_map_
+func peekParamMap():
+	return param_map.getMap()
 
-func setRetMap(ret_map_):
-	ret_map = ret_map_
+func setParamMap(map):
+	param_map.setMap(map)
+
+func initParamMap():
+	var size = getParamsNum()
+	var map = []
+	for index in size:
+		map.append(index)
+
+	param_map.setMap(map)
+
+func peekRetMap():
+	return ret_map.getMap()
+
+func setRetMap(map):
+	ret_map.setMap(map)
+
+func initRetMap():
+	var size = getFiltersNum()
+	var map = []
+	for index in size:
+		map.append(index)
+
+	ret_map.setMap(map)
 
 func exec(params):
 	var cur_params = param_map.trans(params)
@@ -41,7 +63,7 @@ func exec(params):
 	for filter in filters:
 		var param_type = filter.getParamsType()
 		var filter_params = []
-		for index in range(param_type.size()):
+		for _index in range(param_type.size()):
 			filter_params.append(cur_params.pop_front()) 
 		ret.append(filter.exec(filter_params))
 

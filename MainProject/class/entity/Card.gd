@@ -1,7 +1,6 @@
 extends Node
 class_name Card
 
-var Info = TypeUnit.type("Info")
 var Attr = TypeUnit.type("Attr")
 var LocalFunction = TypeUnit.type("LocalFunction")
 var ScriptTree = TypeUnit.type("ScriptTree")
@@ -72,10 +71,10 @@ func getAttrFullIndexList():
 	return card_attr.getFullIndexList()
 
 func setAttr(attr_name, attr):
-	card_attr.setAttr(attr)
+	card_attr.setAttr(attr_name, attr)
 
 func delAttr(attr_name):
-	return card_attr.delAttr(attr_)
+	return card_attr.delAttr(attr_name)
 
 func setCardAttr(card_attr_):
 	card_attr = card_attr_

@@ -36,7 +36,7 @@ func register():
 	is_registered = true
 
 func switchScene(next_scene_name):
-	emit_signal(next_scene_name)
+	emit_signal("switchSignal", next_scene_name)
 
 # scene_name
 func getSceneName():

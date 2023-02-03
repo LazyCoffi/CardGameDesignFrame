@@ -121,7 +121,6 @@ func __initTypeTable():
 	__addType("entity", "DictMap")
 	__addType("entity", "EquipmentCard")
 	__addType("entity", "Float")
-	__addType("entity", "Info")
 	__addType("entity", "Integer")
 	__addType("entity", "NullPack")
 	__addType("entity", "ParamList")

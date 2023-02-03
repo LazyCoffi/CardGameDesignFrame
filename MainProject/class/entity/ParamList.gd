@@ -66,7 +66,7 @@ class ParamNode:
 	
 	func loadScript(script_tree):
 		param_type = script_tree.getStr("param_type")
-		var type = TypeUnit.type("type")
+		var type = TypeUnit.type(param_type)
 		param = script_tree.getObject("param", type)
 
 func _init():
@@ -91,7 +91,7 @@ func resize(size):
 func hasParam(index):
 	Exception.assert(index < list.size())
 
-	return list[index].getType() != "NullPack"
+	return list[index].getParamType() != "NullPack"
 
 func getParam(index):
 	Exception.assert(index < list.size())
@@ -123,8 +123,8 @@ func removeParam(index):
 
 func __nullNode():
 	var null_node = ParamNode.new()
-	null_node.setType("NullPack")
-	null_node.setVal(null)
+	null_node.setParamType("NullPack")
+	null_node.setParam(null)
 
 	return null_node
 
@@ -136,4 +136,4 @@ func pack():
 	return script_tree
 
 func loadScript(script_tree):
-	script_tree.getObjectArray("list", ParamNode)
+	list = script_tree.getObjectArray("list", ParamNode)

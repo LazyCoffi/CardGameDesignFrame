@@ -15,7 +15,7 @@ func pack():
 
 	return script_tree
 
-func loadScript(script_tree):
+func loadScript(_script_tree):
 	pass
 
 func __setParamMap():

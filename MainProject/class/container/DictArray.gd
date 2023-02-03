@@ -42,7 +42,7 @@ class ArrayNode:
 	func getOrder():
 		return order
 	
-	func setOrder(orrder_):
+	func setOrder(order_):
 		order = order_
 		
 	func pack():

@@ -35,6 +35,11 @@ func test_buildMainMenuScript():
 
 func __buildSetting():
 	var setting = SettingTable.new()
+
+	setting.addIndex("hand_cards_upper")
+	setting.addIndex("hand_card_rect_size")
+	setting.addIndex("character_card_rect_size")
+
 	setting.setAttr("hand_cards_upper", 10)
 	setting.setAttr("hand_card_rect_size", [90, 160])
 	setting.setAttr("character_card_rect_size", [90, 160])
@@ -55,6 +60,7 @@ func __buildOrderBucket():
 	var init_node = init_graph.genNode(init_func)
 	init_graph.setRoot(init_node)
 	init_filter.setGraph(init_graph)
+	init_filter.initParamMap()
 
 	var regular_filter = Filter.new()
 	var regular_graph = FunctionalGraph.new()
@@ -65,6 +71,7 @@ func __buildOrderBucket():
 	var regular_node = regular_graph.genNode(regular_func)
 	regular_graph.setRoot(regular_node)
 	regular_filter.setGraph(regular_graph)
+	regular_filter.initParamMap()
 
 	order_bucket.setInitShuffleFilter(init_filter)
 	order_bucket.setRegularShuffleFilter(regular_filter)
@@ -129,17 +136,14 @@ func __buildCharacterDealFilter():
 	graph.setRoot(append_node3)
 
 	print(graph.getParamsType())
-
-	var dict_map = DictMap.new()
-	dict_map.setMap([
+		
+	character_deal_filter.setGraph(graph)
+	character_deal_filter.setMap([
 		"getCardWithDefaultName_10_0",
 		"getCardWithDefaultName_5_0",
 		"getCardWithDefaultName_6_0",
 		"getCardWithDefaultName_9_0"
 	])
-	
-	character_deal_filter.setGraph(graph)
-	character_deal_filter.setParamMap(dict_map)
 
 	return character_deal_filter
 
@@ -183,12 +187,9 @@ func __buildReviseFilter():
 	var node = graph.genNode(val_function)
 	graph.setRoot(node)
 	filter.setGraph(graph)
-
-	var dict_map = DictMap.new()
-	dict_map.setMap([
+	filter.setMap([
 		"returnVal_0_0"
 	])
-	filter.setParamMap(dict_map)
 
 	return filter
 
@@ -196,15 +197,12 @@ func test_createCardTemplate():
 	var card_cache = TypeUnit.type("CardCache").new()
 	var card = TypeUnit.type("BattleCharacterCard").new()
 	card.setTemplateName("ch")
-
-	var info = TypeUnit.type("Info").new()
-	info.setAvatorName("ch_avator")
-	info.setIntroduction("test card")
+	card.setCardName("testCard")
+	card.setAvatorName("testAvator")
+	card.setIntroduction("test")
 
 	var attr = TypeUnit.type("Attr").new()
-
-	card.setInfo(info)
-	card.setAttr(attr)
+	card.setCardAttr(attr)
 
 	card_cache.addTemplate("BattleCharacterCard", card, __buildReviseFilter(), ["test", "testCard"])
 

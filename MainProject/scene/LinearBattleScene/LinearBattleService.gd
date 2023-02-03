@@ -27,7 +27,7 @@ func setCurCharacterCard(cur_character_card):
 func popCurCharacterCard():
 	return model_ref.popCurRoundCard()
 
-func markCurCharacter(character_card):
+func markCurCharacter(_character_card):
 	# TODO: 在当前出牌者位置设置标记
 	pass
 

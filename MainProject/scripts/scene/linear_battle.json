@@ -50,8 +50,8 @@
 								"default_params": {
 									"list": [
 										{
-											"type": "NullPack",
-											"val": {
+											"param_type": "NullPack",
+											"param": {
 
 											}
 										}
@@ -64,7 +64,7 @@
 				},
 				"param_map": {
 					"map": [
-
+						"randomShuffle_1_0"
 					]
 				}
 			},
@@ -88,8 +88,8 @@
 								"default_params": {
 									"list": [
 										{
-											"type": "NullPack",
-											"val": {
+											"param_type": "NullPack",
+											"param": {
 
 											}
 										}
@@ -102,7 +102,7 @@
 				},
 				"param_map": {
 					"map": [
-
+						"returnVal_1_0"
 					]
 				}
 			}
@@ -157,14 +157,14 @@
 							"default_params": {
 								"list": [
 									{
-										"type": "NullPack",
-										"val": {
+										"param_type": "NullPack",
+										"param": {
 
 										}
 									},
 									{
-										"type": "NullPack",
-										"val": {
+										"param_type": "NullPack",
+										"param": {
 
 										}
 									}
@@ -180,8 +180,8 @@
 							"default_params": {
 								"list": [
 									{
-										"type": "NullPack",
-										"val": {
+										"param_type": "NullPack",
+										"param": {
 
 										}
 									}
@@ -197,14 +197,14 @@
 							"default_params": {
 								"list": [
 									{
-										"type": "NullPack",
-										"val": {
+										"param_type": "NullPack",
+										"param": {
 
 										}
 									},
 									{
-										"type": "NullPack",
-										"val": {
+										"param_type": "NullPack",
+										"param": {
 
 										}
 									}
@@ -220,8 +220,8 @@
 							"default_params": {
 								"list": [
 									{
-										"type": "NullPack",
-										"val": {
+										"param_type": "NullPack",
+										"param": {
 
 										}
 									}
@@ -237,8 +237,8 @@
 							"default_params": {
 								"list": [
 									{
-										"type": "StringPack",
-										"val": {
+										"param_type": "StringPack",
+										"param": {
 											"val": "ch"
 										}
 									}
@@ -254,8 +254,8 @@
 							"default_params": {
 								"list": [
 									{
-										"type": "StringPack",
-										"val": {
+										"param_type": "StringPack",
+										"param": {
 											"val": "ch"
 										}
 									}
@@ -271,14 +271,14 @@
 							"default_params": {
 								"list": [
 									{
-										"type": "NullPack",
-										"val": {
+										"param_type": "NullPack",
+										"param": {
 
 										}
 									},
 									{
-										"type": "NullPack",
-										"val": {
+										"param_type": "NullPack",
+										"param": {
 
 										}
 									}
@@ -294,8 +294,8 @@
 							"default_params": {
 								"list": [
 									{
-										"type": "NullPack",
-										"val": {
+										"param_type": "NullPack",
+										"param": {
 
 										}
 									}
@@ -311,8 +311,8 @@
 							"default_params": {
 								"list": [
 									{
-										"type": "StringPack",
-										"val": {
+										"param_type": "StringPack",
+										"param": {
 											"val": "ch"
 										}
 									}
@@ -328,8 +328,8 @@
 							"default_params": {
 								"list": [
 									{
-										"type": "StringPack",
-										"val": {
+										"param_type": "StringPack",
+										"param": {
 											"val": "ch"
 										}
 									}
@@ -350,13 +350,11 @@
 			}
 		},
 		"cur_character_card": {
-			"card_name": null,
-			"template_name": null,
-			"info": {
-				"avator_name": null,
-				"introduction": null
-			},
-			"attr": {
+			"card_name": "",
+			"avator_name": "",
+			"introduction": "",
+			"template_name": "",
+			"card_attr": {
 				"table": {
 
 				}
@@ -368,26 +366,7 @@
 				"trash_pile": [
 
 				],
-				"is_random": true,
-				"pop_num_filter": {
-					"graph": {
-						"graph": [
-
-						],
-						"request_params": {
-
-						},
-						"node_index": 0,
-						"flat_tree": [
-
-						]
-					},
-					"param_map": {
-						"map": [
-
-						]
-					}
-				}
+				"is_random": true
 			},
 			"equipment_set": {
 

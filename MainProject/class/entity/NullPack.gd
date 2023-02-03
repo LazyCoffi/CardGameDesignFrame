@@ -15,5 +15,5 @@ func getVal():
 func pack():
 	return ScriptTree.new()
 
-func loadScript(script_tree):
+func loadScript(_script_tree):
 	return

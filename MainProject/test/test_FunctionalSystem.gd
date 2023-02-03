@@ -7,6 +7,7 @@ var ArrangeMap = TypeUnit.type("ArrangeMap")
 var DictMap = TypeUnit.type("DictMap")
 var LocalFunction = TypeUnit.type("LocalFunction")
 var ParamList = TypeUnit.type("ParamList")
+var ScriptTree = TypeUnit.type("ScriptTree")
 
 func test_graphTest1():
 	var random_function = Function.new()
@@ -55,6 +56,88 @@ func test_graphTest2():
 	graph.setRoot(mul_graph_node)
 
 	assert_eq(graph.exec({}), 12)
+
+func test_graphPackTest():
+	var graph = __getTestGraph2()
+	var script_tree = graph.pack()
+	script_tree.exportAsJson("res://test/testFile/graphPack.json")
+
+	pass_test("Create graphPack success")
+
+func test_buildGraphTest():
+	var script_tree = ScriptTree.new()
+	script_tree.loadFromJson("res://test/testFile/graphPack.json")
+
+	var graph = FunctionalGraph.new()
+	graph.loadScript(script_tree)
+
+	var filter = Filter.new()
+	filter.setGraph(graph)
+	filter.setMap([
+		"plusInt_2_0",
+		"plusInt_2_1",
+		"mulInt_3_0",
+		"mulInt_3_1"
+	])
+
+	assert_eq(filter.exec([2, 10, 2, 4]), 4)
+	assert_eq(filter.exec([2, 3, 2, 6]), -7)
+
+
+func test_filterTest1():
+	var graph = __getTestGraph1()
+	
+	var filter = Filter.new()
+	filter.setGraph(graph)
+	filter.initParamMap()
+
+	assert_eq(filter.exec({}), 7)
+
+func test_filterTest2():
+	var graph = __getTestGraph2()
+	
+	var filter = Filter.new()
+	filter.setGraph(graph)
+	filter.setMap([
+		"plusInt_2_0",
+		"plusInt_2_1",
+		"mulInt_3_0",
+		"mulInt_3_1"
+	])
+
+	assert_eq(filter.exec([2, 10, 2, 4]), 4)
+	assert_eq(filter.exec([2, 3, 2, 6]), -7)
+
+func test_localFunction():
+	var graph1 = __getTestGraph2()
+	var graph2 = __getTestGraph3()
+
+	var filter1 = Filter.new()
+	
+	filter1.setGraph(graph1)
+	filter1.setMap([
+		"plusInt_2_0",
+		"plusInt_2_1",
+		"mulInt_3_0",
+		"mulInt_3_1"
+	])
+
+	var filter2 = Filter.new()
+	
+	filter2.setGraph(graph2)
+	filter2.setMap([
+		"plusInt_1_1",
+		"plusInt_1_0"
+	])
+
+	var local_function = LocalFunction.new()
+	local_function.addFilter(filter1)
+	local_function.addFilter(filter2)
+
+	local_function.setParamMap([5, 4, 3, 2, 1, 0])
+	local_function.setRetMap([1, 0])
+
+	assert_eq(local_function.exec([1, 2, 3, 4, 5, 6]), [3, -1])
 
 func __getTestGraph1():
 	var const_function = Function.new()
@@ -128,68 +211,3 @@ func __getTestGraph3():
 
 	return graph
 
-func test_filterTest1():
-	var graph = __getTestGraph1()
-	
-	var filter = Filter.new()
-	filter.setGraph(graph)
-
-	assert_eq(filter.exec({}), 7)
-
-func test_filterTest2():
-	var graph = __getTestGraph2()
-	
-	var filter = Filter.new()
-	filter.setGraph(graph)
-
-	var dict_map = DictMap.new()
-	dict_map.setMap([
-		"plusInt_2_0",
-		"plusInt_2_1",
-		"mulInt_3_0",
-		"mulInt_3_1"
-	])
-
-	filter.setParamMap(dict_map)
-	assert_eq(filter.exec([2, 10, 2, 4]), 4)
-	assert_eq(filter.exec([2, 3, 2, 6]), -7)
-
-func test_localFunction():
-	var graph1 = __getTestGraph2()
-	var graph2 = __getTestGraph3()
-
-	var filter1 = Filter.new()
-	var dict_map1 = DictMap.new()
-	dict_map1.setMap([
-		"plusInt_2_0",
-		"plusInt_2_1",
-		"mulInt_3_0",
-		"mulInt_3_1"
-	])
-	filter1.setParamMap(dict_map1)
-	filter1.setGraph(graph1)
-
-	var filter2 = Filter.new()
-	var dict_map2 = DictMap.new()
-	dict_map2.setMap([
-		"plusInt_1_1",
-		"plusInt_1_0"
-	])
-	filter2.setParamMap(dict_map2)
-	filter2.setGraph(graph2)
-
-	var local_function = LocalFunction.new()
-	local_function.addFilter(filter1)
-	local_function.addFilter(filter2)
-
-	var param_map = ArrangeMap.new()
-	param_map.setMap([5, 4, 3, 2, 1, 0])
-
-	local_function.setParamMap(param_map)
-
-	var ret_map = ArrangeMap.new()
-	ret_map.setMap([1, 0])
-
-	local_function.setRetMap(ret_map)
-
-	assert_eq(local_function.exec([1, 2, 3, 4, 5, 6]), [3, -1])

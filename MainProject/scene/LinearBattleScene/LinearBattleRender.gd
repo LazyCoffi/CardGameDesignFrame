@@ -66,7 +66,7 @@ func setCurHandCardRectGroup():
 	var cur_hand_cards = model_ref.getCurHandCards()
 	var rect_size = Vector2(model_ref.getSettingAttr("hand_card_rect_size")[0], model_ref.getSettingAttr("hand_card_rect_size")[1])
 	var rect_position = __getHandCardRectPosition(cur_hand_cards.size(), rect_size)
-	var hand_card_rect_group = DictArray.new()
+	hand_card_rect_group = DictArray.new()
 
 	var index = 0
 	for hand_card in cur_hand_cards.values():

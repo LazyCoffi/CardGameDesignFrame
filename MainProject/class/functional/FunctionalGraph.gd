@@ -47,6 +47,9 @@ class FuncGraphNode:
 	func getChSize():
 		return ch.size()
 	
+	func resizeCh(size):
+		ch.resize(size)
+	
 	func setCh(idx, param):
 		ch[idx] = param
 
@@ -173,9 +176,12 @@ func __getFlatTree(u, flat_tree):
 
 func __reconstructTree(flat_tree):
 	for i in range(1, graph.size()):
+		flat_tree[i - 1].resizeCh(graph[i].size())
 		for j in range(graph[i].size()):
 			if graph[i][j] != 0:
 				flat_tree[i - 1].connectNode(flat_tree[graph[i][j] - 1], j)
+	
+	setRoot(flat_tree[0])
 
 func __dfsExec(u, params):
 	var cur_func = u.getFunctional()

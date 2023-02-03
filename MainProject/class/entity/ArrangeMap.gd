@@ -24,6 +24,9 @@ func isFilled():
 	
 	return true
 
+func getMap():
+	return map.duplicate()
+
 func resizeMap(size):
 	map.resize(size)
 

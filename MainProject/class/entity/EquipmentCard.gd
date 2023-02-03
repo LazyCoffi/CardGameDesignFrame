@@ -16,7 +16,7 @@ func copy():
 	ret.avator_name = avator_name
 	ret.introduction = introduction
 	ret.template_name = template_name
-	ret.attr = attr.copy()
+	ret.card_attr = card_attr.copy()
 	ret.equip_func = equip_func.copy()
 	ret.unequip_func = unequip_func.copy()
 	ret.equip_condition = equip_condition.copy()

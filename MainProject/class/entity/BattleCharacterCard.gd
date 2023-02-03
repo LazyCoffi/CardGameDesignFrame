@@ -11,16 +11,17 @@ var buff_set			# BuffCard_Dict
 
 func _init():
 	card_pile = CardPile.new()
-	card_pile.setParamType(BattleCharacterCard)
+	card_pile.setParamType(BattleSkillCard)
 	equipment_set = {}
 	buff_set = {}
 
 func copy():
 	var ret = TypeUnit.type("BattleCharacterCard").new()
 	ret.card_name = card_name
+	ret.avator_name = avator_name
+	ret.introduction = introduction
 	ret.template_name = template_name
-	ret.info = info.copy()
-	ret.attr = attr.copy()
+	ret.card_attr = card_attr.copy()
 	ret.card_pile = card_pile.copy() 
 	ret.equipment_set = {}
 	for key in equipment_set.keys():

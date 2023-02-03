@@ -9,19 +9,20 @@ var play_type					# int
 var effect_func					# LocalFunction 
 
 func _init():
-	play_condition = Filter.new()
-	target_condition = Filter.new()
-	counter_condition = Filter.new()
-	counter_target_condition = Filter.new()
+	play_condition = null
+	target_condition = null
+	counter_condition = null
+	counter_target_condition = null
 	play_type = 0
 	effect_func = LocalFunction.new()
 
 func copy():
 	var ret = TypeUnit.type("BattleSkillCard").new()
 	ret.card_name = card_name
+	ret.avator_name = avator_name
+	ret.introduction = introduction
 	ret.template_name = template_name
-	ret.info = info.copy()
-	ret.attr = attr.copy()
+	ret.card_attr = card_attr.copy()
 	ret.play_condition = play_condition.copy()
 	ret.target_condition = target_condition.copy()
 	ret.counter_condition = counter_condition.copy()

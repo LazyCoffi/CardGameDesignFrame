@@ -10,7 +10,7 @@ var param_map	# DictMap
 
 func _init():
 	graph = null
-	param_map = null
+	param_map = DictMap.new()
 
 func copy():
 	var ret = TypeUnit.type("DictMap").new()
@@ -42,8 +42,11 @@ func getRetType():
 func getParamMap():
 	return param_map
 
-func setParamMap(param_map_):
-	param_map = param_map_
+func initParamMap():
+	param_map.setMap(graph.getParamsType().keys())
+
+func setMap(map):
+	param_map.setMap(map)
 
 func pack():
 	var script_tree = ScriptTree.new()

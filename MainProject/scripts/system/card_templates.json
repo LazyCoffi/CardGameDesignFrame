@@ -19,13 +19,11 @@
 			"template_name": null,
 			"card_type": "BattleCharacterCard",
 			"card_template": {
-				"card_name": null,
+				"card_name": "testCard",
+				"avator_name": "testAvator",
+				"introduction": "test",
 				"template_name": "ch",
-				"info": {
-					"avator_name": "ch_avator",
-					"introduction": "test card"
-				},
-				"attr": {
+				"card_attr": {
 					"table": {
 
 					}
@@ -37,26 +35,7 @@
 					"trash_pile": [
 
 					],
-					"is_random": true,
-					"pop_num_filter": {
-						"graph": {
-							"graph": [
-
-							],
-							"request_params": {
-
-							},
-							"node_index": 0,
-							"flat_tree": [
-
-							]
-						},
-						"param_map": {
-							"map": [
-
-							]
-						}
-					}
+					"is_random": true
 				},
 				"equipment_set": {
 
@@ -86,8 +65,8 @@
 								"default_params": {
 									"list": [
 										{
-											"type": "NullPack",
-											"val": {
+											"param_type": "NullPack",
+											"param": {
 
 											}
 										}

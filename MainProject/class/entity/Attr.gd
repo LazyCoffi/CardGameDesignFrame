@@ -103,7 +103,7 @@ func getAttrType(attr_name):
 func getAttrList():
 	var ret = []
 	for attr_node in table.values():
-		if attr_node != null
+		if attr_node != null:
 			ret.append(attr_node.getAttr())
 
 	return ret
@@ -127,7 +127,7 @@ func delAttr(attr_name):
 func getIndexList():
 	var ret = []
 	for key in table.keys():
-		if table[key] != null
+		if table[key] != null:
 			ret.append(key)
 
 	return ret
@@ -140,12 +140,6 @@ func addIndex(index):
 
 func delIndex(index):
 	table.erase(index)
-
-func getAttrType(attr_name):
-	return table[attr_name].getAttrType()
-
-func setAttrType(attr_name, attr_type):
-	table[attr_name] = attr_type	
 
 func pack():
 	var script_tree = ScriptTree.new()

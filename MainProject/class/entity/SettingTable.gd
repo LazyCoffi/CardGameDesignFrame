@@ -24,10 +24,10 @@ func setAttr(attr_name, attr):
 
 	table[attr_name] = attr
 
-func addKey(attr_name):
-	table[attr_name] = null
+func addIndex(index):
+	table[index] = null
 
-func getKeys():
+func getIndexList():
 	return table.keys()
 
 func pack():

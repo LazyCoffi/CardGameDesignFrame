@@ -17,9 +17,10 @@ func _init():
 func copy():
 	var ret = TypeUnit.type("BuffCard").new()
 	ret.card_name = card_name
+	ret.avator_name = avator_name
+	ret.introduction = introduction
 	ret.template_name = template_name
-	ret.info = info.copy()
-	ret.attr = attr.copy()
+	ret.card_attr = card_attr.copy()
 	ret.is_active = is_active
 	ret.is_continuous = is_continuous
 	ret.effect_func = effect_func.copy()
@@ -62,7 +63,7 @@ func stopTimer():
 func tickTimer():
 	deactive_trigger.tick()
 
-func setDeactiveTrigger(deactive_trigger):
+func setDeactiveTrigger(deactive_trigger_):
 	deactive_trigger = deactive_trigger_
 
 func pack():
