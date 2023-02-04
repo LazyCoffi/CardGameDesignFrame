@@ -50,20 +50,28 @@ func packArray(first):
 	return [first]
 
 func appendArray(first, second):
-	return first.append_array(second)
+	first.append_array(second)
+
+	return first
 
 func appendVal(first, second):
-	return first.append(second)
+	first.append(second)
+
+	return first
 
 func shrankArray(first, second):
 	if second >= first.size():
 		return first
-	return first.resize(second)
+	first.resize(second)
+
+	return first
 
 func shrankArrayTo(first, second):
 	if second.size() >= first.size():
 		return first
-	return first.resize(second.size())
+	first.resize(second.size())
+
+	return first
 
 func arraySize(first):
 	return first.size()

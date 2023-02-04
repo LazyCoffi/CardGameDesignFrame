@@ -90,5 +90,19 @@
 				}
 			},
 		},
+		"ch" : {
+			"ch" : {
+				"testAvator" : {
+					"texture" : "res://asserts/avator/white_hair.png"
+				}
+			}
+		},
+		"global" : {
+			"component" : {
+				"underline" : {
+					"texture" : "res://asserts/global_component/underline.png"
+				}
+			}
+		}
 	}
 }

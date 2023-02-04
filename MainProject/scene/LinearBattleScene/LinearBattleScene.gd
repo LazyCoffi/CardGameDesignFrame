@@ -21,10 +21,10 @@ var scene_service
 func _init():
 	is_registered = false
 	scene_dispatcher = LinearBattleDispatcher.new()
-	scene_model = LinearBattleModel.new()
+	scene_model = null
 	scene_render = LinearBattleRender.new()
 	scene_service = LinearBattleService.new()
-	__setRef(self)
+	__setRef()
 
 func _ready():
 	scene_dispatcher.launch()
@@ -94,7 +94,7 @@ func loadScript(script_tree):
 	switch_target_table = script_tree.getObject("switch_target_table", SwitchTargetTable)
 	scene_model = script_tree.getObject("scene_model", LinearBattleModel)
 
-func __setRef(scene):
-	scene_dispatcher.setRef(scene)
-	scene_render.setRef(scene)
-	scene_service.setRef(scene)
+func __setRef():
+	scene_dispatcher.setRef(self)
+	scene_render.setRef(self)
+	scene_service.setRef(self)

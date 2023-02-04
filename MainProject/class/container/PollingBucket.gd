@@ -176,10 +176,10 @@ func del(param_name):
 	return null
 	
 func __shuffle(function):
-	function.exec(bucket)
+	function.exec([bucket])
 
 func __initConstruct():
-	bucket.append(buffer)
+	bucket.append_array(buffer)
 	buffer.clear()
 	__shuffle(init_shuffle_function)
 

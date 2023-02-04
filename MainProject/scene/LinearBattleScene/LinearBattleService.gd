@@ -4,39 +4,50 @@ class_name LinearBattleService
 var DictArray = TypeUnit.type("DictArray")
 
 var scene_ref
-var model_ref
 
 func setRef(scene):
 	scene_ref = scene
-	model_ref = scene.model()
+
+func scene():
+	return scene_ref
+
+func model():
+	return scene_ref.model()
 
 func initCharacterCardGroup():
-	model_ref.setCharacterGroup(model_ref.dealCharacter())
+	model().setCharacterGroups(model().dealCharacter())
 
-func refillOrderQueue():
-	var order_queue = model_ref.getOrderQueue()
-	order_queue.clear()
-	var character_groups = model_ref.getCharacterGroups()
+func initOrderBucket():
+	var order_bucket = model().getOrderBucket()
+	var character_groups = model().getCharacterGroups()
 	for index in 2:
 		for card in character_groups[index].values():
-			order_queue.append(card, model_ref.getOrder(card))
+			order_bucket.append(card.getCardName(), card)
+	
+	order_bucket.active()
 
-func setCurCharacterCard(cur_character_card):
-	model_ref.setCurCharacterCard(cur_character_card)
+func setCurCharacterCard():
+	var order_bucket = model().getOrderBucket()
+	model().setCurCharacterCard(order_bucket.getParam())
+
+func getCurCharacterPosition():
+	var cur_card_name = model().getCurCharacterName()
+	var character_groups = model().getCharacterGroups()
+	for i in 2:
+		for j in character_groups[i].size():
+			var card = character_groups[i].getAt(j)
+			if cur_card_name == card.getCardName():
+				return [i, j]
 
 func popCurCharacterCard():
-	return model_ref.popCurRoundCard()
-
-func markCurCharacter(_character_card):
-	# TODO: 在当前出牌者位置设置标记
-	pass
+	return model().popCurRoundCard()
 
 func genCurHandCards():
-	var cur_hand_cards_num = model_ref.getCurHandCardsNum()
-	var hand_cards_upper = model_ref.getSettingAttr("hand_cards_upper")
+	var cur_hand_cards_num = model().getCurHandCardsNum()
+	var hand_cards_upper = model().getSettingAttr("hand_cards_upper")
 	var card_num = max(hand_cards_upper - cur_hand_cards_num, 0)
-	return model_ref.getCharacterGroups().getCards(card_num)
+	return model().getCharacterGroups().getCards(card_num)
 
 func addCurHandCards(hand_cards):
-	var cur_hand_cards = model_ref.getCurHandCards()
-	cur_hand_cards.append_array(model_ref.getCurCharacterName(), hand_cards)
+	var cur_hand_cards = model().getCurHandCards()
+	cur_hand_cards.append_array(model().getCurCharacterName(), hand_cards)

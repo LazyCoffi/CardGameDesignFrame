@@ -30,7 +30,7 @@ func trans(params):
 	var ret = {}
 	for index in range(map.size()):
 		ret[map[index]] = params[index] 
-	
+
 	return ret
 
 func pack():

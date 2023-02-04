@@ -3,31 +3,38 @@ class_name LinearBattleDispatcher
 
 ## Dispatcher将以信号的方式推进流程，即上一步骤结束后，发送进行下一步骤的信号，根据信号决定执行的时机
 
-var render_ref
-var service_ref
+var scene_ref
 
 func launch():
 	sceneComponentInit()
 
 func setRef(scene):
-	render_ref = scene.render()
-	service_ref = scene.service()
+	scene_ref = scene
+
+func scene():
+	return scene_ref
+
+func render():
+	return scene_ref.render()
+
+func service():
+	return scene_ref.service()
 
 func initCharacterCards():
-	service_ref.initCharacterCardGroup()
-	render_ref.initCharacterRect()
+	service().initCharacterCardGroup()
+	render().initCharacterRect()
 
 func setCurCharacterCard():
-	var cur_character_card = service_ref.getCurCharacterCard()
-	service_ref.setCurCharacterCard(cur_character_card)
-	service_ref.markCurCharacter(cur_character_card)
+	service().initOrderBucket()
+	service().setCurCharacterCard()
+	render().markCurCharacter()
 
 func setCurHandCards():
-	var new_hand_cards = service_ref.newCurHandCards()
-	service_ref.addCurHandCards(new_hand_cards)
-	service_ref.setCurHandCardsRect()
+	var new_hand_cards = service().newCurHandCards()
+	service().addCurHandCards(new_hand_cards)
+	service().setCurHandCardsRect()
 
 func sceneComponentInit():
 	initCharacterCards()
 	setCurCharacterCard()
-	setCurHandCards()
+	# setCurHandCards()

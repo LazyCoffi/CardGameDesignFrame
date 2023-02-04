@@ -38,20 +38,23 @@ func getParam(param_name):
 
 # setting
 func getSettingAttr(attr_name):
-	return setting[attr_name]
+	return setting.getAttr(attr_name)
 
 func setSetting(setting_):
 	setting = setting_
 
 # character_groups
+func getCharacterGroupsNum():
+	return [character_groups[0].size(), character_groups[1].size()]
+
 func getCharacterGroups():
 	return character_groups
 
 func setCharacterGroups(character_groups_):
 	# TODO: 添加Warning警告，单组group暂时最多4Card
 
-	Exception.assert(character_groups_[0] <= MAX_GROUP_SIZE)
-	Exception.assert(character_groups_[1] <= MAX_GROUP_SIZE)
+	Exception.assert(character_groups_[0].size() <= MAX_GROUP_SIZE)
+	Exception.assert(character_groups_[1].size() <= MAX_GROUP_SIZE)
 
 	character_groups = character_groups_
 
@@ -64,7 +67,13 @@ func setOrderBucket(order_bucket_):
 
 # character_deal_function
 func dealCharacter():
-	return character_deal_function.exec([])
+	var raw_arr = character_deal_function.exec([])
+	var ret = [DictArray.new(), DictArray.new()]
+	for index in 2:
+		for card in raw_arr[index]:
+			ret[index].append(card.getCardName(), card)
+	
+	return ret
 
 func setCharacterDealFunction(character_deal_function_):
 	character_deal_function = character_deal_function_

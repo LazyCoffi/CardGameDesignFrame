@@ -300,6 +300,11 @@ _global_script_classes=[ {
 "path": "res://class/container/OrderedSet.gd"
 }, {
 "base": "Node",
+"class": "PackObjectFuncSet",
+"language": "GDScript",
+"path": "res://class/functional/PackObjectFuncSet.gd"
+}, {
+"base": "Node",
 "class": "ParamList",
 "language": "GDScript",
 "path": "res://class/entity/ParamList.gd"
@@ -423,6 +428,7 @@ _global_script_class_icons={
 "MathFuncSet": "",
 "NullPack": "",
 "OrderedSet": "",
+"PackObjectFuncSet": "",
 "ParamList": "",
 "PollingBucket": "",
 "SceneFactory": "",
@@ -448,12 +454,12 @@ config/icon="res://icon.png"
 
 Exception="*res://class/unit/Exception.gd"
 TypeUnit="*res://class/unit/TypeUnit.gd"
+FuncCategory="*res://class/functional/FuncCategory.gd"
 ResourceUnit="*res://class/unit/ResourceUnit.gd"
 MathUnit="*res://class/unit/MathUnit.gd"
 GlobalSetting="*res://class/unit/GlobalSetting.gd"
 SceneCache="*res://class/scene/SceneCache.gd"
 CardCache="*res://class/unit/CardCache.gd"
-FuncCategory="*res://class/functional/FuncCategory.gd"
 
 [display]
 

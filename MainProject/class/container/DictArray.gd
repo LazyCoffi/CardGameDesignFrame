@@ -20,6 +20,7 @@ class ArrayNode:
 		ret.param_name = param_name
 		ret.param = param.copy()
 		ret.order = order
+		ret.param_type = param_type
 	
 	func setParamType(param_type_):
 		param_type = param_type_
@@ -77,33 +78,38 @@ func copy():
 	for node in arr:
 		ret.arr.append(node.copy())
 	
+	ret.param_type = param_type
+	
 	return ret
 
-func get(param_name):
-	return table[param_name]
+func setParamType(param_type_):
+	param_type = param_type_
 
-func get_at(index):
-	return arr[index].param
+func get(param_name):
+	return table[param_name].getParam()
+
+func getAt(index):
+	return arr[index].getParam()
 
 func size():
 	return arr.size()
 
 func front():
-	return arr.front().param
+	return arr.front().getParam()
 
 func back():
-	return arr.back().param
+	return arr.back().getParam()
 
 func pop_front():
-	return arr.pop_front().param
+	return arr.pop_front().getParam()
 
 func pop_back():
-	return arr.pop_back().param
+	return arr.pop_back().getParam()
 
 func values():
 	var ret = []
 	for node in arr:
-		ret.append(node.param)
+		ret.append(node.getParam())
 	
 	return ret
 
@@ -113,26 +119,23 @@ func keys():
 func getSortedValues(order_filter):
 	var new_arr = arr.duplicate()
 	for node in new_arr:
-		node.order = order_filter.exec(node.param)
+		node.setOrder(order_filter.exec(node.param))
 	
 	new_arr.sort_custom(self, "__comp_asc")
 
 	var ret = []
 	for node in new_arr:
-		ret.append(node.param)
-		node.order = null
+		ret.append(node.getParam())
+		node.setOrder(null)
 	
 	return ret
 
 func getRawArray():
 	var ret = []
 	for node in arr:
-		ret.append([node.param_name, node.param])
+		ret.append([node.getParamName(), node.getParam()])
 	
 	return ret
-
-func setParamType(param_type_):
-	param_type = param_type_
 
 func loadFromDict(param_dict):
 	for param_name in param_dict:
@@ -143,12 +146,9 @@ func loadFromArray(param_arr):
 		append(raw_node[0], raw_node[1])
 
 func append(param_name, param):
-	var node = ArrayNode.new()
-	node.param_name = param_name
-	node.param = param
-
+	var node = __genNode(param_name, param)
 	arr.append(node)
-	table[param_name] = param
+	table[param_name] = node 
 
 func append_array(dict_array):
 	var raw_arr = dict_array.getRawArray()
@@ -159,18 +159,16 @@ func push_back(param_name, param):
 	append(param_name, param)
 
 func push_front(param_name, param):
-	var node = ArrayNode.new()
-	node.param_name = param_name
-	node.param = param
-
+	var node = __genNode(param_name, param)
 	arr.push_front(node)
-	table[param_name] = param
+	table[param_name] = node
 
 func set(param_name, param):
-	table[param_name] = param
-	for node in arr:
-		if node.param_name == param_name:
-			node.param = param
+	var node = __genNode(param_name, param)
+	table[param_name] = node
+	for node_ in arr:
+		if node_.param_name == param_name:
+			node_.param = param
 			break
 
 func del(param_name):
@@ -179,7 +177,6 @@ func del(param_name):
 		if node.param_name == param_name:
 			arr.erase(node)
 			return node
-
 
 func pack():
 	var script_tree = ScriptTree.new()
@@ -195,3 +192,11 @@ func loadScript(script_tree):
 
 func __comp_asc(a, b):
 	return a.order < b.order
+
+func __genNode(param_name, param):
+	var node = ArrayNode.new()
+	node.setParamName(param_name)
+	node.setParam(param)
+	node.setParamType(param_type)
+
+	return node

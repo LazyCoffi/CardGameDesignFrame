@@ -3,20 +3,20 @@
 		"root": {
 			"test": {
 				"testCard": {
-					"Null": null
+					"ch": "ch"
 				}
 			}
 		},
 		"table": {
-			"Null": [
+			"ch": [
 				"test",
 				"testCard"
 			]
 		}
 	},
 	"table": {
-		"Null": {
-			"template_name": null,
+		"ch": {
+			"template_name": "ch",
 			"card_type": "BattleCharacterCard",
 			"card_template": {
 				"card_name": "testCard",
@@ -79,7 +79,7 @@
 				},
 				"param_map": {
 					"map": [
-						"returnVal_0_0"
+						"returnVal_1_0"
 					]
 				}
 			}

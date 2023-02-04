@@ -1,20 +1,24 @@
 extends Node
 class_name MainMenuDispatcher
 
-var render_ref
-var service_ref
+var scene_ref
 
 func setRef(scene):
-	render_ref = scene.render()
-	service_ref = scene.service()
+	scene_ref = scene
+
+func render():
+	return scene_ref.render()
+
+func service():
+	return scene_ref.service()
 
 func launch():
 	renderMainMenu()
 
 func renderMainMenu():
-	render_ref.setSceneName()
-	render_ref.loadResource()
-	render_ref.setTitle()
-	render_ref.setBackground()
+	render().setSceneName()
+	render().loadResource()
+	render().setTitle()
+	render().setBackground()
 
 	# TODO

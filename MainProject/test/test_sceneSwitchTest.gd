@@ -103,7 +103,6 @@ func __buildAppendFuncUnit():
 
 	return pack_function
 
-
 func __buildCharacterDealFunction():
 	var character_deal_function = Function.new()
 	var graph = FuncGraph.new()
@@ -135,15 +134,11 @@ func __buildCharacterDealFunction():
 
 	graph.setRoot(append_node3)
 
-	print(graph.getParamsType())
-		
+
 	character_deal_function.setGraph(graph)
-	character_deal_function.setMap([
-		"getCardWithDefaultName_10_0",
-		"getCardWithDefaultName_5_0",
-		"getCardWithDefaultName_6_0",
-		"getCardWithDefaultName_9_0"
-	])
+	character_deal_function.setMap([])
+
+	print(character_deal_function.getParamsType())
 
 	return character_deal_function
 
@@ -188,7 +183,7 @@ func __buildReviseFunction():
 	graph.setRoot(node)
 	function.setGraph(graph)
 	function.setMap([
-		"returnVal_0_0"
+		"returnVal_1_0"
 	])
 
 	return function

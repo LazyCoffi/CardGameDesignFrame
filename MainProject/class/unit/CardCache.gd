@@ -42,7 +42,7 @@ class CacheNode:
 		var card = card_template.copy()
 		card.setCardName(card_name)
 
-		return [card_name, revise(card)]
+		return revise(card)
 	
 	func getCategory():
 		return card_template.getCategory()
@@ -90,6 +90,8 @@ func _init():
 	category_tree = CategoryTree.new()
 	table = {}
 
+	__initScript()
+
 # table
 func getCard(template_name, card_name):
 	return table[template_name].getCard(card_name)
@@ -99,7 +101,7 @@ func getCardWithDefaultName(template_name):
 
 func addTemplate(card_type, card_template, revise_function, index_list):
 	var node = CacheNode.new()
-	node.setTemplateName(node.getTemplateName())
+	node.setTemplateName(card_template.getTemplateName())
 	node.setCardType(card_type)
 	node.setCardTemplate(card_template)
 	node.setReviseFunction(revise_function)

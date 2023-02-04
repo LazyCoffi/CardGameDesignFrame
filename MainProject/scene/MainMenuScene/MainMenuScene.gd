@@ -21,7 +21,7 @@ var scene_service
 func _init():
 	is_registered = false
 	scene_dispatcher = MainMenuDispatcher.new()
-	scene_model = MainMenuModel.new()
+	scene_model = null
 	scene_render = MainMenuRender.new()
 	scene_service = MainMenuService.new()
 	__setRef()

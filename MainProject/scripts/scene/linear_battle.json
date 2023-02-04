@@ -342,10 +342,7 @@
 			},
 			"param_map": {
 				"map": [
-					"getCardWithDefaultName_10_0",
-					"getCardWithDefaultName_5_0",
-					"getCardWithDefaultName_6_0",
-					"getCardWithDefaultName_9_0"
+
 				]
 			}
 		},
