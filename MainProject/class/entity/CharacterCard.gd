@@ -1,28 +1,29 @@
 extends "res://class/entity/Card.gd"
-class_name BattleCharacterCard
+class_name CharacterCard
 
-var BattleSkillCard = TypeUnit.type("BattleSkillCard")
+var HandCardSlot = TypeUnit.type("HandCardSlot")
 var EquipmentCard = TypeUnit.type("EquipmentCard")
 var BuffCard = TypeUnit.type("BuffCard")
 
-var card_pile 			# BattleSkillCardPile
+var hand_card_slot		# HandCardSlot
 var equipment_set		# EquipmentCard_Dict
 var buff_set			# BuffCard_Dict
 
 func _init():
-	card_pile = CardPile.new()
-	card_pile.setParamType(BattleSkillCard)
+	hand_card_slot = HandCardSlot.new()
 	equipment_set = {}
 	buff_set = {}
 
 func copy():
-	var ret = TypeUnit.type("BattleCharacterCard").new()
+	var ret = TypeUnit.type("CharacterCard").new()
+
 	ret.card_name = card_name
 	ret.avator_name = avator_name
 	ret.introduction = introduction
 	ret.template_name = template_name
 	ret.card_attr = card_attr.copy()
-	ret.card_pile = card_pile.copy() 
+
+	ret.hand_card_slot = hand_card_slot.copy()
 	ret.equipment_set = {}
 	for key in equipment_set.keys():
 		ret.equipment_set[key] = equipment_set[key].copy()
@@ -32,42 +33,27 @@ func copy():
 	
 	return ret
 
-# card_pile
-func peekCardPile():
-	return card_pile.getCardPile()
+# hand_card_slot
+func getHandCardsNum():
+	return hand_card_slot.getCardsNum()
 
-func peekTrashPile():
-	return card_pile.getTrashPile()
+func peekHandCards():
+	return hand_card_slot.peekCards()
 
-func pileRandomOn():
-	card_pile.randomOn()
+func peekHandCardAt(index):
+	return hand_card_slot.peekCardAt(index)
 
-func pileRandomOff():
-	card_pile.randomOff()
+func playHandCardAt(param_list, card_pile, index):
+	hand_card_slot.playCardAt(param_list, card_pile, index)
 
-func dealCards(num):
-	return card_pile.deal(num)
+func drawHandCard(card_pile, card_num):
+	hand_card_slot.drawCard(card_pile, card_num)
 
-func dealTrashCards(num):
-	return card_pile.dealTrash(num)
+func positiveDiscardAt(index, card_pile):
+	hand_card_slot.positiveDiscard(index, card_pile)
 
-func drawCardFront(card):
-	card_pile.drawFront(card)
-
-func drawCardBack(card):
-	card_pile.drawBack(card)
-
-func drawTrashCardFront(card):
-	card_pile.drawTrashFront(card)
-
-func drawTrashCardBack(card):
-	card_pile.drawTrashBack(card)
-
-func shufflePile():
-	card_pile.shufflePile()
-
-func shuffleTrash():
-	card_pile.shuffleTrash()
+func passiveDiscard(card_pile):
+	hand_card_slot.passiveDiscard(card_pile)
 
 # buff_set
 func addBuff(buff_card):
@@ -92,7 +78,7 @@ func unequip(card_name):
 func pack():
 	var script_tree = .pack()
 
-	script_tree.addObject("card_pile", card_pile)
+	# hand_card_slot交由派生类
 	script_tree.addObjectDict("equipment_set", equipment_set)
 	script_tree.addObjectDict("buff_set", buff_set)
 
@@ -100,6 +86,7 @@ func pack():
 
 func loadScript(script_tree):
 	.loadScript(script_tree)
-	card_pile = script_tree.getTypeObject("card_pile", CardPile, BattleSkillCard)
+
+	# hand_card_slot交由派生类
 	equipment_set = script_tree.getObjectDict("equipment_set", EquipmentCard)
 	buff_set = script_tree.getObjectDict("buff_set", BuffCard)

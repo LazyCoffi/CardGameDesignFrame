@@ -107,7 +107,7 @@ func addParam(param_type, param):
 func addGap():
 	list.append(__nullNode())
 
-func setParam(index, param_type, param):
+func setParam(param_type, param, index):
 	Exception.assert(index < list.size())
 	var param_node = ParamNode.new()
 	param_node.setParamType(param_type)

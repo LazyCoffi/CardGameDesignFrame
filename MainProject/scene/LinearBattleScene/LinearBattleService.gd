@@ -30,7 +30,7 @@ func setCurCharacterCard():
 	var order_bucket = model().getOrderBucket()
 	model().setCurCharacterCard(order_bucket.getParam())
 
-func getCurCharacterPosition():
+func getCurCharacterIndex():
 	var cur_card_name = model().getCurCharacterName()
 	var character_groups = model().getCharacterGroups()
 	for i in 2:
@@ -42,11 +42,10 @@ func getCurCharacterPosition():
 func popCurCharacterCard():
 	return model().popCurRoundCard()
 
-func genCurHandCards():
-	var cur_hand_cards_num = model().getCurHandCardsNum()
+func drawCurHandCards():
+	var draw_hand_cards_num = model().getDrawCardsNum()
+	# var cur_hand_cards_num = model().get
 	var hand_cards_upper = model().getSettingAttr("hand_cards_upper")
-	var card_num = max(hand_cards_upper - cur_hand_cards_num, 0)
-	return model().getCharacterGroups().getCards(card_num)
 
 func addCurHandCards(hand_cards):
 	var cur_hand_cards = model().getCurHandCards()

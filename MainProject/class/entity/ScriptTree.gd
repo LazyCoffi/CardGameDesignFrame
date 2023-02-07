@@ -26,7 +26,6 @@ func loadFromJson(path):
 
 func exportAsJson(path):
 	var file = File.new()
-	Exception.assert(file.file_exists(path))
 	file.open(path, File.WRITE)
 	var json_str = JSON.print(root, "\t")
 	file.store_string(json_str)
@@ -277,6 +276,7 @@ func getScriptTreeArray(arr_name):
 	for raw_script in script_arr:
 		var script_tree = TypeUnit.type("ScriptTree").new()
 		script_tree.__setRoot(raw_script)
+		ret.append(script_tree)
 	
 	return ret
 

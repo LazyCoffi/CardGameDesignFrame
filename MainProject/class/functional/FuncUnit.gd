@@ -14,7 +14,7 @@ func _init():
 	default_params = ParamList.new()
 
 func copy():
-	var ret = TypeUnit.type("Function").new()
+	var ret = TypeUnit.type("FuncUnit").new()
 	ret.func_name = func_name
 	ret.func_set_name = func_set_name
 	ret.default_params = default_params.copy()
@@ -48,8 +48,8 @@ func getDefaultParam(index):
 func initDefaultParams():
 	default_params.resize(getParamsNum())
 
-func setDefaultParam(index, param_type, param):
-	default_params.setParam(index, param_type, param)
+func setDefaultParam(param_type, param, index):
+	default_params.setParam(param_type, param, index)
 
 func delDefaultParam(index):
 	default_params.delParam(index)

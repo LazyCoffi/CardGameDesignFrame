@@ -56,8 +56,7 @@ func initCharacterRect():
 		var j = 0
 		for card_name in character_groups[i].keys():
 			var avator_name = character_groups[i].get(card_name).getAvatorName()
-			var template_name = character_groups[i].get(card_name).getTemplateName()
-			var texture = ResourceUnit.loadTexture(template_name, template_name, avator_name)
+			var texture = ResourceUnit.loadRes("global", "avator", avator_name)
 			var rect_pos = Vector2(rect_position[i][j][0], rect_position[i][j][1])
 			var character_rect = __buildTextureRect(texture, rect_pos, rect_size)
 			scene().add_child(character_rect)
@@ -65,10 +64,10 @@ func initCharacterRect():
 			j += 1
 
 func markCurCharacter():
-	var texture = ResourceUnit.loadTexture("global", "component", "underline")
+	var texture = ResourceUnit.loadRes("global", "component", "underline")
 
-	var cur_pos = service().getCurCharacterPosition()
-	var pos = __getCharacterCardRectPosition()[cur_pos[0]][cur_pos[1]]
+	var index = service().getCurCharacterIndex()
+	var pos = __getCharacterCardRectPosition()[index[0]][index[1]]
 	var card_rect_size = __getCharacterCardRectSize()
 	var position = Vector2(pos[0], pos[1] + card_rect_size[1])
 
@@ -106,7 +105,7 @@ func setCurHandCardRectGroup():
 	for hand_card in cur_hand_cards.values():
 		var card_name = hand_card.getCardName()
 		var avator_name = hand_card.getAvatorName()
-		var texture = ResourceUnit.loadTexture(card_name, card_name, avator_name)
+		var texture = ResourceUnit.loadRes("global", "avator", avator_name)
 		var rect_pos = Vector2(rect_position[index][0], rect_position[index][1])
 
 		var hand_card_rect = __buildTextureRect(texture, rect_pos, rect_size)
@@ -134,5 +133,5 @@ func __getHandCardRectSize():
 # setBackground
 func setBackground():
 	var scene_name = scene().getSceneName()
-	var bg = ResourceUnit.loadTexture(scene_name, scene_name, "background")
+	var bg = ResourceUnit.loadRes(scene_name, scene_name, "background")
 	scene().get_node("LinearBattleBackground").texture = bg

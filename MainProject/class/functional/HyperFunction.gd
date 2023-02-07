@@ -17,7 +17,7 @@ func _init():
 	ret_map = ArrangeMap.new()
 
 func copy():
-	var ret = TypeUnit.type("LocalFunction").new()
+	var ret = TypeUnit.type("HyperFunction").new()
 	ret.func_name = func_name
 	ret.functions = []
 	for node in functions:
@@ -105,7 +105,7 @@ func getParamsNum():
 	var ret = 0
 
 	for function in functions:
-		ret += function.getParamNum()
+		ret += function.getParamsNum()
 	
 	return ret
 

@@ -9,6 +9,11 @@ var HyperFunction = TypeUnit.type("HyperFunction")
 var ParamList = TypeUnit.type("ParamList")
 var ScriptTree = TypeUnit.type("ScriptTree")
 
+func before_all():
+	CardCache.initScript()
+	GlobalSetting.initScript()
+	ResourceUnit.initScript()
+
 func test_graphTest1():
 	var random_func_unit = FuncUnit.new()
 	random_func_unit.setFuncSetName("MathFuncSet")
@@ -31,13 +36,13 @@ func test_graphTest2():
 	const_func_unit.setFuncSetName("MathFuncSet")
 	const_func_unit.setFuncName("constVal")
 	const_func_unit.initDefaultParams()
-	const_func_unit.setDefaultParam(0, "Integer", 4)
+	const_func_unit.setDefaultParam("Integer", 4, 0)
 
 	var const_func_unit_ = FuncUnit.new()
 	const_func_unit_.setFuncSetName("MathFuncSet")
 	const_func_unit_.setFuncName("constVal")
 	const_func_unit_.initDefaultParams()
-	const_func_unit_.setDefaultParam(0, "Integer", 3)
+	const_func_unit_.setDefaultParam("Integer", 3, 0)
 
 	var mul_func_unit = FuncUnit.new()
 	mul_func_unit.setFuncSetName("MathFuncSet")
@@ -144,13 +149,13 @@ func __getTestGraph1():
 	const_func_unit.setFuncSetName("MathFuncSet")
 	const_func_unit.setFuncName("constVal")
 	const_func_unit.initDefaultParams()
-	const_func_unit.setDefaultParam(0, "Integer", 4)
+	const_func_unit.setDefaultParam("Integer", 4, 0)
 
 	var const_func_unit_ = FuncUnit.new()
 	const_func_unit_.setFuncSetName("MathFuncSet")
 	const_func_unit_.setFuncName("constVal")
 	const_func_unit_.initDefaultParams()
-	const_func_unit_.setDefaultParam(0, "Integer", 3)
+	const_func_unit_.setDefaultParam("Integer", 3, 0)
 
 	var plus_func_unit = FuncUnit.new()
 	plus_func_unit.setFuncSetName("MathFuncSet")

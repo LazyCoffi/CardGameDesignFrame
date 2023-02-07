@@ -1,0 +1,93 @@
+{
+	"category_tree": {
+		"root": {
+			"test": {
+				"testCard": {
+					"ch": "ch"
+				}
+			}
+		},
+		"table": {
+			"ch": [
+				"test",
+				"testCard"
+			]
+		}
+	},
+	"table": {
+		"ch": {
+			"template_name": "ch",
+			"card_type": "LinearCharacterCard",
+			"card_template": {
+				"card_name": "testCard",
+				"avator_name": "testAvator",
+				"introduction": "test",
+				"template_name": "ch",
+				"card_attr": {
+					"table": {
+
+					}
+				},
+				"equipment_set": {
+
+				},
+				"buff_set": {
+
+				},
+				"hand_card_slot": {
+					"card_slot": [
+
+					]
+				},
+				"card_pile": {
+					"card_pile": [
+
+					],
+					"trash_pile": [
+
+					],
+					"is_random": true
+				}
+			},
+			"copy_count": 0,
+			"revise_function": {
+				"graph": {
+					"graph": [
+						null,
+						[
+							0
+						]
+					],
+					"request_params": {
+						"returnVal_1_0": "all"
+					},
+					"node_index": 1,
+					"flat_tree": [
+						{
+							"func_unit": {
+								"func_name": "returnVal",
+								"func_set_name": "BaseFuncSet",
+								"default_params": {
+									"list": [
+										{
+											"param_type": "NullPack",
+											"param": {
+
+											}
+										}
+									]
+								}
+							},
+							"index": 1
+						}
+					]
+				},
+				"param_map": {
+					"map": [
+						"returnVal_1_0"
+					]
+				}
+			}
+		}
+	}
+}

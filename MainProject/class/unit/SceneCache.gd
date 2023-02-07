@@ -1,7 +1,7 @@
 extends Node
 
-var SceneFactory = load("res://class/scene/SceneFactory.gd")
-var ScriptTree = load("res://class/entity/ScriptTree.gd")
+var SceneFactory = TypeUnit.type("SceneFactory")
+var ScriptTree = TypeUnit.type("ScriptTree")
 
 var scene_cache		# SceneNode_Dict
 var cur_scene_name	# String
@@ -51,6 +51,7 @@ class SceneNode:
 func _init():
 	scene_cache = {}
 	scene_factory = SceneFactory.new()
+	scene_factory.initScript()
 
 func genSceneNode(type, scene_name, scene):
 	var scene_node = SceneNode.new()

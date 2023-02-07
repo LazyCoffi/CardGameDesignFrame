@@ -5,9 +5,6 @@ var ScriptTree = load("res://class/entity/ScriptTree.gd")
 
 var script_tree
 
-func _init():
-	__initScript()
-
 func getSceneNode(scene_name):
 	var script_node = script_tree.getScriptTree(scene_name)
 	var type = script_node.getStr("type")
@@ -20,6 +17,6 @@ func getSceneNode(scene_name):
 
 	return SceneCache.genSceneNode(type, scene_name, scene)
 	
-func __initScript():
+func initScript():
 	script_tree = ScriptTree.new()
-	script_tree.loadFromJson("res://scripts/scene/scene_factory.json")
+	script_tree.loadFromJson("res://scripts/system/scene_factory.json")

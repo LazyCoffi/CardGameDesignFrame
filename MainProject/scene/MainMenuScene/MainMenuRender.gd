@@ -27,10 +27,10 @@ func loadResource():
 
 func setTitle():
 	var scene_name = scene().getSceneName()
-	var title = ResourceUnit.loadTexture(scene_name, scene_name, "title")
+	var title = ResourceUnit.loadRes(scene_name, scene_name, "title")
 	scene().get_node("MainMenuTitle").texture = title
 
 func setBackground():
 	var scene_name = scene().getSceneName()
-	var bg = ResourceUnit.loadTexture(scene_name, scene_name, "background")
+	var bg = ResourceUnit.loadRes(scene_name, scene_name, "background")
 	scene().get_node("MainMenuBackground").texture = bg

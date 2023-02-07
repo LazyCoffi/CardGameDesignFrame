@@ -26,7 +26,10 @@ class FuncGraphNode:
 		ret.func_unit = func_unit.copy()
 		ret.ch = []
 		for node in ch:
-			ret.ch.append(node.copy())
+			if node == null:
+				ret.ch.append(null)
+			else:
+				ret.ch.append(node.copy())
 		ret.index = index
 
 		return ret
@@ -86,14 +89,12 @@ func _init():
 	exec_graph = {}
 	
 func copy():
-	var ret = TypeUnit.type("FunctionGraph").new()
+	var ret = TypeUnit.type("FuncGraph").new()
 	ret.root = root.copy()
 	ret.graph = graph.duplicate()
 	ret.request_params = request_params.duplicate(true)
 	ret.node_index = node_index
 	ret.exec_graph = {}
-	for key in exec_graph.keys():
-		ret.exec_graph[key] = exec_graph[key].copy()
 	
 	return ret
 

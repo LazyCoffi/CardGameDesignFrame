@@ -70,14 +70,14 @@ func getAttrIndexList():
 func getAttrFullIndexList():
 	return card_attr.getFullIndexList()
 
+func addAttr(attr_name, attr_type, getter_function, setter_function):
+	card_attr.addAttr(attr_name, attr_type, getter_function, setter_function)
+
 func setAttr(attr_name, attr):
 	card_attr.setAttr(attr_name, attr)
 
 func delAttr(attr_name):
 	return card_attr.delAttr(attr_name)
-
-func setCardAttr(card_attr_):
-	card_attr = card_attr_
 
 func pack():
 	var script_tree = ScriptTree.new()

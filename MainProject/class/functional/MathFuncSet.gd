@@ -44,6 +44,18 @@ func powInt(first, second, p := null):
 func powFloat(first, second):
 	return pow(first, second)
 
+func lowerBoundInt(first, second):
+	return int(max(first, second))
+
+func upperBoundInt(first, second):
+	return int(min(first, second))
+
+func lowerBoundFloat(first, second):
+	return float(max(first, second))
+
+func upperBoundFloat(first, second):
+	return float(min(first, second))
+
 func __quickPow(first, second, p := null):
 	var ret = 1
 
@@ -75,3 +87,7 @@ func __initFuncForm():
 	addFuncForm("divFloat", "float", ["float", "float"])
 	addFuncForm("powInt", "int", ["int", "int"])
 	addFuncForm("powFloat", "float", ["float", "float"])
+	addFuncForm("lowerBoundInt", "int", ["int", "int"])
+	addFuncForm("upperBoundInt", "int", ["int", "int"])
+	addFuncForm("lowerBoundFloat", "float", ["float", "float"])
+	addFuncForm("upperBoundFloat", "float", ["float", "float"])

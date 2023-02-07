@@ -16,6 +16,7 @@ func _init():
 
 func copy():
 	var ret = TypeUnit.type("CardPile").new()
+	
 	ret.card_pile = []
 	for card in card_pile:
 		ret.card_pile.append(card.copy())
@@ -25,6 +26,8 @@ func copy():
 		ret.trash_pile.append(card.copy())
 	
 	ret.is_random = is_random
+
+	ret.param_type = param_type
 
 	return ret
 
@@ -37,7 +40,7 @@ func randomOn():
 
 func randomOff():
 	is_random = false
-
+	
 # card_pile
 func getAllCards():
 	var ret = card_pile.duplicate()
@@ -87,16 +90,16 @@ func dealTrash(num):
 	
 	return ret
 
-func drawFront(card):
+func pushFront(card):
 	card_pile.push_front(card)
 
-func drawBack(card):
+func pushBack(card):
 	card_pile.push_back(card)
 
-func drawTrashFront(card):
+func pushTrashFront(card):
 	trash_pile.push_front(card)
 
-func drawTrashBack(card):
+func pushTrashBack(card):
 	trash_pile.push_back(card)
 
 func shufflePile():

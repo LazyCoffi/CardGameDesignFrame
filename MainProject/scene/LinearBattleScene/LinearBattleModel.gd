@@ -2,8 +2,8 @@ extends Node
 class_name LinearBattleModel
 
 var ScriptTree = TypeUnit.type("ScriptTree")
-var BattleCharacterCard = TypeUnit.type("BattleCharacterCard")
-var BattleSkillCard = TypeUnit.type("BattleSkillCard")
+var LinearCharacterCard = TypeUnit.type("LinearCharacterCard")
+var LinearSkillCard = TypeUnit.type("LinearSkillCard")
 var Function = TypeUnit.type("Function")
 var DictArray = TypeUnit.type("DictArray")
 var SettingTable = TypeUnit.type("SettingTable")
@@ -19,15 +19,16 @@ var order_bucket			# Character_PollingBucket
 var character_deal_function	# Function
 var cur_character_card		# CharacterCard
 var hand_cards_table		# SkillCard_DictArray_Dict
+var draw_cards_num_function	# Function
 var total_round				# int
 
 func _init():
 	setting = SettingTable.new()
 	character_groups = []
 	order_bucket = PollingBucket.new()
-	order_bucket.setParamType(BattleCharacterCard)
+	order_bucket.setParamType(LinearCharacterCard)
 	character_deal_function = Function.new()
-	cur_character_card = BattleCharacterCard.new()
+	cur_character_card = LinearCharacterCard.new()
 	hand_cards_table = {}
 	__setParamTable()
 
@@ -88,6 +89,13 @@ func getCurCharacterName():
 func setCurCharacterCard(cur_character_card_):
 	cur_character_card = cur_character_card_
 
+# draw_cards_num_function
+func getDrawCardsNum():
+	return draw_cards_num_function.exec([cur_character_card])
+
+func setDrawCardsNumFunction(draw_cards_num_function_):
+	draw_cards_num_function = draw_cards_num_function_
+
 # hand_cards_table
 func getHandCardsTable():
 	return hand_cards_table
@@ -135,10 +143,10 @@ func pack():
 
 func loadScript(script_tree):
 	setting = script_tree.getObject("setting", SettingTable)
-	character_groups = script_tree.getTypeObjectArray("character_groups", DictArray, BattleCharacterCard)
-	order_bucket = script_tree.getTypeObject("order_bucket", PollingBucket, BattleCharacterCard)
+	character_groups = script_tree.getTypeObjectArray("character_groups", DictArray, LinearCharacterCard)
+	order_bucket = script_tree.getTypeObject("order_bucket", PollingBucket, LinearCharacterCard)
 	character_deal_function = script_tree.getObject("character_deal_function", Function)
-	cur_character_card = script_tree.getObject("cur_character_card", BattleCharacterCard)
+	cur_character_card = script_tree.getObject("cur_character_card", LinearCharacterCard)
 	hand_cards_table = script_tree.getTypeObjectDict("hand_cards_table", DictArray, SkillCard)
 	total_round = script_tree.getInt("total_round")
 

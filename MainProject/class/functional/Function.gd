@@ -13,7 +13,7 @@ func _init():
 	param_map = DictMap.new()
 
 func copy():
-	var ret = TypeUnit.type("DictMap").new()
+	var ret = TypeUnit.type("Function").new()
 	ret.graph = graph.copy()
 	ret.param_map = param_map.copy()
 

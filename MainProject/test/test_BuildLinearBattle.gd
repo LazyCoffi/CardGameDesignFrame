@@ -4,34 +4,16 @@ var SwitchTargetTable = TypeUnit.type("SwitchTargetTable")
 var SettingTable = TypeUnit.type("SettingTable")
 var Function = TypeUnit.type("Function")
 var PollingBucket = TypeUnit.type("PollingBucket")
-var BattleCharacterCard = TypeUnit.type("BattleCharacterCard")
+var LinearCharacterCard = TypeUnit.type("LinearCharacterCard")
 var FuncGraph = TypeUnit.type("FuncGraph")
-
-var MainMenuScene = TypeUnit.type("MainMenuScene")
-var MainMenuModel = TypeUnit.type("MainMenuModel")
 
 var LinearBattleScene = TypeUnit.type("LinearBattleScene")
 var LinearBattleModel = TypeUnit.type("LinearBattleModel")
 
-func test_buildMainMenuScript():
-	var main_menu = MainMenuScene.instance()
-	main_menu.setSceneName("main_menu")
-
-	var switch_target_table = SwitchTargetTable.new()
-	switch_target_table.addTarget("StartButton", "LinearBattleScene", "linear_battle")
-	switch_target_table.addTarget("ContinueButton", "LinearBattleScene", "linear_battle")
-	switch_target_table.addTarget("SettingButton", "LinearBattleScene", "linear_battle")
-	
-	main_menu.setSwitchTargetTable(switch_target_table)
-
-	var main_menu_model = MainMenuModel.new()
-	
-	main_menu.setModel(main_menu_model)
-
-	var script_tree = main_menu.pack()
-	script_tree.exportAsJson("res://scripts/scene/main_menu.json")
-
-	pass_test("Mainmenu script generate success!")
+func before_all():
+	CardCache.initScript()
+	GlobalSetting.initScript()
+	ResourceUnit.initScript()
 
 func __buildSetting():
 	var setting = SettingTable.new()
@@ -48,7 +30,7 @@ func __buildSetting():
 
 func __buildOrderBucket():
 	var order_bucket = PollingBucket.new()
-	order_bucket.setParamType(BattleCharacterCard)
+	order_bucket.setParamType(LinearCharacterCard)
 
 	var init_function = Function.new()
 	var init_graph = FuncGraph.new()
@@ -78,39 +60,48 @@ func __buildOrderBucket():
 
 	return order_bucket
 
-func __buildGetCardFuncUnit():
-	var card_function = FuncUnit.new()
-	card_function.setFuncSetName("CardOperFuncSet")
-	card_function.setFuncName("getCardWithDefaultName")
-	card_function.initDefaultParams()
-	card_function.setDefaultParam(0, "StringPack", "ch")
+func __buildMainCharacterFuncUnit():
+	var card_unit = FuncUnit.new()
+	card_unit.setFuncSetName("CardFuncSet")
+	card_unit.setFuncName("getCardWithDefaultName")
+	card_unit.initDefaultParams()
+	card_unit.setDefaultParam("StringPack", "MainCharacterCard", 0)
 
-	return card_function
+	return card_unit
+
+func __buildEnemyCharacterFuncUnit():
+	var card_unit = FuncUnit.new()
+	card_unit.setFuncSetName("CardFuncSet")
+	card_unit.setFuncName("getCardWithDefaultName")
+	card_unit.initDefaultParams()
+	card_unit.setDefaultParam("StringPack", "EnemyCharacterCard", 0)
+
+	return card_unit
 
 func __buildPackFuncUnit():
-	var pack_function = FuncUnit.new()
-	pack_function.setFuncSetName("ArrayOperFuncSet")
-	pack_function.setFuncName("packArray")
-	pack_function.initDefaultParams()
+	var pack_unit = FuncUnit.new()
+	pack_unit.setFuncSetName("ArrayOperFuncSet")
+	pack_unit.setFuncName("packArray")
+	pack_unit.initDefaultParams()
 
-	return pack_function
+	return pack_unit
 
 func __buildAppendFuncUnit():
-	var pack_function = FuncUnit.new()
-	pack_function.setFuncSetName("ArrayOperFuncSet")
-	pack_function.setFuncName("appendVal")
-	pack_function.initDefaultParams()
+	var append_unit = FuncUnit.new()
+	append_unit.setFuncSetName("ArrayOperFuncSet")
+	append_unit.setFuncName("appendVal")
+	append_unit.initDefaultParams()
 
-	return pack_function
+	return append_unit
 
 func __buildCharacterDealFunction():
 	var character_deal_function = Function.new()
 	var graph = FuncGraph.new()
 
-	var node1 = graph.genNode(__buildGetCardFuncUnit())
-	var node2 = graph.genNode(__buildGetCardFuncUnit())
-	var node3 = graph.genNode(__buildGetCardFuncUnit())
-	var node4 = graph.genNode(__buildGetCardFuncUnit())
+	var node1 = graph.genNode(__buildMainCharacterFuncUnit())
+	var node2 = graph.genNode(__buildMainCharacterFuncUnit())
+	var node3 = graph.genNode(__buildEnemyCharacterFuncUnit())
+	var node4 = graph.genNode(__buildEnemyCharacterFuncUnit())
 
 	var pack_node1 = graph.genNode(__buildPackFuncUnit())
 	var pack_node2 = graph.genNode(__buildPackFuncUnit())
@@ -134,11 +125,8 @@ func __buildCharacterDealFunction():
 
 	graph.setRoot(append_node3)
 
-
 	character_deal_function.setGraph(graph)
-	character_deal_function.setMap([])
-
-	print(character_deal_function.getParamsType())
+	character_deal_function.initParamMap()
 
 	return character_deal_function
 
@@ -167,44 +155,6 @@ func test_buildLinearBattleScript():
 	linear_battle.setSceneModel(linear_battle_model)
 
 	var script_tree = linear_battle.pack()
-	script_tree.exportAsJson("res://scripts/scene/linear_battle.json")
+	script_tree.exportAsJson("res://test/scripts/linear_battle.json")
 
 	pass_test("Create linear battle script success")
-
-func __buildReviseFunction():
-	var function = Function.new()
-	var val_function = FuncUnit.new()
-	val_function.setFuncSetName("BaseFuncSet")
-	val_function.setFuncName("returnVal")
-	val_function.initDefaultParams()
-
-	var graph = FuncGraph.new()
-	var node = graph.genNode(val_function)
-	graph.setRoot(node)
-	function.setGraph(graph)
-	function.setMap([
-		"returnVal_1_0"
-	])
-
-	return function
-
-func test_createCardTemplate():
-	var card_cache = TypeUnit.type("CardCache").new()
-	var card = TypeUnit.type("BattleCharacterCard").new()
-	card.setTemplateName("ch")
-	card.setCardName("testCard")
-	card.setAvatorName("testAvator")
-	card.setIntroduction("test")
-
-	var attr = TypeUnit.type("Attr").new()
-	card.setCardAttr(attr)
-
-	card_cache.addTemplate("BattleCharacterCard", card, __buildReviseFunction(), ["test", "testCard"])
-
-	var script_tree = card_cache.pack()
-	script_tree.exportAsJson("res://scripts/system/card_templates.json")
-
-	pass_test("Create card templates success")
-
-func test_duplicateTest():
-	pass_test("Duplicate Test")

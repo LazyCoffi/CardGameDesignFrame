@@ -2,6 +2,11 @@ extends GutTest
 
 var ScriptTree = TypeUnit.type("ScriptTree")
 
+func before_all():
+	CardCache.initScript()
+	GlobalSetting.initScript()
+	ResourceUnit.initScript()
+
 func test_loadFromJson():
 	var path = "res://test/testFile/sample_json.json"
 	var script_tree = ScriptTree.new()

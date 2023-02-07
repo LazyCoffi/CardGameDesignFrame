@@ -81,7 +81,7 @@ class AttrNode:
 		attr_type = script_tree.getStr("attr_type")
 		attr = script_tree.getRawAttr("attr")
 		getter_function = script_tree.getObject("getter_function", Function)
-		setter_function = script_tree.getObjectDict("setter_function", Function)
+		setter_function = script_tree.getObject("setter_function", Function)
 
 func _init():
 	table = {}
@@ -111,11 +111,10 @@ func getAttrList():
 func setAttr(attr_name, attr):
 	table[attr_name].setAttr(attr)
 
-func addAttr(attr_name, attr_type, attr, getter_function, setter_function):
+func addAttr(attr_name, attr_type, getter_function, setter_function):
 	var attr_node = AttrNode.new()
 	attr_node.setAttrName(attr_name)
 	attr_node.setAttrType(attr_type)
-	attr_node.setAttr(attr)
 	attr_node.setGetterFunction(getter_function)
 	attr_node.setSetterFunction(setter_function)
 

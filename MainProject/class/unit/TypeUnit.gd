@@ -27,101 +27,27 @@ func packBaseParam(val):
 	
 	return ret
 
-func isType(val, type_name):
-	match type_name:
-		"all":	
-			return true
-		"int":
-			return val is int
-		"float":
-			return val is float
-		"bool":
-			return val is bool
-		"null":
-			return val == null
-		"Number":
-			return val is int or val is float
-		"String":
-			return val is String
-		"Array":
-			return val is Array
-		"Dictionary":
-			return val is Dictionary
-	
-	var types = type_name.split("_")
-	if types.size() == 2:
-		if types[1] == "Array":
-			for val_ in val:
-				if not isType(val_, types[0]):
-					return false
-		elif types[1] == "Dictionary":
-			for val_ in val.values():
-				if not isType(val_, types[0]):
-					return false
-		else:
-			return false
-
-		return true
-	elif types.size() > 2:
-		return false
-
-	return val is type(type_name)
-
-func isAdaptable(val, type_name):
-	if isType(val, type_name):
-		return true
-
-	match type_name:
-		"int":
-			return isType(val, "float")
-		"float":
-			return isType(val, "int")
-		"int_Array":
-			return isType(val, "float_Array")
-		"float_Array":
-			return isType(val, "int_Array")
-		"int_Dictionary":
-			return isType(val, "float_Dictionary")
-		"float_Dictionary":
-			return isType(val, "int_Dictionary")
-	
-	return false
-
-func verifyParamsType(params, params_form):
-	Exception.assert(params.size() == params_form.size())
-	var siz = params.size()
-	for index in range(siz):
-		if not isType(params[index], params_form[index]):
-			return false
-	
-	return true
-
-func verifyParamsAdaptable(params, params_form):
-	Exception.assert(params.size() == params_form.size())
-	var siz = params.size()
-	for index in range(siz):
-		if not isAdaptable(params[index], params_form[index]):
-			return false
-	
-	return true
-
 func __initTypeTable():
 	type_table = {}
 	__addType("container", "CardPile")
 	__addType("container", "DictArray")
+	__addType("container", "HandCardSlot")
 	__addType("container", "Heap")
 	__addType("container", "PollingBucket")
 	__addType("entity", "ArrangeMap")
 	__addType("entity", "Attr")
-	__addType("entity", "BattleCharacterCard")
-	__addType("entity", "BattleSkillCard")
+	__addType("entity", "SkillCard")
+	__addType("entity", "BitFlag")
 	__addType("entity", "BuffCard")
 	__addType("entity", "Card")
 	__addType("entity", "CategoryTree")
+	__addType("entity", "CharacterCard")
 	__addType("entity", "DictMap")
 	__addType("entity", "EquipmentCard")
 	__addType("entity", "Float")
 	__addType("entity", "Integer")
+	__addType("entity", "LinearCharacterCard")
+	__addType("entity", "LinearSkillCard")
 	__addType("entity", "NullPack")
 	__addType("entity", "ParamList")
 	__addType("entity", "ScriptTree")
@@ -136,7 +62,7 @@ func __initTypeTable():
 	__addType("functional", "BaseConditionSet")
 	__addType("functional", "BaseFuncSet")
 	__addType("functional", "BattleFuncSet")
-	__addType("functional", "CardOperFuncSet")
+	__addType("functional", "CardFuncSet")
 	__addType("functional", "Function")
 	__addType("functional", "FuncUnit")
 	__addType("functional", "FuncGraph")
@@ -144,7 +70,8 @@ func __initTypeTable():
 	__addType("functional", "HyperFunction")
 	__addType("functional", "MathFuncSet")
 	__addType("functional", "SceneOperFuncSet")
-	__addType("scene", "SceneFactory")
+	__addType("unit", "SceneFactory")
+	__addType("unit", "SceneCache")
 	__addType("unit", "CardCache")
 	__addType("unit", "Exception")
 	__addType("unit", "GlobalSetting")

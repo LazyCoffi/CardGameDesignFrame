@@ -4,7 +4,7 @@ var array_oper_func_set = TypeUnit.type("ArrayOperFuncSet").new()
 var attr_func_set = TypeUnit.type("AttrFuncSet").new()
 var base_func_set = TypeUnit.type("BaseFuncSet").new()
 var battle_func_set = TypeUnit.type("BattleFuncSet").new()
-var card_oper_func_set = TypeUnit.type("CardOperFuncSet").new()
+var card_func_set = TypeUnit.type("CardFuncSet").new()
 var math_func_set = TypeUnit.type("MathFuncSet").new()
 var scene_oper_func_set = TypeUnit.type("SceneOperFuncSet").new()
 
@@ -41,7 +41,7 @@ func __initFuncType():
 	__addFuncSet(["Func"], "AttrFuncSet", attr_func_set)
 	__addFuncSet(["Func"], "BaseFuncSet", base_func_set)
 	__addFuncSet(["Func"], "BattleFuncSet", battle_func_set)
-	__addFuncSet(["Func"], "CardOperFuncSet", card_oper_func_set)
+	__addFuncSet(["Func"], "CardFuncSet", card_func_set)
 	__addFuncSet(["Func"], "MathFuncSet", math_func_set)
 	__addFuncSet(["Func"], "SceneOperFuncSet", scene_oper_func_set)
 

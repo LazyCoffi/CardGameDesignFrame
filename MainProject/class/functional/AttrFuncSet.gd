@@ -81,6 +81,86 @@ func __setLowerBoundConst(attr, attr_name, val):
 	
 	return attr
 
+func plusAttrInt(first, first_name, second, second_name, third, third_name):
+	third.setAttr(third_name, int(first.getAttr(first_name) + second.getAttr(second_name)))
+
+	return third
+
+func plusAttrFloat(first, first_name, second, second_name, third, third_name):
+	third.setAttr(third_name, float(first.getAttr(first_name) + second.getAttr(second_name)))
+
+	return third
+
+func mulAttrInt(first, first_name, second, second_name, third, third_name):
+	third.setAttr(third_name, int(first.getAttr(first_name) * second.getAttr(second_name)))
+
+	return third
+
+func mulAttrFloat(first, first_name, second, second_name, third, third_name):
+	third.setAttr(third_name, float(first.getAttr(first_name) * second.getAttr(second_name)))
+
+	return third
+
+func minusAttrInt(first, first_name, second, second_name, third, third_name):
+	third.setAttr(third_name, int(first.getAttr(first_name) - second.getAttr(second_name)))
+
+	return third
+
+func minusAttrFloat(first, first_name, second, second_name, third, third_name):
+	third.setAttr(third_name, float(first.getAttr(first_name) - second.getAttr(second_name)))
+
+	return third
+
+func divAttrInt(first, first_name, second, second_name, third, third_name):
+	third.setAttr(third_name, int(first.getAttr(first_name) / second.getAttr(second_name)))
+
+	return third
+
+func divAttrFloat(first, first_name, second, second_name, third, third_name):
+	third.setAttr(third_name, float(first.getAttr(first_name) / second.getAttr(second_name)))
+
+	return third
+
+func plusAttrIntOverride(first, first_name, second, second_name):
+	first.setAttr(first_name, int(first.getAttr(first_name) + second.getAttr(second_name)))
+
+	return first
+
+func plusAttrFloatOverride(first, first_name, second, second_name):
+	first.setAttr(first_name, float(first.getAttr(first_name) + second.getAttr(second_name)))
+
+	return first
+
+func mulAttrIntOverride(first, first_name, second, second_name):
+	first.setAttr(first_name, int(first.getAttr(first_name) * second.getAttr(second_name)))
+
+	return first
+
+func mulAttrFloatOverride(first, first_name, second, second_name):
+	first.setAttr(first_name, float(first.getAttr(first_name) * second.getAttr(second_name)))
+
+	return first
+
+func minusAttrIntOverride(first, first_name, second, second_name):
+	first.setAttr(first_name, int(first.getAttr(first_name) - second.getAttr(second_name)))
+
+	return first
+
+func minusAttrFloatOverride(first, first_name, second, second_name):
+	first.setAttr(first_name, float(first.getAttr(first_name) - second.getAttr(second_name)))
+
+	return first
+
+func divAttrIntOverride(first, first_name, second, second_name):
+	first.setAttr(first_name, int(first.getAttr(first_name) / second.getAttr(second_name)))
+
+	return first
+
+func divAttrFloatOverride(first, first_name, second, second_name):
+	first.setAttr(first_name, float(first.getAttr(first_name) / second.getAttr(second_name)))
+
+	return first
+
 func __initFuncForm():
 	addFuncForm("setConst", "Attr", ["Attr", "String", "all"])
 	addFuncForm("plusIntConst", "Attr", ["Attr", "String", "int"])
@@ -90,3 +170,19 @@ func __initFuncForm():
 	addFuncForm("setUpperBoundConstFloat", "Attr", ["Attr", "String", "float"])
 	addFuncForm("setLowerBoundConstInt", "Attr", ["Attr", "String", "int"])
 	addFuncForm("setLowerBoundConstFloat", "Attr", ["Attr", "String", "float"])
+	addFuncForm("plusAttrInt", "int", ["Attr", "String", "Attr", "String", "Attr", "String"])
+	addFuncForm("plusAttrFloat", "float", ["Attr", "String", "Attr", "String", "Attr", "String"])
+	addFuncForm("mulAttrInt", "int", ["Attr", "String", "Attr", "String", "Attr", "String"])
+	addFuncForm("mulAttrFloat", "float", ["Attr", "String", "Attr", "String", "Attr", "String"])
+	addFuncForm("minusAttrInt", "int", ["Attr", "String", "Attr", "String", "Attr", "String"])
+	addFuncForm("minusAttrFloat", "float", ["Attr", "String", "Attr", "String", "Attr", "String"])
+	addFuncForm("divAttrInt", "int", ["Attr", "String", "Attr", "String", "Attr", "String"])
+	addFuncForm("divAttrFloat", "float", ["Attr", "String", "Attr", "String", "Attr", "String"])
+	addFuncForm("plusAttrIntOverride", "int", ["Attr", "String", "Attr", "String"])
+	addFuncForm("plusAttrFloatOverride", "float", ["Attr", "String", "Attr", "String"])
+	addFuncForm("mulAttrIntOverride", "int", ["Attr", "String", "Attr", "String"])
+	addFuncForm("mulAttrFloatOverride", "float", ["Attr", "String", "Attr", "String"])
+	addFuncForm("minusAttrIntOverride", "int", ["Attr", "String", "Attr", "String"])
+	addFuncForm("minusAttrFloatOverride", "float", ["Attr", "String", "Attr", "String"])
+	addFuncForm("divAttrIntOverride", "int", ["Attr", "String", "Attr", "String"])
+	addFuncForm("divAttrFloatOverride", "float", ["Attr", "String", "Attr", "String"])

@@ -90,8 +90,6 @@ func _init():
 	category_tree = CategoryTree.new()
 	table = {}
 
-	__initScript()
-
 # table
 func getCard(template_name, card_name):
 	return table[template_name].getCard(card_name)
@@ -122,7 +120,10 @@ func loadScript(script_tree):
 	category_tree = script_tree.getObject("category_tree", CategoryTree)
 	table = script_tree.getObjectDict("table", CacheNode)
 
-func __initScript():
-	var script_tree = ScriptTree.new()
-	script_tree.loadFromJson("res://scripts/system/card_templates.json")
-	loadScript(script_tree)
+func initScript():
+	var path = "res://scripts/system/card_templates.json"
+	var file = File.new()
+	if file.file_exists(path):
+		var script_tree = ScriptTree.new()
+		script_tree.loadFromJson(path)
+		loadScript(script_tree)
