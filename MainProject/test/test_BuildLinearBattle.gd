@@ -130,6 +130,24 @@ func __buildCharacterDealFunction():
 
 	return character_deal_function
 
+func __buildDrawCardNumFunction():
+	var draw_card_num_function = Function.new()
+
+	var const_unit = FuncUnit.new()
+	const_unit.setFuncSetName("MathFuncSet")
+	const_unit.setFuncName("constVal")
+	const_unit.initDefaultParams()
+	const_unit.setDefaultParam("Integer", 2, 0)
+
+	var graph = FuncGraph.new()
+	var node = graph.genNode(const_unit)
+	graph.setRoot(node)
+
+	draw_card_num_function.setGraph(graph)
+	draw_card_num_function.initParamMap()
+
+	return draw_card_num_function
+
 func test_buildLinearBattleScript():
 	var linear_battle = LinearBattleScene.instance()
 
@@ -151,6 +169,7 @@ func test_buildLinearBattleScript():
 	# character_deal_function
 	var character_deal_function = __buildCharacterDealFunction()
 	linear_battle_model.setCharacterDealFunction(character_deal_function)
+	linear_battle_model.setDrawCardsNumFunction(__buildDrawCardNumFunction())
 
 	linear_battle.setSceneModel(linear_battle_model)
 

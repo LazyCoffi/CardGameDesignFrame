@@ -85,6 +85,9 @@ func copy():
 func setParamType(param_type_):
 	param_type = param_type_
 
+func has(param_name):
+	return table.has(param_name)
+
 func get(param_name):
 	return table[param_name].getParam()
 

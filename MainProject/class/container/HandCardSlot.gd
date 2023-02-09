@@ -40,6 +40,12 @@ func playCardAt(param_list, card_pile, index):
 	var card = card_slot[index]
 	card.exec(param_list)
 	card.afterPlayDiscard(card_pile, card_slot)
+
+func playCardByName(param_list, card_pile, card_name):
+	for card in card_slot:
+		if card.getCardName() == card_name:
+			card.exec(param_list)
+			card.afterPlayDiscard(card_pile, card_slot)
 	
 func positiveDiscardAt(card_pile, index):
 	card_slot[index].positiveDiscard(card_pile, card_slot)

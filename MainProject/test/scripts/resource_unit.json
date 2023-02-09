@@ -117,6 +117,10 @@
 				"enemy_character": [
 					33,
 					"TextureNode"
+				],
+				"attack_card": [
+					35,
+					"TextureNode"
 				]
 			},
 			"component": {
@@ -282,10 +286,13 @@
 			"texture_path": "res://asserts/avator/white_hair.png"
 		},
 		{
-			"texture_path": "res://asserts/avator/white_hair.png"
+			"texture_path": "res://asserts/avator/purple_hair.png"
 		},
 		{
 			"texture_path": "res://asserts/global_component/underline.png"
+		},
+		{
+			"texture_path": "res://asserts/avator/knight.png"
 		}
 	]
 }

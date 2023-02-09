@@ -175,7 +175,7 @@ func __buildMainCharacterCard():
 	card.setAttr("stg", 25)
 
 	for index in 4:
-		card.drawCardFront(__buildAttackSkillCard(index))
+		card.pushCardPileFront(__buildAttackSkillCard(index))
 	
 	return card
 
@@ -190,7 +190,7 @@ func __buildEnemyCharacterCard():
 	card.setAttr("stg", 10)
 
 	for index in 4:
-		card.drawCardFront(__buildAttackSkillCard(index + 4))
+		card.pushCardPileFront(__buildAttackSkillCard(index + 4))
 	
 	return card
 

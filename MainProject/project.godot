@@ -135,6 +135,11 @@ _global_script_classes=[ {
 "path": "res://class/entity/DictMap.gd"
 }, {
 "base": "Node",
+"class": "Emitter",
+"language": "GDScript",
+"path": "res://class/entity/Emitter.gd"
+}, {
+"base": "Node",
 "class": "EquipmentCard",
 "language": "GDScript",
 "path": "res://class/entity/EquipmentCard.gd"
@@ -345,6 +350,7 @@ _global_script_class_icons={
 "CharacterWarehouseService": "",
 "DictArray": "",
 "DictMap": "",
+"Emitter": "",
 "EquipmentCard": "",
 "Float": "",
 "FuncGraph": "",

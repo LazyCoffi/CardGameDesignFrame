@@ -44,22 +44,16 @@ func pileRandomOn():
 func pileRandomOff():
 	card_pile.randomOff()
 
-func dealCards(num):
-	return card_pile.deal(num)
-
-func dealTrashCards(num):
-	return card_pile.dealTrash(num)
-
-func drawCardFront(card):
+func pushCardPileFront(card):
 	card_pile.pushFront(card)
 
-func drawCardBack(card):
+func pushCardPileBack(card):
 	card_pile.pushBack(card)
 
-func drawTrashCardFront(card):
+func pushTrashPileFront(card):
 	card_pile.pushTrashFront(card)
 
-func drawTrashCardBack(card):
+func pushTrashPileBack(card):
 	card_pile.pushTrashBack(card)
 
 func shufflePile():
@@ -67,6 +61,9 @@ func shufflePile():
 
 func shuffleTrash():
 	card_pile.shuffleTrash()
+
+func getCardPile():
+	return card_pile
 
 func pack():
 	var script_tree = .pack()

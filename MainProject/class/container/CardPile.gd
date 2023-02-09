@@ -42,6 +42,12 @@ func randomOff():
 	is_random = false
 	
 # card_pile
+func getCardsNum():
+	return card_pile.size()
+
+func getTrashCardsNum():
+	return trash_pile.size()
+
 func getAllCards():
 	var ret = card_pile.duplicate()
 	ret.append_array(trash_pile)
@@ -120,6 +126,6 @@ func pack():
 	return script_tree
 
 func loadScript(script_tree):
-	script_tree.getObjectArray("card_pile", param_type)
-	script_tree.getObjectArray("trash_pile", param_type)
-	script_tree.getBool("is_random")
+	card_pile = script_tree.getObjectArray("card_pile", param_type)
+	trash_pile = script_tree.getObjectArray("trash_pile", param_type)
+	is_random = script_tree.getBool("is_random")

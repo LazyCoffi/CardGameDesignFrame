@@ -346,6 +346,44 @@
 				]
 			}
 		},
+		"draw_cards_num_function": {
+			"graph": {
+				"graph": [
+					null,
+					[
+						0
+					]
+				],
+				"request_params": {
+
+				},
+				"node_index": 1,
+				"flat_tree": [
+					{
+						"func_unit": {
+							"func_name": "constVal",
+							"func_set_name": "MathFuncSet",
+							"default_params": {
+								"list": [
+									{
+										"param_type": "Integer",
+										"param": {
+											"val": 2
+										}
+									}
+								]
+							}
+						},
+						"index": 1
+					}
+				]
+			},
+			"param_map": {
+				"map": [
+
+				]
+			}
+		},
 		"cur_character_card": {
 			"card_name": "",
 			"avator_name": "",

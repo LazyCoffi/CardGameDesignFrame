@@ -48,6 +48,13 @@ func setSetting(setting_):
 func getCharacterGroupsNum():
 	return [character_groups[0].size(), character_groups[1].size()]
 
+func getCharacterByName(card_name):
+	if character_groups[0].has(card_name):
+		return character_groups[0].get(card_name)
+	
+	if character_groups[1].has(card_name):
+		return character_groups[1].get(card_name)
+
 func getCharacterGroups():
 	return character_groups
 
@@ -135,6 +142,7 @@ func pack():
 	script_tree.addTypeObjectArray("character_groups", character_groups)
 	script_tree.addTypeObject("order_bucket", order_bucket)
 	script_tree.addObject("character_deal_function", character_deal_function)
+	script_tree.addObject("draw_cards_num_function", draw_cards_num_function)
 	script_tree.addObject("cur_character_card", cur_character_card)
 	script_tree.addTypeObjectDict("hand_cards_table", hand_cards_table)
 	script_tree.addAttr("total_round", total_round)
@@ -146,6 +154,7 @@ func loadScript(script_tree):
 	character_groups = script_tree.getTypeObjectArray("character_groups", DictArray, LinearCharacterCard)
 	order_bucket = script_tree.getTypeObject("order_bucket", PollingBucket, LinearCharacterCard)
 	character_deal_function = script_tree.getObject("character_deal_function", Function)
+	draw_cards_num_function = script_tree.getObject("draw_cards_num_function", Function)
 	cur_character_card = script_tree.getObject("cur_character_card", LinearCharacterCard)
 	hand_cards_table = script_tree.getTypeObjectDict("hand_cards_table", DictArray, SkillCard)
 	total_round = script_tree.getInt("total_round")

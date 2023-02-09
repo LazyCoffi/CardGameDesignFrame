@@ -49,8 +49,9 @@ func test_buildResourceUnit():
 	resource_unit.addText("main_menu", "ExitButtonText", "font_text", "离开游戏")
 
 	resource_unit.addTexture("global", "avator", "main_character", "res://asserts/avator/white_hair.png")
-	resource_unit.addTexture("global", "avator", "enemy_character", "res://asserts/avator/white_hair.png")
+	resource_unit.addTexture("global", "avator", "enemy_character", "res://asserts/avator/purple_hair.png")
 	resource_unit.addTexture("global", "component", "underline", "res://asserts/global_component/underline.png")
+	resource_unit.addTexture("global", "avator", "attack_card", "res://asserts/avator/knight.png")
 
 	var script_tree = resource_unit.pack()
 	script_tree.exportAsJson("res://test/scripts/resource_unit.json")

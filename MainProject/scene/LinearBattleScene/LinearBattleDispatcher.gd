@@ -22,7 +22,7 @@ func service():
 
 func initCharacterCards():
 	service().initCharacterCardGroup()
-	render().initCharacterRect()
+	render().renderCharacter()
 
 func setCurCharacterCard():
 	service().initOrderBucket()
@@ -30,11 +30,49 @@ func setCurCharacterCard():
 	render().markCurCharacter()
 
 func setCurHandCards():
-	var new_hand_cards = service().newCurHandCards()
-	service().addCurHandCards(new_hand_cards)
-	service().setCurHandCardsRect()
+	service().drawCurHandCards()
+	render().renderCurHandCard()
 
 func sceneComponentInit():
 	initCharacterCards()
 	setCurCharacterCard()
-	# setCurHandCards()
+	setCurHandCards()
+	createRoutesToChooseHandCard()
+
+func createRoutesToChooseHandCard():
+	var hand_card_group = render().getHandCardButtonGroup()
+	for component_pack in hand_card_group:
+		__createRoute(component_pack, "pressed", "chooseHandCard")
+
+func destroyRoutesFromChooseHandCard():
+	var hand_card_group = render().getHandCardButtonGroup()
+	for component_pack in hand_card_group:
+		__destroyRoute(component_pack, "pressed", "chooseHandCard")
+
+func chooseHandCard(component_key):
+	destroyRoutesFromChooseHandCard()
+	createRouteToCancelHandCard(component_key)
+	createRouteToChooseTargetCard()
+	
+func createRouteToCancelHandCard(component_key):
+	var hand_card_group = render().getHandCardButtonGroup()
+	for component_pack in hand_card_group:
+		if component_pack.getKey() == component_key:
+			__createRoute(component_pack, "pressed", "cancelHandCard")
+
+func cancelHandCard():
+	pass
+
+func createRouteToChooseTargetCard():
+	var enemy_character_group = render().getCharacterButtonGroup(1)
+	for component_pack in enemy_character_group:
+		__createRoute(component_pack, "pressed", "chooseTargetCard")
+
+func chooseTargetCard():
+	pass
+
+func __createRoute(component_pack, component_signal, target_func):
+	component_pack.connectTo(self, component_signal, target_func)
+
+func __destroyRoute(component_pack, component_signal, target_func):
+	component_pack.disconnectFrom(self, component_signal, target_func)

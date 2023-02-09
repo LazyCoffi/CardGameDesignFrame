@@ -1,11 +1,61 @@
 extends Node
 class_name LinearBattleRender
 
+var Emitter = TypeUnit.type("Emitter")
+
+class ComponentPack:
+	var key
+	var component
+	var connection_table
+
+	func _init():
+		key = ""
+		component = null
+		connection_table = {}
+	
+	func getKey():
+		return key
+	
+	func getComponent():
+		return component
+
+	func setKey(key_):
+		key = key_
+	
+	func setComponent(component_):
+		component = component_
+	
+	func connectTo(entity, component_signal, target_func):
+		var emitter = Emitter.new()
+		emitter.setParam(key)
+		emitter.connectTo(entity, target_func)
+		Exception.assert(not connection_table.has(component_signal))
+		component.connect(component_signal, emitter, emitter.emitFuncName())
+		connection_table[component_signal] = emitter
+	
+	func disconnectFrom(entity, component_signal, target_func):
+		Exception.assert(connection_table.has(component_signal))
+		var emitter = connection_table[component_signal]
+		component.disconnect(component_signal, emitter, emitter.emitFuncName())
+		emitter.disconnectFrom(entity, target_func)
+		connection_table.erase(component_signal)
+	
+	func isConnected(component_signal):
+		return connection_table.has(component_signal)
+
 var scene_ref
 
-var character_rect_groups	# TextureRect_DictArray_Array
-var hand_card_rect_group	# TextureRect_DictArray
-var cur_mark_line
+var character_button_groups		# ComponentPack_2DArray
+var hand_card_button_group		# ComponentPack_Array
+var cur_character_mark			# ComponentPack
+var chosen_hand_card_mark		# ComponentPack
+var chosen_character_mark		# ComponentPack
+
+func _init():
+	character_button_groups = [[], []]
+	hand_card_button_group = []
+	cur_character_mark = null
+	chosen_character_mark = null
 
 func setRef(scene):
 	scene_ref = scene
@@ -19,6 +69,25 @@ func model():
 func service():
 	return scene_ref.service()
 
+func dispatcher():
+	return scene_ref.dispatcher()
+
+# character_button_groups
+func getCharacterButtonGroup(index):
+	return character_button_groups[index]
+
+func getCharacterButtonGroups():
+	return character_button_groups
+
+# hand_card_button_group
+func getHandCardButtonGroup():
+	return hand_card_button_group
+
+func getCurCharacterMarkLine():
+	return cur_character_mark
+
+func __getChosenCharacterMarkLine():
+	return chosen_character_mark
 ## initCharacterRect 
 func __getCharacterCardRectPosition():
 	var group_num = model().getCharacterGroupsNum()
@@ -46,11 +115,10 @@ func __getCharacterCardRectPosition():
 	
 	return ret
 
-func initCharacterRect():
+func renderCharacter():
 	var character_groups = model().getCharacterGroups()
 	var rect_size = __getCharacterCardRectSize()
 	var rect_position = __getCharacterCardRectPosition()
-	character_rect_groups = [DictArray.new(), DictArray.new()]
 
 	for i in 2:
 		var j = 0
@@ -58,35 +126,39 @@ func initCharacterRect():
 			var avator_name = character_groups[i].get(card_name).getAvatorName()
 			var texture = ResourceUnit.loadRes("global", "avator", avator_name)
 			var rect_pos = Vector2(rect_position[i][j][0], rect_position[i][j][1])
-			var character_rect = __buildTextureRect(texture, rect_pos, rect_size)
-			scene().add_child(character_rect)
-			character_rect_groups[i].append(card_name, character_rect)
+			var character_button = __buildTextureButton(texture, rect_pos, rect_size)
+			scene().add_child(character_button)
+
+			var component_pack = __buildComponentPack(card_name, character_button)
+			character_button_groups[i].append(component_pack)
 			j += 1
 
 func markCurCharacter():
-	var texture = ResourceUnit.loadRes("global", "component", "underline")
-
 	var index = service().getCurCharacterIndex()
 	var pos = __getCharacterCardRectPosition()[index[0]][index[1]]
 	var card_rect_size = __getCharacterCardRectSize()
-	var position = Vector2(pos[0], pos[1] + card_rect_size[1])
 
+	var texture = ResourceUnit.loadRes("global", "component", "underline")
+	var position = Vector2(pos[0], pos[1] + card_rect_size[1])
 	var rect_size = Vector2(card_rect_size[0], 20)
 
 	var mark_rect = __buildTextureRect(texture, position, rect_size)
 
-	if cur_mark_line != null:
-		scene().remove_child(cur_mark_line)
+	if cur_character_mark != null:
+		scene().remove_child(cur_character_mark.getComponent())
 
 	scene().add_child(mark_rect)
-	cur_mark_line = mark_rect
+
+	var component_pack = __buildComponentPack("__mark_rect", mark_rect)
+	cur_character_mark = component_pack
 
 ## setCurHandCardsRect
-func __getHandCardRectPosition(card_num, rect_size):
+func __getHandCardRectPosition(card_num):
+	var rect_size = __getHandCardRectSize()
 	var width = GlobalSetting.getAttr("screen_size")[0]
 	var height = GlobalSetting.getAttr("screen_size")[1]
 	var rect_width = rect_size[0]
-	var v_pos = height * 0.2
+	var v_pos = height * 0.8
 	var h_margin = int((width - rect_width * card_num) / 2)
 
 	var ret = []
@@ -95,23 +167,25 @@ func __getHandCardRectPosition(card_num, rect_size):
 	
 	return ret
 
-func setCurHandCardRectGroup():
-	var cur_hand_cards = model().getCurHandCards()
+func renderCurHandCard():
+	var cur_character_card = model().getCurCharacterCard()
+	var cur_hand_cards = cur_character_card.peekHandCards()
 	var rect_size = __getHandCardRectSize()
-	var rect_position = __getHandCardRectPosition(cur_hand_cards.size(), rect_size)
-	hand_card_rect_group = DictArray.new()
+	var rect_position = __getHandCardRectPosition(cur_hand_cards.size())
+	hand_card_button_group = []
 
 	var index = 0
-	for hand_card in cur_hand_cards.values():
-		var card_name = hand_card.getCardName()
+	for hand_card in cur_hand_cards:
 		var avator_name = hand_card.getAvatorName()
 		var texture = ResourceUnit.loadRes("global", "avator", avator_name)
 		var rect_pos = Vector2(rect_position[index][0], rect_position[index][1])
 
-		var hand_card_rect = __buildTextureRect(texture, rect_pos, rect_size)
-		scene().add_child(hand_card_rect)
+		var hand_card_button = __buildTextureButton(texture, rect_pos, rect_size)
+		scene().add_child(hand_card_button)
 
-		hand_card_rect_group.append(card_name, hand_card_rect)
+		var component_pack = __buildComponentPack(hand_card.getCardName(), hand_card_button)
+		hand_card_button_group.append(component_pack)
+		index += 1
 
 func __buildTextureRect(texture, rect_pos, rect_size):
 	var card_rect = TextureRect.new()
@@ -123,6 +197,23 @@ func __buildTextureRect(texture, rect_pos, rect_size):
 	card_rect.rect_position = rect_pos
 
 	return card_rect
+
+func __buildTextureButton(texture, rect_pos, rect_size):
+	var card_rect = TextureButton.new()
+
+	card_rect.texture_normal = texture
+	card_rect.expand = true
+	card_rect.rect_size = rect_size
+	card_rect.rect_position = rect_pos
+
+	return card_rect
+
+func __buildComponentPack(key, component):
+	var component_pack = ComponentPack.new()
+	component_pack.setKey(key)
+	component_pack.setComponent(component)
+
+	return component_pack
 
 func __getCharacterCardRectSize():
 	return Vector2(model().getSettingAttr("character_card_rect_size")[0], model().getSettingAttr("character_card_rect_size")[1])
