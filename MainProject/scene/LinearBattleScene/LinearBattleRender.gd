@@ -8,9 +8,9 @@ class ComponentPack:
 	var component
 	var connection_table
 
-	func _init():
-		key = ""
-		component = null
+	func _init(key_, component_):
+		key = key_
+		component = component_
 		connection_table = {}
 	
 	func getKey():
@@ -45,17 +45,22 @@ class ComponentPack:
 
 var scene_ref
 
-var character_button_groups		# ComponentPack_2DArray
-var hand_card_button_group		# ComponentPack_Array
-var cur_character_mark			# ComponentPack
+var own_team_list				# ComponentPack_2DArray
+var enemy_team_list				# ComponentPack_Array
+var hand_card_list
+var action_character_mark		# ComponentPack
 var chosen_hand_card_mark		# ComponentPack
 var chosen_character_mark		# ComponentPack
+var next_turn_button			# ComponentPack
 
 func _init():
-	character_button_groups = [[], []]
-	hand_card_button_group = []
-	cur_character_mark = null
+	own_team_list = []
+	enemy_team_list = []
+	hand_card_list = []
+	action_character_mark = null
+	chosen_hand_card_mark = null
 	chosen_character_mark = null
+	next_turn_button = null
 
 func setRef(scene):
 	scene_ref = scene
@@ -72,25 +77,91 @@ func service():
 func dispatcher():
 	return scene_ref.dispatcher()
 
-# character_button_groups
-func getCharacterButtonGroup(index):
-	return character_button_groups[index]
+# own_team_list
+func getOwnTeamList():
+	return own_team_list
 
-func getCharacterButtonGroups():
-	return character_button_groups
+func clearOwnTeamList():
+	own_team_list.clear()
+
+# enemy_team_list
+func getEnemyTeamList():
+	return enemy_team_list
+
+func clearEnemyTeamList():
+	enemy_team_list.clear()
+
+func getOptionalTargetList():
+	var chosen_hand_card = model().getChosenHandCard()
+	var scene_name = scene().getSceneName()
+	var own_team = model().getOwnCharacterTeam()
+	var enemy_team = model().getEnemyCharacterTeam()
+
+	var ret = []
+
+	var i = 0
+	for character_card in own_team:
+		if chosen_hand_card.isTargetCondition(character_card, scene_name):
+			ret.append(own_team_list[i])
+
+		i += 1
+			
+	var j = 0
+	for character_card in enemy_team:
+		if chosen_hand_card.isTargetCondition(character_card, scene_name):
+			ret.append(enemy_team_list[j])
+
+		j += 1
+
+	return ret
 
 # hand_card_button_group
-func getHandCardButtonGroup():
-	return hand_card_button_group
+func getHandCardList():
+	return hand_card_list
 
-func getCurCharacterMarkLine():
-	return cur_character_mark
+func getOptionalHandCardList():
+	var hand_cards = model().getActionHandCards()
+	var optional_hand_card_list = []
 
-func __getChosenCharacterMarkLine():
+	var i = 0
+	for hand_card in hand_cards:
+		if hand_card.isPositive():
+			optional_hand_card_list.append(hand_card_list[i])
+
+		i += 1
+	
+	return optional_hand_card_list
+
+func clearHandCardList():
+	# clearHandCardAnime
+	hand_card_list.clear()
+
+# action_character_mark
+func getActionCharacterMark():
+	return action_character_mark
+
+# next_turn_button
+func getNextTurnButton():
+	return next_turn_button
+
+func renderNextTurnButton():
+	var texture = ResourceUnit.loadRes("linear_battle", "linear_battle", "next_turn_button")
+	var next_turn = scene().get_node("NextTurnButton")
+	next_turn.texture_normal = texture
+
+	# TODO: 添加按钮文字
+
+	next_turn_button = ComponentPack.new("__nextTurnButton", next_turn)
+
+func getChosenCharacterMark():
 	return chosen_character_mark
-## initCharacterRect 
-func __getCharacterCardRectPosition():
-	var group_num = model().getCharacterGroupsNum()
+
+func __getOwnTeamPositionList():
+	var character_num = model().getOwnCharacterNum()
+
+	if character_num <= 0:
+		return []
+
 	var rect_size = __getCharacterCardRectSize()
 	var width = GlobalSetting.getAttr("screen_size")[0]
 	var height = GlobalSetting.getAttr("screen_size")[1]
@@ -98,62 +169,249 @@ func __getCharacterCardRectPosition():
 	var v_pos = int(height * 0.4)
 	var h_half = int(width * 0.5)
 
-	var ret = [[], []]
-	var gap = []
-	var init_margin = []
+	var ret = []
+	var gap = int(h_half / character_num)
+	var init_margin = (gap - rect_size[0]) / 2
 
-	gap.append(int(h_half / group_num[0]))
-	gap.append(int(h_half / group_num[1]))
+	for index in range(character_num):
+		ret.append(Vector2(index * gap + init_margin, v_pos))
 
-	init_margin.append((gap[0] - rect_size[0]) / 2)
-	init_margin.append(init_margin[0] + h_half)
-
-	for index in range(group_num[0]):
-		ret[0].append([index * gap[0] + init_margin[0], v_pos])
-	for index in range(group_num[1]):
-		ret[1].append([index * gap[1] + init_margin[1], v_pos])
-	
 	return ret
 
-func renderCharacter():
-	var character_groups = model().getCharacterGroups()
+func __getEnemyTeamPositionList():
+	var character_num = model().getEnemyCharacterNum()
+
+	if character_num <= 0:
+		return []
+
 	var rect_size = __getCharacterCardRectSize()
-	var rect_position = __getCharacterCardRectPosition()
+	var width = GlobalSetting.getAttr("screen_size")[0]
+	var height = GlobalSetting.getAttr("screen_size")[1]
 
-	for i in 2:
-		var j = 0
-		for card_name in character_groups[i].keys():
-			var avator_name = character_groups[i].get(card_name).getAvatorName()
+	var v_pos = int(height * 0.4)
+	var h_half = int(width * 0.5)
+
+	var ret = []
+	var gap = int(h_half / character_num)
+	var init_margin = (gap - rect_size[0]) / 2
+
+	for index in range(character_num):
+		ret.append(Vector2(h_half + index * gap + init_margin, v_pos))
+
+	return ret
+
+func __findComponetPack(list, component_key):
+	for component_pack in list:
+		if component_pack.getKey() == component_key:
+			return component_pack
+	
+	return null
+
+func __delComponentPack(list, component_key):
+	var i = 0
+	while i < list.size():
+		if list[i].getKey() == component_key:
+			list.remove(i)
+			return
+		i += 1
+
+func renderOwnTeam():
+	var own_character_team = model().getOwnCharacterTeam()
+	var rect_size = __getCharacterCardRectSize()
+	var rect_position_list = __getOwnTeamPositionList()
+
+	var list = []
+	var insert_list = []
+	var del_list = own_team_list.duplicate()
+	var keep_list = []
+
+	var i = 0
+	for character_card in own_character_team:
+		var component_key = character_card.getCardName()
+
+		__delComponentPack(del_list, component_key)
+
+		var component_pack = __findComponetPack(own_team_list, component_key)
+		if component_pack == null:
+			var avator_name = character_card.getAvatorName()
 			var texture = ResourceUnit.loadRes("global", "avator", avator_name)
-			var rect_pos = Vector2(rect_position[i][j][0], rect_position[i][j][1])
-			var character_button = __buildTextureButton(texture, rect_pos, rect_size)
-			scene().add_child(character_button)
+			var rect_position = rect_position_list[i]
+			var character_button = TextureButton.new()
+			character_button.expand = true
+			character_button.texture_normal = texture
+			character_button.rect_position = rect_position
+			character_button.rect_size = rect_size
 
-			var component_pack = __buildComponentPack(card_name, character_button)
-			character_button_groups[i].append(component_pack)
-			j += 1
+			component_pack = ComponentPack.new(component_key, character_button)
 
-func markCurCharacter():
-	var index = service().getCurCharacterIndex()
-	var pos = __getCharacterCardRectPosition()[index[0]][index[1]]
-	var card_rect_size = __getCharacterCardRectSize()
+			insert_list.append(component_pack)
+		else:
+			keep_list.append([component_pack, rect_position_list[i]])
 
-	var texture = ResourceUnit.loadRes("global", "component", "underline")
-	var position = Vector2(pos[0], pos[1] + card_rect_size[1])
-	var rect_size = Vector2(card_rect_size[0], 20)
+		list.append(component_pack)
 
-	var mark_rect = __buildTextureRect(texture, position, rect_size)
+		i += 1
+	
+	own_team_list = list
 
-	if cur_character_mark != null:
-		scene().remove_child(cur_character_mark.getComponent())
+	for component_pack in del_list:
+		#TODO: delCharacterAnime
+		scene().remove_child(component_pack.getComponent())
+	
+	for keep_pack in keep_list:
+		var component_pack = keep_pack[0]
+		var rect_position = keep_pack[1]
 
-	scene().add_child(mark_rect)
+		#TODO: moveCharacterAnime 
+		component_pack.getComponent().rect_position = rect_position
+	
+	for component_pack in insert_list:
+		#TODO: insertCharacterAnime
+		scene().add_child(component_pack.getComponent())
 
-	var component_pack = __buildComponentPack("__mark_rect", mark_rect)
-	cur_character_mark = component_pack
+func clearOwnTeam():
+	for component_pack in own_team_list:
+		scene().remove_child(component_pack.getComponent())
+	
+	own_team_list.clear()
+
+func renderEnemyTeam():
+	var enemy_character_team = model().getEnemyCharacterTeam()
+	var rect_size = __getCharacterCardRectSize()
+	var rect_position_list = __getEnemyTeamPositionList()
+
+	var list = []
+	var insert_list = []
+	var del_list = enemy_team_list.duplicate()
+	var keep_list = []
+
+	var i = 0
+	for character_card in enemy_character_team:
+		var component_key = character_card.getCardName()
+		var component_pack = __findComponetPack(enemy_team_list, component_key)
+
+		__delComponentPack(del_list, component_key)
+
+		if component_pack == null:
+			var avator_name = character_card.getAvatorName()
+			var texture = ResourceUnit.loadRes("global", "avator", avator_name)
+			var rect_position = rect_position_list[i]
+			var character_button = TextureButton.new()
+			character_button.expand = true
+			character_button.texture_normal = texture
+			character_button.rect_position = rect_position
+			character_button.rect_size = rect_size
+
+			component_pack = ComponentPack.new(component_key, character_button)
+
+			insert_list.append(component_pack)
+		else:
+			keep_list.append([component_pack, rect_position_list[i]])
+
+		list.append(component_pack)
+
+		i += 1
+	
+	enemy_team_list = list
+
+
+	for component_pack in del_list:
+		#TODO: delCharacterAnime
+		scene().remove_child(component_pack.getComponent())
+	
+	for keep_pack in keep_list:
+		var component_pack = keep_pack[0]
+		var rect_position = keep_pack[1]
+
+		#TODO: moveCharacterAnime 
+		component_pack.getComponent().rect_position = rect_position
+	
+	for component_pack in insert_list:
+		#TODO: insertCharacterAnime
+		scene().add_child(component_pack.getComponent())
+
+func clearEnemyTeam():
+	for component_pack in enemy_team_list:
+		scene().remove_child(component_pack.getComponent())
+	
+	enemy_team_list.clear()
+
+func renderActionCharacterMark():
+	var action_character = model().getActionCharacter()
+
+	var rect_position_list
+	var team_list
+	if service().isOwnAction():
+		rect_position_list = __getOwnTeamPositionList()
+		team_list = own_team_list
+	else:
+		rect_position_list = __getEnemyTeamPositionList()
+		team_list = enemy_team_list
+	
+	var rect_position
+
+	var i = 0
+	for component_pack in team_list:
+		if component_pack.getKey() == action_character.getCardName():
+			rect_position = rect_position_list[i]
+
+		i += 1
+
+	var rect_size = __getCharacterCardRectSize()
+	rect_position[1] += rect_size[1]
+
+	if action_character_mark == null:
+		var texture = ResourceUnit.loadRes("global", "component", "action_character_mark")
+		
+		var mark_texture_rect = TextureRect.new()
+		mark_texture_rect.texture = texture
+		mark_texture_rect.rect_position = rect_position
+		mark_texture_rect.rect_size = rect_size
+
+		scene().add_child(mark_texture_rect)
+
+		var component_pack = ComponentPack.new("__action_character_mark", mark_texture_rect)
+		action_character_mark = component_pack
+	else:
+		#TODO: actionCharacterMarkMoveAnime
+		action_character_mark.getComponent().rect_position = rect_position
+
+func clearActionCharacterMark():
+	scene().remove_child(action_character_mark.getComponent())
+	action_character_mark = null
+
+func renderChosenHandCardMark(component_key):
+	var hand_cards = model().getActionHandCards()
+	var rect_position_list = __getHandCardRectPositionList(hand_cards.size())
+
+	var i = 0
+	for hand_card in hand_cards:
+		if hand_card.getCardName() == component_key:
+			var rect_position = rect_position_list[i]
+			if chosen_hand_card_mark == null:
+				var texture = ResourceUnit.loadRes("global", "component", "chosen_hand_card_mark")
+				var mark_texture_rect = TextureRect.new()
+
+				mark_texture_rect.texture = texture
+				mark_texture_rect.rect_position = rect_position
+
+				scene().add_child(mark_texture_rect)
+
+				var component_pack = ComponentPack.new("__chosen_hand_card_mark", mark_texture_rect)
+				chosen_hand_card_mark = component_pack
+			else:
+				# moveChosenHandCardMark
+				chosen_hand_card_mark.getComponent().rect_position = rect_position
+
+			return
+		i += 1
+
+func clearChosenHandCardMark():
+	scene().remove_child(chosen_hand_card_mark.getComponent())
+	chosen_hand_card_mark = null
 
 ## setCurHandCardsRect
-func __getHandCardRectPosition(card_num):
+func __getHandCardRectPositionList(card_num):
 	var rect_size = __getHandCardRectSize()
 	var width = GlobalSetting.getAttr("screen_size")[0]
 	var height = GlobalSetting.getAttr("screen_size")[1]
@@ -163,57 +421,68 @@ func __getHandCardRectPosition(card_num):
 
 	var ret = []
 	for index in range(card_num):
-		ret.append([h_margin + index * rect_width, v_pos])
+		ret.append(Vector2(h_margin + index * rect_width, v_pos))
 	
 	return ret
 
-func renderCurHandCard():
-	var cur_character_card = model().getCurCharacterCard()
-	var cur_hand_cards = cur_character_card.peekHandCards()
+func renderHandCards():
+	var hand_cards = model().getActionHandCards()
 	var rect_size = __getHandCardRectSize()
-	var rect_position = __getHandCardRectPosition(cur_hand_cards.size())
-	hand_card_button_group = []
+	var rect_position_list = __getHandCardRectPositionList(hand_cards.size())
 
-	var index = 0
-	for hand_card in cur_hand_cards:
-		var avator_name = hand_card.getAvatorName()
-		var texture = ResourceUnit.loadRes("global", "avator", avator_name)
-		var rect_pos = Vector2(rect_position[index][0], rect_position[index][1])
+	var list = []
+	var del_list = hand_card_list.duplicate()
+	var keep_list = []
+	var insert_list = []
 
-		var hand_card_button = __buildTextureButton(texture, rect_pos, rect_size)
-		scene().add_child(hand_card_button)
+	var i = 0
+	for hand_card in hand_cards:
+		var component_key = hand_card.getCardName()
+		__delComponentPack(del_list, component_key)
 
-		var component_pack = __buildComponentPack(hand_card.getCardName(), hand_card_button)
-		hand_card_button_group.append(component_pack)
-		index += 1
+		var component_pack = __findComponetPack(hand_card_list, component_key)
+		if component_pack == null:
+			var avator_name = hand_card.getAvatorName()
+			var texture = ResourceUnit.loadRes("global", "avator", avator_name)
+			var rect_position = rect_position_list[i]
 
-func __buildTextureRect(texture, rect_pos, rect_size):
-	var card_rect = TextureRect.new()
+			var hand_card_button = TextureButton.new()
+			hand_card_button.expand = true
+			hand_card_button.texture_normal = texture
+			hand_card_button.rect_position = rect_position
+			hand_card_button.rect_size = rect_size
+			
+			component_pack = ComponentPack.new(hand_card.getCardName(), hand_card_button)
+			insert_list.append(component_pack)
+		else:
+			keep_list.append([component_pack, rect_position_list[i]])
 
-	card_rect.texture = texture
-	card_rect.expand = true
-	card_rect.rect_size = rect_size
-	print(card_rect.get_rect())
-	card_rect.rect_position = rect_pos
+		list.append(component_pack)
 
-	return card_rect
+		i += 1
 
-func __buildTextureButton(texture, rect_pos, rect_size):
-	var card_rect = TextureButton.new()
+	for component_pack in del_list:
+		#TODO: delHandCardAnime
+		scene().remove_child(component_pack.getComponent())
+	
+	for keep_pack in keep_list:
+		var component_pack = keep_pack[0]
+		var rect_position = keep_pack[1]
 
-	card_rect.texture_normal = texture
-	card_rect.expand = true
-	card_rect.rect_size = rect_size
-	card_rect.rect_position = rect_pos
+		#TODO: moveHandCardAnime 
+		component_pack.getComponent().rect_position = rect_position
+	
+	for component_pack in insert_list:
+		#TODO: insertCharacterAnime
+		scene().add_child(component_pack.getComponent())
+	
+	hand_card_list = list
 
-	return card_rect
-
-func __buildComponentPack(key, component):
-	var component_pack = ComponentPack.new()
-	component_pack.setKey(key)
-	component_pack.setComponent(component)
-
-	return component_pack
+func clearHandCards():
+	for component_pack in hand_card_list:
+		scene().remove_child(component_pack.getComponent())
+	
+	hand_card_list.clear()
 
 func __getCharacterCardRectSize():
 	return Vector2(model().getSettingAttr("character_card_rect_size")[0], model().getSettingAttr("character_card_rect_size")[1])
@@ -222,6 +491,9 @@ func __getHandCardRectSize():
 	return Vector2(model().getSettingAttr("hand_card_rect_size")[0], model().getSettingAttr("hand_card_rect_size")[1])
 
 # setBackground
+func getBackground():
+	return scene().get_node("LinearBattleBackground")
+
 func setBackground():
 	var scene_name = scene().getSceneName()
 	var bg = ResourceUnit.loadRes(scene_name, scene_name, "background")

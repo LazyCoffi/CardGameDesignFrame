@@ -8,3 +8,9 @@ script = ExtResource( 1 )
 [node name="LinearBattleBackground" type="TextureRect" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
+
+[node name="NextTurnButton" type="TextureButton" parent="."]
+margin_left = 1551.0
+margin_top = 848.0
+margin_right = 1786.0
+margin_bottom = 969.0

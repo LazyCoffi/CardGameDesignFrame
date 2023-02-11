@@ -45,11 +45,6 @@ _global_script_classes=[ {
 "path": "res://class/functional/BaseFuncSet.gd"
 }, {
 "base": "Node",
-"class": "BattleFuncSet",
-"language": "GDScript",
-"path": "res://class/functional/BattleFuncSet.gd"
-}, {
-"base": "Node",
 "class": "BitFlag",
 "language": "GDScript",
 "path": "res://class/entity/BitFlag.gd"
@@ -205,6 +200,11 @@ _global_script_classes=[ {
 "path": "res://scene/LinearBattleScene/LinearBattleDispatcher.gd"
 }, {
 "base": "Node",
+"class": "LinearBattleFuncSet",
+"language": "GDScript",
+"path": "res://class/functional/LinearBattleFuncSet.gd"
+}, {
+"base": "Node",
 "class": "LinearBattleModel",
 "language": "GDScript",
 "path": "res://scene/LinearBattleScene/LinearBattleModel.gd"
@@ -248,6 +248,11 @@ _global_script_classes=[ {
 "class": "MainMenuService",
 "language": "GDScript",
 "path": "res://scene/MainMenuScene/MainMenuService.gd"
+}, {
+"base": "Node",
+"class": "MathConditionSet",
+"language": "GDScript",
+"path": "res://class/functional/MathConditionSet.gd"
 }, {
 "base": "Node",
 "class": "MathFuncSet",
@@ -332,7 +337,6 @@ _global_script_class_icons={
 "AttrFuncSet": "",
 "BaseConditionSet": "",
 "BaseFuncSet": "",
-"BattleFuncSet": "",
 "BitFlag": "",
 "BuffCard": "",
 "Card": "",
@@ -364,6 +368,7 @@ _global_script_class_icons={
 "HyperFunction": "",
 "Integer": "",
 "LinearBattleDispatcher": "",
+"LinearBattleFuncSet": "",
 "LinearBattleModel": "",
 "LinearBattleRender": "",
 "LinearBattleService": "",
@@ -373,6 +378,7 @@ _global_script_class_icons={
 "MainMenuModel": "",
 "MainMenuRender": "",
 "MainMenuService": "",
+"MathConditionSet": "",
 "MathFuncSet": "",
 "NullPack": "",
 "OrderedSet": "",

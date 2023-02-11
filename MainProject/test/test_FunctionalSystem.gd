@@ -26,9 +26,6 @@ func test_graphTest1():
 
 	graph.setRoot(func_graph_node)
 
-	print(graph.exec({"randInt_1_0" : 1, "randInt_1_1" : 10}))
-	print(graph.exec({"randInt_1_0" : 2, "randInt_1_1" : 9}))
-
 	pass_test("Graph run success")
 
 func test_graphTest2():

@@ -34,8 +34,8 @@ func setPlayCondition(play_condition_):
 	play_condition = play_condition_
 
 # effect_func
-func exec(source, target):
-	return effect_func.exec([source, target])
+func exec(param_list):
+	return effect_func.exec(param_list)
 
 func setEffectFunc(effect_func_):
 	effect_func = effect_func_

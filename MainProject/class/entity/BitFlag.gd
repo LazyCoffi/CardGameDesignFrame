@@ -9,16 +9,16 @@ func _init():
 	flag = 0
 
 func copy():
-	var ret = TypeUnit.type("BitFlag")
+	var ret = TypeUnit.type("BitFlag").new()
 	ret.flag = flag
 
 	return ret
 
 func setFlag(head, tail := null):
-	return flag | __mask(head, tail)
+	flag |= __mask(head, tail)
 
 func resetFlag(head, tail := null):
-	return flag & (~__mask(head, tail))
+	flag &= (~__mask(head, tail))
 
 func getFlag(head, tail := null):
 	return (flag & __mask(head, tail)) >> head

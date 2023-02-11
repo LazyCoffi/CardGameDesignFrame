@@ -3,10 +3,11 @@ extends Node
 var array_oper_func_set = TypeUnit.type("ArrayOperFuncSet").new()
 var attr_func_set = TypeUnit.type("AttrFuncSet").new()
 var base_func_set = TypeUnit.type("BaseFuncSet").new()
-var battle_func_set = TypeUnit.type("BattleFuncSet").new()
 var card_func_set = TypeUnit.type("CardFuncSet").new()
+var math_condition_set = TypeUnit.type("MathConditionSet").new()
 var math_func_set = TypeUnit.type("MathFuncSet").new()
 var scene_oper_func_set = TypeUnit.type("SceneOperFuncSet").new()
+var linear_battle_func_set = TypeUnit.type("LinearBattleFuncSet").new()
 
 var attr_condition_set = TypeUnit.type("AttrConditionSet").new()
 var base_condition_set = TypeUnit.type("BaseConditionSet").new()
@@ -40,13 +41,13 @@ func __initFuncType():
 	__addFuncSet(["Func"], "ArrayOperFuncSet", array_oper_func_set)
 	__addFuncSet(["Func"], "AttrFuncSet", attr_func_set)
 	__addFuncSet(["Func"], "BaseFuncSet", base_func_set)
-	__addFuncSet(["Func"], "BattleFuncSet", battle_func_set)
 	__addFuncSet(["Func"], "CardFuncSet", card_func_set)
+	__addFuncSet(["Func"], "LinearBattleFuncSet", linear_battle_func_set)
 	__addFuncSet(["Func"], "MathFuncSet", math_func_set)
 	__addFuncSet(["Func"], "SceneOperFuncSet", scene_oper_func_set)
-
-	__addFuncSet(["Condition"], "AttrConditionSet", attr_func_set)
+	__addFuncSet(["Condition"], "AttrConditionSet", attr_condition_set)
 	__addFuncSet(["Condition"], "BaseConditionSet", base_condition_set)
+	__addFuncSet(["Condition"], "MathConditionSet", math_condition_set)
 
 func __addFuncSet(index_list, func_set_name, funcal):
 	table[func_set_name] = funcal

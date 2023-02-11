@@ -24,7 +24,7 @@ func copy():
 		ret.functions.append(node.copy())
 	
 	ret.param_map = param_map.copy()
-	ret.ret_map = param_map.copy()
+	ret.ret_map = ret_map.copy()
 
 	return ret
 
@@ -61,9 +61,9 @@ func exec(params):
 	var ret = []
 
 	for function in functions:
-		var param_type = function.getParamsType()
+		var p_map = function.getParamMap().getMap()
 		var function_params = []
-		for _index in range(param_type.size()):
+		for _index in range(p_map.size()):
 			function_params.append(cur_params.pop_front()) 
 		ret.append(function.exec(function_params))
 

@@ -48,9 +48,12 @@ func test_buildResourceUnit():
 	resource_unit.addColorByName("main_menu", "ExitButtonText", "font_color", "#d1992d")
 	resource_unit.addText("main_menu", "ExitButtonText", "font_text", "离开游戏")
 
+	resource_unit.addTexture("linear_battle", "linear_battle", "next_turn_button", "res://asserts/component/next_turn_btn.png")
+
 	resource_unit.addTexture("global", "avator", "main_character", "res://asserts/avator/white_hair.png")
 	resource_unit.addTexture("global", "avator", "enemy_character", "res://asserts/avator/purple_hair.png")
-	resource_unit.addTexture("global", "component", "underline", "res://asserts/global_component/underline.png")
+	resource_unit.addTexture("global", "component", "action_character_mark", "res://asserts/component/underline.png")
+	resource_unit.addTexture("global", "component", "chosen_hand_card_mark", "res://asserts/component/underline.png")
 	resource_unit.addTexture("global", "avator", "attack_card", "res://asserts/avator/knight.png")
 
 	var script_tree = resource_unit.pack()

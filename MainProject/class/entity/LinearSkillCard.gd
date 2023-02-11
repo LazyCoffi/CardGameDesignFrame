@@ -18,7 +18,7 @@ func copy():
 	ret.card_attr = card_attr.copy()
 
 	ret.play_condition = play_condition.copy()
-	ret.type_flag = type_flag
+	ret.type_flag = type_flag.copy()
 	ret.effect_func = effect_func.copy()
 
 	ret.target_condition = target_condition.copy()
@@ -121,10 +121,13 @@ func positiveDiscard(card_pile, card_slot):
 func passiveDiscard(card_pile, card_slot):
 	if isRecycleable():
 		card_pile.pushTrashBack(self)
+		card_slot.erase(self)
+		return true
 	elif isRetainable():
-		return
+		return false
 	elif isDestroy():
 		card_slot.erase(self)
+		return true
 	
 func pack():
 	var script_tree = .pack()

@@ -125,10 +125,10 @@ func __buildAttackHyperFunction():
 	
 	var attack_func_unit = FuncUnit.new()
 	attack_func_unit.setFuncSetName("AttrFuncSet")
-	attack_func_unit.setFuncName("plusAttrIntOverride")
+	attack_func_unit.setFuncName("minusAttrIntOverride")
 	attack_func_unit.initDefaultParams()
-	attack_func_unit.setDefaultParam("StringPack", "stg", 1)
-	attack_func_unit.setDefaultParam("StringPack", "hp", 3)
+	attack_func_unit.setDefaultParam("StringPack", "hp", 1)
+	attack_func_unit.setDefaultParam("StringPack", "stg", 3)
 
 	var graph = FuncGraph.new()
 	var extract_node1 = graph.genNode(extract_func_unit1)
@@ -136,7 +136,7 @@ func __buildAttackHyperFunction():
 	var attack_node = graph.genNode(attack_func_unit)
 
 	attack_node.connectNode(extract_node1, 0)
-	attack_node.connectNode(extract_node2, 1)
+	attack_node.connectNode(extract_node2, 2)
 
 	graph.setRoot(attack_node)
 
@@ -161,6 +161,7 @@ func __buildAttackSkillCard(index):
 	card.setCardName("attack" + str(index))
 	card.setIntroduction("Attack!")
 	card.setAvatorName("attack_card")
+	card.setPositive()
 
 	return card
 

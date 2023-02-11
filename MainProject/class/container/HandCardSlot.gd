@@ -29,6 +29,11 @@ func getCardsNum():
 func peekCardAt(index):
 	return card_slot[index]
 
+func peekCardByName(card_name):
+	for hand_card in card_slot:
+		if hand_card.getCardName() == card_name:
+			return hand_card
+
 func peekCards():
 	return card_slot.duplicate()
 
@@ -51,8 +56,11 @@ func positiveDiscardAt(card_pile, index):
 	card_slot[index].positiveDiscard(card_pile, card_slot)
 
 func passiveDiscard(card_pile):
-	for card in card_slot:
-		card.passiveDiscard(card_pile, card_slot)
+	var i = 0
+	while i < card_slot.size():
+		var card = card_slot[i]
+		if not card.passiveDiscard(card_pile, card_slot):
+			i += 1
 	
 func pack():
 	var script_tree = ScriptTree.new()

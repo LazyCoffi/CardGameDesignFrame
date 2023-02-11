@@ -100,11 +100,11 @@ func create(scene_name):
 	scene_cache[scene_name] = scene_factory.getSceneNode(scene_name)
 
 func fetchParam(scene_name, param_name):
-	var scene = get(scene_name)
+	var scene = get(scene_name).getScene()
 	return scene.model().getParam(param_name)
 
 func callService(scene_name, func_name, params):
-	var scene = get(scene_name)
+	var scene = get(scene_name).getScene()
 	return scene.service().callv(func_name, params)
 
 func pack():

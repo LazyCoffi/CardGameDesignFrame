@@ -93,7 +93,6 @@ func pack():
 	return script_tree
 
 func loadScript(script_tree):
-	print(script_tree.__getRoot())
 	scene_name = script_tree.getStr("scene_name")
 	is_registered = script_tree.getBool("is_registered")
 	switch_target_table = script_tree.getObject("switch_target_table", SwitchTargetTable)

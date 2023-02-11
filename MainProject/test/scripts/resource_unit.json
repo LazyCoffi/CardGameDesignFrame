@@ -108,24 +108,36 @@
 				]
 			}
 		},
+		"linear_battle": {
+			"linear_battle": {
+				"next_turn_button": [
+					32,
+					"TextureNode"
+				]
+			}
+		},
 		"global": {
 			"avator": {
 				"main_character": [
-					32,
-					"TextureNode"
-				],
-				"enemy_character": [
 					33,
 					"TextureNode"
 				],
+				"enemy_character": [
+					34,
+					"TextureNode"
+				],
 				"attack_card": [
-					35,
+					37,
 					"TextureNode"
 				]
 			},
 			"component": {
-				"underline": [
-					34,
+				"action_character_mark": [
+					35,
+					"TextureNode"
+				],
+				"chosen_hand_card_mark": [
+					36,
 					"TextureNode"
 				]
 			}
@@ -283,13 +295,19 @@
 			"text": "离开游戏"
 		},
 		{
+			"texture_path": "res://asserts/component/next_turn_btn.png"
+		},
+		{
 			"texture_path": "res://asserts/avator/white_hair.png"
 		},
 		{
 			"texture_path": "res://asserts/avator/purple_hair.png"
 		},
 		{
-			"texture_path": "res://asserts/global_component/underline.png"
+			"texture_path": "res://asserts/component/underline.png"
+		},
+		{
+			"texture_path": "res://asserts/component/underline.png"
 		},
 		{
 			"texture_path": "res://asserts/avator/knight.png"

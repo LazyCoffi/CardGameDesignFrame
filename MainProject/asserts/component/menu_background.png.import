@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/underline.png-670595ae08a5f50c31cd8ea80597331b.stex"
+path="res://.import/menu_background.png-38b604163b4cb2830a598a05ea9697c1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asserts/global_component/underline.png"
-dest_files=[ "res://.import/underline.png-670595ae08a5f50c31cd8ea80597331b.stex" ]
+source_file="res://asserts/component/menu_background.png"
+dest_files=[ "res://.import/menu_background.png-38b604163b4cb2830a598a05ea9697c1.stex" ]
 
 [params]
 

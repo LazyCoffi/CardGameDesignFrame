@@ -16,16 +16,12 @@ class BucketNode:
 
 	var param_type
 
-	func _init():
-		param_name = ""
-		param = null
+	func _init(param_name_, param_):
+		param_name = param_name_
+		param = param_
 	
 	func copy():
-		var ret = BucketNode.new()
-		ret.param_name = param_name
-		ret.param = param.copy()
-
-		return ret
+		return BucketNode.new(param_name, param.copy())
 	
 	func setParamType(param_type_):
 		param_type = param_type_
@@ -153,7 +149,7 @@ func getParamsList():
 	
 	return ret
 
-func next():
+func walk():
 	if pointer + 1 >= bucket.size():
 		pointer = 0
 		__regularConstruct()
@@ -161,7 +157,7 @@ func next():
 		pointer += 1
 
 func append(param_name, param):
-	buffer.append(__genNode(param_name, param))
+	buffer.append(BucketNode.new(param_name, param))
 
 func del(param_name):
 	for index in range(bucket.size()):
@@ -184,16 +180,9 @@ func __initConstruct():
 	__shuffle(init_shuffle_function)
 
 func __regularConstruct():
-	bucket.append(buffer)
+	bucket.append_array(buffer)
 	buffer.clear()
 	__shuffle(regular_shuffle_function)
-
-func __genNode(param_name, param):
-	var ret = BucketNode.new()
-	ret.setParamName(param_name)
-	ret.setParam(TypeUnit.packBaseParam(param))
-
-	return ret
 
 func pack():
 	var script_tree = ScriptTree.new()

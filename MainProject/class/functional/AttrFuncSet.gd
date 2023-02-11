@@ -2,7 +2,6 @@ extends "res://class/functional/FuncSet.gd"
 class_name AttrFuncSet
 
 func _init():
-	func_form = {}
 	__initFuncForm()
 
 func setConst(attr, attr_name, val):
@@ -162,6 +161,7 @@ func divAttrFloatOverride(first, first_name, second, second_name):
 	return first
 
 func __initFuncForm():
+	func_form = {}
 	addFuncForm("setConst", "Attr", ["Attr", "String", "all"])
 	addFuncForm("plusIntConst", "Attr", ["Attr", "String", "int"])
 	addFuncForm("plusFloatConst", "Attr", ["Attr", "String", "float"])

@@ -79,6 +79,9 @@ func setAttr(attr_name, attr):
 func delAttr(attr_name):
 	return card_attr.delAttr(attr_name)
 
+func getCardAttr():
+	return card_attr
+
 func pack():
 	var script_tree = ScriptTree.new()
 

@@ -80,6 +80,10 @@ func service():
 func setSceneService(scene_service_):
 	scene_service = scene_service_
 
+func battleOverSwitch():
+	var target_scene_name = switch_target_table.getTargetSceneName("BattleOver")
+	switchScene(target_scene_name)
+
 func pack():
 	var script_tree = ScriptTree.new()
 

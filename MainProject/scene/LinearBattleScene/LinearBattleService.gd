@@ -14,46 +14,121 @@ func scene():
 func model():
 	return scene_ref.model()
 
-func initCharacterCardGroup():
-	model().setCharacterGroups(model().dealCharacter())
+func getOwnCharacterNum():
+	return model().getOwnCharacterNum()
 
+func getEnemyCharacterNum():
+	return model().getEnemyCharacterNum()
+
+func initOwnCharacterTeam():
+	model().deployOwnTeam()
+
+func initEnemyCharacterTeam():
+	model().deployEnemyTeam()
+
+func getActionCharacterName():
+	return model().getActionCharacterName()
+
+func isOwnAction():
+	var action_character = model().getActionCharacter()
+	var own_team = model().getOwnCharacterTeam()
+	for character_card in own_team:
+		if action_character.getCardName() == character_card.getCardName():
+			return true
+	
+	return false
+
+func isEnemyAction():
+	var action_character = model().getActionCharacter()
+	var enemy_team = model().getEnemyCharacterTeam()
+	for character_card in enemy_team:
+		if action_character.getCardName() == character_card.getCardName():
+			return true
+	
+	return false
+
+func setActionCharacter():
+	var order_bucket = model().getOrderBucket()
+	var action_character = order_bucket.getParam()
+	model().setActionCharacter(action_character)
+
+func resetActionCharacter():
+	model().resetActionCharacter()
+
+func drawHandCards():
+	var draw_num = model().getDrawNum(scene().getSceneName())
+	var action_character = model().getActionCharacter()
+	var hand_cards_upper = int(model().getSettingAttr("hand_cards_upper"))
+
+	draw_num = min(hand_cards_upper - action_character.getHandCardsNum(), draw_num) 
+
+	action_character.drawHandCards(action_character.getCardPile(), draw_num)
+
+func playChosenHandCardAt(target_card_name):
+	var action_character = model().getActionCharacter()
+	var target_character_card = model().getCharacterByName(target_card_name)
+	var scene_name = scene().getSceneName()
+	var card_pile = action_character.getCardPile()
+
+	action_character.playHandCardByName([target_character_card, action_character, scene_name], card_pile, model().getChosenHandCardName())
+
+# order_bucket
 func initOrderBucket():
 	var order_bucket = model().getOrderBucket()
-	var character_groups = model().getCharacterGroups()
-	for index in 2:
-		for card in character_groups[index].values():
-			order_bucket.append(card.getCardName(), card)
+
+	var own_team = model().getOwnCharacterTeam()
+	for card in own_team:
+		order_bucket.append(card.getCardName(), card)
+	
+	var enemy_team = model().getEnemyCharacterTeam()
+	for card in enemy_team:
+		order_bucket.append(card.getCardName(), card)
 	
 	order_bucket.active()
 
-func setCurCharacterCard():
-	var order_bucket = model().getOrderBucket()
-	model().setCurCharacterCard(order_bucket.getParam())
+# chosen_hand_card
+func getChosenHandCard():
+	return model().getChosenHandCard()
 
-func getCurCharacterIndex():
-	var cur_card_name = model().getCurCharacterName()
-	var character_groups = model().getCharacterGroups()
-	for i in 2:
-		for j in character_groups[i].size():
-			var card = character_groups[i].getAt(j)
-			if cur_card_name == card.getCardName():
-				return [i, j]
+func getChosenHandCardName():
+	return model().getChosenHandCardName()
 
-func popCurCharacterCard():
-	return model().popCurRoundCard()
+func setChosenHandCard(chosen_hand_card_name):
+	model().setChosenHandCardByName(chosen_hand_card_name)
 
-func drawCurHandCards():
-	var draw_num = model().getDrawCardsNum()
-	var cur_character_card = model().getCurCharacterCard()
-	var hand_cards_upper = int(model().getSettingAttr("hand_cards_upper"))
-	draw_num = min(hand_cards_upper - cur_character_card.getHandCardsNum(), draw_num) 
-	cur_character_card.drawHandCard(cur_character_card.getCardPile(), draw_num)
+func resetChosenHandCard():
+	model().resetChosenHandCard()
 
-func playCurHandCardAt(hand_card_name, target_card_name):
-	var source_character_card = model().getCurCharacterCard()
-	var target_character_card = model().getCharacterByName(target_card_name)
-	var scene_name = scene().getSceneName()
-	var card_pile = source_character_card.getCardPile()
-	source_character_card.playHandCardByName([source_character_card, target_character_card, scene_name], card_pile, hand_card_name)
+# global_service
+func isBattleOver():
+	return model().isBattleOverCondition(scene().getSceneName())
 
+func removeDeadCharacter():
+	var own_team = model().getOwnCharacterTeam()
+	var i = 0
+	while i < own_team.size():
+		if model().isDeadCondition(own_team[i], scene().getSceneName()):
+			own_team.remove(i)
+		else:
+			i += 1
+	
+	var enemy_team = model().getEnemyCharacterTeam()
+	var j = 0
+	while j < enemy_team.size():
+		if model().isDeadCondition(enemy_team[j], scene().getSceneName()):
+			enemy_team.remove(j)
+		else:
+			j += 1
 
+func actionCharacterPassiveDiscard():
+	var action_character = model().getActionCharacter()
+	var card_pile = action_character.getCardPile()
+	action_character.passiveDiscard(card_pile)
+
+func battleOver():
+	scene().battleOverSwitch()
+
+func nextTurnPrepare():
+	actionCharacterPassiveDiscard()
+	model().resetActionCharacter()
+	model().orderBucketWalk()

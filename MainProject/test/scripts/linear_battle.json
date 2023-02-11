@@ -2,7 +2,10 @@
 	"scene_name": "linear_battle",
 	"switch_target_table": {
 		"table": {
-
+			"BattleOver": {
+				"scene_type": "MainMenuScene",
+				"scene_name": "main_menu"
+			}
 		}
 	},
 	"scene_model": {
@@ -19,9 +22,6 @@
 				]
 			}
 		},
-		"character_groups": [
-
-		],
 		"order_bucket": {
 			"pointer": 0,
 			"bucket": [
@@ -39,14 +39,14 @@
 						]
 					],
 					"request_params": {
-						"randomShuffle_1_0": "Array"
+						"returnVal_1_0": "all"
 					},
 					"node_index": 1,
 					"flat_tree": [
 						{
 							"func_unit": {
-								"func_name": "randomShuffle",
-								"func_set_name": "ArrayOperFuncSet",
+								"func_name": "returnVal",
+								"func_set_name": "BaseFuncSet",
 								"default_params": {
 									"list": [
 										{
@@ -64,7 +64,7 @@
 				},
 				"param_map": {
 					"map": [
-						"randomShuffle_1_0"
+						"returnVal_1_0"
 					]
 				}
 			},
@@ -107,36 +107,16 @@
 				}
 			}
 		},
-		"character_deal_function": {
+		"own_team_function": {
 			"graph": {
 				"graph": [
 					null,
 					[
 						2,
-						7
+						4
 					],
 					[
 						3
-					],
-					[
-						4,
-						6
-					],
-					[
-						5
-					],
-					[
-						0
-					],
-					[
-						0
-					],
-					[
-						8,
-						10
-					],
-					[
-						9
 					],
 					[
 						0
@@ -148,7 +128,7 @@
 				"request_params": {
 
 				},
-				"node_index": 10,
+				"node_index": 4,
 				"flat_tree": [
 					{
 						"func_unit": {
@@ -192,20 +172,14 @@
 					},
 					{
 						"func_unit": {
-							"func_name": "appendVal",
-							"func_set_name": "ArrayOperFuncSet",
+							"func_name": "getCardWithDefaultName",
+							"func_set_name": "CardFuncSet",
 							"default_params": {
 								"list": [
 									{
-										"param_type": "NullPack",
+										"param_type": "StringPack",
 										"param": {
-
-										}
-									},
-									{
-										"param_type": "NullPack",
-										"param": {
-
+											"val": "MainCharacterCard"
 										}
 									}
 								]
@@ -215,55 +189,52 @@
 					},
 					{
 						"func_unit": {
-							"func_name": "packArray",
-							"func_set_name": "ArrayOperFuncSet",
+							"func_name": "getCardWithDefaultName",
+							"func_set_name": "CardFuncSet",
 							"default_params": {
 								"list": [
 									{
-										"param_type": "NullPack",
+										"param_type": "StringPack",
 										"param": {
-
+											"val": "MainCharacterCard"
 										}
 									}
 								]
 							}
 						},
 						"index": 4
-					},
-					{
-						"func_unit": {
-							"func_name": "getCardWithDefaultName",
-							"func_set_name": "CardFuncSet",
-							"default_params": {
-								"list": [
-									{
-										"param_type": "StringPack",
-										"param": {
-											"val": "MainCharacterCard"
-										}
-									}
-								]
-							}
-						},
-						"index": 5
-					},
-					{
-						"func_unit": {
-							"func_name": "getCardWithDefaultName",
-							"func_set_name": "CardFuncSet",
-							"default_params": {
-								"list": [
-									{
-										"param_type": "StringPack",
-										"param": {
-											"val": "MainCharacterCard"
-										}
-									}
-								]
-							}
-						},
-						"index": 6
-					},
+					}
+				]
+			},
+			"param_map": {
+				"map": [
+
+				]
+			}
+		},
+		"enemy_team_function": {
+			"graph": {
+				"graph": [
+					null,
+					[
+						2,
+						4
+					],
+					[
+						3
+					],
+					[
+						0
+					],
+					[
+						0
+					]
+				],
+				"request_params": {
+
+				},
+				"node_index": 4,
+				"flat_tree": [
 					{
 						"func_unit": {
 							"func_name": "appendVal",
@@ -285,7 +256,7 @@
 								]
 							}
 						},
-						"index": 7
+						"index": 1
 					},
 					{
 						"func_unit": {
@@ -302,7 +273,7 @@
 								]
 							}
 						},
-						"index": 8
+						"index": 2
 					},
 					{
 						"func_unit": {
@@ -319,7 +290,7 @@
 								]
 							}
 						},
-						"index": 9
+						"index": 3
 					},
 					{
 						"func_unit": {
@@ -336,7 +307,7 @@
 								]
 							}
 						},
-						"index": 10
+						"index": 4
 					}
 				]
 			},
@@ -346,7 +317,7 @@
 				]
 			}
 		},
-		"draw_cards_num_function": {
+		"draw_num_function": {
 			"graph": {
 				"graph": [
 					null,
@@ -384,40 +355,142 @@
 				]
 			}
 		},
-		"cur_character_card": {
-			"card_name": "",
-			"avator_name": "",
-			"introduction": "",
-			"template_name": "",
-			"card_attr": {
-				"table": {
+		"is_dead_condition": {
+			"graph": {
+				"graph": [
+					null,
+					[
+						2,
+						0,
+						0
+					],
+					[
+						0
+					]
+				],
+				"request_params": {
+					"extractAttr_2_0": "Card"
+				},
+				"node_index": 2,
+				"flat_tree": [
+					{
+						"func_unit": {
+							"func_name": "isLessEqualInt",
+							"func_set_name": "AttrConditionSet",
+							"default_params": {
+								"list": [
+									{
+										"param_type": "NullPack",
+										"param": {
 
-				}
-			},
-			"equipment_set": {
+										}
+									},
+									{
+										"param_type": "StringPack",
+										"param": {
+											"val": "hp"
+										}
+									},
+									{
+										"param_type": "Integer",
+										"param": {
+											"val": 0
+										}
+									}
+								]
+							}
+						},
+						"index": 1
+					},
+					{
+						"func_unit": {
+							"func_name": "extractAttr",
+							"func_set_name": "CardFuncSet",
+							"default_params": {
+								"list": [
+									{
+										"param_type": "NullPack",
+										"param": {
 
-			},
-			"buff_set": {
-
-			},
-			"hand_card_slot": {
-				"card_slot": [
-
+										}
+									}
+								]
+							}
+						},
+						"index": 2
+					}
 				]
 			},
-			"card_pile": {
-				"card_pile": [
-
-				],
-				"trash_pile": [
-
-				],
-				"is_random": true
+			"param_map": {
+				"map": [
+					"extractAttr_2_0"
+				]
 			}
 		},
-		"hand_cards_table": {
+		"is_battle_over_condition": {
+			"graph": {
+				"graph": [
+					null,
+					[
+						2,
+						0
+					],
+					[
+						0
+					]
+				],
+				"request_params": {
+					"getEnemyCharacterNum_2_0": "String"
+				},
+				"node_index": 2,
+				"flat_tree": [
+					{
+						"func_unit": {
+							"func_name": "isLessEqualInt",
+							"func_set_name": "MathConditionSet",
+							"default_params": {
+								"list": [
+									{
+										"param_type": "NullPack",
+										"param": {
 
-		},
-		"total_round": null
+										}
+									},
+									{
+										"param_type": "Integer",
+										"param": {
+											"val": 0
+										}
+									}
+								]
+							}
+						},
+						"index": 1
+					},
+					{
+						"func_unit": {
+							"func_name": "getEnemyCharacterNum",
+							"func_set_name": "LinearBattleFuncSet",
+							"default_params": {
+								"list": [
+									{
+										"param_type": "NullPack",
+										"param": {
+
+										}
+									}
+								]
+							}
+						},
+						"index": 2
+					}
+				]
+			},
+			"param_map": {
+				"map": [
+					"getEnemyCharacterNum_2_0"
+				]
+			}
+		}
 	}
 }

@@ -43,13 +43,16 @@ func peekHandCards():
 func peekHandCardAt(index):
 	return hand_card_slot.peekCardAt(index)
 
+func peekHandCardByName(card_name):
+	return hand_card_slot.peekCardByName(card_name)
+	
 func playHandCardAt(param_list, card_pile, index):
 	hand_card_slot.playCardAt(param_list, card_pile, index)
 
 func playHandCardByName(param_list, card_pile, card_name):
 	hand_card_slot.playCardByName(param_list, card_pile, card_name)
 
-func drawHandCard(card_pile, card_num):
+func drawHandCards(card_pile, card_num):
 	hand_card_slot.drawCard(card_pile, card_num)
 
 func positiveDiscardAt(index, card_pile):
