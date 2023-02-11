@@ -15,12 +15,12 @@ func addFuncForm(func_name, ret_form, params_form):
 
 func getParamsType(func_name):
 	if not hasFunc(func_name):
-		Exception.assert(false, "Wrong functional_name")
+		Logger.assert(false, "Wrong functional_name")
 
 	return func_form[func_name]["params"]
 
 func getRetType(func_name):
-	Exception.assert(hasFunc(func_name), "Wrong functional_name")
+	Logger.assert(hasFunc(func_name), "Wrong functional_name")
 
 	return func_form[func_name]["ret"]
 

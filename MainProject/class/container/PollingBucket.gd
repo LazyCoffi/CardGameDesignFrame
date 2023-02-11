@@ -128,11 +128,11 @@ func setRegularShuffleFunction(regular_shuffle_function_):
 	 regular_shuffle_function = regular_shuffle_function_
 
 func getParamName():
-	Exception.assert(pointer < bucket.size())
+	Logger.assert(pointer < bucket.size(), "Pointer is out of bucket size!")
 	return bucket[pointer].getParamName()
 
 func getParam():
-	Exception.assert(pointer < bucket.size())
+	Logger.assert(pointer < bucket.size(), "Pointer is out of bucket size!")
 	return bucket[pointer].getParam()
 
 func getParamsNameList():

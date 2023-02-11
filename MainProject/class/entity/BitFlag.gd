@@ -14,21 +14,34 @@ func copy():
 
 	return ret
 
-func setFlag(head, tail := null):
-	flag |= __mask(head, tail)
+func setFlag(index):
+	flag |= __mask(index)
 
-func resetFlag(head, tail := null):
-	flag &= (~__mask(head, tail))
+func resetFlag(index):
+	flag &= (~__mask(index))
 
-func getFlag(head, tail := null):
-	return (flag & __mask(head, tail)) >> head
+func getFlag(index):
+	return (flag & __mask(index)) >> index
 
-func __mask(head, tail := null):
+func setMultiFlag(head, tail):
+	flag |= __maskMulti(head, tail)
+
+func resetMultiFlag(head, tail):
+	flag &= (~__maskMulti(head, tail))
+
+func getMultiFlag(head, tail):
+	return (flag & __maskMulti(head, tail)) >> head
+
+func __mask(index):
+	return (1 << index)
+
+func __maskMulti(head, tail):
 	var ret = 0
 	ret |= (1 << head)
 	if tail != null:
 		while head <= tail:
 			ret |= (1 << head)
+			head += 1
 
 	return ret
 

@@ -6,7 +6,7 @@ func _init():
 	__initTypeTable()
 
 func type(type_name):
-	Exception.assert(type_table.has(type_name))
+	Logger.assert(type_table.has(type_name), "Table doesn't have " + type_name + "!")
 	return type_table[type_name]
 
 func packBaseParam(val):
@@ -75,7 +75,7 @@ func __initTypeTable():
 	__addType("unit", "SceneFactory")
 	__addType("unit", "SceneCache")
 	__addType("unit", "CardCache")
-	__addType("unit", "Exception")
+	__addType("unit", "Logger")
 	__addType("unit", "GlobalSetting")
 	__addType("unit", "MathUnit")
 	__addType("unit", "ResourceUnit")

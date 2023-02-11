@@ -22,7 +22,7 @@ func parallelMultiOper(array, func_unit_list):
 	return array
 
 func parallelOperArray(first, second, func_unit):
-	Exception.assert(first.size() == second.size(), "Array has different size!")
+	Logger.assert(first.size() == second.size(), "Array has different size!")
 	var ret = []
 	for index in range(first.size()):
 		ret.append(func_unit.exec(first[index], second[index]))
@@ -30,7 +30,7 @@ func parallelOperArray(first, second, func_unit):
 	return ret
 
 func parallelOperArrayOverride(first, second, func_unit):
-	Exception.assert(first.size() == second.size(), "Arrays has different size!")
+	Logger.assert(first.size() == second.size(), "Arrays has different size!")
 	for index in range(first.size()):
 		first[index] = func_unit.exec(first[index], second[index])
 	
@@ -118,6 +118,8 @@ func randomShuffle(first):
 	return first
 
 func __swap(array, first, second):
+	Logger.assert(first < array.size() and second < array.size(),
+				  "Swap index is out of range!")
 	var temp = array[first]
 	array[first] = array[second]
 	array[second] = temp

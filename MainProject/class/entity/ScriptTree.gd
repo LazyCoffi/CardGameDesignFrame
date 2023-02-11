@@ -16,12 +16,12 @@ func has(name_):
 
 func loadFromJson(path):
 	var file = File.new()
-	Exception.assert(file.file_exists(path))
+	Logger.assert(file.file_exists(path), "File doesn't exist!")
 	file.open(path, File.READ)
 	var json_str = file.get_as_text()
 	file.close()
 	var json_ret = JSON.parse(json_str)
-	Exception.assert(json_ret.error == 0)
+	Logger.assert(json_ret.error == 0, "Parse json fail!")
 	root = json_ret.result
 
 func exportAsJson(path):
@@ -82,60 +82,60 @@ func addTypeObjectArray(arr_name, cur_arr):
 	addObjectArray(arr_name, cur_arr)
 
 func getInt(obj_name):
-	Exception.assert(root.has(obj_name))
+	Logger.assert(root.has(obj_name), "Root doesn't has " + obj_name + "!")
 	if root[obj_name] == null:
 		return null
 	return int(root[obj_name])
 
 func getIntDict(dict_name):
-	Exception.assert(root.has(dict_name))
+	Logger.assert(root.has(dict_name), "Root doesn't has " + dict_name + "!")
 	for key in root[dict_name].keys():
 		root[dict_name][key] = int(root[dict_name][key])
 	
 	return root[dict_name]
 
 func getIntArray(arr_name):
-	Exception.assert(root.has(arr_name))
+	Logger.assert(root.has(arr_name), "Root doesn't has " + arr_name + "!")
 	for index in range(root[arr_name].size()):
 		root[arr_name][index] = int(root[arr_name][index])
 	
 	return root[arr_name]
 
 func getFloat(obj_name):
-	Exception.assert(root.has(obj_name))
+	Logger.assert(root.has(obj_name), "Root doesn't has " + obj_name + "!")
 	if root[obj_name] == null:
 		return null
 	return float(root[obj_name])
 
 func getFloatDict(dict_name):
-	Exception.assert(root.has(dict_name))
+	Logger.assert(root.has(dict_name), "Root doesn't has " + dict_name + "!")
 	for key in root[dict_name].keys():
 		root[dict_name][key] = float(root[dict_name][key])
 	
 	return root[dict_name]
 
 func getFloatArray(arr_name):
-	Exception.assert(root.has(arr_name))
+	Logger.assert(root.has(arr_name), "Root doesn't has " + arr_name + "!")
 	for index in range(root[arr_name].size()):
 		root[arr_name][index] = float(root[arr_name][index])
 	
 	return root[arr_name]
 
 func getStr(obj_name):
-	Exception.assert(root.has(obj_name))
+	Logger.assert(root.has(obj_name), "Root doesn't has " + obj_name + "!")
 	if root[obj_name] == null:
 		return null
 	return str(root[obj_name])
 
 func getStrDict(dict_name):
-	Exception.assert(root.has(dict_name))
+	Logger.assert(root.has(dict_name), "Root doesn't has " + dict_name + "!")
 	for key in root[dict_name].keys():
 		root[dict_name][key] = str(root[dict_name][key])
 	
 	return root[dict_name]
 
 func getStrArray(arr_name):
-	Exception.assert(root.has(arr_name))
+	Logger.assert(root.has(arr_name), "Root doesn't has " + arr_name + "!")
 	for index in range(root[arr_name].size()):
 		root[arr_name][index] = str(root[arr_name][index])
 	
@@ -143,21 +143,16 @@ func getStrArray(arr_name):
 
 
 func getBool(obj_name):
-	Exception.assert(root.has(obj_name))
-	Exception.assert(root[obj_name] is bool)
+	Logger.assert(root.has(obj_name), "Root doesn't has " + obj_name + "!")
 	return root[obj_name]
 
 func getBoolDict(dict_name):
-	Exception.assert(root.has(dict_name))
-	for obj in root[dict_name].values():
-		Exception.assert(obj is bool)
+	Logger.assert(root.has(dict_name), "Root doesn't has " + dict_name + "!")
 	
 	return root[dict_name]
 
 func getBoolArray(arr_name):
-	Exception.assert(root.has(arr_name))
-	for obj in root[arr_name]:
-		Exception.assert(obj is bool)
+	Logger.assert(root.has(arr_name), "Root doesn't has " + arr_name + "!")
 	
 	return root[arr_name]
 
@@ -172,7 +167,7 @@ func getAttr(attr_name, attr_type):
 		"bool":
 			return getBool(attr_name)
 	
-	Exception.assert(false)
+	Logger.error("Type doesn't exist!")
 
 func getAttrDict(dict_name, attr_type):
 	match attr_type:
@@ -185,7 +180,7 @@ func getAttrDict(dict_name, attr_type):
 		"bool":
 			return getBoolDict(dict_name)
 	
-	Exception.assert(false)
+	Logger.error("Type doesn't exist!")
 
 func getAttrArray(arr_name, attr_type):
 	match attr_type:
@@ -198,10 +193,10 @@ func getAttrArray(arr_name, attr_type):
 		"bool":
 			return getBoolArray(arr_name)
 	
-	Exception.assert(false)
+	Logger.error("Type doesn't exist!")
 
 func getObject(obj_name, obj_type):
-	Exception.assert(root.has(obj_name))
+	Logger.assert(root.has(obj_name), "Root doesn't has " + obj_name + "!")
 
 	var script_tree = TypeUnit.type("ScriptTree").new()
 	script_tree.__setRoot(root[obj_name])
@@ -212,10 +207,9 @@ func getObject(obj_name, obj_type):
 	return obj
 
 func getObjectDict(dict_name, obj_type):
-	Exception.assert(root.has(dict_name))
+	Logger.assert(root.has(dict_name), "Root doesn't has " + dict_name + "!")
 
 	var cur_dict = root[dict_name]
-	Exception.assert(cur_dict is Dictionary)
 
 	var dict = {}
 	for key in cur_dict.keys():
@@ -230,10 +224,9 @@ func getObjectDict(dict_name, obj_type):
 	return dict
 
 func getObjectArray(arr_name, obj_type):
-	Exception.assert(root.has(arr_name))
+	Logger.assert(root.has(arr_name), "Root doesn't has " + arr_name + "!")
 
 	var cur_arr = root[arr_name]
-	Exception.assert(cur_arr is Array)
 
 	var arr = []
 	for raw_script in cur_arr:
@@ -248,7 +241,7 @@ func getObjectArray(arr_name, obj_type):
 	return arr
 
 func getScriptTree(script_name):
-	Exception.assert(root.has(script_name))
+	Logger.assert(root.has(script_name), "Root doesn't has " + script_name + "!")
 
 	var script_tree = TypeUnit.type("ScriptTree").new()
 
@@ -257,7 +250,7 @@ func getScriptTree(script_name):
 	return script_tree
 	
 func getScripTreeDict(dict_name):
-	Exception.assert(root.has(dict_name))
+	Logger.assert(root.has(dict_name), "Root doesn't has " + dict_name + "!")
 
 	var script_dict = root[dict_name]
 	var ret = {}
@@ -269,7 +262,7 @@ func getScripTreeDict(dict_name):
 	return ret
 
 func getScriptTreeArray(arr_name):
-	Exception.assert(root.has(arr_name))
+	Logger.assert(root.has(arr_name), "Root doesn't has " + arr_name + "!")
 
 	var script_arr = root[arr_name]
 	var ret = []
@@ -281,7 +274,7 @@ func getScriptTreeArray(arr_name):
 	return ret
 
 func getTypeObject(obj_name, obj_type, inner_type):
-	Exception.assert(root.has(obj_name))
+	Logger.assert(root.has(obj_name), "Root doesn't has " + obj_name + "!")
 
 	var obj = obj_type.new()
 	obj.setParamType(inner_type)
@@ -294,7 +287,7 @@ func getTypeObject(obj_name, obj_type, inner_type):
 	return obj
 
 func getTypeObjectDict(dict_name, obj_type, inner_type):
-	Exception.assert(root.has(dict_name))
+	Logger.assert(root.has(dict_name), "Root doesn't has " + dict_name + "!")
 
 	var ret = {}
 	var cur_dict = root[dict_name]
@@ -310,7 +303,7 @@ func getTypeObjectDict(dict_name, obj_type, inner_type):
 	return ret
 
 func getTypeObjectArray(arr_name, obj_type, inner_type):
-	Exception.assert(root.has(arr_name))
+	Logger.assert(root.has(arr_name), "Root doesn't has " + arr_name + "!")
 
 	var ret = []
 	var cur_arr = root[arr_name]
@@ -326,12 +319,11 @@ func getTypeObjectArray(arr_name, obj_type, inner_type):
 	return ret
 
 func getRawAttr(attr_name):
-	Exception.assert(root.has(attr_name))
+	Logger.assert(root.has(attr_name), "Root doesn't has " + attr_name + "!")
 	
 	return root[attr_name]
 
 func __setRoot(root_):
-	Exception.assert(root_ is Dictionary)
 	root = root_
 
 func __getRoot():

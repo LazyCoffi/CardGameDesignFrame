@@ -15,35 +15,27 @@ func setConst(attr, attr_name, val):
 	return attr
 
 func plusConstInt(attr, attr_name, val):
-	Exception.assert(TypeUnit.isType(val, "int"))
 	return __plusConst(attr, attr_name, val)
 
 func plusConstFloat(attr, attr_name, val):
-	Exception.assert(TypeUnit.isType(val, "float"))
 	return __plusConst(attr, attr_name, val)
 
 func mulConstInt(attr, attr_name, val):
-	Exception.assert(TypeUnit.isType(val, "int"))
 	return __mulConst(attr, attr_name, val)
 
 func mulConstFloat(attr, attr_name, val):
-	Exception.assert(TypeUnit.isType(val, "float"))
 	return __mulConst(attr, attr_name, val)
 
 func settUpperBoundConstInt(attr, attr_name, val):
-	Exception.assert(TypeUnit.isType(val, "int"))
 	return __setUpperBoundConst(attr, attr_name, val)
 
 func setUpperBoundConstFloat(attr, attr_name, val):
-	Exception.assert(TypeUnit.isType(val, "float"))
 	return __setUpperBoundConst(attr, attr_name, val)
 
 func setLowerBoundConstInt(attr, attr_name, val):
-	Exception.assert(TypeUnit.isType(val, "int"))
 	return __setLowerBoundConst(attr, attr_name, val)
 
 func setLowerBoundConstFloat(attr, attr_name, val):
-	Exception.assert(TypeUnit.isType(val, "float"))
 	return __setLowerBoundConst(attr, attr_name, val)
 
 func __plusConst(attr, attr_name, val):

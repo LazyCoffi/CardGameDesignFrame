@@ -157,9 +157,9 @@ func nextTurn(_component_key):
 	roundBegin()
 
 func __createRoute(component_pack, component_signal, target_func):
-	Exception.assert(not component_pack.isConnected(component_signal))
+	Logger.assert(not component_pack.isConnected(component_signal), "Component has connected!")
 	component_pack.connectTo(self, component_signal, target_func)
 
 func __destroyRoute(component_pack, component_signal, target_func):
-	Exception.assert(component_pack.isConnected(component_signal))
+	Logger.assert(component_pack.isConnected(component_signal), "Component hasn't connected yet!")
 	component_pack.disconnectFrom(self, component_signal, target_func)

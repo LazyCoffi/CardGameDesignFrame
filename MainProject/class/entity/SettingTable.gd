@@ -15,12 +15,12 @@ func copy():
 	return ret
 
 func getAttr(attr_name):
-	Exception.assert(table.has(attr_name))
+	Logger.assert(table.has(attr_name), "Table doesn't have " + attr_name + "!")
 
 	return table[attr_name]
 
 func setAttr(attr_name, attr):
-	Exception.assert(table.has(attr_name))
+	Logger.assert(table.has(attr_name), "Table doesn't have " + attr_name + "!")
 
 	table[attr_name] = attr
 

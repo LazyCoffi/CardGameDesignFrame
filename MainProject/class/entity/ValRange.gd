@@ -40,7 +40,7 @@ func hasUpper():
 func upper():
 	if hasUpper():
 		return upper_bound
-	Exception.assert(false, "Nonexist upper_bound")
+	Logger.assert(false, "Nonexist upper_bound")
 
 func hasLower():
 	return has_lower
@@ -48,10 +48,10 @@ func hasLower():
 func lower():
 	if hasLower():
 		return lower_bound
-	Exception.assert(false, "Nonexist lower_bound")
+	Logger.assert(false, "Nonexist lower_bound")
 
 func setUpper(upper_bound_):
-	Exception.assert(upper_bound_ is int or upper_bound_ is float, 
+	Logger.assert(upper_bound_ is int or upper_bound_ is float, 
 						"Range must be int or float")
 	has_upper = true
 	if hasLower():
@@ -60,7 +60,7 @@ func setUpper(upper_bound_):
 		upper_bound = upper_bound_
 
 func setLower(lower_bound_):
-	Exception.assert(lower_bound_ is int or lower_bound_ is float, 
+	Logger.assert(lower_bound_ is int or lower_bound_ is float, 
 						"Range must be int or float")
 	has_lower = true
 	if hasUpper():

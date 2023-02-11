@@ -104,9 +104,9 @@ func __setRef():
 	scene_service.setRef(self)
 
 func __setSwitchConnection():
-	Exception.assert($StartButton.connect("pressed", self, "__startButtonSwitch") == 0, "Signal connect fail!")
-	Exception.assert($ContinueButton.connect("pressed", self, "__continueButtonSwitch") == 0, "Signal connect fail!")
-	Exception.assert($SettingButton.connect("pressed", self, "__settingButtonSwitch") == 0, "Signal connect fail!")
+	Logger.assert($StartButton.connect("pressed", self, "__startButtonSwitch") == 0, "Signal connect fail!")
+	Logger.assert($ContinueButton.connect("pressed", self, "__continueButtonSwitch") == 0, "Signal connect fail!")
+	Logger.assert($SettingButton.connect("pressed", self, "__settingButtonSwitch") == 0, "Signal connect fail!")
 
 func __startButtonSwitch():
 	var target_scene_name = switch_target_table.getTargetSceneName("StartButton")

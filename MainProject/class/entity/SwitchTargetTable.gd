@@ -58,11 +58,11 @@ func copy():
 	return ret
 
 func getTargetSceneType(target_name):
-	Exception.assert(table.has(target_name))
+	Logger.assert(table.has(target_name), "Table doesn't have " + target_name + "!")
 	return table[target_name].getSceneType()
 
 func getTargetSceneName(target_name):
-	Exception.assert(table.has(target_name))
+	Logger.assert(table.has(target_name), "Table doesn't have " + target_name + "!")
 	return table[target_name].getSceneName()
 
 func addTarget(target_name, scene_type, scene_name):

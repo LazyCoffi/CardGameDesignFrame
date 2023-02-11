@@ -14,14 +14,11 @@ func emitFuncName():
 	return "__emit"
 
 func connectTo(entity, target_func):
-	Exception.assert(connect("emitter", entity, target_func) == 0)
+	Logger.assert(connect("emitter", entity, target_func) == 0, "Connect fail!")
 
 func disconnectFrom(entity, target_func):
-	Exception.assert(is_connected("emitter", entity, target_func))
+	Logger.assert(is_connected("emitter", entity, target_func), "Disconnect fail!")
 	disconnect("emitter", entity, target_func)
 
-func __emit(default_param := null):
-	if default_param == null:
-		emit_signal("emitter", param)
-	else:
-		emit_signal("emitter", param, default_param)
+func __emit():
+	emit_signal("emitter", param)

@@ -7,7 +7,7 @@ func _init():
 	__setParamMap()
 
 func getParam(param_name):
-	Exception.assert(param_map.has(param_name))
+	Logger.assert(param_map.has(param_name), "Map doesn't has param")
 	return param_map[param_name]
 
 func pack():

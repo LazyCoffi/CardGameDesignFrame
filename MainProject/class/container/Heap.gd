@@ -83,11 +83,10 @@ func empty():
 	return heap.empty()
 
 func top():
-	Exception.assert(not heap.empty())
+	Logger.assert(not heap.empty(), "Heap is empty!")
 	return heap[0].val
 
 func append(val, order):
-	Exception.assert(TypeUnit.isType(order, "int"))
 	var heap_node = HeapNode.new()
 	heap_node.setParamType(param_type)
 	heap_node.val = val
@@ -104,7 +103,7 @@ func append(val, order):
 			break
 
 func pop():
-	Exception.assert(not heap.empty())
+	Logger.assert(not heap.empty(), "Heap is empty!")
 	var ret = heap[0].val
 	heap[0] = heap[heap.size() - 1]
 	heap.resize(heap.size() - 1)

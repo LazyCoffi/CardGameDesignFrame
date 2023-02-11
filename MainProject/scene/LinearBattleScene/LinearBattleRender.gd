@@ -26,15 +26,15 @@ class ComponentPack:
 		component = component_
 	
 	func connectTo(entity, component_signal, target_func):
+		Logger.assert(not connection_table.has(component_signal), "Component has connected!")
 		var emitter = Emitter.new()
 		emitter.setParam(key)
 		emitter.connectTo(entity, target_func)
-		Exception.assert(not connection_table.has(component_signal))
 		component.connect(component_signal, emitter, emitter.emitFuncName())
 		connection_table[component_signal] = emitter
 	
 	func disconnectFrom(entity, component_signal, target_func):
-		Exception.assert(connection_table.has(component_signal))
+		Logger.assert(connection_table.has(component_signal), "Component hasn't connected yet!")
 		var emitter = connection_table[component_signal]
 		component.disconnect(component_signal, emitter, emitter.emitFuncName())
 		emitter.disconnectFrom(entity, target_func)

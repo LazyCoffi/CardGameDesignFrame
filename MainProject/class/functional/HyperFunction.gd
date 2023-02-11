@@ -83,14 +83,14 @@ func removeFunction(index):
 	functions.remove(index)
 
 func setFunction(index, function):
-	Exception.assert(index < functions.size(), "Index out of size")
+	Logger.assert(index < functions.size(), "Index out of size")
 	functions[index] = function
 
 func getFunctions():
 	return functions.duplicate()
 
 func getFunction(index):
-	Exception.assert(index < functions.size(), "Index out of size")
+	Logger.assert(index < functions.size(), "Index out of size")
 
 	return functions[index]
 

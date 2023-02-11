@@ -46,43 +46,43 @@ func unsetAuto():
 	type_flag.resetFlag(1)
 
 func isRecycleable():
-	return type_flag.getFlag(2, 3) == 0
+	return type_flag.getMultiFlag(2, 3) == 0
 
 func isRetainable():
-	return type_flag.getFlag(2, 3) == 1
+	return type_flag.getMultiFlag(2, 3) == 1
 
 func isDestroy():
-	return type_flag.getFlag(2, 3) == 2
+	return type_flag.getMultiFlag(2, 3) == 2
 
 func setRecycleable():
-	type_flag.resetFlag(2, 3)
+	type_flag.resetMultiFlag(2, 3)
 
 func setRetainable():
-	type_flag.resetFlag(2, 3)
+	type_flag.resetMultiFlag(2, 3)
 	type_flag.setFlag(2)
 
 func setDestroy():
-	type_flag.resetFlag(2, 3)
+	type_flag.resetMultiFlag(2, 3)
 	type_flag.setFlag(3)
 
 func isPlayRecyclable():
-	return type_flag.getFlag(4, 5) == 0
+	return type_flag.getMultiFlag(4, 5) == 0
 
 func isPlayDestroy():
-	return type_flag.getFlag(4, 5) == 1
+	return type_flag.getMultiFlag(4, 5) == 1
 
 func isPlayRetainable():
-	return type_flag.getFlag(4, 5) == 2
+	return type_flag.getMultiFlag(4, 5) == 2
 
 func setPlayRecyclable():
-	type_flag.resetFlag(4, 5)
+	type_flag.resetMultiFlag(4, 5)
 
 func setPlayRetainable():
-	type_flag.resetFlag(4, 5)
+	type_flag.resetMultiFlag(4, 5)
 	type_flag.setFlag(4)
 
 func setPlayDestory():
-	type_flag.resetFlag(4, 5)
+	type_flag.resetMultiFlag(4, 5)
 	type_flag.setFlag(5)
 
 # target_condition

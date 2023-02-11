@@ -25,6 +25,7 @@ var action_character			# CharacterCard
 var chosen_hand_card			# SkillCard
 
 func _init():
+	Logger.debug("debug")
 	setting = null
 	own_character_team = []
 	enemy_character_team = []
@@ -40,7 +41,7 @@ func _init():
 
 # param_table
 func getParam(param_name):
-	Exception.assert(param_table.has(param_name))
+	Logger.assert(param_table.has(param_name), "Table doesn't have " + param_name + "!")
 	return param_table[param_name]
 
 # setting
@@ -65,7 +66,7 @@ func getOwnCharacterByName(card_name):
 	return null
 
 func setOwnCharacterTeam(own_character_team_):
-	Exception.assert(own_character_team.size() <= MAX_GROUP_SIZE, "own_character_team's chard num exceed limit!")
+	Logger.assert(own_character_team.size() <= MAX_GROUP_SIZE, "own_character_team's chard num exceed limit!")
 
 	own_character_team = own_character_team_
 
@@ -84,7 +85,7 @@ func getEnemyCharacterByName(card_name):
 	return null
 
 func setEnemyCharacterTeam(enemy_character_team_):
-	Exception.assert(own_character_team.size() <= MAX_GROUP_SIZE, "own_character_team's chard num exceed limit!")
+	Logger.assert(own_character_team.size() <= MAX_GROUP_SIZE, "own_character_team's chard num exceed limit!")
 
 	enemy_character_team = enemy_character_team_
 
@@ -98,7 +99,7 @@ func getCharacterByName(card_name):
 	if ret != null:
 		return ret
 	else:
-		Exception.assert(false, "character_card\"" + card_name + "\" doesn't exist!")
+		Logger.assert(false, "character_card\"" + card_name + "\" doesn't exist!")
 
 # order_bucket
 func getOrderBucket():
@@ -174,7 +175,7 @@ func setChosenHandCardByName(card_name):
 			chosen_hand_card = hand_card
 			return
 	
-	Exception.assert(false, "Action Character doesn't have the \"" + card_name + "\"!")
+	Logger.assert(false, "Action Character doesn't have the \"" + card_name + "\"!")
 
 func resetChosenHandCard():
 	chosen_hand_card = null

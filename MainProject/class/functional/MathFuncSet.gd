@@ -38,8 +38,8 @@ func divInt(first, second):
 func divFloat(first, second):
 	return float(first / second)
 
-func powInt(first, second, p := null):
-	return __quickPow(first, second, p)
+func powInt(first, second):
+	return __quickPow(first, second)
 
 func powFloat(first, second):
 	return pow(first, second)
@@ -56,18 +56,14 @@ func lowerBoundFloat(first, second):
 func upperBoundFloat(first, second):
 	return float(min(first, second))
 
-func __quickPow(first, second, p := null):
+func __quickPow(first, second):
 	var ret = 1
 
 	while second > 0:
 		if second & 1 == 0:
 			ret = ret * first
-			if p != null:
-				ret = ret % p
 
 		first = first * first
-		if p != null:
-			first = first % p
 		
 		second = second >> 1
 	

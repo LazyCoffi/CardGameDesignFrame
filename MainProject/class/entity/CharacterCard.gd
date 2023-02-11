@@ -76,7 +76,7 @@ func equip(equipment_card):
 	equipment_set[card_name] = equipment_card
 		
 func unequip(card_name):
-	Exception.assert(equipment_set.has(card_name))
+	Logger.assert(equipment_set.has(card_name), "Equipment set doesn't contain " + card_name + "!")
 	var equipment_card = equipment_set[card_name]
 	equipment_card.unequip(self)
 	equipment_set.erase(card_name)

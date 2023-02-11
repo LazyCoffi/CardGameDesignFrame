@@ -16,16 +16,19 @@ func gameInit():
 	__gameStart()
 
 func __initUnit():
+	Logger.log("Global unit load script.")
 	CardCache.initScript()
 	GlobalSetting.initScript()
 	ResourceUnit.initScript()
 
 func __preloadScene():
+	Logger.log("Preload scene.")
 	var preload_scene_list = GlobalSetting.getAttr("preload_scene_list")
 	for scene_name in preload_scene_list:
 		SceneCache.create(scene_name)
 
 func __gameStart():
+	Logger.log("Game start! Switch to the first scene.")
 	var init_scene_name = GlobalSetting.getAttr("init_scene_name")
 	$SceneDispatcher.switch(init_scene_name)
 

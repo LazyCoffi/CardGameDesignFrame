@@ -89,12 +89,12 @@ func resize(size):
 		list.resize(size)
 
 func hasParam(index):
-	Exception.assert(index < list.size())
+	Logger.assert(index < list.size(), "Index is out of list size!")
 
 	return list[index].getParamType() != "NullPack"
 
 func getParam(index):
-	Exception.assert(index < list.size())
+	Logger.assert(index < list.size(), "Index is out of list size!")
 
 	return list[index].getParam()
 
@@ -108,14 +108,14 @@ func addGap():
 	list.append(__nullNode())
 
 func setParam(param_type, param, index):
-	Exception.assert(index < list.size())
+	Logger.assert(index < list.size(), "Index is out of list size!")
 	var param_node = ParamNode.new()
 	param_node.setParamType(param_type)
 	param_node.setParam(param)
 	list[index] = param_node
 
 func delParam(index):
-	Exception.assert(index < list.size())
+	Logger.assert(index < list.size(), "Index is out of list size!")
 	list[index] = __nullNode()
 
 func removeParam(index):
