@@ -11,9 +11,7 @@ var LinearBattleScene = TypeUnit.type("LinearBattleScene")
 var LinearBattleModel = TypeUnit.type("LinearBattleModel")
 
 func before_all():
-	CardCache.initScript()
-	GlobalSetting.initScript()
-	ResourceUnit.initScript()
+	pass
 
 func __buildSetting():
 	var setting = SettingTable.new()
@@ -180,23 +178,39 @@ func __buildDrawNumFunction():
 func __buildIsBattleOverCondition():
 	var is_battle_over_condition = Function.new()
 
-	var enemy_num_unit = FuncUnit.new()
-	enemy_num_unit.setFuncSetName("LinearBattleFuncSet")
-	enemy_num_unit.setFuncName("getEnemyCharacterNum")
-	enemy_num_unit.initDefaultParams()
+	var own_empty_unit = FuncUnit.new()
+	own_empty_unit.setFuncSetName("LinearBattleConditionSet")
+	own_empty_unit.setFuncName("isOwnTeamEmpty")
+	own_empty_unit.initDefaultParams()
 
-	var is_le_unit = FuncUnit.new()
-	is_le_unit.setFuncSetName("MathConditionSet")
-	is_le_unit.setFuncName("isLessEqualInt")
-	is_le_unit.initDefaultParams()
-	is_le_unit.setDefaultParam("Integer", 0, 1)
+	var enemy_empty_unit = FuncUnit.new()
+	enemy_empty_unit.setFuncSetName("LinearBattleConditionSet")
+	enemy_empty_unit.setFuncName("isEnemyTeamEmpty")
+	enemy_empty_unit.initDefaultParams()
+
+	var or_unit = FuncUnit.new()
+	or_unit.setFuncSetName("BaseConditionSet")
+	or_unit.setFuncName("orGate")
+	or_unit.initDefaultParams()
+
+	var val_unit = FuncUnit.new()
+	val_unit.setFuncSetName("BaseFuncSet")
+	val_unit.setFuncName("returnVal")
+	val_unit.initDefaultParams()
 
 	var graph = FuncGraph.new()
-	var enemy_num_node = graph.genNode(enemy_num_unit)
-	var is_le_node = graph.genNode(is_le_unit)
-	is_le_node.connectNode(enemy_num_node, 0)
-	graph.setRoot(is_le_node)
+	var own_empty_node = graph.genNode(own_empty_unit)
+	var enemy_empty_node = graph.genNode(enemy_empty_unit)
+	var or_node = graph.genNode(or_unit)
+	or_node.connectNode(own_empty_node, 0)
+	or_node.connectNode(enemy_empty_node, 1)
 
+	var val_node = graph.genNode(val_unit)
+	own_empty_node.connectNode(val_node, 0)
+	enemy_empty_node.connectNode(val_node, 0)
+
+	graph.setRoot(or_node)
+	
 	is_battle_over_condition.setGraph(graph)
 	is_battle_over_condition.initParamMap()
 

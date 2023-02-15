@@ -148,6 +148,9 @@ func loadScript(script_tree):
 	__reconstructTree(flat_tree)
 
 func __dfsConstruct(u):
+	if u.getIndex() != 0:
+		return
+
 	node_index += 1
 	u.setIndex(node_index)
 

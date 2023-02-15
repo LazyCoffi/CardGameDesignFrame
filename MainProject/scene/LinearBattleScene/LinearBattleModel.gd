@@ -105,8 +105,14 @@ func getCharacterByName(card_name):
 func getOrderBucket():
 	return order_bucket
 
+func orderBucketAdd(card):
+	order_bucket.append(card, card.getCardName())
+
 func orderBucketWalk():
 	order_bucket.walk()
+
+func orderBucketDel(card_name):
+	order_bucket.del(card_name)
 
 func setOrderBucket(order_bucket_):
 	order_bucket = order_bucket_

@@ -110,7 +110,7 @@
 		},
 		"linear_battle": {
 			"linear_battle": {
-				"next_turn_button": [
+				"next_round_button": [
 					32,
 					"TextureNode"
 				]
@@ -295,7 +295,7 @@
 			"text": "离开游戏"
 		},
 		{
-			"texture_path": "res://asserts/component/next_turn_btn.png"
+			"texture_path": "res://asserts/component/next_round_btn.png"
 		},
 		{
 			"texture_path": "res://asserts/avator/white_hair.png"

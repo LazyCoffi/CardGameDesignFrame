@@ -2,10 +2,6 @@ extends GutTest
 
 var ResourceUnit = TypeUnit.type("ResourceUnit")
 
-func before_all():
-	CardCache.initScript()
-	GlobalSetting.initScript()
-
 func test_buildResourceUnit():
 	var resource_unit = ResourceUnit.new()
 
@@ -48,7 +44,7 @@ func test_buildResourceUnit():
 	resource_unit.addColorByName("main_menu", "ExitButtonText", "font_color", "#d1992d")
 	resource_unit.addText("main_menu", "ExitButtonText", "font_text", "离开游戏")
 
-	resource_unit.addTexture("linear_battle", "linear_battle", "next_turn_button", "res://asserts/component/next_turn_btn.png")
+	resource_unit.addTexture("linear_battle", "linear_battle", "next_round_button", "res://asserts/component/next_round_btn.png")
 
 	resource_unit.addTexture("global", "avator", "main_character", "res://asserts/avator/white_hair.png")
 	resource_unit.addTexture("global", "avator", "enemy_character", "res://asserts/avator/purple_hair.png")

@@ -51,7 +51,7 @@ var hand_card_list
 var action_character_mark		# ComponentPack
 var chosen_hand_card_mark		# ComponentPack
 var chosen_character_mark		# ComponentPack
-var next_turn_button			# ComponentPack
+var next_round_button			# ComponentPack
 
 func _init():
 	own_team_list = []
@@ -60,7 +60,7 @@ func _init():
 	action_character_mark = null
 	chosen_hand_card_mark = null
 	chosen_character_mark = null
-	next_turn_button = null
+	next_round_button = null
 
 func setRef(scene):
 	scene_ref = scene
@@ -140,18 +140,18 @@ func clearHandCardList():
 func getActionCharacterMark():
 	return action_character_mark
 
-# next_turn_button
-func getNextTurnButton():
-	return next_turn_button
+# next_round_button
+func getNextRoundButton():
+	return next_round_button
 
-func renderNextTurnButton():
-	var texture = ResourceUnit.loadRes("linear_battle", "linear_battle", "next_turn_button")
-	var next_turn = scene().get_node("NextTurnButton")
-	next_turn.texture_normal = texture
+func renderNextRoundButton():
+	var texture = ResourceUnit.loadRes("linear_battle", "linear_battle", "next_round_button")
+	var next_round = scene().get_node("NextRoundButton")
+	next_round.texture_normal = texture
 
 	# TODO: 添加按钮文字
 
-	next_turn_button = ComponentPack.new("__nextTurnButton", next_turn)
+	next_round_button = ComponentPack.new("__nextRoundButton", next_round)
 
 func getChosenCharacterMark():
 	return chosen_character_mark
@@ -344,9 +344,11 @@ func renderActionCharacterMark():
 	if service().isOwnAction():
 		rect_position_list = __getOwnTeamPositionList()
 		team_list = own_team_list
-	else:
+	elif service().isEnemyAction():
 		rect_position_list = __getEnemyTeamPositionList()
 		team_list = enemy_team_list
+	else:
+		Logger.error("Action character not exists!")
 	
 	var rect_position
 

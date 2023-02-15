@@ -1,0 +1,8 @@
+2023-02-14T00:56:56 Debug: debug
+Exception Stack:
+At: File: res://class/unit/Logger.gd Function: debug Line: 37 
+At: File: res://scene/LinearBattleScene/LinearBattleModel.gd Function: _init Line: 28 
+At: File: res://test/test_BuildLinearBattle.gd Function: test_buildLinearBattleScript Line: 233 
+At: File: res://addons/gut/gut.gd Function: _run_test Line: 719 
+At: File: res://addons/gut/gut.gd Function: _test_the_scripts Line: 895 
+At: File: res://addons/gut/gut.gd Function: _physics_process Line: 180 

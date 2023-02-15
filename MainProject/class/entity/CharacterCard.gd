@@ -37,6 +37,9 @@ func copy():
 func getHandCardsNum():
 	return hand_card_slot.getCardsNum()
 
+func isHandCardsEmpty():
+	return hand_card_slot.peekCards().empty()
+
 func peekHandCards():
 	return hand_card_slot.peekCards().duplicate()
 
@@ -55,7 +58,7 @@ func playHandCardByName(param_list, card_pile, card_name):
 func drawHandCards(card_pile, card_num):
 	hand_card_slot.drawCard(card_pile, card_num)
 
-func positiveDiscardAt(index, card_pile):
+func positiveDiscardAt(card_pile, index):
 	hand_card_slot.positiveDiscard(index, card_pile)
 
 func passiveDiscard(card_pile):
@@ -66,7 +69,7 @@ func addBuff(buff_card):
 	var card_name = buff_card.getCardName()
 	buff_set[card_name] = buff_card
 
-func peekBuff():
+func peekBuffSet():
 	return buff_set.duplicate()
 
 # equipment_set

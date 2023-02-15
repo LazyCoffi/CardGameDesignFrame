@@ -117,6 +117,44 @@ func randomShuffle(first):
 	
 	return first
 
+func getAt(first, second):
+	Logger.assert(second > 0 and second < first.size(), "Index is out of range!")
+	return first[second]
+
+func getFront(first):
+	return first.front()
+
+func getBack(first):
+	return first.back()
+
+func slice(first, second, third):
+	Logger.assert(second > 0 and second < first.size(), "Index is out of range!")
+	Logger.assert(third > 0 and third < first.size(), "Index is out of range!")
+
+	var ret = []
+	for index in range(second, third):
+		ret.append(first[index])	
+	
+	return ret
+
+func sliceFront(first, second):
+	Logger.assert(second > 0 and second < first.size(), "Index is out of range!")
+
+	var ret = []
+	for index in range(second):
+		ret.append(first[index])
+
+	return ret
+
+func sliceBack(first, second):
+	Logger.assert(second > 0 and second < first.size(), "Index is out of range!")
+
+	var ret = []
+	for index in range(second, first.size()):
+		ret.append(first[index])
+
+	return ret
+
 func __swap(array, first, second):
 	Logger.assert(first < array.size() and second < array.size(),
 				  "Swap index is out of range!")
@@ -141,3 +179,9 @@ func __initFuncForm():
 	addFuncForm("arraySize", "int", ["Array"])
 	addFuncForm("isArrayEmpty", "bool", ["Array"])
 	addFuncForm("arrayDeepCopy", "all", ["Array"])
+	addFuncForm("getAt", "all", ["Array", "int"])
+	addFuncForm("getFront", "all", ["Array"])
+	addFuncForm("getBack", "all", ["Array"])
+	addFuncForm("slice", "Array", ["Array", "int", "int"])
+	addFuncForm("sliceFront", "Array", ["Array", "int"])
+	addFuncForm("sliceBack", "Array", ["Array", "int"])

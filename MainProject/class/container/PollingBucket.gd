@@ -16,12 +16,16 @@ class BucketNode:
 
 	var param_type
 
-	func _init(param_name_, param_):
-		param_name = param_name_
-		param = param_
+	func _init():
+		param_name = ""
+		param = null
 	
 	func copy():
-		return BucketNode.new(param_name, param.copy())
+		var ret = TypeUnit.type("PollingBucket").new()
+		ret.param_name = param_name
+		ret.param = param.copy()
+
+		return ret
 	
 	func setParamType(param_type_):
 		param_type = param_type_
@@ -157,7 +161,10 @@ func walk():
 		pointer += 1
 
 func append(param_name, param):
-	buffer.append(BucketNode.new(param_name, param))
+	var bucket_node = BucketNode.new()
+	bucket_node.param_name = param_name
+	bucket_node.param = param
+	buffer.append(bucket_node)
 
 func del(param_name):
 	for index in range(bucket.size()):

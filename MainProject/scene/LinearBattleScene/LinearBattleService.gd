@@ -1,8 +1,6 @@
 extends Node
 class_name LinearBattleService
 
-var DictArray = TypeUnit.type("DictArray")
-
 var scene_ref
 
 func setRef(scene):
@@ -14,17 +12,40 @@ func scene():
 func model():
 	return scene_ref.model()
 
+func getOwnCharacterTeam():
+	return model().getOwnCharacterTeam()
+
+func getEnemyCharacterTeam():
+	return model().getEnemyCharacterTeam()
+
 func getOwnCharacterNum():
 	return model().getOwnCharacterNum()
 
+func isOwnTeamEmpty():
+	return model().getOwnCharacterNum() == 0
+
 func getEnemyCharacterNum():
 	return model().getEnemyCharacterNum()
+
+func isEnemyTeamEmpty():
+	return model().getEnemyCharacterNum() == 0
 
 func initOwnCharacterTeam():
 	model().deployOwnTeam()
 
 func initEnemyCharacterTeam():
 	model().deployEnemyTeam()
+
+func getOppositeTeam(character_card):
+	var own_team = getOwnCharacterTeam()
+	for character in own_team:
+		if character.getCardName() == character_card.getCardName():
+			return getEnemyCharacterTeam()
+	
+	return own_team
+
+func getActionCharacter():
+	return model().getActionCharacter()
 
 func getActionCharacterName():
 	return model().getActionCharacterName()
@@ -64,6 +85,18 @@ func drawHandCards():
 
 	action_character.drawHandCards(action_character.getCardPile(), draw_num)
 
+func isActionHandCardsEmpty():
+	return model().getActionCharacter().isHandCardsEmpty()
+
+func isAiAction():
+	return model().getActionCharacter().aiIsActionCondition(scene().getSceneName())
+
+func aiChooseCard():
+	return model().getActionCharacter().aiChooseCardFunction(scene().getSceneName())
+
+func aiChooseTarget():
+	return model().getActionCharacter().aiChooseTargetFunction(scene().getSceneName())
+
 func playChosenHandCardAt(target_card_name):
 	var action_character = model().getActionCharacter()
 	var target_character_card = model().getCharacterByName(target_card_name)
@@ -100,6 +133,26 @@ func resetChosenHandCard():
 	model().resetChosenHandCard()
 
 # global_service
+func addCharacter(character_card):
+	model().orderBucketAdd(character_card)
+
+func delCharacter(character_card):
+	model().orderBucketDel(character_card.getCardName())
+
+	var own_team = model().getOwnCharacterTeam()
+	var i = 0
+	while i < own_team.size():
+		if own_team[i].getCardName() == character_card.getCardName():
+			own_team.remove(i)
+			return
+	
+	var enemy_team = model().getEnemyCharacterTeam()
+	var j = 0
+	while j < enemy_team.size():
+		if enemy_team[i].getCardName() == character_card.getCardName():
+			enemy_team.remove(i)
+			return
+
 func isBattleOver():
 	return model().isBattleOverCondition(scene().getSceneName())
 
@@ -108,6 +161,7 @@ func removeDeadCharacter():
 	var i = 0
 	while i < own_team.size():
 		if model().isDeadCondition(own_team[i], scene().getSceneName()):
+			model().orderBucketDel(own_team[i].getCardName())
 			own_team.remove(i)
 		else:
 			i += 1
@@ -116,6 +170,7 @@ func removeDeadCharacter():
 	var j = 0
 	while j < enemy_team.size():
 		if model().isDeadCondition(enemy_team[j], scene().getSceneName()):
+			model().orderBucketDel(enemy_team[i].getCardName())
 			enemy_team.remove(j)
 		else:
 			j += 1
@@ -128,7 +183,7 @@ func actionCharacterPassiveDiscard():
 func battleOver():
 	scene().battleOverSwitch()
 
-func nextTurnPrepare():
+func nextRoundPrepare():
 	actionCharacterPassiveDiscard()
 	model().resetActionCharacter()
 	model().orderBucketWalk()

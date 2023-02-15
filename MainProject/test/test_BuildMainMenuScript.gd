@@ -2,11 +2,6 @@ extends GutTest
 
 var MainMenuScene = TypeUnit.type("MainMenuScene")
 
-func before_all():
-	CardCache.initScript()
-	GlobalSetting.initScript()
-	ResourceUnit.initScript()
-
 func test_buildMainMenuScript():
 	var main_menu = MainMenuScene.instance()
 	main_menu.setSceneName("main_menu")

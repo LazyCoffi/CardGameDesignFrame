@@ -165,6 +165,82 @@ func __buildAttackSkillCard(index):
 
 	return card
 
+func __buildAiIsActionCondition():
+	var not_unit = FuncUnit.new()
+	not_unit.setFuncSetName("BaseConditionSet")
+	not_unit.setFuncName("notGate")
+	not_unit.initDefaultParams()
+
+	var empty_unit = FuncUnit.new()
+	empty_unit.setFuncSetName("CharacterCardConditionSet")
+	empty_unit.setFuncName("isHandCardsEmpty")
+	empty_unit.initDefaultParams()
+
+	var graph = FuncGraph.new()
+	var not_node = graph.genNode(not_unit)
+	var empty_node = graph.genNode(empty_unit)
+
+	not_node.connectNode(empty_node, 0)
+	graph.setRoot(not_node)
+	
+	var ai_is_action_condition = Function.new()
+	ai_is_action_condition.setGraph(graph)
+	ai_is_action_condition.initParamMap()
+
+	return ai_is_action_condition
+
+func __buildAiChooseTargetFunction():
+	var opposite_unit = FuncUnit.new()
+	opposite_unit.setFuncSetName("LinearBattleFuncSet")
+	opposite_unit.setFuncName("getOppositeTeam")
+	opposite_unit.initDefaultParams()
+
+	var get_unit = FuncUnit.new()
+	get_unit.setFuncSetName("ArrayOperFuncSet")
+	get_unit.setFuncName("getFront")
+	get_unit.initDefaultParams()
+
+	var graph = FuncGraph.new()
+	var opposite_node = graph.genNode(opposite_unit)
+	var get_node = graph.genNode(get_unit)
+	get_node.connectNode(opposite_node, 0)
+	graph.setRoot(get_node)
+
+	var ai_choose_target_function = Function.new()
+	ai_choose_target_function.setGraph(graph)
+	ai_choose_target_function.initParamMap()
+	ai_choose_target_function.setMap(
+		[
+			"getOppositeTeam_2_1",
+			"getOppositeTeam_2_0"
+		]
+	)
+
+	return ai_choose_target_function
+
+func __buildAiChooseCardFunction():
+	var peek_unit = FuncUnit.new()
+	peek_unit.setFuncSetName("CharacterCardFuncSet")
+	peek_unit.setFuncName("peekHandCards")
+	peek_unit.initDefaultParams()
+
+	var get_unit = FuncUnit.new()
+	get_unit.setFuncSetName("ArrayOperFuncSet")
+	get_unit.setFuncName("getFront")
+	get_unit.initDefaultParams()
+
+	var graph = FuncGraph.new()
+	var peek_node = graph.genNode(peek_unit)
+	var get_node = graph.genNode(get_unit)
+	get_node.connectNode(peek_node, 0)
+	graph.setRoot(get_node)
+
+	var ai_choose_card_function = Function.new()
+	ai_choose_card_function.setGraph(graph)
+	ai_choose_card_function.initParamMap()
+
+	return ai_choose_card_function
+
 func __buildMainCharacterCard():
 	var card = LinearCharacterCard.new()
 	card.setTemplateName("MainCharacterCard")
@@ -177,6 +253,10 @@ func __buildMainCharacterCard():
 
 	for index in 4:
 		card.pushCardPileFront(__buildAttackSkillCard(index))
+	
+	card.setAiIsActionCondition(__buildFalseCondition())
+	card.setAiChooseCardFunction(__buildFalseCondition())
+	card.setAiChooseTargetFunction(__buildFalseCondition())
 	
 	return card
 
@@ -192,6 +272,10 @@ func __buildEnemyCharacterCard():
 
 	for index in 4:
 		card.pushCardPileFront(__buildAttackSkillCard(index + 4))
+	
+	card.setAiIsActionCondition(__buildAiIsActionCondition())
+	card.setAiChooseCardFunction(__buildAiChooseCardFunction())
+	card.setAiChooseTargetFunction(__buildAiChooseTargetFunction())
 	
 	return card
 

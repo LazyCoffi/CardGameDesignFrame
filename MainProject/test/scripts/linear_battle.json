@@ -433,21 +433,27 @@
 					null,
 					[
 						2,
-						0
+						4
+					],
+					[
+						3
 					],
 					[
 						0
+					],
+					[
+						3
 					]
 				],
 				"request_params": {
-					"getEnemyCharacterNum_2_0": "String"
+					"returnVal_3_0": "all"
 				},
-				"node_index": 2,
+				"node_index": 4,
 				"flat_tree": [
 					{
 						"func_unit": {
-							"func_name": "isLessEqualInt",
-							"func_set_name": "MathConditionSet",
+							"func_name": "orGate",
+							"func_set_name": "BaseConditionSet",
 							"default_params": {
 								"list": [
 									{
@@ -457,9 +463,9 @@
 										}
 									},
 									{
-										"param_type": "Integer",
+										"param_type": "NullPack",
 										"param": {
-											"val": 0
+
 										}
 									}
 								]
@@ -469,8 +475,8 @@
 					},
 					{
 						"func_unit": {
-							"func_name": "getEnemyCharacterNum",
-							"func_set_name": "LinearBattleFuncSet",
+							"func_name": "isOwnTeamEmpty",
+							"func_set_name": "LinearBattleConditionSet",
 							"default_params": {
 								"list": [
 									{
@@ -483,12 +489,46 @@
 							}
 						},
 						"index": 2
+					},
+					{
+						"func_unit": {
+							"func_name": "returnVal",
+							"func_set_name": "BaseFuncSet",
+							"default_params": {
+								"list": [
+									{
+										"param_type": "NullPack",
+										"param": {
+
+										}
+									}
+								]
+							}
+						},
+						"index": 3
+					},
+					{
+						"func_unit": {
+							"func_name": "isEnemyTeamEmpty",
+							"func_set_name": "LinearBattleConditionSet",
+							"default_params": {
+								"list": [
+									{
+										"param_type": "NullPack",
+										"param": {
+
+										}
+									}
+								]
+							}
+						},
+						"index": 4
 					}
 				]
 			},
 			"param_map": {
 				"map": [
-					"getEnemyCharacterNum_2_0"
+					"returnVal_3_0"
 				]
 			}
 		}

@@ -9,11 +9,6 @@ var HyperFunction = TypeUnit.type("HyperFunction")
 var ParamList = TypeUnit.type("ParamList")
 var ScriptTree = TypeUnit.type("ScriptTree")
 
-func before_all():
-	CardCache.initScript()
-	GlobalSetting.initScript()
-	ResourceUnit.initScript()
-
 func test_graphTest1():
 	var random_func_unit = FuncUnit.new()
 	random_func_unit.setFuncSetName("MathFuncSet")

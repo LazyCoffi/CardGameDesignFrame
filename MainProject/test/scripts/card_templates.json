@@ -1166,6 +1166,105 @@
 
 					],
 					"is_random": true
+				},
+				"ai_is_action_condition": {
+					"graph": {
+						"graph": [
+							null,
+							[
+
+							]
+						],
+						"request_params": {
+
+						},
+						"node_index": 1,
+						"flat_tree": [
+							{
+								"func_unit": {
+									"func_name": "falseGate",
+									"func_set_name": "BaseConditionSet",
+									"default_params": {
+										"list": [
+
+										]
+									}
+								},
+								"index": 1
+							}
+						]
+					},
+					"param_map": {
+						"map": [
+
+						]
+					}
+				},
+				"ai_choose_card_function": {
+					"graph": {
+						"graph": [
+							null,
+							[
+
+							]
+						],
+						"request_params": {
+
+						},
+						"node_index": 1,
+						"flat_tree": [
+							{
+								"func_unit": {
+									"func_name": "falseGate",
+									"func_set_name": "BaseConditionSet",
+									"default_params": {
+										"list": [
+
+										]
+									}
+								},
+								"index": 1
+							}
+						]
+					},
+					"param_map": {
+						"map": [
+
+						]
+					}
+				},
+				"ai_choose_target_function": {
+					"graph": {
+						"graph": [
+							null,
+							[
+
+							]
+						],
+						"request_params": {
+
+						},
+						"node_index": 1,
+						"flat_tree": [
+							{
+								"func_unit": {
+									"func_name": "falseGate",
+									"func_set_name": "BaseConditionSet",
+									"default_params": {
+										"list": [
+
+										]
+									}
+								},
+								"index": 1
+							}
+						]
+					},
+					"param_map": {
+						"map": [
+
+						]
+					}
 				}
 			},
 			"copy_count": 0,
@@ -2354,6 +2453,189 @@
 
 					],
 					"is_random": true
+				},
+				"ai_is_action_condition": {
+					"graph": {
+						"graph": [
+							null,
+							[
+								2
+							],
+							[
+								0
+							]
+						],
+						"request_params": {
+							"isHandCardsEmpty_2_0": "CharacterCard"
+						},
+						"node_index": 2,
+						"flat_tree": [
+							{
+								"func_unit": {
+									"func_name": "notGate",
+									"func_set_name": "BaseConditionSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											}
+										]
+									}
+								},
+								"index": 1
+							},
+							{
+								"func_unit": {
+									"func_name": "isHandCardsEmpty",
+									"func_set_name": "CharacterCardConditionSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											}
+										]
+									}
+								},
+								"index": 2
+							}
+						]
+					},
+					"param_map": {
+						"map": [
+							"isHandCardsEmpty_2_0"
+						]
+					}
+				},
+				"ai_choose_card_function": {
+					"graph": {
+						"graph": [
+							null,
+							[
+								2
+							],
+							[
+								0
+							]
+						],
+						"request_params": {
+							"peekHandCards_2_0": "CharacterCard"
+						},
+						"node_index": 2,
+						"flat_tree": [
+							{
+								"func_unit": {
+									"func_name": "getFront",
+									"func_set_name": "ArrayOperFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											}
+										]
+									}
+								},
+								"index": 1
+							},
+							{
+								"func_unit": {
+									"func_name": "peekHandCards",
+									"func_set_name": "CharacterCardFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											}
+										]
+									}
+								},
+								"index": 2
+							}
+						]
+					},
+					"param_map": {
+						"map": [
+							"peekHandCards_2_0"
+						]
+					}
+				},
+				"ai_choose_target_function": {
+					"graph": {
+						"graph": [
+							null,
+							[
+								2
+							],
+							[
+								0,
+								0
+							]
+						],
+						"request_params": {
+							"getOppositeTeam_2_0": "String",
+							"getOppositeTeam_2_1": "CharacterCard"
+						},
+						"node_index": 2,
+						"flat_tree": [
+							{
+								"func_unit": {
+									"func_name": "getFront",
+									"func_set_name": "ArrayOperFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											}
+										]
+									}
+								},
+								"index": 1
+							},
+							{
+								"func_unit": {
+									"func_name": "getOppositeTeam",
+									"func_set_name": "LinearBattleFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											},
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											}
+										]
+									}
+								},
+								"index": 2
+							}
+						]
+					},
+					"param_map": {
+						"map": [
+							"getOppositeTeam_2_1",
+							"getOppositeTeam_2_0"
+						]
+					}
 				}
 			},
 			"copy_count": 0,

@@ -9,37 +9,37 @@ func _init():
 func assert(flag, msg):
 	if flag == true:
 		return
-	var text = "Error: Assert fail. " + msg
+	var text = "Error: Assert fail. " + str(msg)
 	push_error(text)
 	print_debug("Stack trace")
 	__write(text, get_stack())
 
 func warning(msg):
-	var text = "Warning: " + msg
+	var text = "Warning: " + str(msg)
 	push_warning(text)
 	print_debug("Stack trace")
 	__write(text, null)
 
 func error(msg):
-	var text = "Error: " + msg
+	var text = "Error: " + str(msg)
 	push_error(text)
 	print_debug("Stack trace")
 	__write(text, get_stack())
 
 func log(msg):
-	var text = "Log: " + msg
+	var text = "Log: " + str(msg)
 	print(text)
 	__write(text, null)
 
 func debug(msg):
-	var text = "Debug: " + msg
+	var text = "Debug: " + str(msg)
 	print_debug(text)
 	var stack_array = get_stack()
 	__write(text, stack_array)
 
 func __write(text, stack_array):
 	var time_str = __getTimeStr()
-	var textline = time_str + " " + text 
+	var textline = time_str + " " + str(text) 
 	log_handle.store_line(textline)
 
 	if stack_array != null:

@@ -9,7 +9,7 @@ script = ExtResource( 1 )
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="NextTurnButton" type="TextureButton" parent="."]
+[node name="NextRoundButton" type="TextureButton" parent="."]
 margin_left = 1551.0
 margin_top = 848.0
 margin_right = 1786.0

@@ -65,6 +65,11 @@ _global_script_classes=[ {
 "path": "res://class/entity/Card.gd"
 }, {
 "base": "Node",
+"class": "CardConditionSet",
+"language": "GDScript",
+"path": "res://class/functional/CardConditionSet.gd"
+}, {
+"base": "Node",
 "class": "CardFuncSet",
 "language": "GDScript",
 "path": "res://class/functional/CardFuncSet.gd"
@@ -103,6 +108,16 @@ _global_script_classes=[ {
 "class": "CharacterCard",
 "language": "GDScript",
 "path": "res://class/entity/CharacterCard.gd"
+}, {
+"base": "Node",
+"class": "CharacterCardConditionSet",
+"language": "GDScript",
+"path": "res://class/functional/CharacterCardConditionSet.gd"
+}, {
+"base": "Node",
+"class": "CharacterCardFuncSet",
+"language": "GDScript",
+"path": "res://class/functional/CharacterCardFuncSet.gd"
 }, {
 "base": "Node",
 "class": "CharacterWarehouseDispatcher",
@@ -198,6 +213,11 @@ _global_script_classes=[ {
 "class": "Integer",
 "language": "GDScript",
 "path": "res://class/entity/Integer.gd"
+}, {
+"base": "Node",
+"class": "LinearBattleConditionSet",
+"language": "GDScript",
+"path": "res://class/functional/LinearBattleConditionSet.gd"
 }, {
 "base": "Node",
 "class": "LinearBattleDispatcher",
@@ -346,6 +366,7 @@ _global_script_class_icons={
 "Boolean": "",
 "BuffCard": "",
 "Card": "",
+"CardConditionSet": "",
 "CardFuncSet": "",
 "CardPile": "",
 "CardTemplateDispatcher": "",
@@ -354,6 +375,8 @@ _global_script_class_icons={
 "CardTemplateService": "",
 "CategoryTree": "",
 "CharacterCard": "",
+"CharacterCardConditionSet": "",
+"CharacterCardFuncSet": "",
 "CharacterWarehouseDispatcher": "",
 "CharacterWarehouseModel": "",
 "CharacterWarehouseRender": "",
@@ -373,6 +396,7 @@ _global_script_class_icons={
 "Heap": "",
 "HyperFunction": "",
 "Integer": "",
+"LinearBattleConditionSet": "",
 "LinearBattleDispatcher": "",
 "LinearBattleFuncSet": "",
 "LinearBattleModel": "",

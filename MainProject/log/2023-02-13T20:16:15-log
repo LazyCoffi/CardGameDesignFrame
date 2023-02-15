@@ -1,0 +1,22 @@
+2023-02-13T20:16:16 Debug: debug
+Exception Stack:
+At: File: res://class/unit/Logger.gd Function: debug Line: 37 
+At: File: res://scene/LinearBattleScene/LinearBattleModel.gd Function: _init Line: 28 
+At: File: res://test/test_BuildLinearBattle.gd Function: test_buildLinearBattleScript Line: 217 
+At: File: res://addons/gut/gut.gd Function: _run_test Line: 719 
+At: File: res://addons/gut/gut.gd Function: _test_the_scripts Line: 895 
+At: File: res://addons/gut/gut.gd Function: _physics_process Line: 180 
+2023-02-13T20:16:16 Error: Assert fail. Root doesn't has ai_is_action_condition!
+Exception Stack:
+At: File: res://class/unit/Logger.gd Function: assert Line: 15 
+At: File: res://class/entity/ScriptTree.gd Function: getObject Line: 199 
+At: File: res://class/entity/LinearCharacterCard.gd Function: loadScript Line: 114 
+At: File: res://class/entity/ScriptTree.gd Function: getObject Line: 205 
+At: File: res://class/unit/CardCache.gd Function: loadScript Line: 82 
+At: File: res://class/entity/ScriptTree.gd Function: getObjectDict Line: 220 
+At: File: res://class/unit/CardCache.gd Function: loadScript Line: 121 
+At: File: res://class/unit/CardCache.gd Function: initScript Line: 129 
+At: File: res://test/test_BuildMainMenuScript.gd Function: before_all Line: 6 
+At: File: res://addons/gut/gut.gd Function: _call_before_all Line: 774 
+At: File: res://addons/gut/gut.gd Function: _test_the_scripts Line: 866 
+At: File: res://addons/gut/gut.gd Function: _physics_process Line: 180 
