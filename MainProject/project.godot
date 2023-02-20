@@ -140,6 +140,11 @@ _global_script_classes=[ {
 "path": "res://scene/CharacterWarehouseScene/CharacterWarehouseService.gd"
 }, {
 "base": "Node",
+"class": "ComponentPack",
+"language": "GDScript",
+"path": "res://class/entity/ComponentPack.gd"
+}, {
+"base": "Node",
 "class": "DictArray",
 "language": "GDScript",
 "path": "res://class/container/DictArray.gd"
@@ -381,6 +386,7 @@ _global_script_class_icons={
 "CharacterWarehouseModel": "",
 "CharacterWarehouseRender": "",
 "CharacterWarehouseService": "",
+"ComponentPack": "",
 "DictArray": "",
 "DictMap": "",
 "Emitter": "",

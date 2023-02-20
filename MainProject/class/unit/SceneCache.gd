@@ -4,7 +4,7 @@ var SceneFactory = TypeUnit.type("SceneFactory")
 var ScriptTree = TypeUnit.type("ScriptTree")
 
 var scene_cache		# SceneNode_Dict
-var cur_scene_name	# String
+var scene_stack		# Array
 var scene_factory	# SceneFactory
 
 class SceneNode:
@@ -50,6 +50,7 @@ class SceneNode:
 
 func _init():
 	scene_cache = {}
+	scene_stack = []
 	scene_factory = SceneFactory.new()
 	scene_factory.initScript()
 
@@ -61,20 +62,29 @@ func genSceneNode(type, scene_name, scene):
 
 	return scene_node
 
-func hasCurScene():
-	return cur_scene_name != null
+func hasScene():
+	return not scene_stack.empty()
 
-func getCurSceneName():
-	return cur_scene_name
+func getTopSceneName():
+	return scene_stack.back()
 
-func getCurScene():
-	return scene_cache[cur_scene_name].getScene()
+func pushTopSceneName(scene_name):
+	scene_stack.push_back(scene_name)
 
-func getCurSceneType():
-	return scene_cache[cur_scene_name].getType()
+func popTopSceneName():
+	return scene_stack.pop_back()
 
-func setCurScene(scene_name):
-	cur_scene_name = scene_name
+func getTopScene():
+	var top_scene_name = scene_stack.back()
+	return scene_cache[top_scene_name].getScene()
+
+func getTopSceneType():
+	var top_scene_name = scene_stack.back()
+	return scene_cache[top_scene_name].getType()
+
+func popTopScene():
+	var top_scene_name = scene_stack.pop_back()
+	return scene_cache[top_scene_name].getScene()
 
 func store(scene_node):
 	var scene_name = scene_node.getSceneName()
@@ -111,10 +121,10 @@ func pack():
 	var script_tree = ScriptTree.new()
 
 	script_tree.addObjectDict("scene_cache", scene_cache)
-	script_tree.addAttr("cur_scene_name", cur_scene_name)
+	script_tree.addAttr("scene_stack", scene_stack)
 
 	return script_tree
 
 func loadScript(script_tree):
 	scene_cache = script_tree.getObjectDict("scene_cache", SceneNode)
-	cur_scene_name = script_tree.getStr("cur_scene_name")
+	scene_stack = script_tree.getStrArray("scene_stack")

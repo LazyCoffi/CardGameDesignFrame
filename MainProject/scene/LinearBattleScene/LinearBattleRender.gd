@@ -2,47 +2,8 @@ extends Node
 class_name LinearBattleRender
 
 var Emitter = TypeUnit.type("Emitter")
-
-class ComponentPack:
-	var key
-	var component
-	var connection_table
-
-	func _init(key_, component_):
-		key = key_
-		component = component_
-		connection_table = {}
+var ComponentPack = TypeUnit.type("ComponentPack")
 	
-	func getKey():
-		return key
-	
-	func getComponent():
-		return component
-
-	func setKey(key_):
-		key = key_
-	
-	func setComponent(component_):
-		component = component_
-	
-	func connectTo(entity, component_signal, target_func):
-		Logger.assert(not connection_table.has(component_signal), "Component has connected!")
-		var emitter = Emitter.new()
-		emitter.setParam(key)
-		emitter.connectTo(entity, target_func)
-		component.connect(component_signal, emitter, emitter.emitFuncName())
-		connection_table[component_signal] = emitter
-	
-	func disconnectFrom(entity, component_signal, target_func):
-		Logger.assert(connection_table.has(component_signal), "Component hasn't connected yet!")
-		var emitter = connection_table[component_signal]
-		component.disconnect(component_signal, emitter, emitter.emitFuncName())
-		emitter.disconnectFrom(entity, target_func)
-		connection_table.erase(component_signal)
-	
-	func isConnected(component_signal):
-		return connection_table.has(component_signal)
-
 var scene_ref
 
 var own_team_list				# ComponentPack_2DArray
@@ -210,7 +171,7 @@ func __findComponetPack(list, component_key):
 func __delComponentPack(list, component_key):
 	var i = 0
 	while i < list.size():
-		if list[i].getKey() == component_key:
+		if list[i][0].getKey() == component_key:
 			list.remove(i)
 			return
 		i += 1
@@ -222,8 +183,11 @@ func renderOwnTeam():
 
 	var list = []
 	var insert_list = []
-	var del_list = own_team_list.duplicate()
+	var del_list = []
 	var keep_list = []
+
+	for component_pack in own_team_list:
+		del_list.append([component_pack, component_pack.getComponent().rect_position])
 
 	var i = 0
 	for character_card in own_character_team:
@@ -239,12 +203,11 @@ func renderOwnTeam():
 			var character_button = TextureButton.new()
 			character_button.expand = true
 			character_button.texture_normal = texture
-			character_button.rect_position = rect_position
 			character_button.rect_size = rect_size
 
 			component_pack = ComponentPack.new(component_key, character_button)
 
-			insert_list.append(component_pack)
+			insert_list.append([component_pack, rect_position])
 		else:
 			keep_list.append([component_pack, rect_position_list[i]])
 
@@ -254,20 +217,23 @@ func renderOwnTeam():
 	
 	own_team_list = list
 
-	for component_pack in del_list:
+	for del_pack in del_list:
 		#TODO: delCharacterAnime
-		scene().remove_child(component_pack.getComponent())
+		var component_pack = del_pack[0]
+		var rect_position = del_pack[1]
+		delAnime(component_pack, rect_position)
 	
 	for keep_pack in keep_list:
 		var component_pack = keep_pack[0]
 		var rect_position = keep_pack[1]
 
-		#TODO: moveCharacterAnime 
-		component_pack.getComponent().rect_position = rect_position
+		moveAnime(component_pack, rect_position)
 	
-	for component_pack in insert_list:
-		#TODO: insertCharacterAnime
-		scene().add_child(component_pack.getComponent())
+	for insert_pack in insert_list:
+		var component_pack = insert_pack[0]
+		var rect_position = insert_pack[1]
+
+		insertAnime(component_pack, rect_position)
 
 func clearOwnTeam():
 	for component_pack in own_team_list:
@@ -282,8 +248,11 @@ func renderEnemyTeam():
 
 	var list = []
 	var insert_list = []
-	var del_list = enemy_team_list.duplicate()
+	var del_list = []
 	var keep_list = []
+
+	for component_pack in enemy_team_list:
+		del_list.append([component_pack, component_pack.getComponent().rect_position])
 
 	var i = 0
 	for character_card in enemy_character_team:
@@ -299,12 +268,11 @@ func renderEnemyTeam():
 			var character_button = TextureButton.new()
 			character_button.expand = true
 			character_button.texture_normal = texture
-			character_button.rect_position = rect_position
 			character_button.rect_size = rect_size
 
 			component_pack = ComponentPack.new(component_key, character_button)
 
-			insert_list.append(component_pack)
+			insert_list.append([component_pack, rect_position])
 		else:
 			keep_list.append([component_pack, rect_position_list[i]])
 
@@ -315,26 +283,93 @@ func renderEnemyTeam():
 	enemy_team_list = list
 
 
-	for component_pack in del_list:
+	for del_pack in del_list:
 		#TODO: delCharacterAnime
-		scene().remove_child(component_pack.getComponent())
+		var component_pack = del_pack[0]
+		var rect_position = del_pack[1]
+		delAnime(component_pack, rect_position)
 	
 	for keep_pack in keep_list:
 		var component_pack = keep_pack[0]
 		var rect_position = keep_pack[1]
-
-		#TODO: moveCharacterAnime 
-		component_pack.getComponent().rect_position = rect_position
+		moveAnime(component_pack, rect_position)
 	
-	for component_pack in insert_list:
-		#TODO: insertCharacterAnime
-		scene().add_child(component_pack.getComponent())
-
+	for insert_pack in insert_list:
+		var component_pack = insert_pack[0]
+		var rect_position = insert_pack[1]
+		insertAnime(component_pack, rect_position)
+	
 func clearEnemyTeam():
 	for component_pack in enemy_team_list:
 		scene().remove_child(component_pack.getComponent())
 	
 	enemy_team_list.clear()
+	
+func insertAnime(component_pack, final_rect_position):
+	var component = component_pack.getComponent()
+
+	var init_rect_position = final_rect_position
+	init_rect_position[1] -= 80
+
+	component.rect_position = init_rect_position
+	scene().add_child(component_pack.getComponent())
+
+	var tween = scene().get_node("Tween")
+	tween.interpolate_property(component, 
+							   "rect_position",
+							   init_rect_position,
+							   final_rect_position,
+							   0.5,
+							   Tween.TRANS_LINEAR,
+							   Tween.EASE_IN_OUT
+							   )
+	
+	tween.start()
+	tween.interpolate_callback(self, 0.5, "__insertAnimeCallBack", component, final_rect_position)
+
+func __insertAnimeCallBack(component, final_rect_position):
+	component.rect_position = final_rect_position
+
+func moveAnime(component_pack, next_rect_position):
+	var component = component_pack.getComponent()
+
+	var tween = scene().get_node("Tween")
+	tween.interpolate_property(component, 
+							   "rect_position",
+							   null, 
+							   next_rect_position,
+							   0.5,
+							   Tween.TRANS_LINEAR,
+							   Tween.EASE_IN_OUT
+							   )
+	
+	tween.start()
+	tween.interpolate_callback(self, 0.5, "__moveAnimeCallBack", component, next_rect_position)
+
+func __moveAnimeCallBack(component, next_rect_position):
+	component.rect_position = next_rect_position
+
+func delAnime(component_pack, init_rect_position):
+	var component = component_pack.getComponent()
+
+	var next_rect_position = init_rect_position
+	next_rect_position[1] += 80
+	
+	var tween = scene().get_node("Tween")
+	tween.interpolate_property(component, 
+							   "rect_position",
+							   init_rect_position, 
+							   next_rect_position,
+							   0.5,
+							   Tween.TRANS_LINEAR,
+							   Tween.EASE_IN_OUT
+							   )
+	
+	tween.start()
+	tween.interpolate_callback(self, 0.5, "__delAnimeCallBack", component)
+
+func __delAnimeCallBack(component):
+	scene().remove_child(component)
 
 func renderActionCharacterMark():
 	var action_character = model().getActionCharacter()
@@ -433,9 +468,12 @@ func renderHandCards():
 	var rect_position_list = __getHandCardRectPositionList(hand_cards.size())
 
 	var list = []
-	var del_list = hand_card_list.duplicate()
+	var del_list = []
 	var keep_list = []
 	var insert_list = []
+
+	for component_pack in hand_card_list:
+		del_list.append([component_pack, component_pack.getComponent().rect_position])
 
 	var i = 0
 	for hand_card in hand_cards:
@@ -451,11 +489,10 @@ func renderHandCards():
 			var hand_card_button = TextureButton.new()
 			hand_card_button.expand = true
 			hand_card_button.texture_normal = texture
-			hand_card_button.rect_position = rect_position
 			hand_card_button.rect_size = rect_size
 			
 			component_pack = ComponentPack.new(hand_card.getCardName(), hand_card_button)
-			insert_list.append(component_pack)
+			insert_list.append([component_pack, rect_position])
 		else:
 			keep_list.append([component_pack, rect_position_list[i]])
 
@@ -463,20 +500,20 @@ func renderHandCards():
 
 		i += 1
 
-	for component_pack in del_list:
-		#TODO: delHandCardAnime
-		scene().remove_child(component_pack.getComponent())
+	for del_pack in del_list:
+		var component_pack = del_pack[0]
+		var rect_position = del_pack[1]
+		delAnime(component_pack, rect_position)
 	
 	for keep_pack in keep_list:
 		var component_pack = keep_pack[0]
 		var rect_position = keep_pack[1]
-
-		#TODO: moveHandCardAnime 
-		component_pack.getComponent().rect_position = rect_position
+		moveAnime(component_pack, rect_position)
 	
-	for component_pack in insert_list:
-		#TODO: insertCharacterAnime
-		scene().add_child(component_pack.getComponent())
+	for insert_pack in insert_list:
+		var component_pack = insert_pack[0]
+		var rect_position = insert_pack[1]
+		insertAnime(component_pack, rect_position)
 	
 	hand_card_list = list
 

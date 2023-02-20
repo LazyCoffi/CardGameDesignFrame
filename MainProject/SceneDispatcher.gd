@@ -10,18 +10,32 @@ func registerScene(scene):
 		return
 
 	scene.connect("switchSignal", self, "switch")
+	scene.connect("pushSignal", self, "push")
+	scene.connect("popSignal", self, "pop")
 	scene.register()
 
-func switch(scene_name):
-	var scene_node = SceneCache.get(scene_name)
-	var	scene = scene_node.getScene()
-
-	if not scene.isRegistered():
-		registerScene(scene)
+func switch(top_scene_name):
+	var top_scene = SceneCache.get(top_scene_name).getScene()
+			
+	while SceneCache.hasScene():
+		var former_top_scene = SceneCache.popTopScene()
+		remove_child(former_top_scene)
 		
-	if SceneCache.hasCurScene():
-		var cur_scene = SceneCache.getCurScene()
-		remove_child(cur_scene)
+	if not top_scene.isRegistered():
+		registerScene(top_scene)
+
+	add_child(top_scene)
+	SceneCache.pushTopSceneName(top_scene_name)
+
+func push(top_scene_name):
+	var top_scene = SceneCache.get(top_scene_name).getScene()
+
+	if not top_scene.isRegistered():
+		registerScene(top_scene)
 	
-	add_child(scene)
-	SceneCache.setCurScene(scene_name)
+	add_child(top_scene)
+	SceneCache.pushTopSceneName(top_scene_name)
+
+func pop():
+	var top_scene = SceneCache.popTopScene()
+	remove_child(top_scene)

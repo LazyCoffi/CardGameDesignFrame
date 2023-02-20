@@ -153,6 +153,21 @@ func delCharacter(character_card):
 			enemy_team.remove(i)
 			return
 
+func isActionCharacterExist():
+	var action_character = model().getActionCharacter()
+
+	var own_team = model().getOwnCharacterTeam()
+	for character in own_team:
+		if character.getCardName() == action_character.getCardName():
+			return true
+
+	var enemy_team = model().getEnemyCharacterTeam()
+	for character in enemy_team:
+		if character.getCardName() == action_character.getCardName():
+			return true
+
+	return false
+
 func isBattleOver():
 	return model().isBattleOverCondition(scene().getSceneName())
 
@@ -170,7 +185,7 @@ func removeDeadCharacter():
 	var j = 0
 	while j < enemy_team.size():
 		if model().isDeadCondition(enemy_team[j], scene().getSceneName()):
-			model().orderBucketDel(enemy_team[i].getCardName())
+			model().orderBucketDel(enemy_team[j].getCardName())
 			enemy_team.remove(j)
 		else:
 			j += 1

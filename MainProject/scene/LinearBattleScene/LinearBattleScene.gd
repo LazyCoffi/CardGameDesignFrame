@@ -8,6 +8,8 @@ var LinearBattleRender = TypeUnit.type("LinearBattleRender")
 var LinearBattleService = TypeUnit.type("LinearBattleService")
 
 signal switchSignal
+signal pushSignal
+signal popSignal
 
 var is_registered
 var scene_name
@@ -37,6 +39,12 @@ func register():
 
 func switchScene(next_scene_name):
 	emit_signal("switchSignal", next_scene_name)
+
+func pushScene(next_scene_name):
+	emit_signal("pushSignal", next_scene_name)
+
+func popSignal():
+	emit_signal("popSignal")
 
 # scene_name
 func getSceneName():

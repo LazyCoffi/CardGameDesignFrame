@@ -42,6 +42,7 @@ func __initTypeTable():
 	__addType("entity", "Card")
 	__addType("entity", "CategoryTree")
 	__addType("entity", "CharacterCard")
+	__addType("entity", "ComponentPack")
 	__addType("entity", "DictMap")
 	__addType("entity", "Emitter")
 	__addType("entity", "EquipmentCard")
