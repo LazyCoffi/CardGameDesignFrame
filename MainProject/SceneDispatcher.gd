@@ -1,9 +1,5 @@
 extends Node
-
 var ScriptTree = load("res://class/entity/ScriptTree.gd")
-
-func _ready():
-	pass
 
 func registerScene(scene):
 	if scene.isRegistered():
@@ -14,28 +10,57 @@ func registerScene(scene):
 	scene.connect("popSignal", self, "pop")
 	scene.register()
 
-func switch(top_scene_name):
-	var top_scene = SceneCache.get(top_scene_name).getScene()
-			
-	while SceneCache.hasScene():
-		var former_top_scene = SceneCache.popTopScene()
-		remove_child(former_top_scene)
-		
-	if not top_scene.isRegistered():
-		registerScene(top_scene)
-
-	add_child(top_scene)
-	SceneCache.pushTopSceneName(top_scene_name)
-
-func push(top_scene_name):
-	var top_scene = SceneCache.get(top_scene_name).getScene()
-
-	if not top_scene.isRegistered():
-		registerScene(top_scene)
+func unregisterScene(scene):
+	if not scene.isRegistered():
+		return
 	
-	add_child(top_scene)
-	SceneCache.pushTopSceneName(top_scene_name)
+	scene.disconnect("switchSignal", self, "switch")
+	scene.disconnect("pushSignal", self, "push")
+	scene.disconnect("popSignal", self, "pop")
+	scene.unregister()
+
+func loadArchive(archive_name):
+	while SceneManager.hasScene():
+		var former_scene = SceneManager.popScene()
+		unregisterScene(former_scene)
+		remove_child(former_scene)
+	
+	SceneManager.loadArchive(archive_name)
+
+	var scene_stack = SceneManager.peekSceneStack()
+	for scene in scene_stack:
+		registerScene(scene)
+		add_child(scene)
+	
+func setArchive(archive_name):
+	SceneManager.setArchive(archive_name)
+
+func saveArchive():
+	SceneManager.saveArchive()
+
+func switch(scene_name):
+	while SceneManager.hasScene():
+		var former_scene = SceneManager.popScene()
+		unregisterScene(former_scene)
+		remove_child(former_scene)
+		
+	var scene = SceneManager.getScene(scene_name)
+	if not scene.isRegistered():
+		registerScene(scene)
+
+	add_child(scene)
+	SceneManager.pushScene(scene_name)
+
+func push(scene_name):
+	var scene = SceneManager.getScene(scene_name)
+
+	if not scene.isRegistered():
+		registerScene(scene)
+	
+	add_child(scene)
+	SceneManager.pushScene(scene_name)
 
 func pop():
-	var top_scene = SceneCache.popTopScene()
-	remove_child(top_scene)
+	var scene = SceneManager.popScene()
+	unregisterScene(scene)
+	remove_child(scene)

@@ -1,6 +1,5 @@
 {
 	"scene_name": "main_menu",
-	"is_registered": false,
 	"switch_target_table": {
 		"table": {
 			"StartButton": {
@@ -8,8 +7,8 @@
 				"scene_name": "linear_battle"
 			},
 			"ContinueButton": {
-				"scene_type": "LinearBattleScene",
-				"scene_name": "linear_battle"
+				"scene_type": "ArchiveModel",
+				"scene_name": "archive"
 			},
 			"SettingButton": {
 				"scene_type": "LinearBattleScene",

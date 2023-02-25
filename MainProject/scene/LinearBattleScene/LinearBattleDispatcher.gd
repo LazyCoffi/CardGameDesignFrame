@@ -26,8 +26,14 @@ func launch():
 	battleInit()
 
 func battleInit():
+	initSubMenuEntryButton()
 	initNextRoundButton()
 	initCharacter()
+
+func initSubMenuEntryButton():
+	render().renderSubMenuEntryButton()
+	var sub_menu_entry_button = render().getSubMenuEntryButton().getComponent()
+	sub_menu_entry_button.connect("pressed", scene(), "openSubMenu")
 
 func initNextRoundButton():
 	render().renderNextRoundButton()

@@ -13,6 +13,7 @@ var action_character_mark		# ComponentPack
 var chosen_hand_card_mark		# ComponentPack
 var chosen_character_mark		# ComponentPack
 var next_round_button			# ComponentPack
+var sub_menu_entry_button		# ComponentPack
 
 func _init():
 	own_team_list = []
@@ -113,6 +114,17 @@ func renderNextRoundButton():
 	# TODO: 添加按钮文字
 
 	next_round_button = ComponentPack.new("__nextRoundButton", next_round)
+
+# sub_menu_entry_button
+func getSubMenuEntryButton():
+	return sub_menu_entry_button
+
+func renderSubMenuEntryButton():
+	var texture = ResourceUnit.loadRes("linear_battle", "linear_battle", "sub_menu_entry_btn")
+	var sub_menu_entry = scene().get_node("SubMenuEntryButton")
+
+	sub_menu_entry.texture_normal = texture
+	sub_menu_entry_button = ComponentPack.new("__subMenuEntryButton", sub_menu_entry)
 
 func getChosenCharacterMark():
 	return chosen_character_mark

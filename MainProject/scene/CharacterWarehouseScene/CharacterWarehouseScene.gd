@@ -24,6 +24,9 @@ func _init():
 	scene_render = CharacterWarehouseRender
 	scene_service = CharacterWarehouseService.new()
 
+func isRuntimeType():
+	return false
+
 func isRegistered():
 	return is_registered
 
@@ -32,6 +35,7 @@ func register():
 
 func switchScene(signal_name, next_scene_name):
 	emit_signal(signal_name, next_scene_name)
+
 func getSceneName():
 	return scene_name
 

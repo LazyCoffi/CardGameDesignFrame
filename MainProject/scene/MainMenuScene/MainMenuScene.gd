@@ -24,6 +24,7 @@ func _init():
 	is_registered = false
 	scene_dispatcher = MainMenuDispatcher.new()
 	scene_model = null
+	switch_target_table = null
 	scene_render = MainMenuRender.new()
 	scene_service = MainMenuService.new()
 	__setRef()
@@ -32,6 +33,9 @@ func _ready():
 	__setSwitchConnection()
 	scene_dispatcher.launch()
 
+func isRuntimeType():
+	return true
+
 # is_registered
 func isRegistered():
 	return is_registered
@@ -39,13 +43,16 @@ func isRegistered():
 func register():
 	is_registered = true
 
+func unregister():
+	is_registered = false
+
 func switchScene(next_scene_name):
 	emit_signal("switchSignal", next_scene_name)
 
 func pushScene(next_scene_name):
 	emit_signal("pushSignal", next_scene_name)
 
-func popSignal():
+func popScene():
 	emit_signal("popSignal")
 
 # scene_name
@@ -94,7 +101,6 @@ func pack():
 	var script_tree = ScriptTree.new()
 
 	script_tree.addAttr("scene_name", scene_name)
-	script_tree.addAttr("is_registered", is_registered)
 	script_tree.addObject("switch_target_table", switch_target_table)
 	script_tree.addObject("scene_model", scene_model)
 
@@ -102,7 +108,6 @@ func pack():
 
 func loadScript(script_tree):
 	scene_name = script_tree.getStr("scene_name")
-	is_registered = script_tree.getBool("is_registered")
 	switch_target_table = script_tree.getObject("switch_target_table", SwitchTargetTable)
 	scene_model = script_tree.getObject("scene_model", MainMenuModel)
 

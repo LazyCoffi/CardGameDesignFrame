@@ -5,10 +5,10 @@ func _init():
 	__initFuncForm()
 
 func isOwnTeamEmpty(scene_name):
-	return SceneCache.callService(scene_name, "isOwnTeamEmpty", [])
+	return SceneManager.callService(scene_name, "isOwnTeamEmpty", [])
 
 func isEnemyTeamEmpty(scene_name):
-	return SceneCache.callService(scene_name, "isEnemyTeamEmpty", [])
+	return SceneManager.callService(scene_name, "isEnemyTeamEmpty", [])
 
 func __initFuncForm():
 	addFuncForm("isOwnTeamEmpty", "bool", ["String"])

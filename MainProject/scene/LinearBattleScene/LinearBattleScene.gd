@@ -31,11 +31,17 @@ func _init():
 func _ready():
 	scene_dispatcher.launch()
 
+func isRuntimeType():
+	return true
+
 func isRegistered():
 	return is_registered
 
 func register():
 	is_registered = true
+
+func unregister():
+	is_registered = false
 
 func switchScene(next_scene_name):
 	emit_signal("switchSignal", next_scene_name)
@@ -91,6 +97,10 @@ func setSceneService(scene_service_):
 func battleOverSwitch():
 	var target_scene_name = switch_target_table.getTargetSceneName("BattleOver")
 	switchScene(target_scene_name)
+
+func openSubMenu():
+	var target_scene_name = switch_target_table.getTargetSceneName("OpenSubMenu")
+	pushScene(target_scene_name)
 
 func pack():
 	var script_tree = ScriptTree.new()

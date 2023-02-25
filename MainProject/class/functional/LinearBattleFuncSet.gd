@@ -5,25 +5,25 @@ func _init():
 	__initFuncForm()
 
 func getOwnCharacterNum(scene_name):
-	return SceneCache.callService(scene_name, "getOwnCharacterNum", [])
+	return SceneManager.callService(scene_name, "getOwnCharacterNum", [])
 
 func getOwnCharacterTeam(scene_name):
-	return SceneCache.callService(scene_name, "getOwnCharacterTeam", [])
+	return SceneManager.callService(scene_name, "getOwnCharacterTeam", [])
 
 func getOwnCharacterByName(scene_name, first):
-	return SceneCache.callService(scene_name, "getOwnCharacterByName", [first])
+	return SceneManager.callService(scene_name, "getOwnCharacterByName", [first])
  
 func getEnemyCharacterNum(scene_name):
-	return SceneCache.callService(scene_name, "getEnemyCharacterNum", [])
+	return SceneManager.callService(scene_name, "getEnemyCharacterNum", [])
 
 func getEnemyCharacterTeam(scene_name):
-	return SceneCache.callService(scene_name, "getEnemyCharacterTeam", [])
+	return SceneManager.callService(scene_name, "getEnemyCharacterTeam", [])
 
 func getEnemyCharacterByName(scene_name, first):
-	return SceneCache.callService(scene_name, "getEnemyCharacterByName", [first])
+	return SceneManager.callService(scene_name, "getEnemyCharacterByName", [first])
 
 func getOppositeTeam(scene_name, first):
-	return SceneCache.callService(scene_name, "getOppositeTeam", [first])
+	return SceneManager.callService(scene_name, "getOppositeTeam", [first])
 
 func __initFuncForm():
 	addFuncForm("getOwnCharacterNum", "int", ["String"])

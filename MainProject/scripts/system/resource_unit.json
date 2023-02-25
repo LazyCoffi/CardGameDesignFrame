@@ -37,6 +37,54 @@
 			},
 			"ContinueButton": {
 				"texture_normal": [
+					7,
+					"TextureNode"
+				],
+				"texture_hover": [
+					8,
+					"TextureNode"
+				]
+			},
+			"ContinueButtonText": {
+				"font": [
+					9,
+					"FontNode"
+				],
+				"font_color": [
+					10,
+					"ColorNode"
+				],
+				"font_text": [
+					11,
+					"TextNode"
+				]
+			},
+			"SettingButton": {
+				"texture_normal": [
+					12,
+					"TextureNode"
+				],
+				"texture_hover": [
+					13,
+					"TextureNode"
+				]
+			},
+			"SettingButtonText": {
+				"font": [
+					14,
+					"FontNode"
+				],
+				"font_color": [
+					15,
+					"ColorNode"
+				],
+				"font_text": [
+					16,
+					"TextNode"
+				]
+			},
+			"ExitButton": {
+				"texture_normal": [
 					17,
 					"TextureNode"
 				],
@@ -45,7 +93,7 @@
 					"TextureNode"
 				]
 			},
-			"ContinueButtonText": {
+			"ExitButtonText": {
 				"font": [
 					19,
 					"FontNode"
@@ -58,60 +106,16 @@
 					21,
 					"TextNode"
 				]
-			},
-			"SettingButton": {
-				"texture_normal": [
-					22,
-					"TextureNode"
-				],
-				"texture_hover": [
-					23,
-					"TextureNode"
-				]
-			},
-			"SettingButtonText": {
-				"font": [
-					24,
-					"FontNode"
-				],
-				"font_color": [
-					25,
-					"ColorNode"
-				],
-				"font_text": [
-					26,
-					"TextNode"
-				]
-			},
-			"ExitButton": {
-				"texture_normal": [
-					27,
-					"TextureNode"
-				],
-				"texture_hover": [
-					28,
-					"TextureNode"
-				]
-			},
-			"ExitButtonText": {
-				"font": [
-					29,
-					"FontNode"
-				],
-				"font_color": [
-					30,
-					"ColorNode"
-				],
-				"font_text": [
-					31,
-					"TextNode"
-				]
 			}
 		},
 		"linear_battle": {
 			"linear_battle": {
 				"next_round_button": [
-					32,
+					22,
+					"TextureNode"
+				],
+				"sub_menu_entry_btn": [
+					23,
 					"TextureNode"
 				]
 			}
@@ -119,26 +123,130 @@
 		"global": {
 			"avator": {
 				"main_character": [
-					33,
+					24,
 					"TextureNode"
 				],
 				"enemy_character": [
-					34,
+					25,
 					"TextureNode"
 				],
 				"attack_card": [
-					37,
+					28,
 					"TextureNode"
 				]
 			},
 			"component": {
 				"action_character_mark": [
-					35,
+					26,
 					"TextureNode"
 				],
 				"chosen_hand_card_mark": [
+					27,
+					"TextureNode"
+				]
+			}
+		},
+		"sub_menu": {
+			"sub_menu": {
+				"background_rect": [
+					29,
+					"TextureNode"
+				]
+			},
+			"ResumeButton": {
+				"texture_normal": [
+					30,
+					"TextureNode"
+				],
+				"texture_hover": [
+					31,
+					"TextureNode"
+				]
+			},
+			"ResumeButtonText": {
+				"font": [
+					32,
+					"FontNode"
+				],
+				"font_color": [
+					33,
+					"ColorNode"
+				],
+				"font_text": [
+					34,
+					"TextNode"
+				]
+			},
+			"LoadButton": {
+				"texture_normal": [
+					35,
+					"TextureNode"
+				],
+				"texture_hover": [
 					36,
 					"TextureNode"
+				]
+			},
+			"LoadButtonText": {
+				"font": [
+					37,
+					"FontNode"
+				],
+				"font_color": [
+					38,
+					"ColorNode"
+				],
+				"font_text": [
+					39,
+					"TextNode"
+				]
+			},
+			"SettingButton": {
+				"texture_normal": [
+					40,
+					"TextureNode"
+				],
+				"texture_hover": [
+					41,
+					"TextureNode"
+				]
+			},
+			"SettingButtonText": {
+				"font": [
+					42,
+					"FontNode"
+				],
+				"font_color": [
+					43,
+					"ColorNode"
+				],
+				"font_text": [
+					44,
+					"TextNode"
+				]
+			},
+			"MainMenuButton": {
+				"texture_normal": [
+					45,
+					"TextureNode"
+				],
+				"texture_hover": [
+					46,
+					"TextureNode"
+				]
+			},
+			"MainMenuButtonText": {
+				"font": [
+					47,
+					"FontNode"
+				],
+				"font_color": [
+					48,
+					"ColorNode"
+				],
+				"font_text": [
+					49,
+					"TextNode"
 				]
 			}
 		}
@@ -220,55 +328,7 @@
 			"type": 0
 		},
 		{
-			"text": "新的旅途"
-		},
-		{
-			"texture_path": "res://asserts/main_menu/main_menu_btn.png"
-		},
-		{
-			"texture_path": "res://asserts/main_menu/main_menu_btn_hover.png"
-		},
-		{
-			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
-			"font_size": 60
-		},
-		{
-			"color_name": "#d1992d",
-			"rgba_int": 0,
-			"rgb": [
-
-			],
-			"rgba": [
-
-			],
-			"type": 0
-		},
-		{
 			"text": "游戏设置"
-		},
-		{
-			"texture_path": "res://asserts/main_menu/main_menu_btn.png"
-		},
-		{
-			"texture_path": "res://asserts/main_menu/main_menu_btn_hover.png"
-		},
-		{
-			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
-			"font_size": 60
-		},
-		{
-			"color_name": "#d1992d",
-			"rgba_int": 0,
-			"rgb": [
-
-			],
-			"rgba": [
-
-			],
-			"type": 0
-		},
-		{
-			"text": "新的旅途"
 		},
 		{
 			"texture_path": "res://asserts/main_menu/main_menu_btn.png"
@@ -298,6 +358,9 @@
 			"texture_path": "res://asserts/component/next_round_btn.png"
 		},
 		{
+			"texture_path": "res://asserts/sub_menu/sub_menu_entry_btn.png"
+		},
+		{
 			"texture_path": "res://asserts/avator/white_hair.png"
 		},
 		{
@@ -311,6 +374,105 @@
 		},
 		{
 			"texture_path": "res://asserts/avator/knight.png"
+		},
+		{
+			"texture_path": "res://asserts/sub_menu/background_rect.png"
+		},
+		{
+			"texture_path": "res://asserts/sub_menu/sub_menu_btn.png"
+		},
+		{
+			"texture_path": "res://asserts/sub_menu/sub_menu_btn_hover.png"
+		},
+		{
+			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+			"font_size": 30
+		},
+		{
+			"color_name": "#d1992d",
+			"rgba_int": 0,
+			"rgb": [
+
+			],
+			"rgba": [
+
+			],
+			"type": 0
+		},
+		{
+			"text": "回到游戏"
+		},
+		{
+			"texture_path": "res://asserts/sub_menu/sub_menu_btn.png"
+		},
+		{
+			"texture_path": "res://asserts/sub_menu/sub_menu_btn_hover.png"
+		},
+		{
+			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+			"font_size": 30
+		},
+		{
+			"color_name": "#d1992d",
+			"rgba_int": 0,
+			"rgb": [
+
+			],
+			"rgba": [
+
+			],
+			"type": 0
+		},
+		{
+			"text": "读取游戏"
+		},
+		{
+			"texture_path": "res://asserts/sub_menu/sub_menu_btn.png"
+		},
+		{
+			"texture_path": "res://asserts/sub_menu/sub_menu_btn_hover.png"
+		},
+		{
+			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+			"font_size": 30
+		},
+		{
+			"color_name": "#d1992d",
+			"rgba_int": 0,
+			"rgb": [
+
+			],
+			"rgba": [
+
+			],
+			"type": 0
+		},
+		{
+			"text": "游戏设置"
+		},
+		{
+			"texture_path": "res://asserts/sub_menu/sub_menu_btn.png"
+		},
+		{
+			"texture_path": "res://asserts/sub_menu/sub_menu_btn_hover.png"
+		},
+		{
+			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+			"font_size": 30
+		},
+		{
+			"color_name": "#d1992d",
+			"rgba_int": 0,
+			"rgb": [
+
+			],
+			"rgba": [
+
+			],
+			"type": 0
+		},
+		{
+			"text": "回到主菜单"
 		}
 	]
 }

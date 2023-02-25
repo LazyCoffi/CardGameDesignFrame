@@ -5,6 +5,10 @@
 			"BattleOver": {
 				"scene_type": "MainMenuScene",
 				"scene_name": "main_menu"
+			},
+			"OpenSubMenu": {
+				"scene_type": "SubMenuScene",
+				"scene_name": "sub_menu"
 			}
 		}
 	},

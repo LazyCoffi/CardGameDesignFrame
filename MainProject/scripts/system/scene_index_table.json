@@ -1,0 +1,24 @@
+{
+	"scene_index_table" : {
+		"main_menu" : {
+			"type" : "MainMenuScene",
+			"scene_name" : "main_menu",
+			"is_complete" : true
+		},
+		"linear_battle" : {
+			"type" : "LinearBattleScene",
+			"scene_name" : "linear_battle",
+			"is_complete" : true
+		},
+		"sub_menu" : {
+			"type" : "SubMenuScene",
+			"scene_name" : "sub_menu",
+			"is_complete" : true
+		},
+		"archive" : {
+			"type" : "ArchiveScene",
+			"scene_name" : "archive",
+			"is_complete" : true
+		}
+	}
+}

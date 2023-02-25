@@ -27,6 +27,9 @@ func _init():
 func _ready():
 	pass
 
+func isRuntimeType():
+	return false
+
 func dispatcher():
 	return scene_dispatcher
 

@@ -10,6 +10,36 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
+"class": "Archive",
+"language": "GDScript",
+"path": "res://class/scene/Archive.gd"
+}, {
+"base": "Node",
+"class": "ArchiveDispatcher",
+"language": "GDScript",
+"path": "res://scene/ArchiveScene/ArchiveDispatcher.gd"
+}, {
+"base": "Node",
+"class": "ArchiveManager",
+"language": "GDScript",
+"path": "res://class/scene/ArchiveManager.gd"
+}, {
+"base": "Node",
+"class": "ArchiveModel",
+"language": "GDScript",
+"path": "res://scene/ArchiveScene/ArchiveModel.gd"
+}, {
+"base": "Node",
+"class": "ArchiveRender",
+"language": "GDScript",
+"path": "res://scene/ArchiveScene/ArchiveRender.gd"
+}, {
+"base": "Node",
+"class": "ArchiveService",
+"language": "GDScript",
+"path": "res://scene/ArchiveScene/ArchiveService.gd"
+}, {
+"base": "Node",
 "class": "ArrangeMap",
 "language": "GDScript",
 "path": "res://class/entity/ArrangeMap.gd"
@@ -315,14 +345,24 @@ _global_script_classes=[ {
 "path": "res://class/container/PollingBucket.gd"
 }, {
 "base": "Node",
-"class": "SceneFactory",
+"class": "SceneIndex",
 "language": "GDScript",
-"path": "res://class/unit/SceneFactory.gd"
+"path": "res://class/scene/SceneIndex.gd"
+}, {
+"base": "Node",
+"class": "SceneLoader",
+"language": "GDScript",
+"path": "res://class/scene/SceneLoader.gd"
 }, {
 "base": "Node",
 "class": "SceneOperFuncSet",
 "language": "GDScript",
 "path": "res://class/functional/SceneOperFuncSet.gd"
+}, {
+"base": "Node",
+"class": "ScenePack",
+"language": "GDScript",
+"path": "res://class/scene/ScenePack.gd"
 }, {
 "base": "Node",
 "class": "ScriptTree",
@@ -345,6 +385,26 @@ _global_script_classes=[ {
 "path": "res://class/entity/StringPack.gd"
 }, {
 "base": "Node",
+"class": "SubMenuDispatcher",
+"language": "GDScript",
+"path": "res://scene/SubMenuScene/SubMenuDispatcher.gd"
+}, {
+"base": "Node",
+"class": "SubMenuModel",
+"language": "GDScript",
+"path": "res://scene/SubMenuScene/SubMenuModel.gd"
+}, {
+"base": "Node",
+"class": "SubMenuRender",
+"language": "GDScript",
+"path": "res://scene/SubMenuScene/SubMenuRender.gd"
+}, {
+"base": "Node",
+"class": "SubMenuService",
+"language": "GDScript",
+"path": "res://scene/SubMenuScene/SubMenuService.gd"
+}, {
+"base": "Node",
 "class": "SwitchTargetTable",
 "language": "GDScript",
 "path": "res://class/entity/SwitchTargetTable.gd"
@@ -360,6 +420,12 @@ _global_script_classes=[ {
 "path": "res://class/entity/ValRange.gd"
 } ]
 _global_script_class_icons={
+"Archive": "",
+"ArchiveDispatcher": "",
+"ArchiveManager": "",
+"ArchiveModel": "",
+"ArchiveRender": "",
+"ArchiveService": "",
 "ArrangeMap": "",
 "ArrayOperFuncSet": "",
 "Attr": "",
@@ -421,12 +487,18 @@ _global_script_class_icons={
 "PackObjectFuncSet": "",
 "ParamList": "",
 "PollingBucket": "",
-"SceneFactory": "",
+"SceneIndex": "",
+"SceneLoader": "",
 "SceneOperFuncSet": "",
+"ScenePack": "",
 "ScriptTree": "",
 "SettingTable": "",
 "SkillCard": "",
 "StringPack": "",
+"SubMenuDispatcher": "",
+"SubMenuModel": "",
+"SubMenuRender": "",
+"SubMenuService": "",
 "SwitchTargetTable": "",
 "TriggerTimer": "",
 "ValRange": ""
@@ -440,6 +512,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
+TimeUnit="*res://class/unit/TimeUnit.gd"
 Logger="*res://class/unit/Logger.gd"
 TypeUnit="*res://class/unit/TypeUnit.gd"
 FuncCategory="*res://class/functional/FuncCategory.gd"
@@ -447,7 +520,7 @@ MathUnit="*res://class/unit/MathUnit.gd"
 ResourceUnit="*res://class/unit/ResourceUnit.gd"
 GlobalSetting="*res://class/unit/GlobalSetting.gd"
 CardCache="*res://class/unit/CardCache.gd"
-SceneCache="*res://class/unit/SceneCache.gd"
+SceneManager="*res://class/scene/SceneManager.gd"
 
 [display]
 

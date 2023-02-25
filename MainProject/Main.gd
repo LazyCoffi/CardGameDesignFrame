@@ -12,7 +12,6 @@ func _ready():
 	gameInit()
 
 func gameInit():
-	__preloadScene()
 	__gameStart()
 
 func __initUnit():
@@ -20,12 +19,6 @@ func __initUnit():
 	CardCache.initScript()
 	GlobalSetting.initScript()
 	ResourceUnit.initScript()
-
-func __preloadScene():
-	Logger.log("Preload scene.")
-	var preload_scene_list = GlobalSetting.getAttr("preload_scene_list")
-	for scene_name in preload_scene_list:
-		SceneCache.create(scene_name)
 
 func __gameStart():
 	Logger.log("Game start! Switch to the first scene.")

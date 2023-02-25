@@ -14,5 +14,13 @@ margin_left = 1551.0
 margin_top = 848.0
 margin_right = 1786.0
 margin_bottom = 969.0
+expand = true
+
+[node name="SubMenuEntryButton" type="TextureButton" parent="."]
+margin_left = 1720.0
+margin_top = 41.0
+margin_right = 1880.0
+margin_bottom = 201.0
+expand = true
 
 [node name="Tween" type="Tween" parent="."]

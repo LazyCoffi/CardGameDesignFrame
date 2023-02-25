@@ -58,7 +58,7 @@ func __write(text, stack_array):
 	log_handle.flush()
 
 func __getTimeStr():
-	return Time.get_datetime_string_from_system()
+	return TimeUnit.getDateTimeStr()
 
 func __initLogHandle():
 	log_handle = File.new()
