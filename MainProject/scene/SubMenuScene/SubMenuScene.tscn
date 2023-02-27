@@ -22,9 +22,9 @@ expand = true
 
 [node name="SubMenuBackgroundRect" type="TextureRect" parent="."]
 margin_left = 480.0
-margin_top = 180.0
+margin_top = 140.0
 margin_right = 1440.0
-margin_bottom = 900.0
+margin_bottom = 940.0
 expand = true
 
 [node name="ResumeButton" type="TextureButton" parent="."]

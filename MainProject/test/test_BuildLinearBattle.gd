@@ -218,8 +218,8 @@ func __buildIsBattleOverCondition():
 
 func __buildSwitchTargetTable():
 	var switch_target_table = SwitchTargetTable.new()
-	switch_target_table.addTarget("BattleOver", "MainMenuScene", "main_menu")
-	switch_target_table.addTarget("OpenSubMenu", "SubMenuScene", "sub_menu")
+	switch_target_table.addTarget("BattleOver", "MainMenuScene", "main_menu", "switch")
+	switch_target_table.addTarget("OpenSubMenu", "SubMenuScene", "sub_menu", "switch")
 	
 	return switch_target_table
 

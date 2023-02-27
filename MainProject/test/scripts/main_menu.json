@@ -4,15 +4,18 @@
 		"table": {
 			"StartButton": {
 				"scene_type": "LinearBattleScene",
-				"scene_name": "linear_battle"
+				"scene_name": "linear_battle",
+				"switch_type": "switch"
 			},
 			"ContinueButton": {
 				"scene_type": "ArchiveModel",
-				"scene_name": "archive"
+				"scene_name": "archive_menu",
+				"switch_type": "push"
 			},
 			"SettingButton": {
 				"scene_type": "LinearBattleScene",
-				"scene_name": "linear_battle"
+				"scene_name": "linear_battle",
+				"switch_type": "switch"
 			}
 		}
 	},

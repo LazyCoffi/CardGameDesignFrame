@@ -32,12 +32,6 @@ func loadArchive(archive_name):
 		registerScene(scene)
 		add_child(scene)
 	
-func setArchive(archive_name):
-	SceneManager.setArchive(archive_name)
-
-func saveArchive():
-	SceneManager.saveArchive()
-
 func switch(scene_name):
 	while SceneManager.hasScene():
 		var former_scene = SceneManager.popScene()

@@ -307,6 +307,7 @@ func test_buildCardCache():
 	pass_test("Create cardCache script success")
 
 func test_isBuildSuccess():
+	CardCache.initScript()
 	var card = CardCache.getCardWithDefaultName("MainCharacterCard")
 	var attack_card = card.peekCardPile()
 	assert_eq(4, attack_card.size())

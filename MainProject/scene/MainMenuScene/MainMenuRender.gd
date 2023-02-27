@@ -25,12 +25,12 @@ func loadResource():
 	scene().get_node("SettingButton").loadResource()
 	scene().get_node("ExitButton").loadResource()
 
-func setTitle():
+func renderTitle():
 	var scene_name = scene().getSceneName()
 	var title = ResourceUnit.loadRes(scene_name, scene_name, "title")
 	scene().get_node("MainMenuTitle").texture = title
 
-func setBackground():
+func renderBackground():
 	var scene_name = scene().getSceneName()
-	var bg = ResourceUnit.loadRes(scene_name, scene_name, "background")
-	scene().get_node("MainMenuBackground").texture = bg
+	var background = ResourceUnit.loadRes(scene_name, scene_name, "background")
+	scene().get_node("MainMenuBackground").texture = background

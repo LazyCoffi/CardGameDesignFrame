@@ -249,6 +249,150 @@
 					"TextNode"
 				]
 			}
+		},
+		"archive_menu": {
+			"archive_menu": {
+				"background": [
+					50,
+					"TextureNode"
+				],
+				"menu_rect": [
+					51,
+					"TextureNode"
+				]
+			},
+			"LoadButton": {
+				"texture_normal": [
+					52,
+					"TextureNode"
+				],
+				"texture_hover": [
+					53,
+					"TextureNode"
+				]
+			},
+			"LoadText": {
+				"font": [
+					54,
+					"FontNode"
+				],
+				"font_color": [
+					55,
+					"ColorNode"
+				]
+			},
+			"DeleteButton": {
+				"texture_normal": [
+					56,
+					"TextureNode"
+				],
+				"texture_hover": [
+					57,
+					"TextureNode"
+				]
+			},
+			"DeleteText": {
+				"font": [
+					58,
+					"FontNode"
+				],
+				"font_color": [
+					59,
+					"ColorNode"
+				]
+			},
+			"BackButton": {
+				"texture_normal": [
+					60,
+					"TextureNode"
+				],
+				"texture_hover": [
+					61,
+					"TextureNode"
+				]
+			},
+			"BackText": {
+				"font": [
+					62,
+					"FontNode"
+				],
+				"font_color": [
+					63,
+					"ColorNode"
+				]
+			},
+			"NextButton": {
+				"texture_normal": [
+					64,
+					"TextureNode"
+				]
+			},
+			"PreviousButton": {
+				"texture_normal": [
+					65,
+					"TextureNode"
+				]
+			},
+			"ArchiveCard": {
+				"active_card": [
+					66,
+					"TextureNode"
+				],
+				"empty_card": [
+					67,
+					"TextureNode"
+				]
+			},
+			"CardText": {
+				"font": [
+					68,
+					"FontNode"
+				],
+				"font_color": [
+					69,
+					"ColorNode"
+				]
+			},
+			"CreateText": {
+				"font": [
+					70,
+					"FontNode"
+				],
+				"font_color": [
+					71,
+					"ColorNode"
+				]
+			},
+			"UpdateText": {
+				"font": [
+					72,
+					"FontNode"
+				],
+				"font_color": [
+					73,
+					"ColorNode"
+				]
+			},
+			"CreateTimeText": {
+				"font": [
+					74,
+					"FontNode"
+				],
+				"font_color": [
+					75,
+					"ColorNode"
+				]
+			},
+			"UpdateTimeText": {
+				"font": [
+					76,
+					"FontNode"
+				],
+				"font_color": [
+					77,
+					"ColorNode"
+				]
+			}
 		}
 	},
 	"node_list": [
@@ -376,10 +520,10 @@
 			"texture_path": "res://asserts/avator/knight.png"
 		},
 		{
-			"texture_path": "res://asserts/sub_menu/background_rect.png"
+			"texture_path": "res://asserts/sub_menu/background_.png"
 		},
 		{
-			"texture_path": "res://asserts/sub_menu/sub_menu_btn.png"
+			"texture_path": "res://asserts/sub_menu/sub_menu_btn_.png"
 		},
 		{
 			"texture_path": "res://asserts/sub_menu/sub_menu_btn_hover.png"
@@ -403,7 +547,7 @@
 			"text": "回到游戏"
 		},
 		{
-			"texture_path": "res://asserts/sub_menu/sub_menu_btn.png"
+			"texture_path": "res://asserts/sub_menu/sub_menu_btn_.png"
 		},
 		{
 			"texture_path": "res://asserts/sub_menu/sub_menu_btn_hover.png"
@@ -427,7 +571,7 @@
 			"text": "读取游戏"
 		},
 		{
-			"texture_path": "res://asserts/sub_menu/sub_menu_btn.png"
+			"texture_path": "res://asserts/sub_menu/sub_menu_btn_.png"
 		},
 		{
 			"texture_path": "res://asserts/sub_menu/sub_menu_btn_hover.png"
@@ -451,7 +595,7 @@
 			"text": "游戏设置"
 		},
 		{
-			"texture_path": "res://asserts/sub_menu/sub_menu_btn.png"
+			"texture_path": "res://asserts/sub_menu/sub_menu_btn_.png"
 		},
 		{
 			"texture_path": "res://asserts/sub_menu/sub_menu_btn_hover.png"
@@ -473,6 +617,162 @@
 		},
 		{
 			"text": "回到主菜单"
+		},
+		{
+			"texture_path": "res://asserts/archive_menu/archive_background.jpg"
+		},
+		{
+			"texture_path": "res://asserts/archive_menu/archive_menu_rect.png"
+		},
+		{
+			"texture_path": "res://asserts/archive_menu/archive_load_button.png"
+		},
+		{
+			"texture_path": "res://asserts/archive_menu/archive_load_button_hover.png"
+		},
+		{
+			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+			"font_size": 18
+		},
+		{
+			"color_name": "#d1992d",
+			"rgba_int": 0,
+			"rgb": [
+
+			],
+			"rgba": [
+
+			],
+			"type": 0
+		},
+		{
+			"texture_path": "res://asserts/archive_menu/archive_delete_button.png"
+		},
+		{
+			"texture_path": "res://asserts/archive_menu/archive_delete_button_hover.png"
+		},
+		{
+			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+			"font_size": 18
+		},
+		{
+			"color_name": "#d1992d",
+			"rgba_int": 0,
+			"rgb": [
+
+			],
+			"rgba": [
+
+			],
+			"type": 0
+		},
+		{
+			"texture_path": "res://asserts/archive_menu/archive_back_button.png"
+		},
+		{
+			"texture_path": "res://asserts/archive_menu/archive_back_button_hover.png"
+		},
+		{
+			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+			"font_size": 18
+		},
+		{
+			"color_name": "#d1992d",
+			"rgba_int": 0,
+			"rgb": [
+
+			],
+			"rgba": [
+
+			],
+			"type": 0
+		},
+		{
+			"texture_path": "res://asserts/archive_menu/archive_next_button.png"
+		},
+		{
+			"texture_path": "res://asserts/archive_menu/archive_previous_button.png"
+		},
+		{
+			"texture_path": "res://asserts/archive_menu/archive_card.png"
+		},
+		{
+			"texture_path": "res://asserts/archive_menu/archive_empty_card.png"
+		},
+		{
+			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+			"font_size": 18
+		},
+		{
+			"color_name": "#d1992d",
+			"rgba_int": 0,
+			"rgb": [
+
+			],
+			"rgba": [
+
+			],
+			"type": 0
+		},
+		{
+			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+			"font_size": 18
+		},
+		{
+			"color_name": "#d1992d",
+			"rgba_int": 0,
+			"rgb": [
+
+			],
+			"rgba": [
+
+			],
+			"type": 0
+		},
+		{
+			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+			"font_size": 18
+		},
+		{
+			"color_name": "#d1992d",
+			"rgba_int": 0,
+			"rgb": [
+
+			],
+			"rgba": [
+
+			],
+			"type": 0
+		},
+		{
+			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+			"font_size": 18
+		},
+		{
+			"color_name": "#d1992d",
+			"rgba_int": 0,
+			"rgb": [
+
+			],
+			"rgba": [
+
+			],
+			"type": 0
+		},
+		{
+			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+			"font_size": 18
+		},
+		{
+			"color_name": "#d1992d",
+			"rgba_int": 0,
+			"rgb": [
+
+			],
+			"rgba": [
+
+			],
+			"type": 0
 		}
 	]
 }

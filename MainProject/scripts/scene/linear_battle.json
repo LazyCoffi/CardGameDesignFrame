@@ -4,11 +4,13 @@
 		"table": {
 			"BattleOver": {
 				"scene_type": "MainMenuScene",
-				"scene_name": "main_menu"
+				"scene_name": "main_menu",
+				"switch_type": "switch"
 			},
 			"OpenSubMenu": {
 				"scene_type": "SubMenuScene",
-				"scene_name": "sub_menu"
+				"scene_name": "sub_menu",
+				"switch_type": "switch"
 			}
 		}
 	},

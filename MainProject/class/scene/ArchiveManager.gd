@@ -30,6 +30,12 @@ func initArchiveManager():
 func peekArchiveList():
 	return archive_list
 
+func getArchiveByIndex(index):
+	return archive_list[index]
+
+func getArchiveNum():
+	return archive_list.size()
+
 func newArchive():
 	var archive_name = "Archive" + str(total_archive_num)
 	var archive = Archive.new()
@@ -45,6 +51,11 @@ func delArchive(archive_name):
 		if archive_list[index].getArchiveName() == archive_name:
 			archive_list.remove(index)
 			return
+
+func delArchiveByIndex(index):
+	Logger.assert(index >= 0 and index < archive_list.size(), "Index out of range!")
+		
+	archive_list.remove(index)
 
 func hasArchive(archive_name):
 	for archive in archive_list:

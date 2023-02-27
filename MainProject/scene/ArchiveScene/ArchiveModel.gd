@@ -3,14 +3,38 @@ class_name ArchiveModel
 
 var param_map
 
-var archive_list
+const MAX_ARCHIVE_NUM = 3
+
+var selected_archive	# Archive
+var head_pointer		# int
 
 func _init():
-	__setParamMap()
+	selected_archive = null
+	head_pointer = 0
 
-func getParam(param_name):
-	Logger.assert(param_map.has(param_name), "Map doesn't has param")
-	return param_map[param_name]
+func getMaxArchiveNum():
+	return MAX_ARCHIVE_NUM
+
+func hasSelectedArchive():
+	return not selected_archive == null
+
+func getSelectedArchive():
+	return selected_archive
+
+func resetSelectedArchive():
+	selected_archive = null
+
+func selectArchive(archive):
+	selected_archive = archive
+
+func getHeadPointer():
+	return head_pointer
+
+func next():
+	head_pointer += 1
+
+func previous():
+	head_pointer = max(0, head_pointer - 1)
 
 func pack():
 	var script_tree = ScriptTree.new()
@@ -19,11 +43,3 @@ func pack():
 
 func loadScript(_script_tree):
 	pass
-
-func __setParamMap():
-	# TODO: 添加所有变量的映射
-	pass
-
-func __addMap(param_name, param):
-	param_map[param_name] = param
-

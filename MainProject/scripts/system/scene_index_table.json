@@ -15,9 +15,9 @@
 			"scene_name" : "sub_menu",
 			"is_complete" : true
 		},
-		"archive" : {
+		"archive_menu" : {
 			"type" : "ArchiveScene",
-			"scene_name" : "archive",
+			"scene_name" : "archive_menu",
 			"is_complete" : true
 		}
 	}

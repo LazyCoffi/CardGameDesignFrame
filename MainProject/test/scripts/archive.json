@@ -1,11 +1,8 @@
 {
-	"scene_name": "archive",
+	"scene_name": "archive_menu",
 	"switch_target_table": {
 		"table": {
 
 		}
-	},
-	"scene_model": {
-
 	}
 }

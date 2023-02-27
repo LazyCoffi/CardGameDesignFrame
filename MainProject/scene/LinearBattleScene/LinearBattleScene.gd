@@ -43,8 +43,14 @@ func register():
 func unregister():
 	is_registered = false
 
-func switchScene(next_scene_name):
-	emit_signal("switchSignal", next_scene_name)
+func switchScene(next_scene_name, switch_type):
+	match switch_type:
+		"switch" : 
+			emit_signal("switchSignal", next_scene_name)
+		"push":
+			emit_signal("pushSignal", next_scene_name)
+		"pop":
+			emit_signal("popSignal")
 
 func pushScene(next_scene_name):
 	emit_signal("pushSignal", next_scene_name)
@@ -96,7 +102,8 @@ func setSceneService(scene_service_):
 
 func battleOverSwitch():
 	var target_scene_name = switch_target_table.getTargetSceneName("BattleOver")
-	switchScene(target_scene_name)
+	var target_switch_type = switch_target_table.getTargetSwitchType("BattleOver")
+	switchScene(target_scene_name, target_switch_type)
 
 func openSubMenu():
 	var target_scene_name = switch_target_table.getTargetSceneName("OpenSubMenu")

@@ -22,7 +22,7 @@ var scene_service
 func _init():
 	is_registered = false
 	scene_dispatcher = ArchiveDispatcher.new()
-	scene_model = null
+	scene_model = ArchiveModel.new()
 	switch_target_table = null
 	scene_render = ArchiveRender.new()
 	scene_service = ArchiveService.new()
@@ -53,6 +53,9 @@ func pushScene(next_scene_name):
 func popScene():
 	emit_signal("popSignal")
 
+func loadArchive(archive_name):
+	emit_signal("loadArchive", archive_name)
+	
 # scene_name
 func getSceneName():
 	return scene_name
@@ -100,14 +103,12 @@ func pack():
 
 	script_tree.addAttr("scene_name", scene_name)
 	script_tree.addObject("switch_target_table", switch_target_table)
-	script_tree.addObject("scene_model", scene_model)
 
 	return script_tree
 
 func loadScript(script_tree):
 	scene_name = script_tree.getStr("scene_name")
 	switch_target_table = script_tree.getObject("switch_target_table", SwitchTargetTable)
-	scene_model = script_tree.getObject("scene_model", ArchiveModel)
 
 func __setRef():
 	scene_dispatcher.setRef(self)

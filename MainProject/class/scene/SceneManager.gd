@@ -45,8 +45,23 @@ func peekSceneStack():
 
 	return ret
 
+func peekArchiveList():
+	return archive_manager.peekArchiveList()
+
+func getArchiveByIndex(index):
+	archive_manager.getArchiveByIndex(index)
+
+func getArchiveNum():
+	return archive_manager.getArchiveNum()
+
 func setArchive(archive_name):
 	archive_manager.setArchive(archive_name)
+
+func delArchive(archive_name):
+	archive_manager.delArchive(archive_name)
+
+func delArchiveByIndex(index):
+	archive_manager.delArchiveByIndex(index)
 
 func saveArchive():
 	archive_manager.saveArchive(scene_cache)

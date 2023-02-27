@@ -8,9 +8,9 @@ func test_buildMainMenuScript():
 	main_menu.setSceneName("main_menu")
 
 	var switch_target_table = SwitchTargetTable.new()
-	switch_target_table.addTarget("StartButton", "LinearBattleScene", "linear_battle")
-	switch_target_table.addTarget("ContinueButton", "ArchiveModel", "archive")
-	switch_target_table.addTarget("SettingButton", "LinearBattleScene", "linear_battle")
+	switch_target_table.addTarget("StartButton", "LinearBattleScene", "linear_battle", "switch")
+	switch_target_table.addTarget("ContinueButton", "ArchiveModel", "archive_menu", "push")
+	switch_target_table.addTarget("SettingButton", "LinearBattleScene", "linear_battle", "switch")
 	
 	main_menu.setSwitchTargetTable(switch_target_table)
 

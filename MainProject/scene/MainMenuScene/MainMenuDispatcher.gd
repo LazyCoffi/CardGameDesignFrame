@@ -18,7 +18,7 @@ func launch():
 func renderMainMenu():
 	render().setSceneName()
 	render().loadResource()
-	render().setTitle()
-	render().setBackground()
+	render().renderTitle()
+	render().renderBackground()
 
 	# TODO

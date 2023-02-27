@@ -46,15 +46,6 @@ func register():
 func unregister():
 	is_registered = false
 
-func switchScene(next_scene_name):
-	emit_signal("switchSignal", next_scene_name)
-
-func pushScene(next_scene_name):
-	emit_signal("pushSignal", next_scene_name)
-
-func popScene():
-	emit_signal("popSignal")
-
 # scene_name
 func getSceneName():
 	return scene_name
@@ -97,6 +88,15 @@ func service():
 func setService(scene_service_):
 	scene_service = scene_service_
 
+func switchScene(target_scene_name, target_switch_type):
+	match target_switch_type:
+		"switch" :
+			emit_signal("switchSignal", target_scene_name)
+		"push" : 
+			emit_signal("pushSignal", target_scene_name)
+		"pop":
+			emit_signal("popSignal")
+
 func pack():
 	var script_tree = ScriptTree.new()
 
@@ -123,15 +123,17 @@ func __setSwitchConnection():
 
 func __startButtonSwitch():
 	var target_scene_name = switch_target_table.getTargetSceneName("StartButton")
-	__buttonSwitch(target_scene_name)
+	var target_switch_type = switch_target_table.getTargetSwitchType("StartButton")
+	switchScene(target_scene_name, target_switch_type)
 
 func __continueButtonSwitch():
 	var target_scene_name = switch_target_table.getTargetSceneName("ContinueButton")
-	__buttonSwitch(target_scene_name)
+	var target_switch_type = switch_target_table.getTargetSwitchType("ContinueButton")
+	switchScene(target_scene_name, target_switch_type)
 
 func __settingButtonSwitch():
-	var target_scene_name = switch_target_table.getTarget("SettingButton")
-	__buttonSwitch(target_scene_name)
+	var target_scene_name = switch_target_table.getTargetSceneName("SettingButton")
+	var target_switch_type = switch_target_table.getTargetSwitchType("SettingButton")
+	switchScene(target_scene_name, target_switch_type)
 
-func __buttonSwitch(target_scene_name):
-	switchScene(target_scene_name)
+
