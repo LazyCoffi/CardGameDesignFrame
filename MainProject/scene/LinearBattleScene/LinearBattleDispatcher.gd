@@ -325,7 +325,7 @@ func aiActionLoop():
 		if chosen_hand_card == null or chosen_target_card == null:
 			return true
 
-		if not chosen_hand_card.isPositive():
+		if not chosen_hand_card.isOffensive():
 			return true
 
 		if not chosen_hand_card.isTargetCondition(chosen_target_card, scene_name):

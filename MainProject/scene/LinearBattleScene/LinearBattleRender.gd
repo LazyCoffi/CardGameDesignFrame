@@ -87,7 +87,7 @@ func getOptionalHandCardList():
 
 	var i = 0
 	for hand_card in hand_cards:
-		if hand_card.isPositive():
+		if hand_card.isOffensive():
 			optional_hand_card_list.append(hand_card_list[i])
 
 		i += 1

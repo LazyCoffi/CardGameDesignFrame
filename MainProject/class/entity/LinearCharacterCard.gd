@@ -26,14 +26,6 @@ func copy():
 	ret.introduction = introduction
 	ret.template_name = template_name
 	ret.card_attr = card_attr.copy()
-
-	ret.equipment_set = {}
-	for key in equipment_set.keys():
-		ret.equipment_set[key] = equipment_set[key].copy()
-	ret.buff_set = {}
-	for key in buff_set:
-		ret.buff_set[key] = buff_set[key].copy()
-
 	ret.card_pile = card_pile.copy() 
 	ret.ai_is_action_condition = ai_is_action_condition.copy()
 	ret.ai_choose_card_function = ai_choose_card_function.copy()
@@ -114,4 +106,3 @@ func loadScript(script_tree):
 	ai_is_action_condition = script_tree.getObject("ai_is_action_condition", Function)
 	ai_choose_card_function = script_tree.getObject("ai_choose_card_function", Function)
 	ai_choose_target_function = script_tree.getObject("ai_choose_target_function", Function)
-

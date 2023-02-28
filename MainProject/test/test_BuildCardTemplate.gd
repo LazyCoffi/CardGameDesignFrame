@@ -71,13 +71,19 @@ func __buildStgFunction():
 	return function
 
 func __addBattleCharacterAttr(card):
+	var hp_attr = AttrNode.new()
+	hp_attr.setAttrName("hp")
+	hp_attr.setAttrType("Integer")
 	var hp_getter_function = __buildHpGetterFunction()
 	var hp_setter_function = __buildHpSetterFunction()
-	card.addAttr("hp", "Integer", hp_getter_function, hp_setter_function)
+	card.addAttr(hp_attr)
 
+	var stg_attr = AttrNode.new()
+	stg_attr.setAttrName("stg")
+	stg_attr.setAttrName("Integer")
 	var stg_getter_function = __buildStgFunction()
 	var stg_setter_function = __buildStgFunction()
-	card.addAttr("stg", "Integer", stg_getter_function, stg_setter_function)
+	card.addAttr(stg_attr)
 
 func __buildTrueCondition():
 	var true_unit = FuncUnit.new()
@@ -153,7 +159,7 @@ func __buildAttackHyperFunction():
 
 func __buildAttackSkillCard(index):
 	var card = LinearSkillCard.new()
-	card.setPositive()
+	card.setOffensive()
 	card.setPlayCondition(__buildTrueCondition())
 	card.setTargetCondition(__buildTrueCondition())
 	card.setAutoCondition(__buildFalseCondition())
@@ -161,7 +167,7 @@ func __buildAttackSkillCard(index):
 	card.setCardName("attack" + str(index))
 	card.setIntroduction("Attack!")
 	card.setAvatorName("attack_card")
-	card.setPositive()
+	card.setOffensive()
 
 	return card
 

@@ -27,13 +27,13 @@ func copy():
 	return ret
 
 # type_flag
-func isPositive():
+func isOffensive():
 	return type_flag.getFlag(0) != 0
 
-func setPositive():
+func setOffensive():
 	type_flag.setFlag(0)
 
-func unsetPositive():
+func resetOffensive():
 	type_flag.resetFlag(0)
 
 func isAuto():
@@ -42,10 +42,10 @@ func isAuto():
 func setAuto():
 	type_flag.setFlag(1)
 
-func unsetAuto():
+func resetAuto():
 	type_flag.resetFlag(1)
 
-func isRecycleable():
+func isRecyclable():
 	return type_flag.getMultiFlag(2, 3) == 0
 
 func isRetainable():
@@ -54,7 +54,7 @@ func isRetainable():
 func isDestroy():
 	return type_flag.getMultiFlag(2, 3) == 2
 
-func setRecycleable():
+func setRecyclable():
 	type_flag.resetMultiFlag(2, 3)
 
 func setRetainable():

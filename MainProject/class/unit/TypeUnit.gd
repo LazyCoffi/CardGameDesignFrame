@@ -9,6 +9,9 @@ func type(type_name):
 	Logger.assert(type_table.has(type_name), "Table doesn't have " + type_name + "!")
 	return type_table[type_name]
 
+func has(type_name):
+	return type_table.has(type_name)
+
 func packBaseParam(val):
 	var ret
 	if val is int:
@@ -36,6 +39,7 @@ func __initTypeTable():
 	__addType("container", "PollingBucket")
 	__addType("entity", "ArrangeMap")
 	__addType("entity", "Attr")
+	__addType("entity", "AttrNode")
 	__addType("entity", "SkillCard")
 	__addType("entity", "BitFlag")
 	__addType("entity", "BuffCard")
@@ -52,6 +56,7 @@ func __initTypeTable():
 	__addType("entity", "LinearSkillCard")
 	__addType("entity", "NullPack")
 	__addType("entity", "ParamList")
+	__addType("entity", "ParamNode")
 	__addType("entity", "ScriptTree")
 	__addType("entity", "SettingTable")
 	__addType("entity", "StringPack")
