@@ -70,8 +70,8 @@ func getAttrIndexList():
 func getAttrFullIndexList():
 	return card_attr.getFullIndexList()
 
-func addAttr(attr_name, attr_type, getter_function, setter_function):
-	card_attr.addAttr(attr_name, attr_type, getter_function, setter_function)
+func addAttr(attr_node):
+	card_attr.addAttr(attr_node)
 
 func setAttr(attr_name, attr):
 	card_attr.setAttr(attr_name, attr)

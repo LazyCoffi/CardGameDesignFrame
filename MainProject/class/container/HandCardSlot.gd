@@ -61,6 +61,9 @@ func passiveDiscard(card_pile):
 		var card = card_slot[i]
 		if not card.passiveDiscard(card_pile, card_slot):
 			i += 1
+
+func setCardSlot(card_slot_):
+	card_slot = card_slot_
 	
 func pack():
 	var script_tree = ScriptTree.new()

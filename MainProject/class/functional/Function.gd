@@ -5,7 +5,7 @@ var FuncGraph = TypeUnit.type("FuncGraph")
 var ScriptTree = TypeUnit.type("ScriptTree")
 var DictMap = TypeUnit.type("DictMap")
 
-var graph		# FunctionalGraph
+var graph		# FuncGraph
 var param_map	# DictMap
 
 func _init():

@@ -33,17 +33,16 @@ func packBaseParam(val):
 func __initTypeTable():
 	type_table = {}
 	__addType("container", "CardPile")
-	__addType("container", "DictArray")
 	__addType("container", "HandCardSlot")
 	__addType("container", "Heap")
 	__addType("container", "PollingBucket")
 	__addType("entity", "ArrangeMap")
 	__addType("entity", "Attr")
 	__addType("entity", "AttrNode")
-	__addType("entity", "SkillCard")
 	__addType("entity", "BitFlag")
 	__addType("entity", "BuffCard")
 	__addType("entity", "Card")
+	__addType("entity", "CardTemplate")
 	__addType("entity", "CategoryTree")
 	__addType("entity", "CharacterCard")
 	__addType("entity", "ComponentPack")
@@ -58,9 +57,10 @@ func __initTypeTable():
 	__addType("entity", "ParamList")
 	__addType("entity", "ParamNode")
 	__addType("entity", "ScriptTree")
-	__addType("entity", "SettingTable")
+	__addType("entity", "SkillCard")
 	__addType("entity", "StringPack")
 	__addType("entity", "SwitchTargetTable")
+	__addType("entity", "TargetPack")
 	__addType("entity", "TriggerTimer")
 	__addType("entity", "ValRange")
 	__addType("functional", "ArrayOperFuncSet")
@@ -75,6 +75,7 @@ func __initTypeTable():
 	__addType("functional", "Function")
 	__addType("functional", "FuncUnit")
 	__addType("functional", "FuncGraph")
+	__addType("functional", "FuncGraphNode")
 	__addType("functional", "FuncSet")
 	__addType("functional", "HyperFunction")
 	__addType("functional", "LinearBattleConditionSet")
@@ -121,6 +122,38 @@ func __initTypeTable():
 	__addSceneInstance("SubMenuScene")
 	__addSceneInstance("CharacterWarehouseScene")
 
+	__addFactory("ArchiveModelFactory")
+	__addFactory("ArchiveSceneFactory")
+	__addFactory("ArrangeMapFactory")
+	__addFactory("AttrFactory")
+	__addFactory("AttrNodeFactory")
+	__addFactory("BooleanFactory")
+	__addFactory("Factory")
+	__addFactory("CardCacheFactory")
+	__addFactory("CardTemplateFactory")
+	__addFactory("FuncGraphNodeFactory")
+	__addFactory("FunctionFactory")
+	__addFactory("FuncUnitFactory")
+	__addFactory("GlobalSettingFactory")
+	__addFactory("HyperFunctionFactory")
+	__addFactory("LinearBattleModelFactory")
+	__addFactory("LinearBattleSceneFactory")
+	__addFactory("LinearCharacterCardFactory")
+	__addFactory("LinearSkillCardFactory")
+	__addFactory("MainMenuModelFactory")
+	__addFactory("MainMenuSceneFactory")
+	__addFactory("ParamListFactory")
+	__addFactory("ParamNodeFactory")
+	__addFactory("PollingBucketFactory")
+	__addFactory("RootFactory")
+	__addFactory("SubMenuModelFactory")
+	__addFactory("SubMenuSceneFactory")
+	__addFactory("SwitchTargetTableFactory")
+	__addFactory("TargetPackFactory")
+
+	__addDesignType("Designer")
+	__addDesignType("FactoryTree")
+
 func __addType(dict, type_name):
 	var type = load("res://class/" + dict + "/" + type_name + ".gd")
 	type_table[type_name] = type
@@ -131,4 +164,12 @@ func __addSceneType(dict, type_name):
 
 func __addSceneInstance(type_name):
 	var type = load("res://scene/" + type_name + "/" + type_name + ".tscn")
+	type_table[type_name] = type
+
+func __addFactory(type_name):
+	var type = load("res://design/factory/" + type_name + ".gd")
+	type_table[type_name] = type
+
+func __addDesignType(type_name):
+	var type = load("res://design/" + type_name + ".gd")
 	type_table[type_name] = type

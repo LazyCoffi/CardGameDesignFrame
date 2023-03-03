@@ -5,14 +5,13 @@ var ScriptTree = TypeUnit.type("ScriptTree")
 var LinearCharacterCard = TypeUnit.type("LinearCharacterCard")
 var LinearSkillCard = TypeUnit.type("LinearSkillCard")
 var Function = TypeUnit.type("Function")
-var SettingTable = TypeUnit.type("SettingTable")
 var PollingBucket = TypeUnit.type("PollingBucket")
 
 var MAX_GROUP_SIZE = 4
+var HAND_CARD_RECT_SIZE = [90, 160]
+var CHARACTER_CARD_RECT_SIZE = [90, 160]
+var HAND_CARDS_UPPER = 10
 
-var param_table					# Dict
-
-var setting						# SettingTable
 var own_character_team			# Array
 var enemy_character_team		# Array
 var order_bucket				# Character_PollingBucket
@@ -25,8 +24,6 @@ var action_character			# CharacterCard
 var chosen_hand_card			# SkillCard
 
 func _init():
-	Logger.debug("debug")
-	setting = null
 	own_character_team = []
 	enemy_character_team = []
 	order_bucket = null
@@ -37,19 +34,17 @@ func _init():
 	is_battle_over_condition = null
 	action_character = null
 	chosen_hand_card = null
-	__setParamTable()
 
-# param_table
-func getParam(param_name):
-	Logger.assert(param_table.has(param_name), "Table doesn't have " + param_name + "!")
-	return param_table[param_name]
+# const
 
-# setting
-func getSettingAttr(attr_name):
-	return setting.getAttr(attr_name)
+func getHandCardsUpper():
+	return HAND_CARDS_UPPER
 
-func setSetting(setting_):
-	setting = setting_
+func getHandCardRectSize():
+	return HAND_CARD_RECT_SIZE
+
+func getCharacterCardRectSize():
+	return CHARACTER_CARD_RECT_SIZE
 
 # own_character_team
 func getOwnCharacterTeam():
@@ -189,7 +184,6 @@ func resetChosenHandCard():
 func pack():
 	var script_tree = ScriptTree.new()
 
-	script_tree.addObject("setting", setting)
 	script_tree.addTypeObject("order_bucket", order_bucket)
 	script_tree.addObject("own_team_function", own_team_function)
 	script_tree.addObject("enemy_team_function", enemy_team_function)
@@ -200,22 +194,9 @@ func pack():
 	return script_tree
 
 func loadScript(script_tree):
-	setting = script_tree.getObject("setting", SettingTable)
 	order_bucket = script_tree.getTypeObject("order_bucket", PollingBucket, LinearCharacterCard)
 	own_team_function = script_tree.getObject("own_team_function", Function)
 	enemy_team_function = script_tree.getObject("enemy_team_function", Function)
 	draw_num_function = script_tree.getObject("draw_num_function", Function)
 	is_dead_condition = script_tree.getObject("is_dead_condition", Function)
 	is_battle_over_condition = script_tree.getObject("is_battle_over_condition", Function)
-
-func __setParamTable():
-	param_table = {}
-	__addParam("setting", setting)
-	__addParam("own_character_team", own_character_team)
-	__addParam("enemy_character_team", enemy_character_team)
-	__addParam("order_bucket", order_bucket)
-	__addParam("action_character", action_character)
-	__addParam("chosen_hand_card", chosen_hand_card)
-
-func __addParam(param_name, param):
-	param_table[param_name] = param

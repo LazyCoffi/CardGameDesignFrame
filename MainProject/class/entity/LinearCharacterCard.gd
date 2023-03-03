@@ -33,6 +33,20 @@ func copy():
 
 	return ret
 
+## FactoryInterface
+func setCardPile(card_pile_):
+	card_pile = card_pile_
+
+func setAiChooseTargetFunction(ai_choose_target_function_):
+	ai_choose_target_function = ai_choose_target_function_
+
+func setAiIsActionCondition(ai_is_action_condition_):
+	ai_is_action_condition = ai_is_action_condition_
+
+func setAiChooseCardFunction(ai_choose_card_function_):
+	 ai_choose_card_function = ai_choose_card_function_
+
+## RuntimeInterface
 # card_pile
 func peekCardPile():
 	return card_pile.getCardPile()
@@ -71,22 +85,13 @@ func getCardPile():
 func aiIsActionCondition(scene_name):
 	return ai_is_action_condition.exec([self, scene_name])
 
-func setAiIsActionCondition(ai_is_action_condition_):
-	ai_is_action_condition = ai_is_action_condition_
-
 # ai_choose_card_function
 func aiChooseCardFunction(scene_name):
 	return ai_choose_card_function.exec([self, scene_name])
 
-func setAiChooseCardFunction(ai_choose_card_function_):
-	 ai_choose_card_function = ai_choose_card_function_
-
 # ai_choose_target_function
 func aiChooseTargetFunction(scene_name):
 	return ai_choose_target_function.exec([self, scene_name])
-
-func setAiChooseTargetFunction(ai_choose_target_function_):
-	ai_choose_target_function = ai_choose_target_function_
 
 func pack():
 	var script_tree = .pack()

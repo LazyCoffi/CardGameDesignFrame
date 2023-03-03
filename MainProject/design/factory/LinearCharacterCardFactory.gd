@@ -1,16 +1,15 @@
 extends "res://design/factory/Factory.gd"
 class_name LinearCharacterCardFactory
 
-var LinearCharacterCard = TypeUnit.type("LinearCharacterCard")
-
-var entity
+var CardPile = TypeUnit.type("CardPile")
 
 func _init():
 	__setMemberList()
 	initMemberView()
 	initConfigView()
 
-	entity = LinearCharacterCard.new()
+	entity_type = "LinearCharacterCard"
+	entity = TypeUnit.type(entity_type).new()
 
 func __setMemberList():
 	addBaseMember("card_name", "String")
@@ -27,8 +26,11 @@ func buildRef(blueprint):
 	entity.setCardAttr(blueprint["card_attr"])
 	
 	var card_list = blueprint["card_pile"]
+	var card_pile = CardPile.new()
+	card_pile.setParamType(LinearSkillCard)
 	for card in card_list:
-		entity.pushCardPileFront(card)
+		card_pile.pushFront(card)
+	entity.setCardPile(card_pile)
 
 	entity.setAiIsActionCondition(blueprint["ai_is_action_condition"])
 	entity.setChooseTargetFunction(blueprint["ai_choose_target_function"])

@@ -36,17 +36,10 @@
 							"attr": 100,
 							"getter_function": {
 								"graph": {
-									"graph": [
-										null,
-										[
-											0
-										]
-									],
 									"request_params": {
-										"returnVal_1_0": "all"
+										"returnVal_0_0": "all"
 									},
-									"node_index": 1,
-									"flat_tree": [
+									"node_list": [
 										{
 											"func_unit": {
 												"func_name": "returnVal",
@@ -62,57 +55,24 @@
 													]
 												}
 											},
-											"index": 1
+											"ch_index_list": [
+												null
+											]
 										}
 									]
 								},
 								"param_map": {
 									"map": [
-										"returnVal_1_0"
+										"returnVal_0_0"
 									]
 								}
 							},
 							"setter_function": {
 								"graph": {
-									"graph": [
-										null,
-										[
-											2,
-											0
-										],
-										[
-											0,
-											0
-										]
-									],
 									"request_params": {
-										"lowerBoundInt_2_0": "int"
+										"upperBoundInt_1_0": "int"
 									},
-									"node_index": 2,
-									"flat_tree": [
-										{
-											"func_unit": {
-												"func_name": "upperBoundInt",
-												"func_set_name": "MathFuncSet",
-												"default_params": {
-													"list": [
-														{
-															"param_type": "NullPack",
-															"param": {
-
-															}
-														},
-														{
-															"param_type": "Integer",
-															"param": {
-																"val": 100
-															}
-														}
-													]
-												}
-											},
-											"index": 1
-										},
+									"node_list": [
 										{
 											"func_unit": {
 												"func_name": "lowerBoundInt",
@@ -134,13 +94,42 @@
 													]
 												}
 											},
-											"index": 2
+											"ch_index_list": [
+												1,
+												null
+											]
+										},
+										{
+											"func_unit": {
+												"func_name": "upperBoundInt",
+												"func_set_name": "MathFuncSet",
+												"default_params": {
+													"list": [
+														{
+															"param_type": "NullPack",
+															"param": {
+
+															}
+														},
+														{
+															"param_type": "Integer",
+															"param": {
+																"val": 100
+															}
+														}
+													]
+												}
+											},
+											"ch_index_list": [
+												null,
+												null
+											]
 										}
 									]
 								},
 								"param_map": {
 									"map": [
-										"lowerBoundInt_2_0"
+										"upperBoundInt_1_0"
 									]
 								}
 							}
@@ -151,17 +140,10 @@
 							"attr": 25,
 							"getter_function": {
 								"graph": {
-									"graph": [
-										null,
-										[
-											0
-										]
-									],
 									"request_params": {
-										"returnVal_1_0": "all"
+										"returnVal_0_0": "all"
 									},
-									"node_index": 1,
-									"flat_tree": [
+									"node_list": [
 										{
 											"func_unit": {
 												"func_name": "returnVal",
@@ -177,29 +159,24 @@
 													]
 												}
 											},
-											"index": 1
+											"ch_index_list": [
+												null
+											]
 										}
 									]
 								},
 								"param_map": {
 									"map": [
-										"returnVal_1_0"
+										"returnVal_0_0"
 									]
 								}
 							},
 							"setter_function": {
 								"graph": {
-									"graph": [
-										null,
-										[
-											0
-										]
-									],
 									"request_params": {
-										"returnVal_1_0": "all"
+										"returnVal_0_0": "all"
 									},
-									"node_index": 1,
-									"flat_tree": [
+									"node_list": [
 										{
 											"func_unit": {
 												"func_name": "returnVal",
@@ -215,24 +192,20 @@
 													]
 												}
 											},
-											"index": 1
+											"ch_index_list": [
+												null
+											]
 										}
 									]
 								},
 								"param_map": {
 									"map": [
-										"returnVal_1_0"
+										"returnVal_0_0"
 									]
 								}
 							}
 						}
 					}
-				},
-				"equipment_set": {
-
-				},
-				"buff_set": {
-
 				},
 				"hand_card_slot": {
 					"card_slot": [
@@ -253,17 +226,10 @@
 							},
 							"play_condition": {
 								"graph": {
-									"graph": [
-										null,
-										[
-
-										]
-									],
 									"request_params": {
 
 									},
-									"node_index": 1,
-									"flat_tree": [
+									"node_list": [
 										{
 											"func_unit": {
 												"func_name": "trueGate",
@@ -274,7 +240,9 @@
 													]
 												}
 											},
-											"index": 1
+											"ch_index_list": [
+
+											]
 										}
 									]
 								},
@@ -292,27 +260,11 @@
 								"functions": [
 									{
 										"graph": {
-											"graph": [
-												null,
-												[
-													2,
-													0,
-													3,
-													0
-												],
-												[
-													0
-												],
-												[
-													0
-												]
-											],
 											"request_params": {
-												"extractAttr_2_0": "Card",
-												"extractAttr_3_0": "Card"
+												"extractAttr_1_0": "Card",
+												"extractAttr_2_0": "Card"
 											},
-											"node_index": 3,
-											"flat_tree": [
+											"node_list": [
 												{
 													"func_unit": {
 														"func_name": "minusAttrIntOverride",
@@ -340,13 +292,18 @@
 																{
 																	"param_type": "StringPack",
 																	"param": {
-																		"val": "stg"
+																		"val": "hp"
 																	}
 																}
 															]
 														}
 													},
-													"index": 1
+													"ch_index_list": [
+														1,
+														null,
+														2,
+														null
+													]
 												},
 												{
 													"func_unit": {
@@ -363,7 +320,9 @@
 															]
 														}
 													},
-													"index": 2
+													"ch_index_list": [
+														null
+													]
 												},
 												{
 													"func_unit": {
@@ -380,14 +339,16 @@
 															]
 														}
 													},
-													"index": 3
+													"ch_index_list": [
+														null
+													]
 												}
 											]
 										},
 										"param_map": {
 											"map": [
-												"extractAttr_2_0",
-												"extractAttr_3_0"
+												"extractAttr_1_0",
+												"extractAttr_2_0"
 											]
 										}
 									}
@@ -406,17 +367,10 @@
 							},
 							"target_condition": {
 								"graph": {
-									"graph": [
-										null,
-										[
-
-										]
-									],
 									"request_params": {
 
 									},
-									"node_index": 1,
-									"flat_tree": [
+									"node_list": [
 										{
 											"func_unit": {
 												"func_name": "trueGate",
@@ -427,7 +381,9 @@
 													]
 												}
 											},
-											"index": 1
+											"ch_index_list": [
+
+											]
 										}
 									]
 								},
@@ -439,17 +395,10 @@
 							},
 							"auto_condition": {
 								"graph": {
-									"graph": [
-										null,
-										[
-
-										]
-									],
 									"request_params": {
 
 									},
-									"node_index": 1,
-									"flat_tree": [
+									"node_list": [
 										{
 											"func_unit": {
 												"func_name": "falseGate",
@@ -460,7 +409,9 @@
 													]
 												}
 											},
-											"index": 1
+											"ch_index_list": [
+
+											]
 										}
 									]
 								},
@@ -483,17 +434,10 @@
 							},
 							"play_condition": {
 								"graph": {
-									"graph": [
-										null,
-										[
-
-										]
-									],
 									"request_params": {
 
 									},
-									"node_index": 1,
-									"flat_tree": [
+									"node_list": [
 										{
 											"func_unit": {
 												"func_name": "trueGate",
@@ -504,7 +448,9 @@
 													]
 												}
 											},
-											"index": 1
+											"ch_index_list": [
+
+											]
 										}
 									]
 								},
@@ -522,27 +468,11 @@
 								"functions": [
 									{
 										"graph": {
-											"graph": [
-												null,
-												[
-													2,
-													0,
-													3,
-													0
-												],
-												[
-													0
-												],
-												[
-													0
-												]
-											],
 											"request_params": {
-												"extractAttr_2_0": "Card",
-												"extractAttr_3_0": "Card"
+												"extractAttr_1_0": "Card",
+												"extractAttr_2_0": "Card"
 											},
-											"node_index": 3,
-											"flat_tree": [
+											"node_list": [
 												{
 													"func_unit": {
 														"func_name": "minusAttrIntOverride",
@@ -570,13 +500,18 @@
 																{
 																	"param_type": "StringPack",
 																	"param": {
-																		"val": "stg"
+																		"val": "hp"
 																	}
 																}
 															]
 														}
 													},
-													"index": 1
+													"ch_index_list": [
+														1,
+														null,
+														2,
+														null
+													]
 												},
 												{
 													"func_unit": {
@@ -593,7 +528,9 @@
 															]
 														}
 													},
-													"index": 2
+													"ch_index_list": [
+														null
+													]
 												},
 												{
 													"func_unit": {
@@ -610,14 +547,16 @@
 															]
 														}
 													},
-													"index": 3
+													"ch_index_list": [
+														null
+													]
 												}
 											]
 										},
 										"param_map": {
 											"map": [
-												"extractAttr_2_0",
-												"extractAttr_3_0"
+												"extractAttr_1_0",
+												"extractAttr_2_0"
 											]
 										}
 									}
@@ -636,17 +575,10 @@
 							},
 							"target_condition": {
 								"graph": {
-									"graph": [
-										null,
-										[
-
-										]
-									],
 									"request_params": {
 
 									},
-									"node_index": 1,
-									"flat_tree": [
+									"node_list": [
 										{
 											"func_unit": {
 												"func_name": "trueGate",
@@ -657,7 +589,9 @@
 													]
 												}
 											},
-											"index": 1
+											"ch_index_list": [
+
+											]
 										}
 									]
 								},
@@ -669,17 +603,10 @@
 							},
 							"auto_condition": {
 								"graph": {
-									"graph": [
-										null,
-										[
-
-										]
-									],
 									"request_params": {
 
 									},
-									"node_index": 1,
-									"flat_tree": [
+									"node_list": [
 										{
 											"func_unit": {
 												"func_name": "falseGate",
@@ -690,7 +617,9 @@
 													]
 												}
 											},
-											"index": 1
+											"ch_index_list": [
+
+											]
 										}
 									]
 								},
@@ -713,17 +642,10 @@
 							},
 							"play_condition": {
 								"graph": {
-									"graph": [
-										null,
-										[
-
-										]
-									],
 									"request_params": {
 
 									},
-									"node_index": 1,
-									"flat_tree": [
+									"node_list": [
 										{
 											"func_unit": {
 												"func_name": "trueGate",
@@ -734,7 +656,9 @@
 													]
 												}
 											},
-											"index": 1
+											"ch_index_list": [
+
+											]
 										}
 									]
 								},
@@ -752,27 +676,11 @@
 								"functions": [
 									{
 										"graph": {
-											"graph": [
-												null,
-												[
-													2,
-													0,
-													3,
-													0
-												],
-												[
-													0
-												],
-												[
-													0
-												]
-											],
 											"request_params": {
-												"extractAttr_2_0": "Card",
-												"extractAttr_3_0": "Card"
+												"extractAttr_1_0": "Card",
+												"extractAttr_2_0": "Card"
 											},
-											"node_index": 3,
-											"flat_tree": [
+											"node_list": [
 												{
 													"func_unit": {
 														"func_name": "minusAttrIntOverride",
@@ -800,13 +708,18 @@
 																{
 																	"param_type": "StringPack",
 																	"param": {
-																		"val": "stg"
+																		"val": "hp"
 																	}
 																}
 															]
 														}
 													},
-													"index": 1
+													"ch_index_list": [
+														1,
+														null,
+														2,
+														null
+													]
 												},
 												{
 													"func_unit": {
@@ -823,7 +736,9 @@
 															]
 														}
 													},
-													"index": 2
+													"ch_index_list": [
+														null
+													]
 												},
 												{
 													"func_unit": {
@@ -840,14 +755,16 @@
 															]
 														}
 													},
-													"index": 3
+													"ch_index_list": [
+														null
+													]
 												}
 											]
 										},
 										"param_map": {
 											"map": [
-												"extractAttr_2_0",
-												"extractAttr_3_0"
+												"extractAttr_1_0",
+												"extractAttr_2_0"
 											]
 										}
 									}
@@ -866,17 +783,10 @@
 							},
 							"target_condition": {
 								"graph": {
-									"graph": [
-										null,
-										[
-
-										]
-									],
 									"request_params": {
 
 									},
-									"node_index": 1,
-									"flat_tree": [
+									"node_list": [
 										{
 											"func_unit": {
 												"func_name": "trueGate",
@@ -887,7 +797,9 @@
 													]
 												}
 											},
-											"index": 1
+											"ch_index_list": [
+
+											]
 										}
 									]
 								},
@@ -899,17 +811,10 @@
 							},
 							"auto_condition": {
 								"graph": {
-									"graph": [
-										null,
-										[
-
-										]
-									],
 									"request_params": {
 
 									},
-									"node_index": 1,
-									"flat_tree": [
+									"node_list": [
 										{
 											"func_unit": {
 												"func_name": "falseGate",
@@ -920,7 +825,9 @@
 													]
 												}
 											},
-											"index": 1
+											"ch_index_list": [
+
+											]
 										}
 									]
 								},
@@ -943,17 +850,10 @@
 							},
 							"play_condition": {
 								"graph": {
-									"graph": [
-										null,
-										[
-
-										]
-									],
 									"request_params": {
 
 									},
-									"node_index": 1,
-									"flat_tree": [
+									"node_list": [
 										{
 											"func_unit": {
 												"func_name": "trueGate",
@@ -964,7 +864,9 @@
 													]
 												}
 											},
-											"index": 1
+											"ch_index_list": [
+
+											]
 										}
 									]
 								},
@@ -982,27 +884,11 @@
 								"functions": [
 									{
 										"graph": {
-											"graph": [
-												null,
-												[
-													2,
-													0,
-													3,
-													0
-												],
-												[
-													0
-												],
-												[
-													0
-												]
-											],
 											"request_params": {
-												"extractAttr_2_0": "Card",
-												"extractAttr_3_0": "Card"
+												"extractAttr_1_0": "Card",
+												"extractAttr_2_0": "Card"
 											},
-											"node_index": 3,
-											"flat_tree": [
+											"node_list": [
 												{
 													"func_unit": {
 														"func_name": "minusAttrIntOverride",
@@ -1030,13 +916,18 @@
 																{
 																	"param_type": "StringPack",
 																	"param": {
-																		"val": "stg"
+																		"val": "hp"
 																	}
 																}
 															]
 														}
 													},
-													"index": 1
+													"ch_index_list": [
+														1,
+														null,
+														2,
+														null
+													]
 												},
 												{
 													"func_unit": {
@@ -1053,7 +944,9 @@
 															]
 														}
 													},
-													"index": 2
+													"ch_index_list": [
+														null
+													]
 												},
 												{
 													"func_unit": {
@@ -1070,14 +963,16 @@
 															]
 														}
 													},
-													"index": 3
+													"ch_index_list": [
+														null
+													]
 												}
 											]
 										},
 										"param_map": {
 											"map": [
-												"extractAttr_2_0",
-												"extractAttr_3_0"
+												"extractAttr_1_0",
+												"extractAttr_2_0"
 											]
 										}
 									}
@@ -1096,17 +991,10 @@
 							},
 							"target_condition": {
 								"graph": {
-									"graph": [
-										null,
-										[
-
-										]
-									],
 									"request_params": {
 
 									},
-									"node_index": 1,
-									"flat_tree": [
+									"node_list": [
 										{
 											"func_unit": {
 												"func_name": "trueGate",
@@ -1117,7 +1005,9 @@
 													]
 												}
 											},
-											"index": 1
+											"ch_index_list": [
+
+											]
 										}
 									]
 								},
@@ -1129,17 +1019,10 @@
 							},
 							"auto_condition": {
 								"graph": {
-									"graph": [
-										null,
-										[
-
-										]
-									],
 									"request_params": {
 
 									},
-									"node_index": 1,
-									"flat_tree": [
+									"node_list": [
 										{
 											"func_unit": {
 												"func_name": "falseGate",
@@ -1150,7 +1033,9 @@
 													]
 												}
 											},
-											"index": 1
+											"ch_index_list": [
+
+											]
 										}
 									]
 								},
@@ -1169,17 +1054,10 @@
 				},
 				"ai_is_action_condition": {
 					"graph": {
-						"graph": [
-							null,
-							[
-
-							]
-						],
 						"request_params": {
 
 						},
-						"node_index": 1,
-						"flat_tree": [
+						"node_list": [
 							{
 								"func_unit": {
 									"func_name": "falseGate",
@@ -1190,7 +1068,9 @@
 										]
 									}
 								},
-								"index": 1
+								"ch_index_list": [
+
+								]
 							}
 						]
 					},
@@ -1202,17 +1082,10 @@
 				},
 				"ai_choose_card_function": {
 					"graph": {
-						"graph": [
-							null,
-							[
-
-							]
-						],
 						"request_params": {
 
 						},
-						"node_index": 1,
-						"flat_tree": [
+						"node_list": [
 							{
 								"func_unit": {
 									"func_name": "falseGate",
@@ -1223,7 +1096,9 @@
 										]
 									}
 								},
-								"index": 1
+								"ch_index_list": [
+
+								]
 							}
 						]
 					},
@@ -1235,17 +1110,10 @@
 				},
 				"ai_choose_target_function": {
 					"graph": {
-						"graph": [
-							null,
-							[
-
-							]
-						],
 						"request_params": {
 
 						},
-						"node_index": 1,
-						"flat_tree": [
+						"node_list": [
 							{
 								"func_unit": {
 									"func_name": "falseGate",
@@ -1256,7 +1124,9 @@
 										]
 									}
 								},
-								"index": 1
+								"ch_index_list": [
+
+								]
 							}
 						]
 					},
@@ -1270,17 +1140,10 @@
 			"copy_count": 0,
 			"revise_function": {
 				"graph": {
-					"graph": [
-						null,
-						[
-							0
-						]
-					],
 					"request_params": {
-						"returnVal_1_0": "all"
+						"returnVal_0_0": "all"
 					},
-					"node_index": 1,
-					"flat_tree": [
+					"node_list": [
 						{
 							"func_unit": {
 								"func_name": "returnVal",
@@ -1296,13 +1159,15 @@
 									]
 								}
 							},
-							"index": 1
+							"ch_index_list": [
+								null
+							]
 						}
 					]
 				},
 				"param_map": {
 					"map": [
-						"returnVal_1_0"
+						"returnVal_0_0"
 					]
 				}
 			}
@@ -1323,17 +1188,10 @@
 							"attr": 50,
 							"getter_function": {
 								"graph": {
-									"graph": [
-										null,
-										[
-											0
-										]
-									],
 									"request_params": {
-										"returnVal_1_0": "all"
+										"returnVal_0_0": "all"
 									},
-									"node_index": 1,
-									"flat_tree": [
+									"node_list": [
 										{
 											"func_unit": {
 												"func_name": "returnVal",
@@ -1349,57 +1207,24 @@
 													]
 												}
 											},
-											"index": 1
+											"ch_index_list": [
+												null
+											]
 										}
 									]
 								},
 								"param_map": {
 									"map": [
-										"returnVal_1_0"
+										"returnVal_0_0"
 									]
 								}
 							},
 							"setter_function": {
 								"graph": {
-									"graph": [
-										null,
-										[
-											2,
-											0
-										],
-										[
-											0,
-											0
-										]
-									],
 									"request_params": {
-										"lowerBoundInt_2_0": "int"
+										"upperBoundInt_1_0": "int"
 									},
-									"node_index": 2,
-									"flat_tree": [
-										{
-											"func_unit": {
-												"func_name": "upperBoundInt",
-												"func_set_name": "MathFuncSet",
-												"default_params": {
-													"list": [
-														{
-															"param_type": "NullPack",
-															"param": {
-
-															}
-														},
-														{
-															"param_type": "Integer",
-															"param": {
-																"val": 100
-															}
-														}
-													]
-												}
-											},
-											"index": 1
-										},
+									"node_list": [
 										{
 											"func_unit": {
 												"func_name": "lowerBoundInt",
@@ -1421,13 +1246,42 @@
 													]
 												}
 											},
-											"index": 2
+											"ch_index_list": [
+												1,
+												null
+											]
+										},
+										{
+											"func_unit": {
+												"func_name": "upperBoundInt",
+												"func_set_name": "MathFuncSet",
+												"default_params": {
+													"list": [
+														{
+															"param_type": "NullPack",
+															"param": {
+
+															}
+														},
+														{
+															"param_type": "Integer",
+															"param": {
+																"val": 100
+															}
+														}
+													]
+												}
+											},
+											"ch_index_list": [
+												null,
+												null
+											]
 										}
 									]
 								},
 								"param_map": {
 									"map": [
-										"lowerBoundInt_2_0"
+										"upperBoundInt_1_0"
 									]
 								}
 							}
@@ -1438,17 +1292,10 @@
 							"attr": 10,
 							"getter_function": {
 								"graph": {
-									"graph": [
-										null,
-										[
-											0
-										]
-									],
 									"request_params": {
-										"returnVal_1_0": "all"
+										"returnVal_0_0": "all"
 									},
-									"node_index": 1,
-									"flat_tree": [
+									"node_list": [
 										{
 											"func_unit": {
 												"func_name": "returnVal",
@@ -1464,29 +1311,24 @@
 													]
 												}
 											},
-											"index": 1
+											"ch_index_list": [
+												null
+											]
 										}
 									]
 								},
 								"param_map": {
 									"map": [
-										"returnVal_1_0"
+										"returnVal_0_0"
 									]
 								}
 							},
 							"setter_function": {
 								"graph": {
-									"graph": [
-										null,
-										[
-											0
-										]
-									],
 									"request_params": {
-										"returnVal_1_0": "all"
+										"returnVal_0_0": "all"
 									},
-									"node_index": 1,
-									"flat_tree": [
+									"node_list": [
 										{
 											"func_unit": {
 												"func_name": "returnVal",
@@ -1502,24 +1344,20 @@
 													]
 												}
 											},
-											"index": 1
+											"ch_index_list": [
+												null
+											]
 										}
 									]
 								},
 								"param_map": {
 									"map": [
-										"returnVal_1_0"
+										"returnVal_0_0"
 									]
 								}
 							}
 						}
 					}
-				},
-				"equipment_set": {
-
-				},
-				"buff_set": {
-
 				},
 				"hand_card_slot": {
 					"card_slot": [
@@ -1540,17 +1378,10 @@
 							},
 							"play_condition": {
 								"graph": {
-									"graph": [
-										null,
-										[
-
-										]
-									],
 									"request_params": {
 
 									},
-									"node_index": 1,
-									"flat_tree": [
+									"node_list": [
 										{
 											"func_unit": {
 												"func_name": "trueGate",
@@ -1561,7 +1392,9 @@
 													]
 												}
 											},
-											"index": 1
+											"ch_index_list": [
+
+											]
 										}
 									]
 								},
@@ -1579,27 +1412,11 @@
 								"functions": [
 									{
 										"graph": {
-											"graph": [
-												null,
-												[
-													2,
-													0,
-													3,
-													0
-												],
-												[
-													0
-												],
-												[
-													0
-												]
-											],
 											"request_params": {
-												"extractAttr_2_0": "Card",
-												"extractAttr_3_0": "Card"
+												"extractAttr_1_0": "Card",
+												"extractAttr_2_0": "Card"
 											},
-											"node_index": 3,
-											"flat_tree": [
+											"node_list": [
 												{
 													"func_unit": {
 														"func_name": "minusAttrIntOverride",
@@ -1627,13 +1444,18 @@
 																{
 																	"param_type": "StringPack",
 																	"param": {
-																		"val": "stg"
+																		"val": "hp"
 																	}
 																}
 															]
 														}
 													},
-													"index": 1
+													"ch_index_list": [
+														1,
+														null,
+														2,
+														null
+													]
 												},
 												{
 													"func_unit": {
@@ -1650,7 +1472,9 @@
 															]
 														}
 													},
-													"index": 2
+													"ch_index_list": [
+														null
+													]
 												},
 												{
 													"func_unit": {
@@ -1667,14 +1491,16 @@
 															]
 														}
 													},
-													"index": 3
+													"ch_index_list": [
+														null
+													]
 												}
 											]
 										},
 										"param_map": {
 											"map": [
-												"extractAttr_2_0",
-												"extractAttr_3_0"
+												"extractAttr_1_0",
+												"extractAttr_2_0"
 											]
 										}
 									}
@@ -1693,17 +1519,10 @@
 							},
 							"target_condition": {
 								"graph": {
-									"graph": [
-										null,
-										[
-
-										]
-									],
 									"request_params": {
 
 									},
-									"node_index": 1,
-									"flat_tree": [
+									"node_list": [
 										{
 											"func_unit": {
 												"func_name": "trueGate",
@@ -1714,7 +1533,9 @@
 													]
 												}
 											},
-											"index": 1
+											"ch_index_list": [
+
+											]
 										}
 									]
 								},
@@ -1726,17 +1547,10 @@
 							},
 							"auto_condition": {
 								"graph": {
-									"graph": [
-										null,
-										[
-
-										]
-									],
 									"request_params": {
 
 									},
-									"node_index": 1,
-									"flat_tree": [
+									"node_list": [
 										{
 											"func_unit": {
 												"func_name": "falseGate",
@@ -1747,7 +1561,9 @@
 													]
 												}
 											},
-											"index": 1
+											"ch_index_list": [
+
+											]
 										}
 									]
 								},
@@ -1770,17 +1586,10 @@
 							},
 							"play_condition": {
 								"graph": {
-									"graph": [
-										null,
-										[
-
-										]
-									],
 									"request_params": {
 
 									},
-									"node_index": 1,
-									"flat_tree": [
+									"node_list": [
 										{
 											"func_unit": {
 												"func_name": "trueGate",
@@ -1791,7 +1600,9 @@
 													]
 												}
 											},
-											"index": 1
+											"ch_index_list": [
+
+											]
 										}
 									]
 								},
@@ -1809,27 +1620,11 @@
 								"functions": [
 									{
 										"graph": {
-											"graph": [
-												null,
-												[
-													2,
-													0,
-													3,
-													0
-												],
-												[
-													0
-												],
-												[
-													0
-												]
-											],
 											"request_params": {
-												"extractAttr_2_0": "Card",
-												"extractAttr_3_0": "Card"
+												"extractAttr_1_0": "Card",
+												"extractAttr_2_0": "Card"
 											},
-											"node_index": 3,
-											"flat_tree": [
+											"node_list": [
 												{
 													"func_unit": {
 														"func_name": "minusAttrIntOverride",
@@ -1857,13 +1652,18 @@
 																{
 																	"param_type": "StringPack",
 																	"param": {
-																		"val": "stg"
+																		"val": "hp"
 																	}
 																}
 															]
 														}
 													},
-													"index": 1
+													"ch_index_list": [
+														1,
+														null,
+														2,
+														null
+													]
 												},
 												{
 													"func_unit": {
@@ -1880,7 +1680,9 @@
 															]
 														}
 													},
-													"index": 2
+													"ch_index_list": [
+														null
+													]
 												},
 												{
 													"func_unit": {
@@ -1897,14 +1699,16 @@
 															]
 														}
 													},
-													"index": 3
+													"ch_index_list": [
+														null
+													]
 												}
 											]
 										},
 										"param_map": {
 											"map": [
-												"extractAttr_2_0",
-												"extractAttr_3_0"
+												"extractAttr_1_0",
+												"extractAttr_2_0"
 											]
 										}
 									}
@@ -1923,17 +1727,10 @@
 							},
 							"target_condition": {
 								"graph": {
-									"graph": [
-										null,
-										[
-
-										]
-									],
 									"request_params": {
 
 									},
-									"node_index": 1,
-									"flat_tree": [
+									"node_list": [
 										{
 											"func_unit": {
 												"func_name": "trueGate",
@@ -1944,7 +1741,9 @@
 													]
 												}
 											},
-											"index": 1
+											"ch_index_list": [
+
+											]
 										}
 									]
 								},
@@ -1956,17 +1755,10 @@
 							},
 							"auto_condition": {
 								"graph": {
-									"graph": [
-										null,
-										[
-
-										]
-									],
 									"request_params": {
 
 									},
-									"node_index": 1,
-									"flat_tree": [
+									"node_list": [
 										{
 											"func_unit": {
 												"func_name": "falseGate",
@@ -1977,7 +1769,9 @@
 													]
 												}
 											},
-											"index": 1
+											"ch_index_list": [
+
+											]
 										}
 									]
 								},
@@ -2000,17 +1794,10 @@
 							},
 							"play_condition": {
 								"graph": {
-									"graph": [
-										null,
-										[
-
-										]
-									],
 									"request_params": {
 
 									},
-									"node_index": 1,
-									"flat_tree": [
+									"node_list": [
 										{
 											"func_unit": {
 												"func_name": "trueGate",
@@ -2021,7 +1808,9 @@
 													]
 												}
 											},
-											"index": 1
+											"ch_index_list": [
+
+											]
 										}
 									]
 								},
@@ -2039,27 +1828,11 @@
 								"functions": [
 									{
 										"graph": {
-											"graph": [
-												null,
-												[
-													2,
-													0,
-													3,
-													0
-												],
-												[
-													0
-												],
-												[
-													0
-												]
-											],
 											"request_params": {
-												"extractAttr_2_0": "Card",
-												"extractAttr_3_0": "Card"
+												"extractAttr_1_0": "Card",
+												"extractAttr_2_0": "Card"
 											},
-											"node_index": 3,
-											"flat_tree": [
+											"node_list": [
 												{
 													"func_unit": {
 														"func_name": "minusAttrIntOverride",
@@ -2087,13 +1860,18 @@
 																{
 																	"param_type": "StringPack",
 																	"param": {
-																		"val": "stg"
+																		"val": "hp"
 																	}
 																}
 															]
 														}
 													},
-													"index": 1
+													"ch_index_list": [
+														1,
+														null,
+														2,
+														null
+													]
 												},
 												{
 													"func_unit": {
@@ -2110,7 +1888,9 @@
 															]
 														}
 													},
-													"index": 2
+													"ch_index_list": [
+														null
+													]
 												},
 												{
 													"func_unit": {
@@ -2127,14 +1907,16 @@
 															]
 														}
 													},
-													"index": 3
+													"ch_index_list": [
+														null
+													]
 												}
 											]
 										},
 										"param_map": {
 											"map": [
-												"extractAttr_2_0",
-												"extractAttr_3_0"
+												"extractAttr_1_0",
+												"extractAttr_2_0"
 											]
 										}
 									}
@@ -2153,17 +1935,10 @@
 							},
 							"target_condition": {
 								"graph": {
-									"graph": [
-										null,
-										[
-
-										]
-									],
 									"request_params": {
 
 									},
-									"node_index": 1,
-									"flat_tree": [
+									"node_list": [
 										{
 											"func_unit": {
 												"func_name": "trueGate",
@@ -2174,7 +1949,9 @@
 													]
 												}
 											},
-											"index": 1
+											"ch_index_list": [
+
+											]
 										}
 									]
 								},
@@ -2186,17 +1963,10 @@
 							},
 							"auto_condition": {
 								"graph": {
-									"graph": [
-										null,
-										[
-
-										]
-									],
 									"request_params": {
 
 									},
-									"node_index": 1,
-									"flat_tree": [
+									"node_list": [
 										{
 											"func_unit": {
 												"func_name": "falseGate",
@@ -2207,7 +1977,9 @@
 													]
 												}
 											},
-											"index": 1
+											"ch_index_list": [
+
+											]
 										}
 									]
 								},
@@ -2230,17 +2002,10 @@
 							},
 							"play_condition": {
 								"graph": {
-									"graph": [
-										null,
-										[
-
-										]
-									],
 									"request_params": {
 
 									},
-									"node_index": 1,
-									"flat_tree": [
+									"node_list": [
 										{
 											"func_unit": {
 												"func_name": "trueGate",
@@ -2251,7 +2016,9 @@
 													]
 												}
 											},
-											"index": 1
+											"ch_index_list": [
+
+											]
 										}
 									]
 								},
@@ -2269,27 +2036,11 @@
 								"functions": [
 									{
 										"graph": {
-											"graph": [
-												null,
-												[
-													2,
-													0,
-													3,
-													0
-												],
-												[
-													0
-												],
-												[
-													0
-												]
-											],
 											"request_params": {
-												"extractAttr_2_0": "Card",
-												"extractAttr_3_0": "Card"
+												"extractAttr_1_0": "Card",
+												"extractAttr_2_0": "Card"
 											},
-											"node_index": 3,
-											"flat_tree": [
+											"node_list": [
 												{
 													"func_unit": {
 														"func_name": "minusAttrIntOverride",
@@ -2317,13 +2068,18 @@
 																{
 																	"param_type": "StringPack",
 																	"param": {
-																		"val": "stg"
+																		"val": "hp"
 																	}
 																}
 															]
 														}
 													},
-													"index": 1
+													"ch_index_list": [
+														1,
+														null,
+														2,
+														null
+													]
 												},
 												{
 													"func_unit": {
@@ -2340,7 +2096,9 @@
 															]
 														}
 													},
-													"index": 2
+													"ch_index_list": [
+														null
+													]
 												},
 												{
 													"func_unit": {
@@ -2357,14 +2115,16 @@
 															]
 														}
 													},
-													"index": 3
+													"ch_index_list": [
+														null
+													]
 												}
 											]
 										},
 										"param_map": {
 											"map": [
-												"extractAttr_2_0",
-												"extractAttr_3_0"
+												"extractAttr_1_0",
+												"extractAttr_2_0"
 											]
 										}
 									}
@@ -2383,17 +2143,10 @@
 							},
 							"target_condition": {
 								"graph": {
-									"graph": [
-										null,
-										[
-
-										]
-									],
 									"request_params": {
 
 									},
-									"node_index": 1,
-									"flat_tree": [
+									"node_list": [
 										{
 											"func_unit": {
 												"func_name": "trueGate",
@@ -2404,7 +2157,9 @@
 													]
 												}
 											},
-											"index": 1
+											"ch_index_list": [
+
+											]
 										}
 									]
 								},
@@ -2416,17 +2171,10 @@
 							},
 							"auto_condition": {
 								"graph": {
-									"graph": [
-										null,
-										[
-
-										]
-									],
 									"request_params": {
 
 									},
-									"node_index": 1,
-									"flat_tree": [
+									"node_list": [
 										{
 											"func_unit": {
 												"func_name": "falseGate",
@@ -2437,7 +2185,9 @@
 													]
 												}
 											},
-											"index": 1
+											"ch_index_list": [
+
+											]
 										}
 									]
 								},
@@ -2456,20 +2206,10 @@
 				},
 				"ai_is_action_condition": {
 					"graph": {
-						"graph": [
-							null,
-							[
-								2
-							],
-							[
-								0
-							]
-						],
 						"request_params": {
-							"isHandCardsEmpty_2_0": "CharacterCard"
+							"isHandCardsEmpty_1_0": "CharacterCard"
 						},
-						"node_index": 2,
-						"flat_tree": [
+						"node_list": [
 							{
 								"func_unit": {
 									"func_name": "notGate",
@@ -2485,7 +2225,9 @@
 										]
 									}
 								},
-								"index": 1
+								"ch_index_list": [
+									1
+								]
 							},
 							{
 								"func_unit": {
@@ -2502,32 +2244,24 @@
 										]
 									}
 								},
-								"index": 2
+								"ch_index_list": [
+									null
+								]
 							}
 						]
 					},
 					"param_map": {
 						"map": [
-							"isHandCardsEmpty_2_0"
+							"isHandCardsEmpty_1_0"
 						]
 					}
 				},
 				"ai_choose_card_function": {
 					"graph": {
-						"graph": [
-							null,
-							[
-								2
-							],
-							[
-								0
-							]
-						],
 						"request_params": {
-							"peekHandCards_2_0": "CharacterCard"
+							"peekHandCards_1_0": "CharacterCard"
 						},
-						"node_index": 2,
-						"flat_tree": [
+						"node_list": [
 							{
 								"func_unit": {
 									"func_name": "getFront",
@@ -2543,7 +2277,9 @@
 										]
 									}
 								},
-								"index": 1
+								"ch_index_list": [
+									1
+								]
 							},
 							{
 								"func_unit": {
@@ -2560,34 +2296,25 @@
 										]
 									}
 								},
-								"index": 2
+								"ch_index_list": [
+									null
+								]
 							}
 						]
 					},
 					"param_map": {
 						"map": [
-							"peekHandCards_2_0"
+							"peekHandCards_1_0"
 						]
 					}
 				},
 				"ai_choose_target_function": {
 					"graph": {
-						"graph": [
-							null,
-							[
-								2
-							],
-							[
-								0,
-								0
-							]
-						],
 						"request_params": {
-							"getOppositeTeam_2_0": "String",
-							"getOppositeTeam_2_1": "CharacterCard"
+							"getOppositeTeam_1_0": "String",
+							"getOppositeTeam_1_1": "CharacterCard"
 						},
-						"node_index": 2,
-						"flat_tree": [
+						"node_list": [
 							{
 								"func_unit": {
 									"func_name": "getFront",
@@ -2603,7 +2330,9 @@
 										]
 									}
 								},
-								"index": 1
+								"ch_index_list": [
+									1
+								]
 							},
 							{
 								"func_unit": {
@@ -2626,14 +2355,17 @@
 										]
 									}
 								},
-								"index": 2
+								"ch_index_list": [
+									null,
+									null
+								]
 							}
 						]
 					},
 					"param_map": {
 						"map": [
-							"getOppositeTeam_2_1",
-							"getOppositeTeam_2_0"
+							"getOppositeTeam_1_1",
+							"getOppositeTeam_1_0"
 						]
 					}
 				}
@@ -2641,17 +2373,10 @@
 			"copy_count": 0,
 			"revise_function": {
 				"graph": {
-					"graph": [
-						null,
-						[
-							0
-						]
-					],
 					"request_params": {
-						"returnVal_1_0": "all"
+						"returnVal_0_0": "all"
 					},
-					"node_index": 1,
-					"flat_tree": [
+					"node_list": [
 						{
 							"func_unit": {
 								"func_name": "returnVal",
@@ -2667,13 +2392,15 @@
 									]
 								}
 							},
-							"index": 1
+							"ch_index_list": [
+								null
+							]
 						}
 					]
 				},
 				"param_map": {
 					"map": [
-						"returnVal_1_0"
+						"returnVal_0_0"
 					]
 				}
 			}

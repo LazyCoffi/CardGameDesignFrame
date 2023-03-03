@@ -97,7 +97,10 @@ func getIntDict(dict_name):
 func getIntArray(arr_name):
 	Logger.assert(root.has(arr_name), "Root doesn't has " + arr_name + "!")
 	for index in range(root[arr_name].size()):
-		root[arr_name][index] = int(root[arr_name][index])
+		if root[arr_name][index] == null:
+			root[arr_name][index] = null
+		else:
+			root[arr_name][index] = int(root[arr_name][index])
 	
 	return root[arr_name]
 

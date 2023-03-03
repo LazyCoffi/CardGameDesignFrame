@@ -1,19 +1,13 @@
 extends "res://design/factory/Factory.gd"
 class_name AttrNodeFactory
 
-var AttrNode = TypeUnit.type("AttrNode")
-
-var entity
-
 func _init():
 	__setMemberList()
 	initMemberView()
 	initConfigView()
 
-	entity = AttrNode.new()
-
-func getEntity():
-	return entity
+	entity_type = "AttrNode"
+	entity = TypeUnit.type(entity_type).new()
 
 func __setMemberList():
 	addBaseMember("attr_name", "String")
@@ -30,10 +24,14 @@ func build(blueprint):
 	entity.setAttrName(blueprint["attr_name"])
 	entity.setAttrType(blueprint["attr_type"])
 
-	if blueprint["attr_type"] == "Integer":
+	if blueprint["attr"] == null:
+		entity.setAttr(null)
+		return
+
+	if blueprint["attr_type"] == "int":
 		entity.setAttr(int(blueprint["attr"]))
 	
-	if blueprint["attr_type"] == "Float":
+	if blueprint["attr_type"] == "float":
 		entity.setAttr(float(blueprint["attr"]))
 
 	if blueprint["attr_type"] == "String":

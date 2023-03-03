@@ -3,16 +3,19 @@
 	"switch_target_table": {
 		"table": {
 			"StartButton": {
+				"target_name": "StartButton",
 				"scene_type": "LinearBattleScene",
 				"scene_name": "linear_battle",
 				"switch_type": "switch"
 			},
 			"ContinueButton": {
-				"scene_type": "ArchiveModel",
-				"scene_name": "archive_menu",
-				"switch_type": "push"
+				"target_name": "ContinueButton",
+				"scene_type": "ArchiveScene",
+				"scene_name": "push",
+				"switch_type": ""
 			},
 			"SettingButton": {
+				"target_name": "SettingButton",
 				"scene_type": "LinearBattleScene",
 				"scene_name": "linear_battle",
 				"switch_type": "switch"

@@ -110,7 +110,7 @@ func afterPlayDiscard(card_pile, card_slot):
 		return
 
 func positiveDiscard(card_pile, card_slot):
-	if isRecycleable():
+	if isRecyclable():
 		card_pile.pushTrashBack(self)
 	elif isRetainable():
 		card_pile.pushTrashBack(self)
@@ -119,7 +119,7 @@ func positiveDiscard(card_pile, card_slot):
 		card_slot.erase(self)
 
 func passiveDiscard(card_pile, card_slot):
-	if isRecycleable():
+	if isRecyclable():
 		card_pile.pushTrashBack(self)
 		card_slot.erase(self)
 		return true

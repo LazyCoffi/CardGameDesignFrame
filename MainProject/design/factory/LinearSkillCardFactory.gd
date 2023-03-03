@@ -1,16 +1,13 @@
 extends "res://design/factory/Factory.gd"
 class_name LinearSkillCardFactory
 
-var LinearSkillCard = TypeUnit.type("LinearSkillCard")
-
-var entity
-
 func _init():
 	__setMemberList()
 	initMemberView()
 	initConfigView()
 
-	entity = LinearSkillCard.new()
+	entity_type = "LinearSkillCard"
+	entity = TypeUnit.type(entity_type).new()
 
 func __setMemberList():
 	addBaseMember("card_name", "String")

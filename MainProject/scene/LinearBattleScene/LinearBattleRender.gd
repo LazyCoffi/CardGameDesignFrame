@@ -136,8 +136,8 @@ func __getOwnTeamPositionList():
 		return []
 
 	var rect_size = __getCharacterCardRectSize()
-	var width = GlobalSetting.getAttr("screen_size")[0]
-	var height = GlobalSetting.getAttr("screen_size")[1]
+	var width = GlobalSetting.getScreenSize()[0]
+	var height = GlobalSetting.getScreenSize()[1]
 
 	var v_pos = int(height * 0.4)
 	var h_half = int(width * 0.5)
@@ -158,8 +158,8 @@ func __getEnemyTeamPositionList():
 		return []
 
 	var rect_size = __getCharacterCardRectSize()
-	var width = GlobalSetting.getAttr("screen_size")[0]
-	var height = GlobalSetting.getAttr("screen_size")[1]
+	var width = GlobalSetting.getScreenSize()[0]
+	var height = GlobalSetting.getScreenSize()[1]
 
 	var v_pos = int(height * 0.4)
 	var h_half = int(width * 0.5)
@@ -462,8 +462,8 @@ func clearChosenHandCardMark():
 ## setCurHandCardsRect
 func __getHandCardRectPositionList(card_num):
 	var rect_size = __getHandCardRectSize()
-	var width = GlobalSetting.getAttr("screen_size")[0]
-	var height = GlobalSetting.getAttr("screen_size")[1]
+	var width = GlobalSetting.getScreenSize()[0]
+	var height = GlobalSetting.getScreenSize()[1]
 	var rect_width = rect_size[0]
 	var v_pos = height * 0.8
 	var h_margin = int((width - rect_width * card_num) / 2)
@@ -536,10 +536,10 @@ func clearHandCards():
 	hand_card_list.clear()
 
 func __getCharacterCardRectSize():
-	return Vector2(model().getSettingAttr("character_card_rect_size")[0], model().getSettingAttr("character_card_rect_size")[1])
+	return Vector2(model().getCharacterCardRectSize()[0], model().getCharacterCardRectSize()[1])
 
 func __getHandCardRectSize():
-	return Vector2(model().getSettingAttr("hand_card_rect_size")[0], model().getSettingAttr("hand_card_rect_size")[1])
+	return Vector2(model().getHandCardRectSize()[0], model().getHandCardRectSize()[1])
 
 # setBackground
 func getBackground():

@@ -8,11 +8,13 @@ var val
 func _init():
 	val = false
 
-func getVal():
-	return val
-
+## FactoryInterface
 func setVal(val_):
 	val = bool(val_)
+
+## RuntimeInterface
+func getVal():
+	return val
 
 func copy():
 	var ret = TypeUnit.type("Boolean").new()

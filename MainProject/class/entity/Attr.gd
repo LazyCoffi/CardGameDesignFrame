@@ -12,15 +12,19 @@ func _init():
 
 func copy():
 	var ret = TypeUnit.type("Attr").new()
+
 	ret.table = {}
 	for key in table.keys():
 		ret.table[key] = table[key].copy()
 	
 	return ret
 
-func setTable(table_):
-	table = table_
+## FactoryInterface
+func setTable(attr_node_list):
+	for attr_node in attr_node_list:
+		table[attr_node.getAttrName()] = attr_node
 
+## RuntimeInterface
 func getAttr(attr_name):
 	return table[attr_name].getAttr()
 
@@ -38,11 +42,7 @@ func getAttrList():
 func setAttr(attr_name, attr):
 	table[attr_name].setAttr(attr)
 
-func addAttr(attr_node):
-	var attr_name = attr_node.getAttrName()
-	table[attr_name] = attr_node
-
-func delAttr(attr_name):
+func resetAttr(attr_name):
 	table[attr_name] = null
 
 func getIndexList():
@@ -55,12 +55,6 @@ func getIndexList():
 
 func getFullIndexList():
 	return table.keys()
-
-func addIndex(index):
-	table[index] = null
-
-func delIndex(index):
-	table.erase(index)
 
 func pack():
 	var script_tree = ScriptTree.new()

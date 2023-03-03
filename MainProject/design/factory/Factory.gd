@@ -8,8 +8,9 @@ enum {
 	CONT_MEM,
 	OBJ_CONT_MEM
 	RES_MEM,
-	INTERFACE_MEM
 }
+var entity
+var entity_type
 
 var member_list
 var member_view
@@ -19,6 +20,15 @@ func _init():
 	member_list = []
 	member_view = []
 	config_view = []
+
+func getEntity():
+	return entity
+
+func getEntityType():
+	return entity_type
+
+func getMemberList():
+	return member_list
 
 func addBaseMember(mem_name, class_type):
 	member_list.append([mem_name, BASE_MEM, class_type])
@@ -50,10 +60,18 @@ func initMemberView():
 			RES_MEM:
 				member_view.append([member[0], member[1], member[2]])
 
+func getMemberView():
+	return member_view
+
 func setMemberViewCommonObject(obj_name, obj_type):
 	for member in member_view:
 		if member[0] == obj_name:
 			member[2] = obj_type
+
+func resetMemberViewCommonObject(obj_name):
+	for member in member_view:
+		if member[0] == obj_name:
+			member[2] = null
 
 func addMemberViewContainer(container_name):
 	for member in member_view:
@@ -88,6 +106,9 @@ func initConfigView():
 			OBJ_CONT_MEM:
 				config_view.append([member[0], member[1], member[2]])
 
+func getConfigView():
+	return config_view
+
 func setConfigCommonObject(obj_name, obj_type):
 	for config in config_view:
 		if config[0] == obj_name:
@@ -95,14 +116,21 @@ func setConfigCommonObject(obj_name, obj_type):
 		
 		return
 
-func setConfigViewVal(base_name, val):
+func resetConfigCommonObject(obj_name):
+	for config in config_view:
+		if config[0] == obj_name:
+			config[2] = null 
+		
+		return
+
+func setConfigViewBaseVal(base_name, val):
 	for config in config_view:
 		if config[0] == base_name:
 			config[3] = val
 
 			return
 
-func addConfigViewVal(container_name):
+func addConfigViewContainer(container_name):
 	for config in config_view:
 		if config[0] == container_name:
 			var index = config[3].size()
@@ -110,7 +138,7 @@ func addConfigViewVal(container_name):
 
 			return
 
-func delConfigViewVal(container_name, index):
+func delConfigViewContainer(container_name, index):
 	for config in config_view:
 		if config[0] == container_name:
 			config[3].remove(index)

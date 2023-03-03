@@ -57,8 +57,14 @@ func getAllCards():
 func getCardPile():
 	return card_pile.duplicate()
 
+func setCardPile(card_pile_):
+	card_pile = card_pile_
+
 func getTrashPile():
 	return trash_pile.duplicate()
+
+func setTrashPile(trash_pile_):
+	trash_pile = trash_pile_
 
 func deal(num):
 	if num > card_pile.size() + trash_pile.size():
@@ -107,6 +113,10 @@ func pushTrashFront(card):
 
 func pushTrashBack(card):
 	trash_pile.push_back(card)
+
+func clearPile():
+	card_pile.clear()
+	trash_pile.clear()
 
 func shufflePile():
 	randomize()

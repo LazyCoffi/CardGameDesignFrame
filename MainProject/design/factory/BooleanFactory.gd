@@ -1,22 +1,19 @@
 extends "res://design/factory/Factory.gd"
-class_name DictMapFactory
-
-var DictMap = TypeUnit.type("DictMap")
-
-var entity
+class_name BooleanFactory
 
 func _init():
 	__setMemberList()
 	initMemberView()
 	initConfigView()
 
-	entity = DictMap.new()
+	entity_type = "Boolean"
+	entity = TypeUnit.type(entity_type).new()
 
 func __setMemberList():
-	addContainerMember("map", "Integer")
+	addBaseMember("val", "bool")
 
 func buildRef(_blueprint):
 	return
 
 func build(blueprint):
-	entity.setMap(blueprint["map"])
+	entity.setVal(blueprint["val"])

@@ -1,28 +1,37 @@
 extends Node
 
 var ScriptTree = load("res://class/entity/ScriptTree.gd")
-var SettingTable = load("res://class/entity/SettingTable.gd")
 
-var setting
+var init_scene_name		# String 
+var screen_size			# Array
 
 func _init():
-	setting = null
+	init_scene_name = ""
+	screen_size = []
 
-func getAttr(attr_name):
-	return setting.getAttr(attr_name)
+func getInitSceneName():
+	return init_scene_name
 
-func setSetting(setting_):
-	setting = setting_
+func setInitSceneName(init_scene_name_):
+	init_scene_name = init_scene_name_
+
+func getScreenSize():
+	return screen_size
+
+func setScreenSize(screen_size_):
+	screen_size = screen_size_
 
 func pack():
 	var script_tree = ScriptTree.new()
 
-	script_tree.addObject("setting", SettingTable)
+	script_tree.addAttr("init_scene_name", init_scene_name)
+	script_tree.addAttr("screen_size", screen_size)
 
 	return script_tree
 
 func loadScript(script_tree):
-	setting = script_tree.getObject("setting", SettingTable)
+	init_scene_name = script_tree.getStr("init_scene_name")
+	screen_size = script_tree.getIntArray("screen_size")
 
 func initScript():
 	var path = "res://scripts/system/global_setting.json"

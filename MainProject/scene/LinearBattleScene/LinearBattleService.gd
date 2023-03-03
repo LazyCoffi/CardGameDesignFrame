@@ -79,7 +79,7 @@ func resetActionCharacter():
 func drawHandCards():
 	var draw_num = model().getDrawNum(scene().getSceneName())
 	var action_character = model().getActionCharacter()
-	var hand_cards_upper = int(model().getSettingAttr("hand_cards_upper"))
+	var hand_cards_upper = int(model().getHandCardsUpper())
 
 	draw_num = min(hand_cards_upper - action_character.getHandCardsNum(), draw_num) 
 

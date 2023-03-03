@@ -15,6 +15,7 @@ func _init():
 
 func copy():
 	var ret = TypeUnit.type("FuncUnit").new()
+
 	ret.func_name = func_name
 	ret.func_set_name = func_set_name
 	ret.default_params = default_params.copy()
@@ -62,6 +63,9 @@ func getParamsType():
 
 func getParamsNum():
 	return getParamsType().size()
+
+func setDefaultParams(default_params_):
+	default_params = default_params_
 
 func pack():
 	var script_tree = ScriptTree.new()

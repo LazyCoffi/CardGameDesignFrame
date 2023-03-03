@@ -17,12 +17,6 @@ func copy():
 func getMap():
 	return map.duplicate()
 
-func addAttr(index, param_name):
-	map[index] = param_name
-
-func resizeMap(size):
-	map.resize(size)
-
 func setMap(map_):
 	map = map_
 

@@ -22,7 +22,7 @@ func __initUnit():
 
 func __gameStart():
 	Logger.log("Game start! Switch to the first scene.")
-	var init_scene_name = GlobalSetting.getAttr("init_scene_name")
+	var init_scene_name = GlobalSetting.getInitSceneName()
 	$SceneDispatcher.switch(init_scene_name)
 
 func quit():

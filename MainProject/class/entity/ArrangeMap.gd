@@ -14,6 +14,11 @@ func copy():
 	
 	return ret
 
+## FactoryInterface
+func setMap(map_):
+	map = map_
+
+## RuntimeInterface
 func isFilled():
 	var val = []
 	val.resize(map.size())
@@ -26,15 +31,6 @@ func isFilled():
 
 func getMap():
 	return map.duplicate()
-
-func resizeMap(size):
-	map.resize(size)
-
-func setMap(map_):
-	map = map_
-
-func setIndex(from, to):
-	map[from] = to
 
 func trans(params):
 	var ret = []

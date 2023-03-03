@@ -3,31 +3,20 @@
 	"switch_target_table": {
 		"table": {
 			"BattleOver": {
+				"target_name": "BattleOver",
 				"scene_type": "MainMenuScene",
 				"scene_name": "main_menu",
 				"switch_type": "switch"
 			},
 			"OpenSubMenu": {
+				"target_name": "OpenSubMenu",
 				"scene_type": "SubMenuScene",
 				"scene_name": "sub_menu",
-				"switch_type": "switch"
+				"switch_type": "push"
 			}
 		}
 	},
 	"scene_model": {
-		"setting": {
-			"table": {
-				"hand_cards_upper": 10,
-				"hand_card_rect_size": [
-					90,
-					160
-				],
-				"character_card_rect_size": [
-					90,
-					160
-				]
-			}
-		},
 		"order_bucket": {
 			"pointer": 0,
 			"bucket": [
@@ -38,17 +27,10 @@
 			],
 			"init_shuffle_function": {
 				"graph": {
-					"graph": [
-						null,
-						[
-							0
-						]
-					],
 					"request_params": {
-						"returnVal_1_0": "all"
+						"returnVal_0_0": "all"
 					},
-					"node_index": 1,
-					"flat_tree": [
+					"node_list": [
 						{
 							"func_unit": {
 								"func_name": "returnVal",
@@ -64,29 +46,24 @@
 									]
 								}
 							},
-							"index": 1
+							"ch_index_list": [
+								null
+							]
 						}
 					]
 				},
 				"param_map": {
 					"map": [
-						"returnVal_1_0"
+						"returnVal_0_0"
 					]
 				}
 			},
 			"regular_shuffle_function": {
 				"graph": {
-					"graph": [
-						null,
-						[
-							0
-						]
-					],
 					"request_params": {
-						"returnVal_1_0": "all"
+						"returnVal_0_0": "all"
 					},
-					"node_index": 1,
-					"flat_tree": [
+					"node_list": [
 						{
 							"func_unit": {
 								"func_name": "returnVal",
@@ -102,40 +79,25 @@
 									]
 								}
 							},
-							"index": 1
+							"ch_index_list": [
+								null
+							]
 						}
 					]
 				},
 				"param_map": {
 					"map": [
-						"returnVal_1_0"
+						"returnVal_0_0"
 					]
 				}
 			}
 		},
 		"own_team_function": {
 			"graph": {
-				"graph": [
-					null,
-					[
-						2,
-						4
-					],
-					[
-						3
-					],
-					[
-						0
-					],
-					[
-						0
-					]
-				],
 				"request_params": {
 
 				},
-				"node_index": 4,
-				"flat_tree": [
+				"node_list": [
 					{
 						"func_unit": {
 							"func_name": "appendVal",
@@ -157,7 +119,10 @@
 								]
 							}
 						},
-						"index": 1
+						"ch_index_list": [
+							1,
+							3
+						]
 					},
 					{
 						"func_unit": {
@@ -174,7 +139,9 @@
 								]
 							}
 						},
-						"index": 2
+						"ch_index_list": [
+							2
+						]
 					},
 					{
 						"func_unit": {
@@ -191,7 +158,9 @@
 								]
 							}
 						},
-						"index": 3
+						"ch_index_list": [
+							null
+						]
 					},
 					{
 						"func_unit": {
@@ -208,7 +177,9 @@
 								]
 							}
 						},
-						"index": 4
+						"ch_index_list": [
+							null
+						]
 					}
 				]
 			},
@@ -220,27 +191,10 @@
 		},
 		"enemy_team_function": {
 			"graph": {
-				"graph": [
-					null,
-					[
-						2,
-						4
-					],
-					[
-						3
-					],
-					[
-						0
-					],
-					[
-						0
-					]
-				],
 				"request_params": {
 
 				},
-				"node_index": 4,
-				"flat_tree": [
+				"node_list": [
 					{
 						"func_unit": {
 							"func_name": "appendVal",
@@ -262,7 +216,10 @@
 								]
 							}
 						},
-						"index": 1
+						"ch_index_list": [
+							1,
+							3
+						]
 					},
 					{
 						"func_unit": {
@@ -279,7 +236,9 @@
 								]
 							}
 						},
-						"index": 2
+						"ch_index_list": [
+							2
+						]
 					},
 					{
 						"func_unit": {
@@ -296,7 +255,9 @@
 								]
 							}
 						},
-						"index": 3
+						"ch_index_list": [
+							null
+						]
 					},
 					{
 						"func_unit": {
@@ -313,7 +274,9 @@
 								]
 							}
 						},
-						"index": 4
+						"ch_index_list": [
+							null
+						]
 					}
 				]
 			},
@@ -325,17 +288,10 @@
 		},
 		"draw_num_function": {
 			"graph": {
-				"graph": [
-					null,
-					[
-						0
-					]
-				],
 				"request_params": {
 
 				},
-				"node_index": 1,
-				"flat_tree": [
+				"node_list": [
 					{
 						"func_unit": {
 							"func_name": "constVal",
@@ -351,34 +307,24 @@
 								]
 							}
 						},
-						"index": 1
+						"ch_index_list": [
+							null
+						]
 					}
 				]
 			},
 			"param_map": {
 				"map": [
-
+					"constVal_0_0"
 				]
 			}
 		},
 		"is_dead_condition": {
 			"graph": {
-				"graph": [
-					null,
-					[
-						2,
-						0,
-						0
-					],
-					[
-						0
-					]
-				],
 				"request_params": {
-					"extractAttr_2_0": "Card"
+					"extractAttr_1_0": "Card"
 				},
-				"node_index": 2,
-				"flat_tree": [
+				"node_list": [
 					{
 						"func_unit": {
 							"func_name": "isLessEqualInt",
@@ -406,7 +352,11 @@
 								]
 							}
 						},
-						"index": 1
+						"ch_index_list": [
+							1,
+							null,
+							null
+						]
 					},
 					{
 						"func_unit": {
@@ -423,39 +373,24 @@
 								]
 							}
 						},
-						"index": 2
+						"ch_index_list": [
+							null
+						]
 					}
 				]
 			},
 			"param_map": {
 				"map": [
-					"extractAttr_2_0"
+					"extractAttr_1_0"
 				]
 			}
 		},
 		"is_battle_over_condition": {
 			"graph": {
-				"graph": [
-					null,
-					[
-						2,
-						4
-					],
-					[
-						3
-					],
-					[
-						0
-					],
-					[
-						3
-					]
-				],
 				"request_params": {
 					"returnVal_3_0": "all"
 				},
-				"node_index": 4,
-				"flat_tree": [
+				"node_list": [
 					{
 						"func_unit": {
 							"func_name": "orGate",
@@ -477,7 +412,10 @@
 								]
 							}
 						},
-						"index": 1
+						"ch_index_list": [
+							1,
+							2
+						]
 					},
 					{
 						"func_unit": {
@@ -494,24 +432,9 @@
 								]
 							}
 						},
-						"index": 2
-					},
-					{
-						"func_unit": {
-							"func_name": "returnVal",
-							"func_set_name": "BaseFuncSet",
-							"default_params": {
-								"list": [
-									{
-										"param_type": "NullPack",
-										"param": {
-
-										}
-									}
-								]
-							}
-						},
-						"index": 3
+						"ch_index_list": [
+							3
+						]
 					},
 					{
 						"func_unit": {
@@ -528,7 +451,34 @@
 								]
 							}
 						},
-						"index": 4
+						"ch_index_list": [
+							3
+						]
+					},
+					{
+						"func_unit": {
+							"func_name": "returnVal",
+							"func_set_name": "BaseFuncSet",
+							"default_params": {
+								"list": [
+									{
+										"param_type": "NullPack",
+										"param": {
+
+										}
+									},
+									{
+										"param_type": "NullPack",
+										"param": {
+
+										}
+									}
+								]
+							}
+						},
+						"ch_index_list": [
+							null
+						]
 					}
 				]
 			},

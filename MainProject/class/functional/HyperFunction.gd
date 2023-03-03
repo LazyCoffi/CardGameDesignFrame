@@ -6,7 +6,7 @@ var ScriptTree = TypeUnit.type("ScriptTree")
 var ArrangeMap = TypeUnit.type("ArrangeMap")
 
 var func_name			# String
-var functions			# FunctionGraph_Array
+var functions			# Function_Array
 var param_map			# ArrangeMap 
 var ret_map				# ArrangeMap
 
@@ -28,6 +28,14 @@ func copy():
 
 	return ret
 
+## FactoryInterface
+func setFunctions(functions_):
+	functions = functions_
+
+func setFuncName(func_name_):
+	func_name = func_name_
+
+## RuntimeInterface
 func peekParamMap():
 	return param_map.getMap()
 
@@ -73,18 +81,9 @@ func exec(params):
 func getFuncName():
 	return func_name
 
-func setFuncName(func_name_):
-	func_name = func_name_
+func clearFunctions():
+	functions.clear()
 
-func addFunction(function):
-	functions.append(function)
-
-func removeFunction(index):
-	functions.remove(index)
-
-func setFunction(index, function):
-	Logger.assert(index < functions.size(), "Index out of size")
-	functions[index] = function
 
 func getFunctions():
 	return functions.duplicate()

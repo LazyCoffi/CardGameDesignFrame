@@ -15,7 +15,7 @@ func _init():
 	setter_function = null
 
 func copy():
-	var ret = AttrNode.new()
+	var ret = TypeUnit.type("AttrNode").new()
 	ret.attr_name = attr_name
 	ret.attr_type = attr_type
 	ret.attr = attr
