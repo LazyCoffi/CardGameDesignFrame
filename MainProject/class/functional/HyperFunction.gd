@@ -28,14 +28,12 @@ func copy():
 
 	return ret
 
-## FactoryInterface
 func setFunctions(functions_):
 	functions = functions_
 
 func setFuncName(func_name_):
 	func_name = func_name_
 
-## RuntimeInterface
 func peekParamMap():
 	return param_map.getMap()
 
@@ -84,9 +82,24 @@ func getFuncName():
 func clearFunctions():
 	functions.clear()
 
-
 func getFunctions():
 	return functions.duplicate()
+
+func setParamMapIndex(param_index, index):
+	param_map.setMapIndex(param_index, index)
+
+func setRetMapIndex(ret_index, index):
+	ret_map.setMapIndex(ret_index, index)
+
+func addFunction(function):
+	functions.append(function)
+	initParamMap()
+	initRetMap()
+
+func delFunction(function_index):
+	functions.remove(function_index)
+	initParamMap()
+	initRetMap()
 
 func getFunction(index):
 	Logger.assert(index < functions.size(), "Index out of size")

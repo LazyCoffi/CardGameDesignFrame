@@ -26,7 +26,8 @@ var chosen_hand_card			# SkillCard
 func _init():
 	own_character_team = []
 	enemy_character_team = []
-	order_bucket = null
+	order_bucket = PollingBucket.new()
+	order_bucket.setParamType("LinearCharacterCard")
 	own_team_function = null
 	enemy_team_function = null
 	draw_num_function = null
@@ -111,6 +112,12 @@ func orderBucketDel(card_name):
 
 func setOrderBucket(order_bucket_):
 	order_bucket = order_bucket_
+
+func setBucketInitShuffleFunction(function_):
+	order_bucket.setInitShuffleFunction(function_)
+
+func setBucketRegularShuffleFunction(function_):
+	order_bucket.setRegularShuffleFunction(function_)
 
 # own_team_function
 func deployOwnTeam():

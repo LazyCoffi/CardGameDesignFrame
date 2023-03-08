@@ -1,5 +1,13 @@
 extends Node
 
+enum {
+	ENTITY,
+	SCENE_TYPE,
+	SCENE_INSTANCE,
+	FACTORY,
+	DESIGNER
+}
+
 var type_table
 
 func _init():
@@ -7,7 +15,15 @@ func _init():
 
 func type(type_name):
 	Logger.assert(type_table.has(type_name), "Table doesn't have " + type_name + "!")
-	return type_table[type_name]
+	return type_table[type_name]["type"]
+
+func filter(class_type):
+	var ret = {}
+	for type_name in type_table.keys():
+		if type_table[type_name]["class_type"] == class_type:
+			ret[type_name] = type_table[type_name]["type"]
+	
+	return ret
 
 func has(type_name):
 	return type_table.has(type_name)
@@ -124,13 +140,13 @@ func __initTypeTable():
 
 	__addFactory("ArchiveModelFactory")
 	__addFactory("ArchiveSceneFactory")
-	__addFactory("ArrangeMapFactory")
 	__addFactory("AttrFactory")
 	__addFactory("AttrNodeFactory")
 	__addFactory("BooleanFactory")
 	__addFactory("Factory")
 	__addFactory("CardCacheFactory")
 	__addFactory("CardTemplateFactory")
+	__addFactory("FuncGraphFactory")
 	__addFactory("FuncGraphNodeFactory")
 	__addFactory("FunctionFactory")
 	__addFactory("FuncUnitFactory")
@@ -145,6 +161,7 @@ func __initTypeTable():
 	__addFactory("ParamListFactory")
 	__addFactory("ParamNodeFactory")
 	__addFactory("PollingBucketFactory")
+	__addFactory("ResourceUnitFactory")
 	__addFactory("RootFactory")
 	__addFactory("SubMenuModelFactory")
 	__addFactory("SubMenuSceneFactory")
@@ -156,20 +173,40 @@ func __initTypeTable():
 
 func __addType(dict, type_name):
 	var type = load("res://class/" + dict + "/" + type_name + ".gd")
-	type_table[type_name] = type
+	type_table[type_name] = {
+		"type" : type,
+		"type_name" : type_name,
+		"class_type" : ENTITY
+	}
 
 func __addSceneType(dict, type_name):
 	var type = load("res://scene/" + dict + "/" + type_name + ".gd")
-	type_table[type_name] = type
+	type_table[type_name] = {
+		"type" : type,
+		"type_name" : type_name,
+		"class_type" : SCENE_TYPE
+	}
 
 func __addSceneInstance(type_name):
 	var type = load("res://scene/" + type_name + "/" + type_name + ".tscn")
-	type_table[type_name] = type
+	type_table[type_name] = {
+		"type" : type,
+		"type_name" : type_name,
+		"class_type" : SCENE_INSTANCE
+	}
 
 func __addFactory(type_name):
 	var type = load("res://design/factory/" + type_name + ".gd")
-	type_table[type_name] = type
+	type_table[type_name] = {
+		"type" : type,
+		"type_name" : type_name,
+		"class_type" : FACTORY
+	}
 
 func __addDesignType(type_name):
 	var type = load("res://design/" + type_name + ".gd")
-	type_table[type_name] = type
+	type_table[type_name] = {
+		"type" : type,
+		"type_name" : type_name,
+		"class_type" : DESIGNER
+	}

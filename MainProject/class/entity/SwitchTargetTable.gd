@@ -30,8 +30,14 @@ func getTargetSwitchType(target_name):
 	Logger.assert(table.has(target_name), "Table doesn't have " + target_name + "!")
 	return table[target_name].getSwitchType()
 
-func addTarget(target_pack):
-	var target_name = target_pack.getTargetName()
+func addTarget(target_name, scene_type, scene_name, switch_type):
+	var target_pack = TargetPack.new()
+
+	target_pack.setTargetName(target_name)
+	target_pack.setSceneType(scene_type)
+	target_pack.setSceneName(scene_name)
+	target_pack.setSwitchType(switch_type)
+
 	table[target_name] = target_pack
 
 func pack():

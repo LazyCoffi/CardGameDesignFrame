@@ -35,6 +35,9 @@ func setNodeList(node_list_):
 func addNode(graph_node):
 	node_list.append(graph_node)
 
+func delNode(node_index):
+	node_list.remove(node_index)
+
 func construct():
 	__flatConstruct()
 

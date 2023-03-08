@@ -29,6 +29,12 @@ func copy():
 
 	return ret
 
+func setInfo(card_name_, avator_name_, introduction_, template_name_):
+	card_name = card_name_
+	avator_name = avator_name_
+	introduction = introduction_
+	template_name = template_name_
+
 # card_name
 func getCardName():
 	return card_name

@@ -14,11 +14,12 @@ func copy():
 	
 	return ret
 
-## FactoryInterface
 func setMap(map_):
 	map = map_
 
-## RuntimeInterface
+func setMapIndex(map_index, index):
+	map[index] = map_index
+
 func isFilled():
 	var val = []
 	val.resize(map.size())

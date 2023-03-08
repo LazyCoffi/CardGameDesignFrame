@@ -28,6 +28,7 @@ func getGraph():
 
 func setGraph(graph_):
 	graph = graph_
+	initParamMap()
 
 func getParamsType():
 	return graph.getParamsType()
@@ -47,6 +48,9 @@ func initParamMap():
 
 func setMap(map):
 	param_map.setMap(map)
+
+func setMapIndex(param_index, index):
+	param_map.setIndex(param_index, index)
 
 func pack():
 	var script_tree = ScriptTree.new()

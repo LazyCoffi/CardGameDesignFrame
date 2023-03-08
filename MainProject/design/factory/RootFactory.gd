@@ -2,14 +2,13 @@ extends "res://design/factory/Factory.gd"
 class_name RootFactory
 
 func _init():
-	__setMemberList()
-	initMemberView()
-	initConfigView()
+	entity_type = "Root"
 
-func __setMemberList():
-	addObjectMember("GlobalSetting", "GlobalSetting")
-	addObjectMember("CardCache", "CardCache")
-	addObjectContainerMember("MainMenuScene", "MainMenuScene")
-	addObjectContainerMember("SubMenuScene", "SubMenuScene")
-	addObjectContainerMember("LinearBattleScene", "LinearBattleScene")
-	addObjectContainerMember("ArchiveScene", "ArchiveScene")
+func initMemberList():
+	addObjectMember("GlobalSetting", "GlobalSetting", null)
+	addObjectMember("CardCache", "CardCache", null)
+	addObjectMember("ResourceUnit", "ResourceUnit", null)
+	addObjectArrayMember("MainMenuScene", "MainMenuScene", null, null, "getSceneName")
+	addObjectArrayMember("SubMenuScene", "SubMenuScene", null, null, "getSceneName")
+	addObjectArrayMember("LinearBattleScene", "LinearBattleScene", null, null, "getSceneName")
+	addObjectArrayMember("ArchiveScene", "ArchiveScene", null, null, "getSceneName")

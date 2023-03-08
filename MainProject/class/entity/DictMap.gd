@@ -20,6 +20,9 @@ func getMap():
 func setMap(map_):
 	map = map_
 
+func setIndex(param_index, index):
+	map[index] = node_index
+
 func trans(params):
 	var ret = {}
 	for index in range(map.size()):

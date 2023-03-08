@@ -5,6 +5,7 @@ var CardPile = TypeUnit.type("CardPile")
 var LinearSkillCard = TypeUnit.type("LinearSkillCard")
 
 var card_pile 					# CardPile
+var init_card_pile_function		# Function
 var ai_is_action_condition		# Function
 var ai_choose_target_function	# Function
 var ai_choose_card_function		# Function
@@ -14,6 +15,7 @@ func _init():
 	card_pile = CardPile.new()
 	card_pile.setParamType(LinearSkillCard)
 
+	init_card_pile_function = null
 	ai_is_action_condition = null
 	ai_choose_card_function = null
 	ai_choose_target_function = null
@@ -27,15 +29,18 @@ func copy():
 	ret.template_name = template_name
 	ret.card_attr = card_attr.copy()
 	ret.card_pile = card_pile.copy() 
+	ret.init_card_pile_function = init_card_pile_function.copy()
 	ret.ai_is_action_condition = ai_is_action_condition.copy()
 	ret.ai_choose_card_function = ai_choose_card_function.copy()
 	ret.ai_choose_target_function = ai_choose_target_function.copy()
 
 	return ret
 
-## FactoryInterface
 func setCardPile(card_pile_):
 	card_pile = card_pile_
+
+func setInitCardPileFunction(init_card_pile_function):
+	init_card_pile_function = init_card_pile_function_
 
 func setAiChooseTargetFunction(ai_choose_target_function_):
 	ai_choose_target_function = ai_choose_target_function_
@@ -46,7 +51,6 @@ func setAiIsActionCondition(ai_is_action_condition_):
 func setAiChooseCardFunction(ai_choose_card_function_):
 	 ai_choose_card_function = ai_choose_card_function_
 
-## RuntimeInterface
 # card_pile
 func peekCardPile():
 	return card_pile.getCardPile()

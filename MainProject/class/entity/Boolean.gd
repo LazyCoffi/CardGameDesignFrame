@@ -8,11 +8,15 @@ var val
 func _init():
 	val = false
 
-## FactoryInterface
 func setVal(val_):
 	val = bool(val_)
 
-## RuntimeInterface
+func setTrue():
+	val = true
+
+func setFalse():
+	val = false
+
 func getVal():
 	return val
 

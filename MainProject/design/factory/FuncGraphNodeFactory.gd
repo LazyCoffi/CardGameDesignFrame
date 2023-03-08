@@ -2,19 +2,19 @@ extends "res://design/factory/Factory.gd"
 class_name FuncGraphNodeFactory
 
 func _init():
-	__setMemberList()
-	initMemberView()
-	initConfigView()
-
 	entity_type = "FuncGraphNode"
 	entity = TypeUnit.type(entity_type).new()
 
-func __setMemberList():
-	addObjectMember("func_unit", "FuncUnit")
-	addContainerMember("ch_index_list", "int")
-
-func buildRef(blueprint):
-	entity.setFuncUnit(blueprint["func_unit"])
-
-func build(blueprint):
-	entity.setChIndexList(blueprint["ch_index_list"])
+func initMemberList():
+	addFuncMember("setFunc", [
+		{"name" : "func_set_name", "type" : "String", "param_type" : "val"},
+		{"name" : "func_name", "type" : "String", "param_type" : "val"}
+	])
+	addFuncMember("setDefaultParam", [
+		{"name" : "index", "type" : "int", "param_type" : "val"},
+		{"name" : "param", "type" : null, "param_type" : "common_obj"}
+	])
+	addFuncMember("setChIndex", [
+		{"name" : "ch_id", "type" : "int", "param_type" : "val"},
+		{"name" : "ch_index", "type" : "int", "param_type" : "val"}
+	])

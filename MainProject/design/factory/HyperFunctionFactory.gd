@@ -2,23 +2,20 @@ extends "res://design/factory/Factory.gd"
 class_name HyperFunctionFactory
 
 func _init():
-	__setMemberList()
-	initMemberView()
-	initConfigView()
-
 	entity_type = "HyperFunction"
 	entity = TypeUnit.type(entity_type).new()
 
-func __setMemberList():
-	addBaseMember("func_name", "String")
-	addObjectContainerMember("functions", "Function")
-	addContainerMember("param_map", "int")
-	addContainerMember("ret_map", "int")
+func initMemberList():
+	addFuncMember("setFuncName", [
+		{"name" : "func_name", "type" : "String", "param_type" : "val"}
+	])
+	addObjectArrayMember("functions", "Function", "addFunction", "delFunction")
+	addFuncMember("setParamMapIndex", [
+		{"name" : "param_index", "type" : "int", "param_type" : "val"},
+		{"name" : "index", "type" : "index", "param_type" : "val"}
+	])
+	addFuncMember("setRetMapIndex", [
+		{"name" : "ret_index", "type" : "int", "param_type" : "val"},
+		{"name" : "index", "type" : "index", "param_type" : "val"}
+	])
 
-func buildRef(blueprint):
-	entity.setFunctions(blueprint["functions"])
-		
-func build(blueprint):
-	entity.setFuncName(blueprint["func_name"])
-	entity.setParamMap(blueprint["param_map"])
-	entity.setRetMap(blueprint["ret_map"])

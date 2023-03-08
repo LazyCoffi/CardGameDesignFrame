@@ -10,11 +10,6 @@ var table
 func _init():
 	table = {}
 
-## FactoryInterface
-func setTable(table_):
-	table = table_
-
-## RuntimeInterface
 # table
 func getCard(template_name, card_name):
 	return table[template_name].getCard(card_name)
@@ -24,6 +19,9 @@ func getCardWithDefaultName(template_name):
 
 func addTemplate(template):
 	table[template.getTemplateName()] = template 
+
+func delTemplate(template_name):
+	table.erase(template_name)
 
 func pack():
 	var script_tree = ScriptTree.new()

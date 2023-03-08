@@ -2,22 +2,17 @@ extends "res://design/factory/Factory.gd"
 class_name SubMenuSceneFactory
 
 func _init():
-	__setMemberList()
-	initMemberView()
-	initConfigView()
-
 	entity_type = "SubMenuScene"
 	entity = TypeUnit.type(entity_type).instance()
 
-func __setMemberList():
-	addBaseMember("scene_name", "StringPack")
-	addObjectMember("switch_target_table", "SwitchTargetTable")
-	addObjectMember("scene_model", "SubMenuModel")
-
-func buildRef(blueprint):
-	entity.setSwtichTargetTable(blueprint["switch_target_table"])
-	entity.setModel(blueprint["scene_model"])
-
-func build(blueprint):
-	entity.setSceneName(blueprint["scene_name"])
-
+func initMemberList():
+	addFuncMember("setSceneName", [
+		{"name" : "scene_name", "type" : "String", "param_type" : "val"}
+	])
+	addFuncMember("addSwitchTarget", [
+		{"name" : "target_name", "type" : "String", "param_type" : "val"},
+		{"name" : "scene_type", "type" : "String", "param_type" : "val"},
+		{"name" : "scene_name", "type" : "String", "param_type" : "val"},
+		{"name" : "switch_type", "type" : "String", "param_type" : "val"}
+	])
+	addObjectMember("scene_model", "SubMenuModel", "setModel")

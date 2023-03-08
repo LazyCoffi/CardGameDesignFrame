@@ -19,12 +19,24 @@ func copy():
 	
 	return ret
 
-## FactoryInterface
-func setTable(attr_node_list):
-	for attr_node in attr_node_list:
-		table[attr_node.getAttrName()] = attr_node
+func addAttr(attr_name, attr_type, attr_val, getter, setter):
+	var attr_node = AttrNode.new()
+	attr_node.setAttrName(attr_name)
+	attr_node.setAttrType(attr_type)
 
-## RuntimeInterface
+	match attr_type:
+		"int" :
+			attr_node.setAttr(int(attr_val))
+		"float":
+			attr_node.setAttr(float(attr_val))
+		"String":
+			attr_node.setAttr(str(attr_val))
+	
+	attr_node.setGetterFunction(getter)
+	attr_node.setSetterFunction(setter)
+
+	table[attr_name] = attr_node
+
 func getAttr(attr_name):
 	return table[attr_name].getAttr()
 
