@@ -15,7 +15,13 @@ func initMemberList():
 		{"name" : "template_name", "type" : "String", "param_type" : "val"},
 	])
 	addObjectMember("card_attr", "Attr", "setCardAttr")
-	addObjectMember("init_card_pile_condition", "Function", "setInitCardPileFunction")
+	addObjectMember("init_card_pile_function", "Function", "setInitCardPileFunction")
 	addObjectMember("ai_is_action_condition", "Function", "setAiIsActionCondition")
 	addObjectMember("ai_choose_target_function", "Function", "setAiChooseTargetFunction")
 	addObjectMember("ai_choose_card_function", "Function", "setAiChooseCardFunction")
+
+func initOverviewList():
+	addAttrOverview("card_name", "getCardName")
+	addAttrOverview("avator_name", "getAvatorName")
+	addAttrOverview("introduction", "getIntroduction")
+	addAttrOverview("template_name", "getTemplateName")

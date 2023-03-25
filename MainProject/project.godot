@@ -10,6 +10,16 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
+"class": "AnimationPack",
+"language": "GDScript",
+"path": "res://class/entity/AnimationPack.gd"
+}, {
+"base": "Node",
+"class": "AnimationPackFactory",
+"language": "GDScript",
+"path": "res://design/factory/AnimationPackFactory.gd"
+}, {
+"base": "Node",
 "class": "Archive",
 "language": "GDScript",
 "path": "res://class/scene/Archive.gd"
@@ -83,6 +93,16 @@ _global_script_classes=[ {
 "class": "AttrNode",
 "language": "GDScript",
 "path": "res://class/entity/AttrNode.gd"
+}, {
+"base": "Node",
+"class": "AudioPack",
+"language": "GDScript",
+"path": "res://class/entity/AudioPack.gd"
+}, {
+"base": "Node",
+"class": "AudioPackFactory",
+"language": "GDScript",
+"path": "res://design/factory/AudioPackFactory.gd"
 }, {
 "base": "Node",
 "class": "BaseConditionSet",
@@ -228,6 +248,36 @@ _global_script_classes=[ {
 "class": "EquipmentCard",
 "language": "GDScript",
 "path": "res://class/entity/EquipmentCard.gd"
+}, {
+"base": "Node",
+"class": "ExploreMapDispatcher",
+"language": "GDScript",
+"path": "res://scene/ExploreMapScene/ExploreMapDispatcher.gd"
+}, {
+"base": "Node",
+"class": "ExploreMapFuncSet",
+"language": "GDScript",
+"path": "res://class/functional/ExploreMapFuncSet.gd"
+}, {
+"base": "Node",
+"class": "ExploreMapModel",
+"language": "GDScript",
+"path": "res://scene/ExploreMapScene/ExploreMapModel.gd"
+}, {
+"base": "Node",
+"class": "ExploreMapRender",
+"language": "GDScript",
+"path": "res://scene/ExploreMapScene/ExploreMapRender.gd"
+}, {
+"base": "Node",
+"class": "ExploreMapService",
+"language": "GDScript",
+"path": "res://scene/ExploreMapScene/ExploreMapService.gd"
+}, {
+"base": "Node",
+"class": "Exporter",
+"language": "GDScript",
+"path": "res://design/ScriptExporter.gd"
 }, {
 "base": "Node",
 "class": "Factory",
@@ -414,6 +464,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scene/MainMenuScene/MainMenuService.gd"
 }, {
+"base": "Node2D",
+"class": "MapCanvas",
+"language": "GDScript",
+"path": "res://class/entity/MapCanvas.gd"
+}, {
 "base": "Node",
 "class": "MathConditionSet",
 "language": "GDScript",
@@ -545,6 +600,8 @@ _global_script_classes=[ {
 "path": "res://class/entity/ValRange.gd"
 } ]
 _global_script_class_icons={
+"AnimationPack": "",
+"AnimationPackFactory": "",
 "Archive": "",
 "ArchiveDispatcher": "",
 "ArchiveManager": "",
@@ -560,6 +617,8 @@ _global_script_class_icons={
 "AttrFactory": "",
 "AttrFuncSet": "",
 "AttrNode": "",
+"AudioPack": "",
+"AudioPackFactory": "",
 "BaseConditionSet": "",
 "BaseFuncSet": "",
 "BitFlag": "",
@@ -589,6 +648,12 @@ _global_script_class_icons={
 "DictMap": "",
 "Emitter": "",
 "EquipmentCard": "",
+"ExploreMapDispatcher": "",
+"ExploreMapFuncSet": "",
+"ExploreMapModel": "",
+"ExploreMapRender": "",
+"ExploreMapService": "",
+"Exporter": "",
 "Factory": "",
 "FactoryTree": "",
 "Float": "",
@@ -626,6 +691,7 @@ _global_script_class_icons={
 "MainMenuRender": "",
 "MainMenuSceneFactory": "",
 "MainMenuService": "",
+"MapCanvas": "",
 "MathConditionSet": "",
 "MathFuncSet": "",
 "NullPack": "",
@@ -671,6 +737,7 @@ ResourceUnit="*res://class/unit/ResourceUnit.gd"
 GlobalSetting="*res://class/unit/GlobalSetting.gd"
 CardCache="*res://class/unit/CardCache.gd"
 SceneManager="*res://class/scene/SceneManager.gd"
+AudioPlayer="*res://class/unit/AudioPlayer.gd"
 
 [display]
 

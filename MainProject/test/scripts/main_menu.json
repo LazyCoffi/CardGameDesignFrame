@@ -1,28 +1,225 @@
 {
 	"scene_name": "main_menu",
-	"switch_target_table": {
-		"table": {
-			"StartButton": {
-				"target_name": "StartButton",
-				"scene_type": "LinearBattleScene",
-				"scene_name": "linear_battle",
-				"switch_type": "switch"
+	"scene_model": {
+		"start_function": {
+			"func_name": "",
+			"functions": [
+				{
+					"graph": {
+						"request_params": {
+							"switchScene_0_0": "Object"
+						},
+						"node_list": [
+							{
+								"func_unit": {
+									"func_name": "switchScene",
+									"func_set_name": "SceneOperFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											},
+											{
+												"param_type": "StringPack",
+												"param": {
+													"val": "explore_map"
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									null,
+									null
+								]
+							}
+						]
+					},
+					"param_map": {
+						"map": {
+							"switchScene_0_0": 0
+						}
+					}
+				}
+			],
+			"param_map": {
+				"map": [
+					0
+				]
 			},
-			"ContinueButton": {
-				"target_name": "ContinueButton",
-				"scene_type": "ArchiveScene",
-				"scene_name": "push",
-				"switch_type": ""
+			"ret_map": {
+				"map": [
+					0
+				]
+			}
+		},
+		"continue_function": {
+			"func_name": "",
+			"functions": [
+				{
+					"graph": {
+						"request_params": {
+							"switchScene_0_0": "Object"
+						},
+						"node_list": [
+							{
+								"func_unit": {
+									"func_name": "switchScene",
+									"func_set_name": "SceneOperFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											},
+											{
+												"param_type": "StringPack",
+												"param": {
+													"val": "archive_menu"
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									null,
+									null
+								]
+							}
+						]
+					},
+					"param_map": {
+						"map": {
+							"switchScene_0_0": 0
+						}
+					}
+				}
+			],
+			"param_map": {
+				"map": [
+					0
+				]
 			},
-			"SettingButton": {
-				"target_name": "SettingButton",
-				"scene_type": "LinearBattleScene",
-				"scene_name": "linear_battle",
-				"switch_type": "switch"
+			"ret_map": {
+				"map": [
+					0
+				]
+			}
+		},
+		"setting_function": {
+			"func_name": "",
+			"functions": [
+				{
+					"graph": {
+						"request_params": {
+							"switchScene_0_0": "Object"
+						},
+						"node_list": [
+							{
+								"func_unit": {
+									"func_name": "switchScene",
+									"func_set_name": "SceneOperFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											},
+											{
+												"param_type": "StringPack",
+												"param": {
+													"val": "linear_battle"
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									null,
+									null
+								]
+							}
+						]
+					},
+					"param_map": {
+						"map": {
+							"switchScene_0_0": 0
+						}
+					}
+				}
+			],
+			"param_map": {
+				"map": [
+					0
+				]
+			},
+			"ret_map": {
+				"map": [
+					0
+				]
+			}
+		},
+		"exit_function": {
+			"func_name": "",
+			"functions": [
+				{
+					"graph": {
+						"request_params": {
+							"switchScene_0_0": "Object"
+						},
+						"node_list": [
+							{
+								"func_unit": {
+									"func_name": "switchScene",
+									"func_set_name": "SceneOperFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											},
+											{
+												"param_type": "StringPack",
+												"param": {
+													"val": "explore_map"
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									null,
+									null
+								]
+							}
+						]
+					},
+					"param_map": {
+						"map": {
+							"switchScene_0_0": 0
+						}
+					}
+				}
+			],
+			"param_map": {
+				"map": [
+					0
+				]
+			},
+			"ret_map": {
+				"map": [
+					0
+				]
 			}
 		}
-	},
-	"scene_model": {
-
 	}
 }

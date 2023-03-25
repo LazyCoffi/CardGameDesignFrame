@@ -6,7 +6,7 @@ var ScriptTree = TypeUnit.type("ScriptTree")
 var map
 
 func _init():
-	map = []
+	map = {}
 
 func copy():
 	var ret = TypeUnit.type("DictMap").new()
@@ -15,18 +15,22 @@ func copy():
 	return ret
 
 func getMap():
-	return map.duplicate()
+	return map
 
 func setMap(map_):
 	map = map_
 
-func setIndex(param_index, index):
-	map[index] = node_index
+func initMap(request_list):
+	for index in range(request_list.size()):
+		map[request_list[index]] = index
+
+func setIndex(index, param_index):
+	map[index] = param_index
 
 func trans(params):
 	var ret = {}
-	for index in range(map.size()):
-		ret[map[index]] = params[index] 
+	for key in map.keys():
+		ret[key] = params[map[key]]
 
 	return ret
 
@@ -38,4 +42,4 @@ func pack():
 	return script_tree
 
 func loadScript(script_tree):
-	map = script_tree.getStrArray("map")
+	map = script_tree.getIntDict("map")

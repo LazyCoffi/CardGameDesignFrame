@@ -70,6 +70,10 @@ func callService(scene_name, func_name, params):
 	var scene_service = getScene(scene_name).service()
 	return scene_service.callv(func_name, params)
 
+func callRender(scene_name, func_name, params):
+	var scene_render = getScene(scene_name).render()
+	return scene_render.callv(func_name, params)
+
 func loadArchive(archive_name):
 	archive_manager.setArchiveName(archive_name)
 	scene_cache = archive_manager.loadArchive(archive_name)

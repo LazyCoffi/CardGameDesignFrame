@@ -11,3 +11,7 @@ func initMemberList():
 	])
 	addCommonObjectMember("card_template", "setCardTemplate")
 	addObjectMember("revise_function", "Function", "setReviseFunction")
+
+func initOverviewList():
+	addAttrOverview("template_name", "getTemplateName")
+	addAttrOverview("card_type", "getCardType")

@@ -13,3 +13,8 @@ func initMemberList():
 		{"name" : "x", "type" : "int", "param_type" : "val"},
 		{"name" : "y", "type" : "int", "param_type" : "val"}
 	])
+
+func initOverviewList():
+	addAttrOverview("init_scene_name", "getInitSceneName")
+	addAttrArrayOverview("screen_size", "getScreenSize")
+

@@ -40,6 +40,9 @@ func addTarget(target_name, scene_type, scene_name, switch_type):
 
 	table[target_name] = target_pack
 
+func getTable():
+	return table
+
 func pack():
 	var script_tree = ScriptTree.new()
 

@@ -44,13 +44,16 @@ func getParamMap():
 	return param_map
 
 func initParamMap():
-	param_map.setMap(graph.getParamsType().keys())
+	param_map.initMap(graph.getParamsType().keys())
 
 func setMap(map):
 	param_map.setMap(map)
 
-func setMapIndex(param_index, index):
-	param_map.setIndex(param_index, index)
+func getMap():
+	return param_map.getMap()
+
+func setMapIndex(index, param_index):
+	param_map.setIndex(index, param_index)
 
 func pack():
 	var script_tree = ScriptTree.new()

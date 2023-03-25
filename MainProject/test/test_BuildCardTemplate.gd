@@ -12,6 +12,9 @@ var NullPack = TypeUnit.type("NullPack")
 var Integer = TypeUnit.type("Integer")
 var FuncGraphNode = TypeUnit.type("FuncGraphNode")
 var StringPack = TypeUnit.type("StringPack")
+var CardTemplate = TypeUnit.type("CardTemplate")
+var AnimationPack = TypeUnit.type("AnimationPack")
+var AudioPack = TypeUnit.type("AudioPack")
 
 func before_all():
 	GlobalSetting.initScript()
@@ -39,7 +42,7 @@ func __buildHpGetterFunction():
 	
 	var getter_function = Function.new()
 	getter_function.setGraph(graph)
-	getter_function.setMap(["returnVal_0_0"])
+	getter_function.setMap({"returnVal_0_0" : 0})
 
 	return getter_function
 
@@ -98,7 +101,7 @@ func __buildHpSetterFunction():
 
 	var setter_function = Function.new()
 	setter_function.setGraph(graph)
-	setter_function.setMap(["upperBoundInt_1_0"])
+	setter_function.setMap({"upperBoundInt_1_0" : 0})
 
 	return setter_function
 
@@ -124,29 +127,22 @@ func __buildStgFunction():
 	
 	var function = Function.new()
 	function.setGraph(graph)
-	function.setMap(["returnVal_0_0"])
+	function.setMap({"returnVal_0_0" : 0})
 
 	return function
 
 func __addBattleCharacterAttr(card):
-	var hp_attr = AttrNode.new()
-	hp_attr.setAttrName("hp")
-	hp_attr.setAttrType("Integer")
+	var attr = Attr.new()
+
 	var hp_getter_function = __buildHpGetterFunction()
 	var hp_setter_function = __buildHpSetterFunction()
-	hp_attr.setGetterFunction(hp_getter_function)
-	hp_attr.setSetterFunction(hp_setter_function)
-	card.addAttr(hp_attr)
+	attr.addAttr("hp", "Integer", hp_getter_function, hp_setter_function)
 
-	var stg_attr = AttrNode.new()
-	stg_attr.setAttrName("stg")
-	stg_attr.setAttrType("Integer")
 	var stg_getter_function = __buildStgFunction()
 	var stg_setter_function = __buildStgFunction()
-	stg_attr.setGetterFunction(stg_getter_function)
-	stg_attr.setSetterFunction(stg_setter_function)
+	attr.addAttr("stg", "Integer", stg_getter_function, stg_setter_function)
 	
-	card.addAttr(stg_attr)
+	card.setCardAttr(attr)
 
 func __buildTrueCondition():
 	var param_list = ParamList.new()
@@ -167,7 +163,7 @@ func __buildTrueCondition():
 
 	var true_condition = Function.new()	
 	true_condition.setGraph(graph)
-	true_condition.setMap([])
+	true_condition.setMap({})
 
 	return true_condition
 
@@ -190,7 +186,7 @@ func __buildFalseCondition():
 
 	var false_condition = Function.new()	
 	false_condition.setGraph(graph)
-	false_condition.setMap([])
+	false_condition.setMap({})
 
 	return false_condition
 
@@ -209,38 +205,18 @@ func __buildExtractFuncUnit():
 	return extract_func_unit
 
 func __buildAttackHyperFunction():
-	
-	var param_node0 = ParamNode.new()
-	param_node0.setParamType("NullPack")
-	param_node0.setParam(NullPack.new())
+	var attack_node = FuncGraphNode.new()
+	attack_node.setFunc("AttrFuncSet", "minusAttrIntOverride")
 
-	var param_node1 = ParamNode.new()
-	param_node1.setParamType("StringPack")
 	var string_pack1 = StringPack.new()
 	string_pack1.setVal("hp")
-	param_node1.setParam(string_pack1)
+	attack_node.setDefaultParam("StringPack", string_pack1, 1)
 
-	var param_node2 = ParamNode.new()
-	param_node2.setParamType("NullPack")
-	param_node2.setParam(NullPack.new())
-
-	var param_node3 = ParamNode.new()
-	param_node3.setParamType("StringPack")
-	var string_pack3 = StringPack.new()
-	string_pack3.setVal("stg")
-	param_node3.setParam(string_pack1)
-
-	var param_list = ParamList.new()
-
-	param_list.addParam(param_node0)
-	param_list.addParam(param_node1)
-	param_list.addParam(param_node2)
-	param_list.addParam(param_node3)
-	
-	var attack_func_unit = FuncUnit.new()
-	attack_func_unit.setFuncSetName("AttrFuncSet")
-	attack_func_unit.setFuncName("minusAttrIntOverride")
-	attack_func_unit.setDefaultParams(param_list)
+	var string_pack2 = StringPack.new()
+	string_pack2.setVal("stg")
+	attack_node.setDefaultParam("StringPack", string_pack2, 3)
+	attack_node.setChIndex(1, 0)
+	attack_node.setChIndex(2, 2)
 
 	var extract_func_unit1 = __buildExtractFuncUnit()
 	var extract_func_unit2 = __buildExtractFuncUnit()
@@ -255,10 +231,6 @@ func __buildAttackHyperFunction():
 	extract_node2.setFuncUnit(extract_func_unit2)
 	extract_node2.setChIndexList([null])
 
-	var attack_node = FuncGraphNode.new()
-	attack_node.setFuncUnit(attack_func_unit)
-	attack_node.setChIndexList([1, null, 2, null])
-
 	graph.addNode(attack_node)
 	graph.addNode(extract_node1)
 	graph.addNode(extract_node2)
@@ -266,7 +238,7 @@ func __buildAttackHyperFunction():
 
 	var attack_function = Function.new()
 	attack_function.setGraph(graph)
-	attack_function.setMap(["extractAttr_1_0", "extractAttr_2_0"])
+	attack_function.setMap({"extractAttr_1_0" : 0, "extractAttr_2_0" : 1})
 
 	var attack_hyper = HyperFunction.new()
 	attack_hyper.addFunction(attack_function)
@@ -275,14 +247,33 @@ func __buildAttackHyperFunction():
 
 	return attack_hyper
 
-func __buildAttackSkillCard(index):
+func __buildAnimationPack():
+	var animation_pack = AnimationPack.new()
+
+	animation_pack.addTexturePath("res://asserts/animation/crop/crop1.png")
+	animation_pack.addTexturePath("res://asserts/animation/crop/crop2.png")
+	animation_pack.addTexturePath("res://asserts/animation/crop/crop3.png")
+
+	animation_pack.setGap(3)
+
+	return animation_pack
+
+func __buildAudioPack():
+	var audio_pack = AudioPack.new()
+
+	audio_pack.setAudioPath("res://asserts/audio/crop.mp3")
+	
+	return audio_pack
+
+func __buildAttackSkillCard():
 	var card = LinearSkillCard.new()
 	card.setOffensive()
 	card.setPlayCondition(__buildTrueCondition())
 	card.setTargetCondition(__buildTrueCondition())
+	card.setAnimationPack(__buildAnimationPack())
+	card.setAudioPack(__buildAudioPack())
 	card.setAutoCondition(__buildFalseCondition())
 	card.setEffectFunc(__buildAttackHyperFunction())
-	card.setCardName("attack" + str(index))
 	card.setIntroduction("Attack!")
 	card.setAvatorName("attack_card")
 	card.setOffensive()
@@ -290,138 +281,57 @@ func __buildAttackSkillCard(index):
 	return card
 
 func __buildAiIsActionCondition():
-	var not_param_node = ParamNode.new()
-	not_param_node.setParamType("NullPack")
-	not_param_node.setParam(NullPack.new())
+	var not_node = FuncGraphNode.new()
+	not_node.setFunc("BaseConditionSet", "notGate")
+	not_node.setChIndex(1, 0)
 
-	var not_param_list = ParamList.new()
-	not_param_list.addParam(not_param_node)
-
-	var not_unit = FuncUnit.new()
-	not_unit.setFuncSetName("BaseConditionSet")
-	not_unit.setFuncName("notGate")
-	not_unit.setDefaultParams(not_param_list)
-
-	var empty_param_node = ParamNode.new()
-	empty_param_node.setParamType("NullPack")
-	empty_param_node.setParam(NullPack.new())
-
-	var empty_param_list = ParamList.new()
-	empty_param_list.addParam(empty_param_node)
-
-	var empty_unit = FuncUnit.new()
-	empty_unit.setFuncSetName("CharacterCardConditionSet")
-	empty_unit.setFuncName("isHandCardsEmpty")
-	empty_unit.setDefaultParams(empty_param_list)
+	var action_node = FuncGraphNode.new()
+	action_node.setFunc("CharacterCardConditionSet", "isHandCardsEmpty")
 
 	var graph = FuncGraph.new()
-
-	var not_node = FuncGraphNode.new()
-	not_node.setFuncUnit(not_unit)
-	not_node.setChIndexList([1])
-
-	var empty_node = FuncGraphNode.new()
-	empty_node.setFuncUnit(empty_unit)
-	empty_node.setChIndexList([null])
-
 	graph.addNode(not_node)
-	graph.addNode(empty_node)
+	graph.addNode(action_node)
 	graph.construct()
 	
 	var ai_is_action_condition = Function.new()
 	ai_is_action_condition.setGraph(graph)
-	ai_is_action_condition.setMap(["isHandCardsEmpty_1_0"])
+	ai_is_action_condition.setMap({"isHandCardsEmpty_1_0" : 0})
 
 	return ai_is_action_condition
 
 func __buildAiChooseTargetFunction():
-	var opposite_param_node0 = ParamNode.new()
-	opposite_param_node0.setParamType("NullPack")
-	opposite_param_node0.setParam(NullPack.new())
+	var oppostie_node = FuncGraphNode.new()
+	oppostie_node.setFunc("LinearBattleFuncSet", "getOppositeTeam")
 
-	var opposite_param_node1 = ParamNode.new()
-	opposite_param_node1.setParamType("NullPack")
-	opposite_param_node1.setParam(NullPack.new())
-
-	var opposite_param_list = ParamList.new()
-	opposite_param_list.addParam(opposite_param_node0)
-	opposite_param_list.addParam(opposite_param_node1)
-
-	var opposite_unit = FuncUnit.new()
-	opposite_unit.setFuncSetName("LinearBattleFuncSet")
-	opposite_unit.setFuncName("getOppositeTeam")
-	opposite_unit.setDefaultParams(opposite_param_list)
-
-	var get_param_node = ParamNode.new()
-	get_param_node.setParamType("NullPack")
-	get_param_node.setParam(NullPack.new())
-
-	var get_param_list = ParamList.new()
-	get_param_list.addParam(get_param_node)
-
-	var get_unit = FuncUnit.new()
-	get_unit.setFuncSetName("ArrayOperFuncSet")
-	get_unit.setFuncName("getFront")
-	get_unit.setDefaultParams(get_param_list)
+	var get_param_node = FuncGraphNode.new()
+	get_param_node.setFunc("ArrayOperFuncSet", "getFront")
+	get_param_node.setChIndex(1, 0)
 
 	var graph = FuncGraph.new()
-	var opposite_node = FuncGraphNode.new()
-	opposite_node.setFuncUnit(opposite_unit)
-	opposite_node.setChIndexList([null, null])
-
-	var get_node = FuncGraphNode.new()	
-	get_node.setFuncUnit(get_unit)
-	get_node.setChIndexList([1])
-
-	graph.addNode(get_node)
-	graph.addNode(opposite_node)
+	graph.addNode(get_param_node)
+	graph.addNode(oppostie_node)
 	graph.construct()
 
 	var ai_choose_target_function = Function.new()
 	ai_choose_target_function.setGraph(graph)
 	ai_choose_target_function.setMap(
-		[
-			"getOppositeTeam_1_1",
-			"getOppositeTeam_1_0"
-		]
+		{
+			"getOppositeTeam_1_1" : 0,
+			"getOppositeTeam_1_0" : 1
+		}
 	)
 
 	return ai_choose_target_function
 
 func __buildAiChooseCardFunction():
-	var peek_param_node = ParamNode.new()
-	peek_param_node.setParamType("NullPack")
-	peek_param_node.setParam(NullPack.new())
-
-	var peek_param_list = ParamList.new()
-	peek_param_list.addParam(peek_param_node)
-
-	var peek_unit = FuncUnit.new()
-	peek_unit.setFuncSetName("CharacterCardFuncSet")
-	peek_unit.setFuncName("peekHandCards")
-	peek_unit.setDefaultParams(peek_param_list)
-
-	var get_param_node = ParamNode.new()
-	get_param_node.setParamType("NullPack")
-	get_param_node.setParam(NullPack.new())
-
-	var get_param_list = ParamList.new()
-	get_param_list.addParam(get_param_node)
-
-	var get_unit = FuncUnit.new()
-	get_unit.setFuncSetName("ArrayOperFuncSet")
-	get_unit.setFuncName("getFront")
-	get_unit.setDefaultParams(get_param_list)
-
-	var graph = FuncGraph.new()
-
 	var peek_node = FuncGraphNode.new()
-	peek_node.setFuncUnit(peek_unit)
-	peek_node.setChIndexList([null])
+	peek_node.setFunc("CharacterCardFuncSet", "peekHandCards")
 
 	var get_node = FuncGraphNode.new()
-	get_node.setFuncUnit(get_unit)
-	get_node.setChIndexList([1])
+	get_node.setFunc("ArrayOperFuncSet", "getFront")
+	get_node.setChIndex(1, 0)
+
+	var graph = FuncGraph.new()
 
 	graph.addNode(get_node)
 	graph.addNode(peek_node)
@@ -429,9 +339,45 @@ func __buildAiChooseCardFunction():
 
 	var ai_choose_card_function = Function.new()
 	ai_choose_card_function.setGraph(graph)
-	ai_choose_card_function.setMap(["peekHandCards_1_0"])
+	ai_choose_card_function.setMap({"peekHandCards_1_0" : 0})
 
 	return ai_choose_card_function
+
+func __buildInitCardPileFunction():
+	var get_node1 = FuncGraphNode.new()
+	get_node1.setFunc("CardFuncSet", "createCardWithDefaultName")
+	var string_pack1 = StringPack.new()
+	string_pack1.setVal("AttackSkillCard")
+	get_node1.setDefaultParam("StringPack", string_pack1, 0)
+	
+	var get_node2 = FuncGraphNode.new()
+	get_node2.setFunc("CardFuncSet", "createCardWithDefaultName")
+	var string_pack2 = StringPack.new()
+	string_pack2.setVal("AttackSkillCard")
+	get_node2.setDefaultParam("StringPack", string_pack2, 0)
+
+	var pack_node = FuncGraphNode.new()	
+	pack_node.setFunc("ArrayOperFuncSet", "packArray")
+	
+	var append_node = FuncGraphNode.new()
+	append_node.setFunc("ArrayOperFuncSet", "appendVal")
+
+	var init_graph = FuncGraph.new()
+	init_graph.addNode(append_node)
+	init_graph.addNode(pack_node)
+	init_graph.addNode(get_node1)
+	init_graph.addNode(get_node2)
+
+	append_node.setChIndex(1, 0)
+	append_node.setChIndex(3, 1)
+	pack_node.setChIndex(2, 0)
+
+	init_graph.construct()
+
+	var init_function = Function.new()
+	init_function.setGraph(init_graph)
+
+	return init_function
 
 func __buildMainCharacterCard():
 	var card = LinearCharacterCard.new()
@@ -443,9 +389,7 @@ func __buildMainCharacterCard():
 	card.setAttr("hp", 100)
 	card.setAttr("stg", 25)
 
-	for index in 4:
-		card.pushCardPileFront(__buildAttackSkillCard(index))
-	
+	card.setInitCardPileFunction(__buildInitCardPileFunction())
 	card.setAiIsActionCondition(__buildFalseCondition())
 	card.setAiChooseCardFunction(__buildFalseCondition())
 	card.setAiChooseTargetFunction(__buildFalseCondition())
@@ -460,11 +404,9 @@ func __buildEnemyCharacterCard():
 	
 	__addBattleCharacterAttr(card)
 	card.setAttr("hp", 50)
-	card.setAttr("stg", 10)
+	card.setAttr("stg", 50)
 
-	for index in 4:
-		card.pushCardPileFront(__buildAttackSkillCard(index + 4))
-	
+	card.setInitCardPileFunction(__buildInitCardPileFunction())
 	card.setAiIsActionCondition(__buildAiIsActionCondition())
 	card.setAiChooseCardFunction(__buildAiChooseCardFunction())
 	card.setAiChooseTargetFunction(__buildAiChooseTargetFunction())
@@ -495,15 +437,34 @@ func __buildReviseFunction():
 
 	var revise_function = Function.new()
 	revise_function.setGraph(graph)
-	revise_function.setMap(["returnVal_0_0"])
+	revise_function.setMap({"returnVal_0_0" : 0})
 
 	return revise_function
 
 func test_buildCardCache():
+	var attack_card = __buildAttackSkillCard()
+	var attack_card_template = CardTemplate.new()
+	attack_card_template.setTemplateName("AttackSkillCard")
+	attack_card_template.setCardType("LinearSkillCard")
+	attack_card_template.setCardTemplate(attack_card)
+	attack_card_template.setReviseFunction(__buildReviseFunction())
+	CardCache.addTemplate(attack_card_template)
+
 	var main_character_card = __buildMainCharacterCard()
-	CardCache.addTemplate("LinearCharacterCard", main_character_card, __buildReviseFunction(), ["CharacterCard", "LinearCharacterCard"])
+	var main_character_template = CardTemplate.new()
+	main_character_template.setTemplateName("MainCharacterCard")
+	main_character_template.setCardType("LinearCharacterCard")
+	main_character_template.setCardTemplate(main_character_card)
+	main_character_template.setReviseFunction(__buildReviseFunction())
+	CardCache.addTemplate(main_character_template)
+
 	var enemy_character_card = __buildEnemyCharacterCard()
-	CardCache.addTemplate("LinearCharacterCard", enemy_character_card, __buildReviseFunction(), ["CharacterCard", "LinearCharacterCard"])
+	var enemy_character_template = CardTemplate.new()
+	enemy_character_template.setTemplateName("EnemyCharacterCard")
+	enemy_character_template.setCardType("LinearCharacterCard")
+	enemy_character_template.setCardTemplate(enemy_character_card)
+	enemy_character_template.setReviseFunction(__buildReviseFunction())
+	CardCache.addTemplate(enemy_character_template)
 
 	var script_tree = CardCache.pack()
 	script_tree.exportAsJson("res://test/scripts/card_templates.json")

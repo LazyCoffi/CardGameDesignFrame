@@ -3,6 +3,7 @@ class_name FactoryTree
 
 var RootFactory = TypeUnit.type("RootFactory")
 var Factory = TypeUnit.type("Factory")
+var ScriptTree = TypeUnit.type("ScriptTree")
 
 class FactoryTreeNode:
 	var factory
@@ -14,37 +15,48 @@ class FactoryTreeNode:
 		father = father_
 		ch = {}
 	
-	func addObjectIntoArray(arr_name):
-		var member = factory.addObjectIntoArray(arr_name)
+	func getMemberList():
+		return factory.getMemberList()
+	
+	func getOverviewList():
+		return factory.getOverviewList()
+	
+	func getFuncOps():
+		return factory.getFuncOps()
+
+	func addObjectIntoArray(container_name):
+		var member = factory.addObjectIntoArray(container_name)
 		var tree_factory = __getFactory(member["class_type"])
 		var tree_node = FactoryTreeNode.new(tree_factory, self)
-		ch[member["name"]].append(tree_node)
+		tree_node.create()
+		ch[member["container_name"]].append(tree_node)
 		factory.getEntity().call(member["add_func"], tree_node.getEntity())
 
 		return member
 	
-	func delObjectFromArray(arr_name, index):
-		var member = factory.delObjectFromArray(arr_name, index)
+	func delObjectFromArray(container_name, index):
+		var member = factory.delObjectFromArray(container_name, index)
 		var tree_node = ch[member["name"]][index]
 		factory.getEntity().call(member["del_func"], tree_node.getEntity())
-		ch[member["name"]].remove(index)
+		ch[member["container_name"]].remove(index)
 
 		return member
 					
-	func addObjectIntoDict(dict_name, index):
-		var member = factory.addObjectIntoDict(dict_name, index)
+	func addObjectIntoDict(container_name, index):
+		var member = factory.addObjectIntoDict(container_name, index)
 		var tree_factory = __getFactory(member["class_type"])
 		var tree_node = FactoryTreeNode.new(tree_factory, self)
-		ch[member["name"]][index] = tree_node
+		tree_node.create()
+		ch[member["containter_name"]][index] = tree_node
 		factory.getEntity().call(member["add_func"], tree_node.getEntity())
 
 		return member
 
-	func delObjectFromDict(dict_name, index):
-		var member = factory.delObjectFromDict(dict_name, index)
+	func delObjectFromDict(container_name, index):
+		var member = factory.delObjectFromDict(container_name, index)
 		var tree_node = ch[member["name"]][index]
 		factory.getEntity().call(member["del_func"], tree_node.getEntity())
-		ch[member["name"]].erase(index)
+		ch[member["container_name"]].erase(index)
 
 		return member
 
@@ -53,6 +65,7 @@ class FactoryTreeNode:
 
 		var tree_factory = __getFactory(obj_type)
 		var tree_node = FactoryTreeNode.new(tree_factory, self)
+		tree_node.create()
 		factory.getEntity().call(member["set_func"], tree_node.getEntity())
 		ch[member["name"]] = tree_node
 
@@ -72,22 +85,20 @@ class FactoryTreeNode:
 
 		var tree_factory = __getFactory(class_type)
 		var tree_node = FactoryTreeNode.new(tree_factory, self)
-		factory.getEntity().call(member["set_func"], tree_node.getEntity())
-		ch[member["func_name"] + "_" + member["index"]] = tree_node
+		tree_node.create()
+		ch[member["func_name"] + "_" + str(member["index"])] = tree_node
 
 		return member
 
 	func resetLocalCommonObjectType(func_name, index):
 		var member = factory.resetLocalCommonObjectType(func_name, index)
 
-		factory.getEntity().call(member["set_func"], null)
-
-		ch[member["func_name"] + "_" + member["index"]] = null
+		ch[member["func_name"] + "_" + str(member["index"])] = null
 
 		return member
 	
 	func callFunc(func_name, params):
-		factory.getEntity().callv(func_name, params)
+		factory.callFunc(func_name, params)
 		
 	func getEntity():
 		return factory.getEntity()
@@ -109,14 +120,14 @@ class FactoryTreeNode:
 
 		var member_list = factory.getMemberList()
 		for member in member_list:
-			match member["type"]:
+			match int(member["type"]):
 				Factory.OBJ_MEM:
 					var tree_factory = __getFactory(member["class_type"])
 					var tree_node = FactoryTreeNode.new(tree_factory, self)
 					ch[member["name"]] = tree_node
 					getEntity().call(member["set_func"], tree_node.getEntity())
 
-					tree_node.construct(proj[member["name"]])
+					tree_node.construct(proj["ch"][member["name"]])
 
 				Factory.OBJ_ARR_MEM:
 					ch[member["name"]] = []
@@ -125,10 +136,10 @@ class FactoryTreeNode:
 						var inner_member = member["container"][index]
 						var tree_factory = __getFactory(inner_member["class_type"])
 						var tree_node = FactoryTreeNode.new(tree_factory, self)
-						getEntity().call(member["add_func"], tree_factory)
+						getEntity().call(member["add_func"], tree_node.getEntity())
 						ch[member["name"]].append(tree_node)
 
-						tree_node.construct(proj[member["name"][index]])
+						tree_node.construct(proj["ch"][member["name"]][index])
 
 				Factory.OBJ_DICT_MEM:
 					ch[member["name"]] = {}
@@ -139,7 +150,7 @@ class FactoryTreeNode:
 						getEntity().call(member["add_func"], tree_node.getEntity())
 						ch[member["name"]] = tree_node
 
-						tree_node.construct(proj[member["name"]][key])
+						tree_node.construct(proj["ch"][member["name"]][key])
 
 				Factory.COM_OBJ_MEM:
 					if member["class_type"] == null:
@@ -150,14 +161,14 @@ class FactoryTreeNode:
 						getEntity().call(member["set_func"], tree_node.getEntity())
 						ch[member["name"]] = tree_node
 
-						tree_node.construct(proj[member["name"]])
+						tree_node.construct(proj["ch"][member["name"]])
 
 				Factory.LOCAL_OBJ_MEM:
 					var tree_factory = __getFactory(member["class_type"])
 					var tree_node = FactoryTreeNode.new(tree_factory, self)
-					ch[member["func_name"] + "_" + member["index"]] = tree_node
+					ch[member["func_name"] + "_" + str(member["index"])] = tree_node
 
-					tree_node.construct(proj[member["func_name"] + "_" + member["index"]])
+					tree_node.construct(proj["ch"][member["func_name"] + "_" + str(member["index"])])
 
 				Factory.LOCAL_COM_MEM:
 					if member["class_type"] == null:
@@ -165,9 +176,9 @@ class FactoryTreeNode:
 					else:
 						var tree_factory = __getFactory(member["class_type"])
 						var tree_node = FactoryTreeNode.new(tree_factory, self)
-						ch[member["func_name"] + "_" + member["index"]] = tree_node
+						ch[member["func_name"] + "_" + str(member["index"])] = tree_node
 
-						tree_node.construct(proj[member["func_name"] + "_" + member["index"]])
+						tree_node.construct(proj["ch"][member["func_name"] + "_" + str(member["index"])])
 
 	func create():
 		factory.create()
@@ -179,6 +190,7 @@ class FactoryTreeNode:
 					var tree_factory = __getFactory(member["class_type"])
 					var tree_node = FactoryTreeNode.new(tree_factory, self)
 					ch[member["name"]] = tree_node
+
 					getEntity().call(member["set_func"], tree_node.getEntity())
 
 					tree_node.create()
@@ -220,17 +232,17 @@ class FactoryTreeNode:
 				Factory.LOCAL_OBJ_MEM:
 					var tree_factory = __getFactory(member["class_type"])
 					var tree_node = FactoryTreeNode.new(tree_factory, self)
-					ch[member["func_name"] + "_" + member["index"]] = tree_node
+					ch[member["func_name"] + "_" + str(member["index"])] = tree_node
 
 					tree_node.create()
 
 				Factory.LOCAL_COM_MEM:
 					if member["class_type"] == null:
-						ch[member["name"]] = null
+						ch[member["func_name"] + "_" + str(member["index"])] = null
 					else:
 						var tree_factory = __getFactory(member["class_type"])
 						var tree_node = FactoryTreeNode.new(tree_factory, self)
-						ch[member["func_name"] + "_" + member["index"]] = tree_node
+						ch[member["func_name"] + "_" + str(member["index"])] = tree_node
 
 						tree_node.create()
 
@@ -245,6 +257,47 @@ func _init():
 	root = FactoryTreeNode.new(root_factory, null)
 	node = root
 
+func exportProject(path):
+	var exporter = root.getEntity()
+	exporter.exportScript(path)
+
+func saveProject():
+	var proj = __dfsExportProject(root)
+
+	var script_tree = ScriptTree.new()
+
+	script_tree.addAttr("proj", proj)
+
+	return script_tree
+
+func __dfsExportProject(u):
+	var ret = {}
+	var member_list = u.getMemberList()
+	ret["member_list"] = member_list
+	ret["func_ops"] = u.getFuncOps()
+	ret["ch"] = {}
+
+	for ch_name in u.getChTable().keys():
+		var ch = u.getCh(ch_name)
+
+		if typeof(ch) == TYPE_ARRAY:
+			ret["ch"][ch_name] = []
+			for ch_node in ch:
+				ret["ch"][ch_name].append(__dfsExportProject(ch_node))
+		elif typeof(ch) == TYPE_DICTIONARY:
+			ret["ch"][ch_name] = {}
+			for ch_key in ch.keys():
+				ret["ch"][ch_name][ch_key] = __dfsExportProject(ch[ch_key])
+		else:
+			ret["ch"][ch_name] = __dfsExportProject(ch)
+
+	return ret
+
+func clear():
+	var root_factory = RootFactory.new()
+	root = FactoryTreeNode.new(root_factory, null)
+	node = root
+
 func getRoot():
 	return root
 
@@ -254,17 +307,17 @@ func getNode():
 func callFunc(func_name, params):
 	node.callFunc(func_name, params)
 
-func addObjectIntoArray(arr_name):
-	return node.addObjectIntoArray(arr_name)
+func addObjectIntoArray(container_name):
+	return node.addObjectIntoArray(container_name)
 
-func delObjectFromArray(arr_name, index):
-	return node.delObjectFromArray(arr_name, index)
+func delObjectFromArray(container_name, index):
+	return node.delObjectFromArray(container_name, index)
 
-func addObjectIntoDict(dict_name, index):
-	return node.addObjectIntoDict(dict_name, index)
+func addObjectIntoDict(container_name, index):
+	return node.addObjectIntoDict(container_name, index)
 
-func delObjectFromDict(dict_name, index):
-	return node.delObjectFromDict(dict_name, index)
+func delObjectFromDict(container_name, index):
+	return node.delObjectFromDict(container_name, index)
 
 func setCommonObjectType(obj_name, obj_type):
 	return node.setCommonObjectType(obj_name, obj_type)
@@ -307,3 +360,6 @@ func construct(proj):
 
 func getMemberList():
 	return node.getMemberList()
+
+func getOverviewList():
+	return node.getOverviewList()

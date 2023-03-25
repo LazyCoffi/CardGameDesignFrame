@@ -27,3 +27,15 @@ func initMemberList():
 	addFuncMember("setPlayDestroy", [])
 	addObjectMember("target_condition", "Function", "setTargetCondition")
 	addObjectMember("auto_condition", "Function", "setAutoCondition")
+	addObjectMember("animation_pack", "AnimationPack", "setAnimationPack")
+	addObjectMember("audio_pack", "AudioPack", "setAudioPack")
+
+func initOverviewList():
+	addAttrOverview("is_offensive", "isOffensive")
+	addAttrOverview("is_auto", "isAuto")
+	addAttrOverview("is_recyclable", "isRecyclable")
+	addAttrOverview("is_retainable", "isRetainable")
+	addAttrOverview("is_destroy", "isDestroy")
+	addAttrOverview("is_play_recyclable", "isPlayRecyclable")
+	addAttrOverview("is_play_destory", "isPlayDestory")
+	addAttrOverview("is_play_retainable", "isPlayRetainable")

@@ -17,18 +17,13 @@ func copy():
 func setMap(map_):
 	map = map_
 
-func setMapIndex(map_index, index):
-	map[index] = map_index
+func initMap(siz):
+	map.resize(siz)
+	for index in range(siz):
+		map[index] = index
 
-func isFilled():
-	var val = []
-	val.resize(map.size())
-	for index in map:
-		if val[index] != null:
-			return false
-		val[index] = index
-	
-	return true
+func setMapIndex(index, param_index):
+	map[index] = param_index
 
 func getMap():
 	return map.duplicate()
@@ -37,7 +32,7 @@ func trans(params):
 	var ret = []
 	ret.resize(map.size())
 	for index in range(map.size()):
-		ret[map[index]] = params[index] 
+		ret[index] = params[map[index]] 
 	
 	return ret
 

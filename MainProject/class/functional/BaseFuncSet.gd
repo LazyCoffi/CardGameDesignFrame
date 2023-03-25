@@ -8,5 +8,9 @@ func _init():
 func returnVal(val):
 	return val
 
+func dummy():
+	return
+
 func __initFuncForm():
 	addFuncForm("returnVal", "all", ["all"])
+	addFuncForm("dummy", "null", [])

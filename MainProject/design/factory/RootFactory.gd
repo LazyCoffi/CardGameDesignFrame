@@ -2,13 +2,15 @@ extends "res://design/factory/Factory.gd"
 class_name RootFactory
 
 func _init():
-	entity_type = "Root"
+	entity_type = "ScriptExporter"
+	entity = TypeUnit.type(entity_type).new()
 
 func initMemberList():
-	addObjectMember("GlobalSetting", "GlobalSetting", null)
-	addObjectMember("CardCache", "CardCache", null)
-	addObjectMember("ResourceUnit", "ResourceUnit", null)
-	addObjectArrayMember("MainMenuScene", "MainMenuScene", null, null, "getSceneName")
-	addObjectArrayMember("SubMenuScene", "SubMenuScene", null, null, "getSceneName")
-	addObjectArrayMember("LinearBattleScene", "LinearBattleScene", null, null, "getSceneName")
-	addObjectArrayMember("ArchiveScene", "ArchiveScene", null, null, "getSceneName")
+	addObjectMember("GlobalSetting", "GlobalSetting", "setGlobalSetting")
+	addObjectMember("CardCache", "CardCache", "setCardCache")
+	addObjectMember("ResourceUnit", "ResourceUnit", "setResourceUnit")
+	addObjectArrayMember("MainMenuScene", "MainMenuScene", "addMainMenuScene", "delMainMenuScene")
+	addObjectArrayMember("SubMenuScene", "SubMenuScene", "addSubMenuScene", "delSubMenuScen")
+	addObjectArrayMember("LinearBattleScene", "LinearBattleScene", "addLinearBattleScene", "delLinearBattleScene")
+	addObjectArrayMember("ArchiveScene", "ArchiveScene", "addArchiveScene", "delArchiveScene")
+	addObjectArrayMember("ExploreMapScene", "ExploreMapScene", "addExploreMapScene", "delExploreMapScene")

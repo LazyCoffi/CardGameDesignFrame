@@ -17,13 +17,30 @@ func service():
 
 func launch():
 	renderSubMenu()
-	initResumeButton()
 
 func renderSubMenu():
 	render().setSceneName()
 	render().loadResource()
 	render().setBackground()
 
-func initResumeButton():
-	var resume_button = render().getResumeButton()
-	resume_button.connect("pressed", scene(), "resume")
+	emitResumeSignal()
+	emitSettingSignal()
+	emitExitSignal()
+
+func emitResumeSignal():
+	render().getResumeButton().connect("pressed", self, "resume")
+
+func resume():
+	service().resume()
+
+func emitSettingSignal():
+	render().getSettingButton().connect("pressed", self, "setting")
+
+func setting():
+	service().setting()
+
+func emitExitSignal():
+	render().getExitButton().connect("pressed", self, "exit")
+
+func exit():
+	service().exit()

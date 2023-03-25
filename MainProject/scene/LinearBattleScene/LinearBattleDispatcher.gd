@@ -14,26 +14,33 @@ func scene():
 	return scene_ref
 
 func render():
-	return scene_ref.render()
+	return scene().render()
 
 func tween():
 	return scene().get_node("Tween")
 
 func service():
-	return scene_ref.service()
+	return scene().service()
+
+func player():
+	return scene().get_node("AnimationPlayer")
 
 func launch():
 	battleInit()
 
 func battleInit():
+	initBackground()
 	initSubMenuEntryButton()
 	initNextRoundButton()
 	initCharacter()
 
+func initBackground():
+	render().renderBackground()
+
 func initSubMenuEntryButton():
 	render().renderSubMenuEntryButton()
 	var sub_menu_entry_button = render().getSubMenuEntryButton().getComponent()
-	sub_menu_entry_button.connect("pressed", scene(), "openSubMenu")
+	sub_menu_entry_button.connect("pressed", service(), "subMenu")
 
 func initNextRoundButton():
 	render().renderNextRoundButton()
@@ -59,6 +66,8 @@ func receiveInitRenderCharacterSignal():
 func setActionCharacter():
 	service().setActionCharacter()
 	render().renderActionCharacterMark()
+
+	service().beforeRound()
 
 	if service().isOwnAction():
 		playerAction()
@@ -124,6 +133,7 @@ func receiveNextRoundSignal(_component_key):
 	nextRound()
 
 func nextRound():
+	service().afterRound()
 	service().nextRoundPrepare()
 	render().clearHandCards()
 
@@ -133,6 +143,31 @@ func nextRound():
 func chooseTargetCard(component_key):
 	service().playChosenHandCardAt(component_key)
 
+	playSound()
+
+	emitPlaySkillAnimationSignal(component_key)
+
+func playSound():
+	var chosen_hand_card = service().getChosenHandCard()
+	render().playSkillSound(chosen_hand_card)
+
+func emitPlaySkillAnimationSignal(component_key):
+
+	var chosen_target_card = service().getCharacterByName(component_key)
+	var chosen_hand_card = service().getChosenHandCard()
+
+	var animated_sprite = render().generateSkillAnimation(chosen_target_card, chosen_hand_card)
+
+	if not animated_sprite.is_connected("animation_finished", self, "receivePlaySkillAnimationSignal"):
+		animated_sprite.connect("animation_finished", self, "receivePlaySkillAnimationSignal", [animated_sprite])
+
+	render().playSkillAnimation(animated_sprite)
+
+func receivePlaySkillAnimationSignal(animated_sprite):
+	render().recycleSkillAnimation(animated_sprite)
+	playerAfterPlay()
+
+func playerAfterPlay():
 	service().resetChosenHandCard()
 	render().clearChosenHandCardMark()
 
@@ -165,9 +200,10 @@ func receiveAdjustCharacterSignal():
 	checkIsBattleOver()
 
 func checkIsBattleOver():
-	if service().isBattleOver():
-		battleOver()
-		return
+	if service().isVictory():
+		victory()
+	elif service().isFail():
+		fail()
 	else:
 		emitChooseHandCardSignal()
 		emitNextRoundSignal()
@@ -255,8 +291,8 @@ func aiPlayHandCard():
 		aiCheckIsBattleOver()
 		return
 
-	if not chosen_hand_card.isPositive():
-		checkIsBattleOver()
+	if not chosen_hand_card.isOffensive():
+		aiCheckIsBattleOver()
 		return
 
 	if not chosen_hand_card.isTargetCondition(chosen_target_card, scene_name):
@@ -265,10 +301,27 @@ func aiPlayHandCard():
 
 	action_character.playHandCardByName([chosen_target_card, action_character, scene_name], card_pile, chosen_hand_card.getCardName())
 
-	# TODO: playCardAnime
+	aiPlaySound(chosen_hand_card)
 
+	emitAiPlaySkillAnimationSignal(chosen_target_card, chosen_hand_card)
+
+func aiPlaySound(chosen_hand_card):
+	render().playSkillSound(chosen_hand_card)
+
+func emitAiPlaySkillAnimationSignal(chosen_target_card, chosen_hand_card):
+	var animated_sprite = render().generateSkillAnimation(chosen_target_card, chosen_hand_card)
+
+	if not animated_sprite.is_connected("animation_finished", self, "receiveAiPlaySkillAnimationSignal"):
+		animated_sprite.connect("animation_finished", self, "receiveAiPlaySkillAnimationSignal", [animated_sprite])
+
+	render().playSkillAnimation(animated_sprite)
+ 
+func receiveAiPlaySkillAnimationSignal(animated_sprite):
+	render().recycleSkillAnimation(animated_sprite)
+	aiAfterPlay()
+
+func aiAfterPlay():
 	service().removeDeadCharacter()
-
 	emitAiAdjustCharacterSignal()
 
 func emitAiAdjustCharacterSignal():
@@ -280,69 +333,32 @@ func emitAiAdjustCharacterSignal():
 func receiveAiAdjustCharacterSignal():
 	tween().disconnect("tween_all_completed", self, "receiveAiAdjustCharacterSignal")
 
-	if service().isBattleOver():
-		battleOver()
+	if service().isVictory():
+		victory()
+	elif service().isFail():
+		fail()
 	else:
 		aiPlayHandCard()
 
 func aiCheckIsBattleOver():
-	if service().isBattleOver():
-		battleOver()
+	if service().isVictory():
+		victory()
+	elif service().isFail():
+		fail()
 	else:
 		aiNextRound()
 
 func aiNextRound():
+	service().afterRound()
 	service().nextRoundPrepare()
 	setActionCharacter()
 
-func aiRoundLoop():
-	while service().isEnemyAction():
-		service().drawHandCards()
-
-		if not aiActionLoop():
-			return false
-			
-		service().nextRoundPrepare()
-		service().setActionCharacter()
-		render().renderActionCharacterMark()
-	
-	return true
-
-func aiActionLoop():
-	while true:
-		if service().isActionHandCardsEmpty():
-			return true
-		
-		if not service().isAiAction():
-			return true
-
-		var chosen_hand_card = service().aiChooseCard()
-		var chosen_target_card = service().aiChooseTarget()
-		var action_character = service().getActionCharacter()
-		var card_pile = action_character.getCardPile()
-		var scene_name = scene().getSceneName()
-
-		if chosen_hand_card == null or chosen_target_card == null:
-			return true
-
-		if not chosen_hand_card.isOffensive():
-			return true
-
-		if not chosen_hand_card.isTargetCondition(chosen_target_card, scene_name):
-			return true
-
-		action_character.playHandCardByName([chosen_target_card, action_character, scene_name], card_pile, chosen_hand_card.getCardName())
-
-		service().removeDeadCharacter()
-		render().renderOwnTeam()
-		render().renderEnemyTeam()
-
-		if service().isBattleOver():
-			return false
-	
 # battleOver
-func battleOver():
-	scene().battleOverSwitch()
+func victory():
+	service().victory()
+
+func fail():
+	service().fail()
 
 func __createRoute(component_pack, component_signal, target_func):
 	Logger.assert(not component_pack.isConnected(component_signal), "Component has connected!")

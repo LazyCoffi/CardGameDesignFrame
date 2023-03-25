@@ -18,8 +18,8 @@ func setInitSceneName(init_scene_name_):
 func getScreenSize():
 	return screen_size
 
-func setScreenSize(screen_size_):
-	screen_size = screen_size_
+func setScreenSize(x, y):
+	screen_size = [x, y]
 
 func pack():
 	var script_tree = ScriptTree.new()

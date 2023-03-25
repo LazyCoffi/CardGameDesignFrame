@@ -46,6 +46,9 @@ func hasDefaultParam(index):
 func getDefaultParam(index):
 	return default_params.getParam(index)
 
+func getDefaultParams():
+	return default_params.getParamsList()
+
 func initDefaultParams():
 	default_params.resize(getParamsNum())
 

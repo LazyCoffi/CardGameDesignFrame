@@ -42,11 +42,7 @@ func setParamMap(map):
 
 func initParamMap():
 	var size = getParamsNum()
-	var map = []
-	for index in size:
-		map.append(index)
-
-	param_map.setMap(map)
+	param_map.initMap(size)
 
 func peekRetMap():
 	return ret_map.getMap()
@@ -56,12 +52,8 @@ func setRetMap(map):
 
 func initRetMap():
 	var size = getFunctionsNum()
-	var map = []
-	for index in size:
-		map.append(index)
-
-	ret_map.setMap(map)
-
+	ret_map.initMap(size)
+	
 func exec(params):
 	var cur_params = param_map.trans(params)
 	var ret = []
@@ -85,16 +77,30 @@ func clearFunctions():
 func getFunctions():
 	return functions.duplicate()
 
-func setParamMapIndex(param_index, index):
-	param_map.setMapIndex(param_index, index)
+func setParamMapIndex(index, param_index):
+	param_map.setMapIndex(index, param_index)
 
-func setRetMapIndex(ret_index, index):
-	ret_map.setMapIndex(ret_index, index)
+func setRetMapIndex(index, ret_index):
+	ret_map.setMapIndex(index, ret_index)
 
 func addFunction(function):
 	functions.append(function)
 	initParamMap()
 	initRetMap()
+
+func getFuncNameList():
+	var ret = []
+	for function in functions:
+		ret.append(function.getFuncName())
+	
+	return ret
+
+func getFuncSetNameList():
+	var ret = []
+	for function in functions:
+		ret.append(function.getFuncSetName())
+	
+	return ret
 
 func delFunction(function_index):
 	functions.remove(function_index)

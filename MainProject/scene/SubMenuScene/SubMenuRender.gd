@@ -14,22 +14,25 @@ func model():
 
 func setSceneName():
 	var scene_name = scene().getSceneName()
-	scene().get_node("ResumeButton").setSceneName(scene_name)
-	scene().get_node("LoadButton").setSceneName(scene_name)
-	scene().get_node("SettingButton").setSceneName(scene_name)
-	scene().get_node("MainMenuButton").setSceneName(scene_name)
+	getResumeButton().setSceneName(scene_name)
+	getSettingButton().setSceneName(scene_name)
+	getExitButton().setSceneName(scene_name)
 
 func loadResource():
-	scene().get_node("ResumeButton").loadResource()
-	scene().get_node("LoadButton").loadResource()
-	scene().get_node("SettingButton").loadResource()
-	scene().get_node("MainMenuButton").loadResource()
+	getResumeButton().loadResource()
+	getSettingButton().loadResource()
+	getExitButton().loadResource()
 
 func getResumeButton():
-	return scene().get_node("ResumeButton")
+	return scene().get_node("SubMenuBackgroundRect/ResumeButton")
+
+func getSettingButton():
+	return scene().get_node("SubMenuBackgroundRect/SettingButton")
+
+func getExitButton():
+	return scene().get_node("SubMenuBackgroundRect/ExitButton")
 
 func setBackground():
 	var scene_name = scene().getSceneName()
 	var bg = ResourceUnit.loadRes(scene_name, scene_name, "background_rect")
 	scene().get_node("SubMenuBackgroundRect").texture = bg
-

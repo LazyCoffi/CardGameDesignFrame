@@ -12,15 +12,21 @@ margin_bottom = 40.0
 [node name="NextRoundButton" type="TextureButton" parent="."]
 margin_left = 1551.0
 margin_top = 848.0
-margin_right = 1786.0
-margin_bottom = 969.0
+margin_right = 1791.0
+margin_bottom = 968.0
 expand = true
+
+[node name="NextRoundButtonText" type="Label" parent="NextRoundButton"]
+margin_right = 240.0
+margin_bottom = 120.0
+align = 1
+valign = 1
 
 [node name="SubMenuEntryButton" type="TextureButton" parent="."]
 margin_left = 1720.0
 margin_top = 41.0
-margin_right = 1880.0
-margin_bottom = 201.0
+margin_right = 1820.0
+margin_bottom = 141.0
 expand = true
 
 [node name="Tween" type="Tween" parent="."]

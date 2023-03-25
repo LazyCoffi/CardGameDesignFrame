@@ -1,15 +1,13 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scene/SubMenuScene/SubMenuScene.gd" type="Script" id=1]
 [ext_resource path="res://asserts/component/Mask.png" type="Texture" id=2]
-[ext_resource path="res://scene/SubMenuScene/LoadButton.gd" type="Script" id=3]
+[ext_resource path="res://scene/SubMenuScene/ExitButton.gd" type="Script" id=3]
 [ext_resource path="res://scene/SubMenuScene/ResumeButton.gd" type="Script" id=4]
 [ext_resource path="res://scene/SubMenuScene/SettingButton.gd" type="Script" id=5]
-[ext_resource path="res://scene/SubMenuScene/LoadButtonText.gd" type="Script" id=6]
+[ext_resource path="res://scene/SubMenuScene/ExitButtonText.gd" type="Script" id=6]
 [ext_resource path="res://scene/SubMenuScene/ResumeButtonText.gd" type="Script" id=7]
-[ext_resource path="res://scene/SubMenuScene/MainMenuButton.gd" type="Script" id=8]
 [ext_resource path="res://scene/SubMenuScene/SettingButtonText.gd" type="Script" id=9]
-[ext_resource path="res://scene/SubMenuScene/MainMenuButtonText.gd" type="Script" id=10]
 
 [node name="SubMenuScene" type="Node2D"]
 script = ExtResource( 1 )
@@ -21,68 +19,56 @@ texture = ExtResource( 2 )
 expand = true
 
 [node name="SubMenuBackgroundRect" type="TextureRect" parent="."]
-margin_left = 480.0
-margin_top = 140.0
-margin_right = 1440.0
-margin_bottom = 940.0
+margin_left = 660.0
+margin_top = 240.0
+margin_right = 1260.0
+margin_bottom = 840.0
 expand = true
 
-[node name="ResumeButton" type="TextureButton" parent="."]
-margin_left = 660.0
-margin_top = 210.0
-margin_right = 1260.0
-margin_bottom = 330.0
+[node name="ResumeButton" type="TextureButton" parent="SubMenuBackgroundRect"]
+margin_left = 60.0
+margin_top = 60.0
+margin_right = 540.0
+margin_bottom = 180.0
 expand = true
 script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
-[node name="ResumeButtonText" type="Label" parent="ResumeButton"]
-margin_right = 600.0
+[node name="ResumeButtonText" type="Label" parent="SubMenuBackgroundRect/ResumeButton"]
+margin_right = 480.0
 margin_bottom = 120.0
 align = 1
 valign = 1
 script = ExtResource( 7 )
 
-[node name="LoadButton" type="TextureButton" parent="."]
-margin_left = 660.0
-margin_top = 390.0
-margin_right = 1260.0
-margin_bottom = 510.0
-expand = true
-script = ExtResource( 3 )
-
-[node name="LoadButtonText" type="Label" parent="LoadButton"]
-margin_right = 600.0
-margin_bottom = 120.0
-align = 1
-valign = 1
-script = ExtResource( 6 )
-
-[node name="SettingButton" type="TextureButton" parent="."]
-margin_left = 660.0
-margin_top = 570.0
-margin_right = 1260.0
-margin_bottom = 690.0
+[node name="SettingButton" type="TextureButton" parent="SubMenuBackgroundRect"]
+margin_left = 60.0
+margin_top = 240.0
+margin_right = 540.0
+margin_bottom = 360.0
 expand = true
 script = ExtResource( 5 )
 
-[node name="SettingButtonText" type="Label" parent="SettingButton"]
-margin_right = 600.0
+[node name="SettingButtonText" type="Label" parent="SubMenuBackgroundRect/SettingButton"]
+margin_right = 480.0
 margin_bottom = 120.0
 align = 1
 valign = 1
 script = ExtResource( 9 )
 
-[node name="MainMenuButton" type="TextureButton" parent="."]
-margin_left = 660.0
-margin_top = 750.0
-margin_right = 1260.0
-margin_bottom = 870.0
+[node name="ExitButton" type="TextureButton" parent="SubMenuBackgroundRect"]
+margin_left = 60.0
+margin_top = 420.0
+margin_right = 540.0
+margin_bottom = 540.0
 expand = true
-script = ExtResource( 8 )
+script = ExtResource( 3 )
 
-[node name="MainMenuButtonText" type="Label" parent="MainMenuButton"]
-margin_right = 600.0
+[node name="ExitButtonText" type="Label" parent="SubMenuBackgroundRect/ExitButton"]
+margin_right = 480.0
 margin_bottom = 120.0
 align = 1
 valign = 1
-script = ExtResource( 10 )
+script = ExtResource( 6 )

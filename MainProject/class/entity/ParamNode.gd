@@ -1,6 +1,8 @@
 extends Node
 class_name ParamNode
 
+var NullPack = TypeUnit.type("NullPack")
+
 var param_type
 var param
 

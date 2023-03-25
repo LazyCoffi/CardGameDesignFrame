@@ -11,11 +11,11 @@ func _init():
 	table = {}
 
 # table
-func getCard(template_name, card_name):
-	return table[template_name].getCard(card_name)
+func createCard(template_name, card_name):
+	return table[template_name].createCard(card_name)
 
-func getCardWithDefaultName(template_name):
-	return table[template_name].getCardWithDefaultName()
+func createCardWithDefaultName(template_name):
+	return table[template_name].createCardWithDefaultName()
 
 func addTemplate(template):
 	table[template.getTemplateName()] = template 

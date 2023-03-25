@@ -19,23 +19,17 @@ func copy():
 	
 	return ret
 
-func addAttr(attr_name, attr_type, attr_val, getter, setter):
+func addAttr(attr_name, attr_type, getter, setter):
 	var attr_node = AttrNode.new()
 	attr_node.setAttrName(attr_name)
 	attr_node.setAttrType(attr_type)
-
-	match attr_type:
-		"int" :
-			attr_node.setAttr(int(attr_val))
-		"float":
-			attr_node.setAttr(float(attr_val))
-		"String":
-			attr_node.setAttr(str(attr_val))
-	
 	attr_node.setGetterFunction(getter)
 	attr_node.setSetterFunction(setter)
 
 	table[attr_name] = attr_node
+
+func delAttr(attr_name):
+	table.erase(attr_name)
 
 func getAttr(attr_name):
 	return table[attr_name].getAttr()
@@ -51,6 +45,9 @@ func getAttrList():
 
 	return ret
 
+func getAttrNodeList():
+	return table.values()
+
 func setAttr(attr_name, attr):
 	table[attr_name].setAttr(attr)
 
@@ -62,6 +59,14 @@ func getIndexList():
 	for key in table.keys():
 		if table[key] != null:
 			ret.append(key)
+
+	return ret
+
+func getIndexAttrList():
+	var ret = []
+	for key in table.keys():
+		if table[key] != null:
+			ret.append([key, table[key].getAttr()])
 
 	return ret
 

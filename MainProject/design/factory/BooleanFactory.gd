@@ -5,6 +5,9 @@ func _init():
 	entity_type = "Boolean"
 	entity = TypeUnit.type(entity_type).new()
 
-func __setMemberList():
+func initMemberList():
 	addFuncMember("setTrue", [])
 	addFuncMember("setFalse", [])
+
+func initOverviewList():
+	addAttrOverview("val", "getVal")

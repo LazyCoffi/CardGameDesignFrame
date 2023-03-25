@@ -13,6 +13,8 @@ func _ready():
 
 func gameInit():
 	__gameStart()
+	add_child(AudioPlayer.getBgmPlayer())
+	add_child(AudioPlayer.getSoundPlayer())
 
 func __initUnit():
 	Logger.log("Global unit load script.")

@@ -4,11 +4,11 @@ class_name CardFuncSet
 func _init():
 	__initFuncForm()
 
-func getCard(template_name, card_name): 
-	return CardCache.getCard(template_name, card_name)
+func createCard(template_name, card_name): 
+	return CardCache.createCard(template_name, card_name)
 
-func getCardWithDefaultName(template_name):
-	return CardCache.getCardWithDefaultName(template_name)
+func createCardWithDefaultName(template_name):
+	return CardCache.createCardWithDefaultName(template_name)
 
 func extractAttr(first):
 	return first.getCardAttr()
@@ -20,8 +20,8 @@ func extractTemplateName(first):
 	return first.getTemplateName()
 
 func __initFuncForm():
-	addFuncForm("getCard", "Card", ["String", "String"])
-	addFuncForm("getCardWithDefaultName", "Card", ["String"])
+	addFuncForm("createCard", "Card", ["String", "String"])
+	addFuncForm("createCardWithDefaultName", "Card", ["String"])
 	addFuncForm("extractAttr", "Attr", ["Card"])
 	addFuncForm("extractIntroduction", "String", ["Card"])
 	addFuncForm("extractTemplateName", "String", ["Card"])

@@ -3,42 +3,109 @@ extends GutTest
 var MainMenuScene = TypeUnit.type("MainMenuScene")
 var MainMenuModel = TypeUnit.type("MainMenuModel")
 var TargetPack = TypeUnit.type("TargetPack")
+var FuncGraphNode = TypeUnit.type("FuncGraphNode")
+var FuncGraph = TypeUnit.type("FuncGraph")
+var Function = TypeUnit.type("Function")
+var HyperFunction = TypeUnit.type("HyperFunction")
+
+func __buildStartFunction():
+	var switch_node = FuncGraphNode.new()
+	switch_node.setFunc("SceneOperFuncSet", "switchScene")
+
+	var string_pack = StringPack.new()
+	string_pack.setVal("explore_map")
+	switch_node.setDefaultParam("StringPack", string_pack, 1)
+
+	var graph = FuncGraph.new()
+
+	graph.addNode(switch_node)
+	graph.construct()
+
+	var function = Function.new()
+	function.setGraph(graph)
+
+	var hyper = HyperFunction.new()
+	hyper.addFunction(function)
+
+	return hyper
+
+func __buildContinueFunction():
+	var switch_node = FuncGraphNode.new()
+	switch_node.setFunc("SceneOperFuncSet", "switchScene")
+
+	var string_pack = StringPack.new()
+	string_pack.setVal("archive_menu")
+	switch_node.setDefaultParam("StringPack", string_pack, 1)
+
+	var graph = FuncGraph.new()
+
+	graph.addNode(switch_node)
+	graph.construct()
+
+	var function = Function.new()
+	function.setGraph(graph)
+
+	var hyper = HyperFunction.new()
+	hyper.addFunction(function)
+
+	return hyper
+
+func __buildSettingFunction():
+	var switch_node = FuncGraphNode.new()
+	switch_node.setFunc("SceneOperFuncSet", "switchScene")
+
+	var string_pack = StringPack.new()
+	string_pack.setVal("linear_battle")
+	switch_node.setDefaultParam("StringPack", string_pack, 1)
+
+	var graph = FuncGraph.new()
+
+	graph.addNode(switch_node)
+	graph.construct()
+
+	var function = Function.new()
+	function.setGraph(graph)
+
+	var hyper = HyperFunction.new()
+	hyper.addFunction(function)
+
+	return hyper
+
+func __buildExitFunction():
+	var switch_node = FuncGraphNode.new()
+	switch_node.setFunc("SceneOperFuncSet", "switchScene")
+
+	var string_pack = StringPack.new()
+	string_pack.setVal("explore_map")
+	switch_node.setDefaultParam("StringPack", string_pack, 1)
+
+	var graph = FuncGraph.new()
+
+	graph.addNode(switch_node)
+	graph.construct()
+
+	var function = Function.new()
+	function.setGraph(graph)
+
+	var hyper = HyperFunction.new()
+	hyper.addFunction(function)
+
+	return hyper
 
 func test_buildMainMenuScript():
 	var main_menu = MainMenuScene.instance()
 	main_menu.setSceneName("main_menu")
 
-	var switch_target_table = SwitchTargetTable.new()
+	var model = MainMenuModel.new()
 
-	var start_pack = TargetPack.new()
-	start_pack.setTargetName("StartButton")
-	start_pack.setSceneType("LinearBattleScene")
-	start_pack.setSceneName("linear_battle")
-	start_pack.setSwitchType("switch")
-	switch_target_table.addTarget(start_pack)
+	model.setStartFunction(__buildStartFunction())
+	model.setContinueFunction(__buildContinueFunction())
+	model.setSettingFunction(__buildSettingFunction())
+	model.setExitFunction(__buildExitFunction())
 
-	var continue_pack = TargetPack.new()
-	continue_pack.setTargetName("ContinueButton")
-	continue_pack.setSceneType("ArchiveScene")
-	continue_pack.setSceneName("archive_menu")
-	continue_pack.setSceneName("push")
-	switch_target_table.addTarget(continue_pack)
-
-	var setting_pack = TargetPack.new()
-	setting_pack.setTargetName("SettingButton")
-	setting_pack.setSceneType("LinearBattleScene")
-	setting_pack.setSceneName("linear_battle")
-	setting_pack.setSwitchType("switch")
-	switch_target_table.addTarget(setting_pack)
-	
-	main_menu.setSwitchTargetTable(switch_target_table)
-
-	var main_menu_model = MainMenuModel.new()
-	
-	main_menu.setModel(main_menu_model)
+	main_menu.setModel(model)
 
 	var script_tree = main_menu.pack()
 	script_tree.exportAsJson("res://test/scripts/main_menu.json")
 
 	pass_test("MainMenu script generate success!")
-

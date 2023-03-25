@@ -25,6 +25,18 @@ func loadResource():
 	scene().get_node("SettingButton").loadResource()
 	scene().get_node("ExitButton").loadResource()
 
+func getStartButton():
+	return scene().get_node("StartButton")
+
+func getContinueButton():
+	return scene().get_node("ContinueButton")
+
+func getSettingButton():
+	return scene().get_node("SettingButton")
+
+func getExitButton():
+	return scene().get_node("ExitButton")
+
 func renderTitle():
 	var scene_name = scene().getSceneName()
 	var title = ResourceUnit.loadRes(scene_name, scene_name, "title")

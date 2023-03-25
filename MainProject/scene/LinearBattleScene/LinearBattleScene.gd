@@ -13,7 +13,6 @@ signal popSignal
 
 var is_registered
 var scene_name
-var switch_target_table
 
 var scene_dispatcher
 var scene_model
@@ -43,14 +42,8 @@ func register():
 func unregister():
 	is_registered = false
 
-func switchScene(next_scene_name, switch_type):
-	match switch_type:
-		"switch" : 
-			emit_signal("switchSignal", next_scene_name)
-		"push":
-			emit_signal("pushSignal", next_scene_name)
-		"pop":
-			emit_signal("popSignal")
+func switchScene(next_scene_name):
+	emit_signal("switchSignal", next_scene_name)
 
 func pushScene(next_scene_name):
 	emit_signal("pushSignal", next_scene_name)
@@ -65,13 +58,6 @@ func getSceneName():
 func setSceneName(scene_name_):
 	scene_name = scene_name_
 
-# switch_target_table
-func getSwitchTargetTable():
-	return switch_target_table
-
-func setSwitchTargetTable(switch_target_table_):
-	switch_target_table = switch_target_table_	
-
 # scene_dispatcher
 func dispatcher():
 	return scene_dispatcher
@@ -83,44 +69,33 @@ func setDispatcher(scene_dispatcher_):
 func model():
 	return scene_model
 
-func setSceneModel(scene_model_):
+func setModel(scene_model_):
 	scene_model = scene_model_
 
 # scene_render
 func render():
 	return scene_render
 
-func setSceneRender(scene_render_):
+func setRender(scene_render_):
 	scene_render = scene_render_
 
 # scene_service
 func service():
 	return scene_service
 
-func setSceneService(scene_service_):
+func setService(scene_service_):
 	scene_service = scene_service_
-
-func battleOverSwitch():
-	var target_scene_name = switch_target_table.getTargetSceneName("BattleOver")
-	var target_switch_type = switch_target_table.getTargetSwitchType("BattleOver")
-	switchScene(target_scene_name, target_switch_type)
-
-func openSubMenu():
-	var target_scene_name = switch_target_table.getTargetSceneName("OpenSubMenu")
-	pushScene(target_scene_name)
 
 func pack():
 	var script_tree = ScriptTree.new()
 
 	script_tree.addAttr("scene_name", scene_name)
-	script_tree.addObject("switch_target_table", switch_target_table)
 	script_tree.addObject("scene_model", scene_model)
 
 	return script_tree
 
 func loadScript(script_tree):
 	scene_name = script_tree.getStr("scene_name")
-	switch_target_table = script_tree.getObject("switch_target_table", SwitchTargetTable)
 	scene_model = script_tree.getObject("scene_model", LinearBattleModel)
 
 func __setRef():

@@ -1,21 +1,5 @@
 {
 	"scene_name": "linear_battle",
-	"switch_target_table": {
-		"table": {
-			"BattleOver": {
-				"target_name": "BattleOver",
-				"scene_type": "MainMenuScene",
-				"scene_name": "main_menu",
-				"switch_type": "switch"
-			},
-			"OpenSubMenu": {
-				"target_name": "OpenSubMenu",
-				"scene_type": "SubMenuScene",
-				"scene_name": "sub_menu",
-				"switch_type": "push"
-			}
-		}
-	},
 	"scene_model": {
 		"order_bucket": {
 			"pointer": 0,
@@ -53,9 +37,9 @@
 					]
 				},
 				"param_map": {
-					"map": [
-						"returnVal_0_0"
-					]
+					"map": {
+						"returnVal_0_0": 0
+					}
 				}
 			},
 			"regular_shuffle_function": {
@@ -86,9 +70,9 @@
 					]
 				},
 				"param_map": {
-					"map": [
-						"returnVal_0_0"
-					]
+					"map": {
+						"returnVal_0_0": 0
+					}
 				}
 			}
 		},
@@ -145,7 +129,7 @@
 					},
 					{
 						"func_unit": {
-							"func_name": "getCardWithDefaultName",
+							"func_name": "createCardWithDefaultName",
 							"func_set_name": "CardFuncSet",
 							"default_params": {
 								"list": [
@@ -164,7 +148,7 @@
 					},
 					{
 						"func_unit": {
-							"func_name": "getCardWithDefaultName",
+							"func_name": "createCardWithDefaultName",
 							"func_set_name": "CardFuncSet",
 							"default_params": {
 								"list": [
@@ -184,9 +168,9 @@
 				]
 			},
 			"param_map": {
-				"map": [
+				"map": {
 
-				]
+				}
 			}
 		},
 		"enemy_team_function": {
@@ -242,7 +226,7 @@
 					},
 					{
 						"func_unit": {
-							"func_name": "getCardWithDefaultName",
+							"func_name": "createCardWithDefaultName",
 							"func_set_name": "CardFuncSet",
 							"default_params": {
 								"list": [
@@ -261,7 +245,7 @@
 					},
 					{
 						"func_unit": {
-							"func_name": "getCardWithDefaultName",
+							"func_name": "createCardWithDefaultName",
 							"func_set_name": "CardFuncSet",
 							"default_params": {
 								"list": [
@@ -281,9 +265,9 @@
 				]
 			},
 			"param_map": {
-				"map": [
+				"map": {
 
-				]
+				}
 			}
 		},
 		"draw_num_function": {
@@ -314,9 +298,9 @@
 				]
 			},
 			"param_map": {
-				"map": [
-					"constVal_0_0"
-				]
+				"map": {
+					"constVal_0_0": 0
+				}
 			}
 		},
 		"is_dead_condition": {
@@ -380,62 +364,17 @@
 				]
 			},
 			"param_map": {
-				"map": [
-					"extractAttr_1_0"
-				]
+				"map": {
+					"extractAttr_1_0": 0
+				}
 			}
 		},
-		"is_battle_over_condition": {
+		"is_victory_condition": {
 			"graph": {
 				"request_params": {
-					"returnVal_3_0": "all"
+
 				},
 				"node_list": [
-					{
-						"func_unit": {
-							"func_name": "orGate",
-							"func_set_name": "BaseConditionSet",
-							"default_params": {
-								"list": [
-									{
-										"param_type": "NullPack",
-										"param": {
-
-										}
-									},
-									{
-										"param_type": "NullPack",
-										"param": {
-
-										}
-									}
-								]
-							}
-						},
-						"ch_index_list": [
-							1,
-							2
-						]
-					},
-					{
-						"func_unit": {
-							"func_name": "isOwnTeamEmpty",
-							"func_set_name": "LinearBattleConditionSet",
-							"default_params": {
-								"list": [
-									{
-										"param_type": "NullPack",
-										"param": {
-
-										}
-									}
-								]
-							}
-						},
-						"ch_index_list": [
-							3
-						]
-					},
 					{
 						"func_unit": {
 							"func_name": "isEnemyTeamEmpty",
@@ -443,34 +382,9 @@
 							"default_params": {
 								"list": [
 									{
-										"param_type": "NullPack",
+										"param_type": "StringPack",
 										"param": {
-
-										}
-									}
-								]
-							}
-						},
-						"ch_index_list": [
-							3
-						]
-					},
-					{
-						"func_unit": {
-							"func_name": "returnVal",
-							"func_set_name": "BaseFuncSet",
-							"default_params": {
-								"list": [
-									{
-										"param_type": "NullPack",
-										"param": {
-
-										}
-									},
-									{
-										"param_type": "NullPack",
-										"param": {
-
+											"val": "linear_battle"
 										}
 									}
 								]
@@ -483,8 +397,292 @@
 				]
 			},
 			"param_map": {
+				"map": {
+
+				}
+			}
+		},
+		"is_fail_condition": {
+			"graph": {
+				"request_params": {
+
+				},
+				"node_list": [
+					{
+						"func_unit": {
+							"func_name": "isOwnTeamEmpty",
+							"func_set_name": "LinearBattleConditionSet",
+							"default_params": {
+								"list": [
+									{
+										"param_type": "StringPack",
+										"param": {
+											"val": "linear_battle"
+										}
+									}
+								]
+							}
+						},
+						"ch_index_list": [
+							null
+						]
+					}
+				]
+			},
+			"param_map": {
+				"map": {
+
+				}
+			}
+		},
+		"before_round_function": {
+			"func_name": "",
+			"functions": [
+				{
+					"graph": {
+						"request_params": {
+
+						},
+						"node_list": [
+							{
+								"func_unit": {
+									"func_name": "dummy",
+									"func_set_name": "BaseFuncSet",
+									"default_params": {
+										"list": [
+
+										]
+									}
+								},
+								"ch_index_list": [
+
+								]
+							}
+						]
+					},
+					"param_map": {
+						"map": {
+
+						}
+					}
+				}
+			],
+			"param_map": {
 				"map": [
-					"returnVal_3_0"
+
+				]
+			},
+			"ret_map": {
+				"map": [
+					0
+				]
+			}
+		},
+		"after_round_function": {
+			"func_name": "",
+			"functions": [
+				{
+					"graph": {
+						"request_params": {
+
+						},
+						"node_list": [
+							{
+								"func_unit": {
+									"func_name": "dummy",
+									"func_set_name": "BaseFuncSet",
+									"default_params": {
+										"list": [
+
+										]
+									}
+								},
+								"ch_index_list": [
+
+								]
+							}
+						]
+					},
+					"param_map": {
+						"map": {
+
+						}
+					}
+				}
+			],
+			"param_map": {
+				"map": [
+
+				]
+			},
+			"ret_map": {
+				"map": [
+					0
+				]
+			}
+		},
+		"victory_function": {
+			"func_name": "",
+			"functions": [
+				{
+					"graph": {
+						"request_params": {
+							"switchScene_0_0": "Object"
+						},
+						"node_list": [
+							{
+								"func_unit": {
+									"func_name": "switchScene",
+									"func_set_name": "SceneOperFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											},
+											{
+												"param_type": "StringPack",
+												"param": {
+													"val": "explore_map"
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									null,
+									null
+								]
+							}
+						]
+					},
+					"param_map": {
+						"map": {
+							"switchScene_0_0": 0
+						}
+					}
+				}
+			],
+			"param_map": {
+				"map": [
+					0
+				]
+			},
+			"ret_map": {
+				"map": [
+					0
+				]
+			}
+		},
+		"fail_function": {
+			"func_name": "",
+			"functions": [
+				{
+					"graph": {
+						"request_params": {
+							"switchScene_0_0": "Object"
+						},
+						"node_list": [
+							{
+								"func_unit": {
+									"func_name": "switchScene",
+									"func_set_name": "SceneOperFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											},
+											{
+												"param_type": "StringPack",
+												"param": {
+													"val": "main_menu"
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									null,
+									null
+								]
+							}
+						]
+					},
+					"param_map": {
+						"map": {
+							"switchScene_0_0": 0
+						}
+					}
+				}
+			],
+			"param_map": {
+				"map": [
+					0
+				]
+			},
+			"ret_map": {
+				"map": [
+					0
+				]
+			}
+		},
+		"sub_menu_function": {
+			"func_name": "",
+			"functions": [
+				{
+					"graph": {
+						"request_params": {
+							"pushScene_0_0": "Object"
+						},
+						"node_list": [
+							{
+								"func_unit": {
+									"func_name": "pushScene",
+									"func_set_name": "SceneOperFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											},
+											{
+												"param_type": "StringPack",
+												"param": {
+													"val": "sub_menu"
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									null,
+									null
+								]
+							}
+						]
+					},
+					"param_map": {
+						"map": {
+							"pushScene_0_0": 0
+						}
+					}
+				}
+			],
+			"param_map": {
+				"map": [
+					0
+				]
+			},
+			"ret_map": {
+				"map": [
+					0
 				]
 			}
 		}

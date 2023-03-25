@@ -40,9 +40,23 @@ func setAttrType(attr_type_):
 
 # attr
 func getAttr():
-	return getter(attr)
+	match attr_type:
+		"Integer" :
+			return getter(int(attr))
+		"Float":
+			return getter(float(attr))
+		"StringPack":
+			return getter(str(attr))
 
 func setAttr(attr_):
+	match attr_type:
+		"Integer" :
+			attr_ = int(attr_)
+		"Float":
+			attr_ = float(attr_)
+		"StringPack":
+			attr_ = str(attr_)
+
 	attr = setter(attr_)
 
 # getter_function

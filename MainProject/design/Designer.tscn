@@ -1,18 +1,19 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://asserts/ttf/FiraCode-Bold.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://asserts/ttf/SourceHanSansSC-Bold.otf" type="DynamicFontData" id=2]
 [ext_resource path="res://design/Designer.gd" type="Script" id=3]
 [ext_resource path="res://design/asserts/background.png" type="Texture" id=4]
 [ext_resource path="res://design/asserts/toolbar-background.png" type="Texture" id=5]
 
-[sub_resource type="Theme" id=4]
-
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=5]
 size = 14
-font_data = ExtResource( 2 )
+font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=3]
+size = 12
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=6]
 size = 12
 font_data = ExtResource( 1 )
 
@@ -50,44 +51,63 @@ rect_min_size = Vector2( 1920, 32 )
 margin_right = 128.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 128, 32 )
-theme = SubResource( 4 )
-custom_fonts/font = SubResource( 1 )
-text = "文件"
+custom_fonts/font = SubResource( 5 )
 
-[node name="WorkspaceSpliter" type="HSplitContainer" parent="ToolBarSpliter"]
+[node name="WorkspaceContainer" type="HBoxContainer" parent="ToolBarSpliter"]
 margin_top = 36.0
-margin_right = 1920.0
+margin_right = 1328.0
 margin_bottom = 1084.0
-dragger_visibility = 1
 
-[node name="MemberTree" type="Tree" parent="ToolBarSpliter/WorkspaceSpliter"]
-margin_right = 240.0
+[node name="MemberTree" type="Tree" parent="ToolBarSpliter/WorkspaceContainer"]
+margin_right = 360.0
 margin_bottom = 1048.0
-rect_min_size = Vector2( 240, 1048 )
+rect_min_size = Vector2( 360, 1048 )
 custom_fonts/font = SubResource( 3 )
+columns = 2
 
-[node name="ViewSpliter" type="HSplitContainer" parent="ToolBarSpliter/WorkspaceSpliter"]
-margin_left = 252.0
-margin_right = 1920.0
+[node name="OverviewTree" type="Tree" parent="ToolBarSpliter/WorkspaceContainer"]
+margin_left = 364.0
+margin_right = 844.0
 margin_bottom = 1048.0
-rect_min_size = Vector2( 1668, 1048 )
-split_offset = 960
+rect_min_size = Vector2( 480, 1048 )
+custom_fonts/font = SubResource( 6 )
+columns = 2
 
-[node name="TextureRect" type="TextureRect" parent="ToolBarSpliter/WorkspaceSpliter/ViewSpliter"]
-margin_right = 1176.0
-margin_bottom = 1048.0
-rect_min_size = Vector2( 240, 1048 )
-
-[node name="ConfigTree" type="Tree" parent="ToolBarSpliter/WorkspaceSpliter/ViewSpliter"]
-margin_left = 1188.0
-margin_right = 1668.0
+[node name="OperTree" type="Tree" parent="ToolBarSpliter/WorkspaceContainer"]
+margin_left = 848.0
+margin_right = 1328.0
 margin_bottom = 1048.0
 rect_min_size = Vector2( 480, 1048 )
 custom_fonts/font = SubResource( 2 )
 columns = 2
 
-[node name="FileDialog" type="FileDialog" parent="."]
+[node name="ResourceDialog" type="FileDialog" parent="."]
 margin_right = 216.0
 margin_bottom = 130.0
 window_title = "打开文件"
 mode = 0
+
+[node name="OpenProjectDialog" type="FileDialog" parent="."]
+margin_right = 216.0
+margin_bottom = 130.0
+window_title = "打开文件"
+mode = 0
+access = 1
+
+[node name="ExportProjectDialog" type="FileDialog" parent="."]
+margin_right = 216.0
+margin_bottom = 130.0
+window_title = "打开目录"
+mode = 2
+access = 1
+
+[node name="SaveProjectDialog" type="FileDialog" parent="."]
+margin_right = 216.0
+margin_bottom = 130.0
+window_title = "保存文件"
+access = 1
+
+[node name="ClassLibrary" type="PopupMenu" parent="."]
+margin_right = 240.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 240, 600 )

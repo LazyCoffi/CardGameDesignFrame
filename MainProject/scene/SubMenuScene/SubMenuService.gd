@@ -11,3 +11,12 @@ func scene():
 
 func model():
 	return scene_ref.model()
+
+func resume():
+	model().resumeFunction()
+
+func setting():
+	model().settingFunction()
+
+func exit():
+	model().exitFunction()

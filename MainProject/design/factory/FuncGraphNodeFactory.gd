@@ -18,3 +18,9 @@ func initMemberList():
 		{"name" : "ch_id", "type" : "int", "param_type" : "val"},
 		{"name" : "ch_index", "type" : "int", "param_type" : "val"}
 	])
+
+func initOverviewList():
+	addAttrOverview("func_set_name", "getFuncSetName")
+	addAttrOverview("func_name", "getFuncName")
+	addAttrArrayOverview("default_params", "getDefaultParamList")
+	addAttrArrayOverview("ch_index_list", "getChIndexList")

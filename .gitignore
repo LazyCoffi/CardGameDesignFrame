@@ -8,5 +8,8 @@ export_presets.cfg
 .mono/
 data_*/
 
-# log ignores
+# Log ignores
 MainProject/log/
+
+# asserts ingores
+MainProject/asserts/

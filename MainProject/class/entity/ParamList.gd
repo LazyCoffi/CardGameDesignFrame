@@ -39,6 +39,13 @@ func getParam(index):
 
 	return list[index].getParam()
 
+func getParamsList():
+	var ret = []
+	for param in list:
+		ret.append(param.getParam())
+	
+	return ret
+
 func addParam(param_node):
 	list.append(param_node)
 
@@ -62,7 +69,7 @@ func removeParam(index):
 func __nullNode():
 	var null_node = ParamNode.new()
 	null_node.setParamType("NullPack")
-	null_node.setParam(null)
+	null_node.setParam(NullPack.new())
 
 	return null_node
 

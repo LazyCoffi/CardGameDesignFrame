@@ -24,12 +24,25 @@ func setFunc(func_set_name, func_name):
 	func_unit.setFuncSetName(func_set_name)
 	func_unit.setFuncName(func_name)
 	func_unit.initDefaultParams()
+	resizeChIndexList(func_unit.getParamsNum())
 
 func setDefaultParam(param_type, param, index):
 	func_unit.setDefaultParam(param_type, param, index)
 
+func getDefaultParamList():
+	return func_unit.getDefaultParams()
+
 func getFuncUnit():
 	return func_unit
+
+func setFuncUnit(func_unit_):
+	func_unit = func_unit_
+	
+func getFuncName():
+	return func_unit.getFuncName()
+
+func getFuncSetName():
+	return func_unit.getFuncSetName()
 
 # ch_list
 func getCh(idx):
@@ -46,7 +59,7 @@ func resizeChList(size):
 
 # ch_index_list
 func setChIndex(ch_id, ch_index):
-	if ch_index_list.size() < ch_index:
+	if ch_index_list.size() <= ch_index:
 		ch_index_list.resize(ch_index + 1)
 
 	ch_index_list[ch_index] = ch_id
@@ -57,8 +70,14 @@ func getChIndex(index):
 func getChIndexList():
 	return ch_index_list
 
+func setChIndexList(ch_index_list_):
+	ch_index_list = ch_index_list_	
+
 func getChIndexSize():
 	return ch_index_list.size()
+
+func resizeChIndexList(size):
+	ch_index_list.resize(size)
 
 func connectNode(child_node, param_index):
 	ch_list[param_index] = child_node

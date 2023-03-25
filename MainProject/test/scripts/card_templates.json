@@ -1,25 +1,262 @@
 {
-	"category_tree": {
-		"root": {
-			"CharacterCard": {
-				"LinearCharacterCard": {
-					"MainCharacterCard": "MainCharacterCard",
-					"EnemyCharacterCard": "EnemyCharacterCard"
+	"table": {
+		"AttackSkillCard": {
+			"template_name": "AttackSkillCard",
+			"card_type": "LinearSkillCard",
+			"card_template": {
+				"card_name": "",
+				"avator_name": "attack_card",
+				"introduction": "Attack!",
+				"template_name": "",
+				"card_attr": {
+					"table": {
+
+					}
+				},
+				"play_condition": {
+					"graph": {
+						"request_params": {
+
+						},
+						"node_list": [
+							{
+								"func_unit": {
+									"func_name": "trueGate",
+									"func_set_name": "BaseConditionSet",
+									"default_params": {
+										"list": [
+
+										]
+									}
+								},
+								"ch_index_list": [
+
+								]
+							}
+						]
+					},
+					"param_map": {
+						"map": {
+
+						}
+					}
+				},
+				"type_flag": {
+					"flag": 1
+				},
+				"effect_func": {
+					"func_name": "",
+					"functions": [
+						{
+							"graph": {
+								"request_params": {
+									"extractAttr_1_0": "Card",
+									"extractAttr_2_0": "Card"
+								},
+								"node_list": [
+									{
+										"func_unit": {
+											"func_name": "minusAttrIntOverride",
+											"func_set_name": "AttrFuncSet",
+											"default_params": {
+												"list": [
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													},
+													{
+														"param_type": "StringPack",
+														"param": {
+															"val": "hp"
+														}
+													},
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													},
+													{
+														"param_type": "StringPack",
+														"param": {
+															"val": "stg"
+														}
+													}
+												]
+											}
+										},
+										"ch_index_list": [
+											1,
+											null,
+											2,
+											null
+										]
+									},
+									{
+										"func_unit": {
+											"func_name": "extractAttr",
+											"func_set_name": "CardFuncSet",
+											"default_params": {
+												"list": [
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													}
+												]
+											}
+										},
+										"ch_index_list": [
+											null
+										]
+									},
+									{
+										"func_unit": {
+											"func_name": "extractAttr",
+											"func_set_name": "CardFuncSet",
+											"default_params": {
+												"list": [
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													}
+												]
+											}
+										},
+										"ch_index_list": [
+											null
+										]
+									}
+								]
+							},
+							"param_map": {
+								"map": {
+									"extractAttr_1_0": 0,
+									"extractAttr_2_0": 1
+								}
+							}
+						}
+					],
+					"param_map": {
+						"map": [
+							0,
+							1
+						]
+					},
+					"ret_map": {
+						"map": [
+							0
+						]
+					}
+				},
+				"target_condition": {
+					"graph": {
+						"request_params": {
+
+						},
+						"node_list": [
+							{
+								"func_unit": {
+									"func_name": "trueGate",
+									"func_set_name": "BaseConditionSet",
+									"default_params": {
+										"list": [
+
+										]
+									}
+								},
+								"ch_index_list": [
+
+								]
+							}
+						]
+					},
+					"param_map": {
+						"map": {
+
+						}
+					}
+				},
+				"auto_condition": {
+					"graph": {
+						"request_params": {
+
+						},
+						"node_list": [
+							{
+								"func_unit": {
+									"func_name": "falseGate",
+									"func_set_name": "BaseConditionSet",
+									"default_params": {
+										"list": [
+
+										]
+									}
+								},
+								"ch_index_list": [
+
+								]
+							}
+						]
+					},
+					"param_map": {
+						"map": {
+
+						}
+					}
+				},
+				"animation_pack": {
+					"texture_path_list": [
+						"res://asserts/animation/crop/crop1.png",
+						"res://asserts/animation/crop/crop2.png",
+						"res://asserts/animation/crop/crop3.png"
+					],
+					"gap": 3
+				},
+				"audio_pack": {
+					"audio_path": "res://asserts/audio/crop.mp3"
+				}
+			},
+			"copy_count": 0,
+			"revise_function": {
+				"graph": {
+					"request_params": {
+						"returnVal_0_0": "all"
+					},
+					"node_list": [
+						{
+							"func_unit": {
+								"func_name": "returnVal",
+								"func_set_name": "BaseFuncSet",
+								"default_params": {
+									"list": [
+										{
+											"param_type": "NullPack",
+											"param": {
+
+											}
+										}
+									]
+								}
+							},
+							"ch_index_list": [
+								null
+							]
+						}
+					]
+				},
+				"param_map": {
+					"map": {
+						"returnVal_0_0": 0
+					}
 				}
 			}
 		},
-		"table": {
-			"MainCharacterCard": [
-				"CharacterCard",
-				"LinearCharacterCard"
-			],
-			"EnemyCharacterCard": [
-				"CharacterCard",
-				"LinearCharacterCard"
-			]
-		}
-	},
-	"table": {
 		"MainCharacterCard": {
 			"template_name": "MainCharacterCard",
 			"card_type": "LinearCharacterCard",
@@ -62,9 +299,9 @@
 									]
 								},
 								"param_map": {
-									"map": [
-										"returnVal_0_0"
-									]
+									"map": {
+										"returnVal_0_0": 0
+									}
 								}
 							},
 							"setter_function": {
@@ -128,9 +365,9 @@
 									]
 								},
 								"param_map": {
-									"map": [
-										"upperBoundInt_1_0"
-									]
+									"map": {
+										"upperBoundInt_1_0": 0
+									}
 								}
 							}
 						},
@@ -166,9 +403,9 @@
 									]
 								},
 								"param_map": {
-									"map": [
-										"returnVal_0_0"
-									]
+									"map": {
+										"returnVal_0_0": 0
+									}
 								}
 							},
 							"setter_function": {
@@ -199,9 +436,9 @@
 									]
 								},
 								"param_map": {
-									"map": [
-										"returnVal_0_0"
-									]
+									"map": {
+										"returnVal_0_0": 0
+									}
 								}
 							}
 						}
@@ -214,843 +451,109 @@
 				},
 				"card_pile": {
 					"card_pile": [
-						{
-							"card_name": "attack3",
-							"avator_name": "attack_card",
-							"introduction": "Attack!",
-							"template_name": "",
-							"card_attr": {
-								"table": {
 
-								}
-							},
-							"play_condition": {
-								"graph": {
-									"request_params": {
-
-									},
-									"node_list": [
-										{
-											"func_unit": {
-												"func_name": "trueGate",
-												"func_set_name": "BaseConditionSet",
-												"default_params": {
-													"list": [
-
-													]
-												}
-											},
-											"ch_index_list": [
-
-											]
-										}
-									]
-								},
-								"param_map": {
-									"map": [
-
-									]
-								}
-							},
-							"type_flag": {
-								"flag": 1
-							},
-							"effect_func": {
-								"func_name": "",
-								"functions": [
-									{
-										"graph": {
-											"request_params": {
-												"extractAttr_1_0": "Card",
-												"extractAttr_2_0": "Card"
-											},
-											"node_list": [
-												{
-													"func_unit": {
-														"func_name": "minusAttrIntOverride",
-														"func_set_name": "AttrFuncSet",
-														"default_params": {
-															"list": [
-																{
-																	"param_type": "NullPack",
-																	"param": {
-
-																	}
-																},
-																{
-																	"param_type": "StringPack",
-																	"param": {
-																		"val": "hp"
-																	}
-																},
-																{
-																	"param_type": "NullPack",
-																	"param": {
-
-																	}
-																},
-																{
-																	"param_type": "StringPack",
-																	"param": {
-																		"val": "hp"
-																	}
-																}
-															]
-														}
-													},
-													"ch_index_list": [
-														1,
-														null,
-														2,
-														null
-													]
-												},
-												{
-													"func_unit": {
-														"func_name": "extractAttr",
-														"func_set_name": "CardFuncSet",
-														"default_params": {
-															"list": [
-																{
-																	"param_type": "NullPack",
-																	"param": {
-
-																	}
-																}
-															]
-														}
-													},
-													"ch_index_list": [
-														null
-													]
-												},
-												{
-													"func_unit": {
-														"func_name": "extractAttr",
-														"func_set_name": "CardFuncSet",
-														"default_params": {
-															"list": [
-																{
-																	"param_type": "NullPack",
-																	"param": {
-
-																	}
-																}
-															]
-														}
-													},
-													"ch_index_list": [
-														null
-													]
-												}
-											]
-										},
-										"param_map": {
-											"map": [
-												"extractAttr_1_0",
-												"extractAttr_2_0"
-											]
-										}
-									}
-								],
-								"param_map": {
-									"map": [
-										0,
-										1
-									]
-								},
-								"ret_map": {
-									"map": [
-										0
-									]
-								}
-							},
-							"target_condition": {
-								"graph": {
-									"request_params": {
-
-									},
-									"node_list": [
-										{
-											"func_unit": {
-												"func_name": "trueGate",
-												"func_set_name": "BaseConditionSet",
-												"default_params": {
-													"list": [
-
-													]
-												}
-											},
-											"ch_index_list": [
-
-											]
-										}
-									]
-								},
-								"param_map": {
-									"map": [
-
-									]
-								}
-							},
-							"auto_condition": {
-								"graph": {
-									"request_params": {
-
-									},
-									"node_list": [
-										{
-											"func_unit": {
-												"func_name": "falseGate",
-												"func_set_name": "BaseConditionSet",
-												"default_params": {
-													"list": [
-
-													]
-												}
-											},
-											"ch_index_list": [
-
-											]
-										}
-									]
-								},
-								"param_map": {
-									"map": [
-
-									]
-								}
-							}
-						},
-						{
-							"card_name": "attack2",
-							"avator_name": "attack_card",
-							"introduction": "Attack!",
-							"template_name": "",
-							"card_attr": {
-								"table": {
-
-								}
-							},
-							"play_condition": {
-								"graph": {
-									"request_params": {
-
-									},
-									"node_list": [
-										{
-											"func_unit": {
-												"func_name": "trueGate",
-												"func_set_name": "BaseConditionSet",
-												"default_params": {
-													"list": [
-
-													]
-												}
-											},
-											"ch_index_list": [
-
-											]
-										}
-									]
-								},
-								"param_map": {
-									"map": [
-
-									]
-								}
-							},
-							"type_flag": {
-								"flag": 1
-							},
-							"effect_func": {
-								"func_name": "",
-								"functions": [
-									{
-										"graph": {
-											"request_params": {
-												"extractAttr_1_0": "Card",
-												"extractAttr_2_0": "Card"
-											},
-											"node_list": [
-												{
-													"func_unit": {
-														"func_name": "minusAttrIntOverride",
-														"func_set_name": "AttrFuncSet",
-														"default_params": {
-															"list": [
-																{
-																	"param_type": "NullPack",
-																	"param": {
-
-																	}
-																},
-																{
-																	"param_type": "StringPack",
-																	"param": {
-																		"val": "hp"
-																	}
-																},
-																{
-																	"param_type": "NullPack",
-																	"param": {
-
-																	}
-																},
-																{
-																	"param_type": "StringPack",
-																	"param": {
-																		"val": "hp"
-																	}
-																}
-															]
-														}
-													},
-													"ch_index_list": [
-														1,
-														null,
-														2,
-														null
-													]
-												},
-												{
-													"func_unit": {
-														"func_name": "extractAttr",
-														"func_set_name": "CardFuncSet",
-														"default_params": {
-															"list": [
-																{
-																	"param_type": "NullPack",
-																	"param": {
-
-																	}
-																}
-															]
-														}
-													},
-													"ch_index_list": [
-														null
-													]
-												},
-												{
-													"func_unit": {
-														"func_name": "extractAttr",
-														"func_set_name": "CardFuncSet",
-														"default_params": {
-															"list": [
-																{
-																	"param_type": "NullPack",
-																	"param": {
-
-																	}
-																}
-															]
-														}
-													},
-													"ch_index_list": [
-														null
-													]
-												}
-											]
-										},
-										"param_map": {
-											"map": [
-												"extractAttr_1_0",
-												"extractAttr_2_0"
-											]
-										}
-									}
-								],
-								"param_map": {
-									"map": [
-										0,
-										1
-									]
-								},
-								"ret_map": {
-									"map": [
-										0
-									]
-								}
-							},
-							"target_condition": {
-								"graph": {
-									"request_params": {
-
-									},
-									"node_list": [
-										{
-											"func_unit": {
-												"func_name": "trueGate",
-												"func_set_name": "BaseConditionSet",
-												"default_params": {
-													"list": [
-
-													]
-												}
-											},
-											"ch_index_list": [
-
-											]
-										}
-									]
-								},
-								"param_map": {
-									"map": [
-
-									]
-								}
-							},
-							"auto_condition": {
-								"graph": {
-									"request_params": {
-
-									},
-									"node_list": [
-										{
-											"func_unit": {
-												"func_name": "falseGate",
-												"func_set_name": "BaseConditionSet",
-												"default_params": {
-													"list": [
-
-													]
-												}
-											},
-											"ch_index_list": [
-
-											]
-										}
-									]
-								},
-								"param_map": {
-									"map": [
-
-									]
-								}
-							}
-						},
-						{
-							"card_name": "attack1",
-							"avator_name": "attack_card",
-							"introduction": "Attack!",
-							"template_name": "",
-							"card_attr": {
-								"table": {
-
-								}
-							},
-							"play_condition": {
-								"graph": {
-									"request_params": {
-
-									},
-									"node_list": [
-										{
-											"func_unit": {
-												"func_name": "trueGate",
-												"func_set_name": "BaseConditionSet",
-												"default_params": {
-													"list": [
-
-													]
-												}
-											},
-											"ch_index_list": [
-
-											]
-										}
-									]
-								},
-								"param_map": {
-									"map": [
-
-									]
-								}
-							},
-							"type_flag": {
-								"flag": 1
-							},
-							"effect_func": {
-								"func_name": "",
-								"functions": [
-									{
-										"graph": {
-											"request_params": {
-												"extractAttr_1_0": "Card",
-												"extractAttr_2_0": "Card"
-											},
-											"node_list": [
-												{
-													"func_unit": {
-														"func_name": "minusAttrIntOverride",
-														"func_set_name": "AttrFuncSet",
-														"default_params": {
-															"list": [
-																{
-																	"param_type": "NullPack",
-																	"param": {
-
-																	}
-																},
-																{
-																	"param_type": "StringPack",
-																	"param": {
-																		"val": "hp"
-																	}
-																},
-																{
-																	"param_type": "NullPack",
-																	"param": {
-
-																	}
-																},
-																{
-																	"param_type": "StringPack",
-																	"param": {
-																		"val": "hp"
-																	}
-																}
-															]
-														}
-													},
-													"ch_index_list": [
-														1,
-														null,
-														2,
-														null
-													]
-												},
-												{
-													"func_unit": {
-														"func_name": "extractAttr",
-														"func_set_name": "CardFuncSet",
-														"default_params": {
-															"list": [
-																{
-																	"param_type": "NullPack",
-																	"param": {
-
-																	}
-																}
-															]
-														}
-													},
-													"ch_index_list": [
-														null
-													]
-												},
-												{
-													"func_unit": {
-														"func_name": "extractAttr",
-														"func_set_name": "CardFuncSet",
-														"default_params": {
-															"list": [
-																{
-																	"param_type": "NullPack",
-																	"param": {
-
-																	}
-																}
-															]
-														}
-													},
-													"ch_index_list": [
-														null
-													]
-												}
-											]
-										},
-										"param_map": {
-											"map": [
-												"extractAttr_1_0",
-												"extractAttr_2_0"
-											]
-										}
-									}
-								],
-								"param_map": {
-									"map": [
-										0,
-										1
-									]
-								},
-								"ret_map": {
-									"map": [
-										0
-									]
-								}
-							},
-							"target_condition": {
-								"graph": {
-									"request_params": {
-
-									},
-									"node_list": [
-										{
-											"func_unit": {
-												"func_name": "trueGate",
-												"func_set_name": "BaseConditionSet",
-												"default_params": {
-													"list": [
-
-													]
-												}
-											},
-											"ch_index_list": [
-
-											]
-										}
-									]
-								},
-								"param_map": {
-									"map": [
-
-									]
-								}
-							},
-							"auto_condition": {
-								"graph": {
-									"request_params": {
-
-									},
-									"node_list": [
-										{
-											"func_unit": {
-												"func_name": "falseGate",
-												"func_set_name": "BaseConditionSet",
-												"default_params": {
-													"list": [
-
-													]
-												}
-											},
-											"ch_index_list": [
-
-											]
-										}
-									]
-								},
-								"param_map": {
-									"map": [
-
-									]
-								}
-							}
-						},
-						{
-							"card_name": "attack0",
-							"avator_name": "attack_card",
-							"introduction": "Attack!",
-							"template_name": "",
-							"card_attr": {
-								"table": {
-
-								}
-							},
-							"play_condition": {
-								"graph": {
-									"request_params": {
-
-									},
-									"node_list": [
-										{
-											"func_unit": {
-												"func_name": "trueGate",
-												"func_set_name": "BaseConditionSet",
-												"default_params": {
-													"list": [
-
-													]
-												}
-											},
-											"ch_index_list": [
-
-											]
-										}
-									]
-								},
-								"param_map": {
-									"map": [
-
-									]
-								}
-							},
-							"type_flag": {
-								"flag": 1
-							},
-							"effect_func": {
-								"func_name": "",
-								"functions": [
-									{
-										"graph": {
-											"request_params": {
-												"extractAttr_1_0": "Card",
-												"extractAttr_2_0": "Card"
-											},
-											"node_list": [
-												{
-													"func_unit": {
-														"func_name": "minusAttrIntOverride",
-														"func_set_name": "AttrFuncSet",
-														"default_params": {
-															"list": [
-																{
-																	"param_type": "NullPack",
-																	"param": {
-
-																	}
-																},
-																{
-																	"param_type": "StringPack",
-																	"param": {
-																		"val": "hp"
-																	}
-																},
-																{
-																	"param_type": "NullPack",
-																	"param": {
-
-																	}
-																},
-																{
-																	"param_type": "StringPack",
-																	"param": {
-																		"val": "hp"
-																	}
-																}
-															]
-														}
-													},
-													"ch_index_list": [
-														1,
-														null,
-														2,
-														null
-													]
-												},
-												{
-													"func_unit": {
-														"func_name": "extractAttr",
-														"func_set_name": "CardFuncSet",
-														"default_params": {
-															"list": [
-																{
-																	"param_type": "NullPack",
-																	"param": {
-
-																	}
-																}
-															]
-														}
-													},
-													"ch_index_list": [
-														null
-													]
-												},
-												{
-													"func_unit": {
-														"func_name": "extractAttr",
-														"func_set_name": "CardFuncSet",
-														"default_params": {
-															"list": [
-																{
-																	"param_type": "NullPack",
-																	"param": {
-
-																	}
-																}
-															]
-														}
-													},
-													"ch_index_list": [
-														null
-													]
-												}
-											]
-										},
-										"param_map": {
-											"map": [
-												"extractAttr_1_0",
-												"extractAttr_2_0"
-											]
-										}
-									}
-								],
-								"param_map": {
-									"map": [
-										0,
-										1
-									]
-								},
-								"ret_map": {
-									"map": [
-										0
-									]
-								}
-							},
-							"target_condition": {
-								"graph": {
-									"request_params": {
-
-									},
-									"node_list": [
-										{
-											"func_unit": {
-												"func_name": "trueGate",
-												"func_set_name": "BaseConditionSet",
-												"default_params": {
-													"list": [
-
-													]
-												}
-											},
-											"ch_index_list": [
-
-											]
-										}
-									]
-								},
-								"param_map": {
-									"map": [
-
-									]
-								}
-							},
-							"auto_condition": {
-								"graph": {
-									"request_params": {
-
-									},
-									"node_list": [
-										{
-											"func_unit": {
-												"func_name": "falseGate",
-												"func_set_name": "BaseConditionSet",
-												"default_params": {
-													"list": [
-
-													]
-												}
-											},
-											"ch_index_list": [
-
-											]
-										}
-									]
-								},
-								"param_map": {
-									"map": [
-
-									]
-								}
-							}
-						}
 					],
 					"trash_pile": [
 
 					],
 					"is_random": true
+				},
+				"init_card_pile_function": {
+					"graph": {
+						"request_params": {
+
+						},
+						"node_list": [
+							{
+								"func_unit": {
+									"func_name": "appendVal",
+									"func_set_name": "ArrayOperFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											},
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									1,
+									3
+								]
+							},
+							{
+								"func_unit": {
+									"func_name": "packArray",
+									"func_set_name": "ArrayOperFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									2
+								]
+							},
+							{
+								"func_unit": {
+									"func_name": "createCardWithDefaultName",
+									"func_set_name": "CardFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "StringPack",
+												"param": {
+													"val": "AttackSkillCard"
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									null
+								]
+							},
+							{
+								"func_unit": {
+									"func_name": "createCardWithDefaultName",
+									"func_set_name": "CardFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "StringPack",
+												"param": {
+													"val": "AttackSkillCard"
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									null
+								]
+							}
+						]
+					},
+					"param_map": {
+						"map": {
+
+						}
+					}
 				},
 				"ai_is_action_condition": {
 					"graph": {
@@ -1075,9 +578,9 @@
 						]
 					},
 					"param_map": {
-						"map": [
+						"map": {
 
-						]
+						}
 					}
 				},
 				"ai_choose_card_function": {
@@ -1103,9 +606,9 @@
 						]
 					},
 					"param_map": {
-						"map": [
+						"map": {
 
-						]
+						}
 					}
 				},
 				"ai_choose_target_function": {
@@ -1131,9 +634,9 @@
 						]
 					},
 					"param_map": {
-						"map": [
+						"map": {
 
-						]
+						}
 					}
 				}
 			},
@@ -1166,9 +669,9 @@
 					]
 				},
 				"param_map": {
-					"map": [
-						"returnVal_0_0"
-					]
+					"map": {
+						"returnVal_0_0": 0
+					}
 				}
 			}
 		},
@@ -1214,9 +717,9 @@
 									]
 								},
 								"param_map": {
-									"map": [
-										"returnVal_0_0"
-									]
+									"map": {
+										"returnVal_0_0": 0
+									}
 								}
 							},
 							"setter_function": {
@@ -1280,16 +783,16 @@
 									]
 								},
 								"param_map": {
-									"map": [
-										"upperBoundInt_1_0"
-									]
+									"map": {
+										"upperBoundInt_1_0": 0
+									}
 								}
 							}
 						},
 						"stg": {
 							"attr_name": "stg",
 							"attr_type": "Integer",
-							"attr": 10,
+							"attr": 50,
 							"getter_function": {
 								"graph": {
 									"request_params": {
@@ -1318,9 +821,9 @@
 									]
 								},
 								"param_map": {
-									"map": [
-										"returnVal_0_0"
-									]
+									"map": {
+										"returnVal_0_0": 0
+									}
 								}
 							},
 							"setter_function": {
@@ -1351,9 +854,9 @@
 									]
 								},
 								"param_map": {
-									"map": [
-										"returnVal_0_0"
-									]
+									"map": {
+										"returnVal_0_0": 0
+									}
 								}
 							}
 						}
@@ -1366,843 +869,109 @@
 				},
 				"card_pile": {
 					"card_pile": [
-						{
-							"card_name": "attack7",
-							"avator_name": "attack_card",
-							"introduction": "Attack!",
-							"template_name": "",
-							"card_attr": {
-								"table": {
 
-								}
-							},
-							"play_condition": {
-								"graph": {
-									"request_params": {
-
-									},
-									"node_list": [
-										{
-											"func_unit": {
-												"func_name": "trueGate",
-												"func_set_name": "BaseConditionSet",
-												"default_params": {
-													"list": [
-
-													]
-												}
-											},
-											"ch_index_list": [
-
-											]
-										}
-									]
-								},
-								"param_map": {
-									"map": [
-
-									]
-								}
-							},
-							"type_flag": {
-								"flag": 1
-							},
-							"effect_func": {
-								"func_name": "",
-								"functions": [
-									{
-										"graph": {
-											"request_params": {
-												"extractAttr_1_0": "Card",
-												"extractAttr_2_0": "Card"
-											},
-											"node_list": [
-												{
-													"func_unit": {
-														"func_name": "minusAttrIntOverride",
-														"func_set_name": "AttrFuncSet",
-														"default_params": {
-															"list": [
-																{
-																	"param_type": "NullPack",
-																	"param": {
-
-																	}
-																},
-																{
-																	"param_type": "StringPack",
-																	"param": {
-																		"val": "hp"
-																	}
-																},
-																{
-																	"param_type": "NullPack",
-																	"param": {
-
-																	}
-																},
-																{
-																	"param_type": "StringPack",
-																	"param": {
-																		"val": "hp"
-																	}
-																}
-															]
-														}
-													},
-													"ch_index_list": [
-														1,
-														null,
-														2,
-														null
-													]
-												},
-												{
-													"func_unit": {
-														"func_name": "extractAttr",
-														"func_set_name": "CardFuncSet",
-														"default_params": {
-															"list": [
-																{
-																	"param_type": "NullPack",
-																	"param": {
-
-																	}
-																}
-															]
-														}
-													},
-													"ch_index_list": [
-														null
-													]
-												},
-												{
-													"func_unit": {
-														"func_name": "extractAttr",
-														"func_set_name": "CardFuncSet",
-														"default_params": {
-															"list": [
-																{
-																	"param_type": "NullPack",
-																	"param": {
-
-																	}
-																}
-															]
-														}
-													},
-													"ch_index_list": [
-														null
-													]
-												}
-											]
-										},
-										"param_map": {
-											"map": [
-												"extractAttr_1_0",
-												"extractAttr_2_0"
-											]
-										}
-									}
-								],
-								"param_map": {
-									"map": [
-										0,
-										1
-									]
-								},
-								"ret_map": {
-									"map": [
-										0
-									]
-								}
-							},
-							"target_condition": {
-								"graph": {
-									"request_params": {
-
-									},
-									"node_list": [
-										{
-											"func_unit": {
-												"func_name": "trueGate",
-												"func_set_name": "BaseConditionSet",
-												"default_params": {
-													"list": [
-
-													]
-												}
-											},
-											"ch_index_list": [
-
-											]
-										}
-									]
-								},
-								"param_map": {
-									"map": [
-
-									]
-								}
-							},
-							"auto_condition": {
-								"graph": {
-									"request_params": {
-
-									},
-									"node_list": [
-										{
-											"func_unit": {
-												"func_name": "falseGate",
-												"func_set_name": "BaseConditionSet",
-												"default_params": {
-													"list": [
-
-													]
-												}
-											},
-											"ch_index_list": [
-
-											]
-										}
-									]
-								},
-								"param_map": {
-									"map": [
-
-									]
-								}
-							}
-						},
-						{
-							"card_name": "attack6",
-							"avator_name": "attack_card",
-							"introduction": "Attack!",
-							"template_name": "",
-							"card_attr": {
-								"table": {
-
-								}
-							},
-							"play_condition": {
-								"graph": {
-									"request_params": {
-
-									},
-									"node_list": [
-										{
-											"func_unit": {
-												"func_name": "trueGate",
-												"func_set_name": "BaseConditionSet",
-												"default_params": {
-													"list": [
-
-													]
-												}
-											},
-											"ch_index_list": [
-
-											]
-										}
-									]
-								},
-								"param_map": {
-									"map": [
-
-									]
-								}
-							},
-							"type_flag": {
-								"flag": 1
-							},
-							"effect_func": {
-								"func_name": "",
-								"functions": [
-									{
-										"graph": {
-											"request_params": {
-												"extractAttr_1_0": "Card",
-												"extractAttr_2_0": "Card"
-											},
-											"node_list": [
-												{
-													"func_unit": {
-														"func_name": "minusAttrIntOverride",
-														"func_set_name": "AttrFuncSet",
-														"default_params": {
-															"list": [
-																{
-																	"param_type": "NullPack",
-																	"param": {
-
-																	}
-																},
-																{
-																	"param_type": "StringPack",
-																	"param": {
-																		"val": "hp"
-																	}
-																},
-																{
-																	"param_type": "NullPack",
-																	"param": {
-
-																	}
-																},
-																{
-																	"param_type": "StringPack",
-																	"param": {
-																		"val": "hp"
-																	}
-																}
-															]
-														}
-													},
-													"ch_index_list": [
-														1,
-														null,
-														2,
-														null
-													]
-												},
-												{
-													"func_unit": {
-														"func_name": "extractAttr",
-														"func_set_name": "CardFuncSet",
-														"default_params": {
-															"list": [
-																{
-																	"param_type": "NullPack",
-																	"param": {
-
-																	}
-																}
-															]
-														}
-													},
-													"ch_index_list": [
-														null
-													]
-												},
-												{
-													"func_unit": {
-														"func_name": "extractAttr",
-														"func_set_name": "CardFuncSet",
-														"default_params": {
-															"list": [
-																{
-																	"param_type": "NullPack",
-																	"param": {
-
-																	}
-																}
-															]
-														}
-													},
-													"ch_index_list": [
-														null
-													]
-												}
-											]
-										},
-										"param_map": {
-											"map": [
-												"extractAttr_1_0",
-												"extractAttr_2_0"
-											]
-										}
-									}
-								],
-								"param_map": {
-									"map": [
-										0,
-										1
-									]
-								},
-								"ret_map": {
-									"map": [
-										0
-									]
-								}
-							},
-							"target_condition": {
-								"graph": {
-									"request_params": {
-
-									},
-									"node_list": [
-										{
-											"func_unit": {
-												"func_name": "trueGate",
-												"func_set_name": "BaseConditionSet",
-												"default_params": {
-													"list": [
-
-													]
-												}
-											},
-											"ch_index_list": [
-
-											]
-										}
-									]
-								},
-								"param_map": {
-									"map": [
-
-									]
-								}
-							},
-							"auto_condition": {
-								"graph": {
-									"request_params": {
-
-									},
-									"node_list": [
-										{
-											"func_unit": {
-												"func_name": "falseGate",
-												"func_set_name": "BaseConditionSet",
-												"default_params": {
-													"list": [
-
-													]
-												}
-											},
-											"ch_index_list": [
-
-											]
-										}
-									]
-								},
-								"param_map": {
-									"map": [
-
-									]
-								}
-							}
-						},
-						{
-							"card_name": "attack5",
-							"avator_name": "attack_card",
-							"introduction": "Attack!",
-							"template_name": "",
-							"card_attr": {
-								"table": {
-
-								}
-							},
-							"play_condition": {
-								"graph": {
-									"request_params": {
-
-									},
-									"node_list": [
-										{
-											"func_unit": {
-												"func_name": "trueGate",
-												"func_set_name": "BaseConditionSet",
-												"default_params": {
-													"list": [
-
-													]
-												}
-											},
-											"ch_index_list": [
-
-											]
-										}
-									]
-								},
-								"param_map": {
-									"map": [
-
-									]
-								}
-							},
-							"type_flag": {
-								"flag": 1
-							},
-							"effect_func": {
-								"func_name": "",
-								"functions": [
-									{
-										"graph": {
-											"request_params": {
-												"extractAttr_1_0": "Card",
-												"extractAttr_2_0": "Card"
-											},
-											"node_list": [
-												{
-													"func_unit": {
-														"func_name": "minusAttrIntOverride",
-														"func_set_name": "AttrFuncSet",
-														"default_params": {
-															"list": [
-																{
-																	"param_type": "NullPack",
-																	"param": {
-
-																	}
-																},
-																{
-																	"param_type": "StringPack",
-																	"param": {
-																		"val": "hp"
-																	}
-																},
-																{
-																	"param_type": "NullPack",
-																	"param": {
-
-																	}
-																},
-																{
-																	"param_type": "StringPack",
-																	"param": {
-																		"val": "hp"
-																	}
-																}
-															]
-														}
-													},
-													"ch_index_list": [
-														1,
-														null,
-														2,
-														null
-													]
-												},
-												{
-													"func_unit": {
-														"func_name": "extractAttr",
-														"func_set_name": "CardFuncSet",
-														"default_params": {
-															"list": [
-																{
-																	"param_type": "NullPack",
-																	"param": {
-
-																	}
-																}
-															]
-														}
-													},
-													"ch_index_list": [
-														null
-													]
-												},
-												{
-													"func_unit": {
-														"func_name": "extractAttr",
-														"func_set_name": "CardFuncSet",
-														"default_params": {
-															"list": [
-																{
-																	"param_type": "NullPack",
-																	"param": {
-
-																	}
-																}
-															]
-														}
-													},
-													"ch_index_list": [
-														null
-													]
-												}
-											]
-										},
-										"param_map": {
-											"map": [
-												"extractAttr_1_0",
-												"extractAttr_2_0"
-											]
-										}
-									}
-								],
-								"param_map": {
-									"map": [
-										0,
-										1
-									]
-								},
-								"ret_map": {
-									"map": [
-										0
-									]
-								}
-							},
-							"target_condition": {
-								"graph": {
-									"request_params": {
-
-									},
-									"node_list": [
-										{
-											"func_unit": {
-												"func_name": "trueGate",
-												"func_set_name": "BaseConditionSet",
-												"default_params": {
-													"list": [
-
-													]
-												}
-											},
-											"ch_index_list": [
-
-											]
-										}
-									]
-								},
-								"param_map": {
-									"map": [
-
-									]
-								}
-							},
-							"auto_condition": {
-								"graph": {
-									"request_params": {
-
-									},
-									"node_list": [
-										{
-											"func_unit": {
-												"func_name": "falseGate",
-												"func_set_name": "BaseConditionSet",
-												"default_params": {
-													"list": [
-
-													]
-												}
-											},
-											"ch_index_list": [
-
-											]
-										}
-									]
-								},
-								"param_map": {
-									"map": [
-
-									]
-								}
-							}
-						},
-						{
-							"card_name": "attack4",
-							"avator_name": "attack_card",
-							"introduction": "Attack!",
-							"template_name": "",
-							"card_attr": {
-								"table": {
-
-								}
-							},
-							"play_condition": {
-								"graph": {
-									"request_params": {
-
-									},
-									"node_list": [
-										{
-											"func_unit": {
-												"func_name": "trueGate",
-												"func_set_name": "BaseConditionSet",
-												"default_params": {
-													"list": [
-
-													]
-												}
-											},
-											"ch_index_list": [
-
-											]
-										}
-									]
-								},
-								"param_map": {
-									"map": [
-
-									]
-								}
-							},
-							"type_flag": {
-								"flag": 1
-							},
-							"effect_func": {
-								"func_name": "",
-								"functions": [
-									{
-										"graph": {
-											"request_params": {
-												"extractAttr_1_0": "Card",
-												"extractAttr_2_0": "Card"
-											},
-											"node_list": [
-												{
-													"func_unit": {
-														"func_name": "minusAttrIntOverride",
-														"func_set_name": "AttrFuncSet",
-														"default_params": {
-															"list": [
-																{
-																	"param_type": "NullPack",
-																	"param": {
-
-																	}
-																},
-																{
-																	"param_type": "StringPack",
-																	"param": {
-																		"val": "hp"
-																	}
-																},
-																{
-																	"param_type": "NullPack",
-																	"param": {
-
-																	}
-																},
-																{
-																	"param_type": "StringPack",
-																	"param": {
-																		"val": "hp"
-																	}
-																}
-															]
-														}
-													},
-													"ch_index_list": [
-														1,
-														null,
-														2,
-														null
-													]
-												},
-												{
-													"func_unit": {
-														"func_name": "extractAttr",
-														"func_set_name": "CardFuncSet",
-														"default_params": {
-															"list": [
-																{
-																	"param_type": "NullPack",
-																	"param": {
-
-																	}
-																}
-															]
-														}
-													},
-													"ch_index_list": [
-														null
-													]
-												},
-												{
-													"func_unit": {
-														"func_name": "extractAttr",
-														"func_set_name": "CardFuncSet",
-														"default_params": {
-															"list": [
-																{
-																	"param_type": "NullPack",
-																	"param": {
-
-																	}
-																}
-															]
-														}
-													},
-													"ch_index_list": [
-														null
-													]
-												}
-											]
-										},
-										"param_map": {
-											"map": [
-												"extractAttr_1_0",
-												"extractAttr_2_0"
-											]
-										}
-									}
-								],
-								"param_map": {
-									"map": [
-										0,
-										1
-									]
-								},
-								"ret_map": {
-									"map": [
-										0
-									]
-								}
-							},
-							"target_condition": {
-								"graph": {
-									"request_params": {
-
-									},
-									"node_list": [
-										{
-											"func_unit": {
-												"func_name": "trueGate",
-												"func_set_name": "BaseConditionSet",
-												"default_params": {
-													"list": [
-
-													]
-												}
-											},
-											"ch_index_list": [
-
-											]
-										}
-									]
-								},
-								"param_map": {
-									"map": [
-
-									]
-								}
-							},
-							"auto_condition": {
-								"graph": {
-									"request_params": {
-
-									},
-									"node_list": [
-										{
-											"func_unit": {
-												"func_name": "falseGate",
-												"func_set_name": "BaseConditionSet",
-												"default_params": {
-													"list": [
-
-													]
-												}
-											},
-											"ch_index_list": [
-
-											]
-										}
-									]
-								},
-								"param_map": {
-									"map": [
-
-									]
-								}
-							}
-						}
 					],
 					"trash_pile": [
 
 					],
 					"is_random": true
+				},
+				"init_card_pile_function": {
+					"graph": {
+						"request_params": {
+
+						},
+						"node_list": [
+							{
+								"func_unit": {
+									"func_name": "appendVal",
+									"func_set_name": "ArrayOperFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											},
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									1,
+									3
+								]
+							},
+							{
+								"func_unit": {
+									"func_name": "packArray",
+									"func_set_name": "ArrayOperFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									2
+								]
+							},
+							{
+								"func_unit": {
+									"func_name": "createCardWithDefaultName",
+									"func_set_name": "CardFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "StringPack",
+												"param": {
+													"val": "AttackSkillCard"
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									null
+								]
+							},
+							{
+								"func_unit": {
+									"func_name": "createCardWithDefaultName",
+									"func_set_name": "CardFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "StringPack",
+												"param": {
+													"val": "AttackSkillCard"
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									null
+								]
+							}
+						]
+					},
+					"param_map": {
+						"map": {
+
+						}
+					}
 				},
 				"ai_is_action_condition": {
 					"graph": {
@@ -2251,9 +1020,9 @@
 						]
 					},
 					"param_map": {
-						"map": [
-							"isHandCardsEmpty_1_0"
-						]
+						"map": {
+							"isHandCardsEmpty_1_0": 0
+						}
 					}
 				},
 				"ai_choose_card_function": {
@@ -2303,9 +1072,9 @@
 						]
 					},
 					"param_map": {
-						"map": [
-							"peekHandCards_1_0"
-						]
+						"map": {
+							"peekHandCards_1_0": 0
+						}
 					}
 				},
 				"ai_choose_target_function": {
@@ -2363,10 +1132,10 @@
 						]
 					},
 					"param_map": {
-						"map": [
-							"getOppositeTeam_1_1",
-							"getOppositeTeam_1_0"
-						]
+						"map": {
+							"getOppositeTeam_1_1": 0,
+							"getOppositeTeam_1_0": 1
+						}
 					}
 				}
 			},
@@ -2399,9 +1168,9 @@
 					]
 				},
 				"param_map": {
-					"map": [
-						"returnVal_0_0"
-					]
+					"map": {
+						"returnVal_0_0": 0
+					}
 				}
 			}
 		}

@@ -11,11 +11,17 @@ func initMemberList():
 	])
 	addObjectArrayMember("functions", "Function", "addFunction", "delFunction")
 	addFuncMember("setParamMapIndex", [
-		{"name" : "param_index", "type" : "int", "param_type" : "val"},
-		{"name" : "index", "type" : "index", "param_type" : "val"}
+		{"name" : "index", "type" : "int", "param_type" : "val"},
+		{"name" : "param_index", "type" : "index", "param_type" : "val"}
 	])
 	addFuncMember("setRetMapIndex", [
-		{"name" : "ret_index", "type" : "int", "param_type" : "val"},
-		{"name" : "index", "type" : "index", "param_type" : "val"}
+		{"name" : "index", "type" : "int", "param_type" : "val"},
+		{"name" : "ret_index", "type" : "index", "param_type" : "val"}
 	])
 
+func initOverviewList():
+	addAttrOverview("hyper_func_name", "getFuncName")
+	addAttrArrayOverview("func_name_list", "getFuncNameList")
+	addAttrArrayOverview("func_set_name_list", "getFuncSetNameList")
+	addAttrArrayOverview("param_map", "peekParamMap")
+	addAttrArrayOverview("ret_map", "peekRetMap")

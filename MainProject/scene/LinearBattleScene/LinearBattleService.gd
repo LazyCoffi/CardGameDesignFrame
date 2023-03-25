@@ -24,11 +24,29 @@ func getOwnCharacterNum():
 func isOwnTeamEmpty():
 	return model().getOwnCharacterNum() == 0
 
+func findOwnCharacter(card_name):
+	var own_team = model().getOwnCharacterTeam()
+	for index in range(own_team.size()):
+		var character = own_team[index]
+		if character.getCardName() == card_name:
+			return index
+	
+	return null
+
 func getEnemyCharacterNum():
 	return model().getEnemyCharacterNum()
 
 func isEnemyTeamEmpty():
 	return model().getEnemyCharacterNum() == 0
+
+func findEnemyCharacter(card_name):
+	var enemy_team = model().getEnemyCharacterTeam()
+	for index in range(enemy_team.size()):
+		var character = enemy_team[index]
+		if character.getCardName() == card_name:
+			return index
+	
+	return null
 
 func initOwnCharacterTeam():
 	model().deployOwnTeam()
@@ -105,6 +123,9 @@ func playChosenHandCardAt(target_card_name):
 
 	action_character.playHandCardByName([target_character_card, action_character, scene_name], card_pile, model().getChosenHandCardName())
 
+func getCharacterByName(character_name):
+	return model().getCharacterByName(character_name)
+
 # order_bucket
 func initOrderBucket():
 	var order_bucket = model().getOrderBucket()
@@ -168,8 +189,11 @@ func isActionCharacterExist():
 
 	return false
 
-func isBattleOver():
-	return model().isBattleOverCondition(scene().getSceneName())
+func isVictory():
+	return model().isVictoryCondition(scene().getSceneName())
+
+func isFail():
+	return model().isFailCondition(scene().getSceneName())
 
 func removeDeadCharacter():
 	var own_team = model().getOwnCharacterTeam()
@@ -195,10 +219,31 @@ func actionCharacterPassiveDiscard():
 	var card_pile = action_character.getCardPile()
 	action_character.passiveDiscard(card_pile)
 
-func battleOver():
-	scene().battleOverSwitch()
+func subMenu():
+	model().subMenuFunction(scene())
+
+func victory():
+	model().victoryFunction(scene())
+
+func fail():
+	model().failFunction(scene())
 
 func nextRoundPrepare():
 	actionCharacterPassiveDiscard()
 	model().resetActionCharacter()
 	model().orderBucketWalk()
+
+func beforeRound():
+	var character = getActionCharacter()
+	var scene_name = scene().getSceneName()
+
+	model().beforeRoundFunction(character, scene_name)
+
+func afterRound():
+	var character = getActionCharacter()
+	var scene_name = scene().getSceneName()
+
+	model().afterRoundFunction(character, scene_name)
+
+func getActionHandCardByName(card_name):
+	return model().getActionHandCardByName(card_name)

@@ -39,7 +39,7 @@ func copy():
 func setCardPile(card_pile_):
 	card_pile = card_pile_
 
-func setInitCardPileFunction(init_card_pile_function):
+func setInitCardPileFunction(init_card_pile_function_):
 	init_card_pile_function = init_card_pile_function_
 
 func setAiChooseTargetFunction(ai_choose_target_function_):
@@ -85,6 +85,10 @@ func shuffleTrash():
 func getCardPile():
 	return card_pile
 
+# init_card_pile_function
+func initCardPileFunction():
+	return init_card_pile_function.exec([])
+
 # ai_is_action_condition
 func aiIsActionCondition(scene_name):
 	return ai_is_action_condition.exec([self, scene_name])
@@ -102,6 +106,7 @@ func pack():
 
 	script_tree.addTypeObject("hand_card_slot", hand_card_slot)
 	script_tree.addTypeObject("card_pile", card_pile)
+	script_tree.addObject("init_card_pile_function", init_card_pile_function)
 	script_tree.addObject("ai_is_action_condition", ai_is_action_condition)
 	script_tree.addObject("ai_choose_card_function", ai_choose_card_function)
 	script_tree.addObject("ai_choose_target_function", ai_choose_target_function)
@@ -112,6 +117,7 @@ func loadScript(script_tree):
 	.loadScript(script_tree)
 	hand_card_slot = script_tree.getTypeObject("hand_card_slot", HandCardSlot, LinearSkillCard)
 	card_pile = script_tree.getTypeObject("card_pile", CardPile, LinearSkillCard)
+	init_card_pile_function = script_tree.getObject("init_card_pile_function", Function)
 	ai_is_action_condition = script_tree.getObject("ai_is_action_condition", Function)
 	ai_choose_card_function = script_tree.getObject("ai_choose_card_function", Function)
 	ai_choose_target_function = script_tree.getObject("ai_choose_target_function", Function)

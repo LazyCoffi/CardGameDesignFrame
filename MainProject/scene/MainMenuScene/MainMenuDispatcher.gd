@@ -21,4 +21,31 @@ func renderMainMenu():
 	render().renderTitle()
 	render().renderBackground()
 
-	# TODO
+	emitStartSignal()
+	emitContinueSignal()
+	emitSettingSignal()
+	emitExitSignal()
+
+func emitStartSignal():
+	render().getStartButton().connect("pressed", self, "start")
+
+func start():
+	service().start()
+
+func emitContinueSignal():
+	render().getContinueButton().connect("pressed", self, "continue")
+
+func continue():
+	service().continue()
+
+func emitSettingSignal():
+	render().getSettingButton().connect("pressed", self, "start")
+
+func setting():
+	service().setting()
+
+func emitExitSignal():
+	render().getExitButton().connect("pressed", self, "start")
+
+func exit():
+	service().exit()

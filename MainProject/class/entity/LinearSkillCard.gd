@@ -1,12 +1,19 @@
 extends "res://class/entity/SkillCard.gd"
 class_name LinearSkillCard
 
+var AnimationPack = TypeUnit.type("AnimationPack")
+var AudioPack = TypeUnit.type("AudioPack")
+
 var target_condition			# Function
 var auto_condition				# Function
+var animation_pack				# AnimationPack
+var audio_pack					# AudioPack
 
 func _init():
 	target_condition = null
 	auto_condition = null
+	animation_pack = null
+	audio_pack = null
 
 func copy():
 	var ret = TypeUnit.type("LinearSkillCard").new()
@@ -23,6 +30,8 @@ func copy():
 
 	ret.target_condition = target_condition.copy()
 	ret.auto_condition = auto_condition.copy()
+	ret.animation_pack = animation_pack.copy()
+	ret.audio_pack = audio_pack.copy()
 
 	return ret
 
@@ -99,6 +108,20 @@ func isAutoCondition(card, scene_name):
 func setAutoCondition(auto_condition_):
 	auto_condition = auto_condition_
 
+# animation_pack
+func getAnimationPack():
+	return animation_pack
+
+func setAnimationPack(animation_pack_):
+	animation_pack = animation_pack_
+
+# audio_pack
+func getAudioPack():
+	return audio_pack
+
+func setAudioPack(audio_pack_):
+	audio_pack = audio_pack_
+
 # card_slot
 func afterPlayDiscard(card_pile, card_slot):
 	if isPlayRecyclable():
@@ -134,6 +157,8 @@ func pack():
 
 	script_tree.addObject("target_condition", target_condition)
 	script_tree.addObject("auto_condition", auto_condition)
+	script_tree.addObject("animation_pack", animation_pack)
+	script_tree.addObject("audio_pack", audio_pack)
 
 	return script_tree
 
@@ -141,3 +166,5 @@ func loadScript(script_tree):
 	.loadScript(script_tree)
 	target_condition = script_tree.getObject("target_condition", Function)
 	auto_condition = script_tree.getObject("auto_condition", Function)
+	animation_pack = script_tree.getObject("animation_pack", AnimationPack)
+	audio_pack = script_tree.getObject("audio_pack", AudioPack)

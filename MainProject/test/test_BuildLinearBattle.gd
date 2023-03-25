@@ -10,6 +10,7 @@ var ParamNode = TypeUnit.type("ParamNode")
 var ParamList = TypeUnit.type("ParamList")
 var FuncGraphNode = TypeUnit.type("FuncGraphNode")
 var StringPack = TypeUnit.type("StringPack")
+var HyperFunction = TypeUnit.type("HyperFunction")
 
 var LinearBattleScene = TypeUnit.type("LinearBattleScene")
 var LinearBattleModel = TypeUnit.type("LinearBattleModel")
@@ -43,7 +44,7 @@ func __buildOrderBucket():
 
 	var init_function = Function.new()
 	init_function.setGraph(init_graph)
-	init_function.setMap(["returnVal_0_0"])
+	init_function.setMap({"returnVal_0_0" : 0})
 
 	var regular_param_node = ParamNode.new()
 	regular_param_node.setParamType("NullPack")
@@ -67,7 +68,7 @@ func __buildOrderBucket():
 
 	var regular_function = Function.new()
 	regular_function.setGraph(regular_graph)
-	regular_function.setMap(["returnVal_0_0"])
+	regular_function.setMap({"returnVal_0_0" : 0})
 
 	order_bucket.setInitShuffleFunction(init_function)
 	order_bucket.setRegularShuffleFunction(regular_function)
@@ -86,7 +87,7 @@ func __buildOwnCharacterFuncUnit():
 
 	var card_unit = FuncUnit.new()
 	card_unit.setFuncSetName("CardFuncSet")
-	card_unit.setFuncName("getCardWithDefaultName")
+	card_unit.setFuncName("createCardWithDefaultName")
 	card_unit.setDefaultParams(param_list)
 
 	return card_unit
@@ -103,7 +104,7 @@ func __buildEnemyCharacterFuncUnit():
 
 	var card_unit = FuncUnit.new()
 	card_unit.setFuncSetName("CardFuncSet")
-	card_unit.setFuncName("getCardWithDefaultName")
+	card_unit.setFuncName("createCardWithDefaultName")
 	card_unit.setDefaultParams(param_list)
 
 	return card_unit
@@ -169,7 +170,7 @@ func __buildOwnTeamFunction():
 	graph.construct()
 
 	own_team_function.setGraph(graph)
-	own_team_function.setMap([])
+	own_team_function.setMap({})
 
 	return own_team_function
 
@@ -199,12 +200,11 @@ func __buildEnemyTeamFunction():
 	graph.construct()
 
 	enemy_team_function.setGraph(graph)
-	enemy_team_function.setMap([])
+	enemy_team_function.setMap({})
 
 	return enemy_team_function
 
 func __buildIsDeadCondition():
-
 	var extract_param_node = ParamNode.new()
 	extract_param_node.setParamType("NullPack")
 	extract_param_node.setParam(NullPack.new())
@@ -258,7 +258,7 @@ func __buildIsDeadCondition():
 
 	var is_dead_condition = Function.new()
 	is_dead_condition.setGraph(graph)
-	is_dead_condition.setMap(["extractAttr_1_0"])
+	is_dead_condition.setMap({"extractAttr_1_0" : 0})
 
 	return is_dead_condition
 
@@ -287,7 +287,7 @@ func __buildDrawNumFunction():
 
 	var draw_num_function = Function.new()
 	draw_num_function.setGraph(graph)
-	draw_num_function.setMap(["constVal_0_0"])
+	draw_num_function.setMap({"constVal_0_0" : 0})
 
 	return draw_num_function
 
@@ -373,47 +373,143 @@ func __buildIsBattleOverCondition():
 	graph.construct()
 	
 	is_battle_over_condition.setGraph(graph)
-	is_battle_over_condition.setMap(["returnVal_3_0"])
+	is_battle_over_condition.setMap({"returnVal_3_0" : 0})
 
 	return is_battle_over_condition
 
-func __buildSwitchTargetTable():
-	var switch_target_table = SwitchTargetTable.new()
-	var main_menu_pack = TargetPack.new()
-	main_menu_pack.setTargetName("BattleOver")
-	main_menu_pack.setSceneType("MainMenuScene")
-	main_menu_pack.setSceneName("main_menu")
-	main_menu_pack.setSwitchType("switch")
-	switch_target_table.addTarget(main_menu_pack)
+func __buildIsVictoryCondition():
+	var victory_node = FuncGraphNode.new()
+	victory_node.setFunc("LinearBattleConditionSet", "isEnemyTeamEmpty")
+	var string_pack = StringPack.new()
+	string_pack.setVal("linear_battle")
+	victory_node.setDefaultParam("StringPack", string_pack, 0)
+	
+	var graph = FuncGraph.new()
+	graph.addNode(victory_node)
+	graph.construct()
 
-	var sub_menu_pack = TargetPack.new()
-	sub_menu_pack.setTargetName("OpenSubMenu")
-	sub_menu_pack.setSceneType("SubMenuScene")
-	sub_menu_pack.setSceneName("sub_menu")
-	sub_menu_pack.setSwitchType("push")
-	switch_target_table.addTarget(sub_menu_pack)
+	var victory_condition = Function.new()
+	victory_condition.setGraph(graph)
 
-	return switch_target_table
+	return victory_condition
+
+func __buildIsFailCondition():
+	var fail_node = FuncGraphNode.new()
+	fail_node.setFunc("LinearBattleConditionSet", "isOwnTeamEmpty")
+	var string_pack = StringPack.new()
+	string_pack.setVal("linear_battle")
+	fail_node.setDefaultParam("StringPack", string_pack, 0)
+	
+	var graph = FuncGraph.new()
+	graph.addNode(fail_node)
+	graph.construct()
+
+	var fail_condition = Function.new()
+	fail_condition.setGraph(graph)
+
+	return fail_condition
+
+func __buildDummyFunction():
+	var dummy_node = FuncGraphNode.new()
+	dummy_node.setFunc("BaseFuncSet", "dummy")
+
+	var graph = FuncGraph.new()
+	graph.addNode(dummy_node)
+	graph.construct()
+
+	var dummy_function = Function.new()
+	dummy_function.setGraph(graph)
+
+	var hyper = HyperFunction.new()
+	hyper.addFunction(dummy_function)
+
+	return hyper
+
+func __buildVictoryFunction():
+	var switch_node = FuncGraphNode.new()
+	switch_node.setFunc("SceneOperFuncSet", "switchScene")
+
+	var string_pack = StringPack.new()
+	string_pack.setVal("explore_map")
+	switch_node.setDefaultParam("StringPack", string_pack, 1)
+
+	var graph = FuncGraph.new()
+
+	graph.addNode(switch_node)
+	graph.construct()
+
+	var function = Function.new()
+	function.setGraph(graph)
+
+	var hyper = HyperFunction.new()
+	hyper.addFunction(function)
+
+	return hyper
+
+func __buildFailFunction():
+	var switch_node = FuncGraphNode.new()
+	switch_node.setFunc("SceneOperFuncSet", "switchScene")
+
+	var string_pack = StringPack.new()
+	string_pack.setVal("main_menu")
+	switch_node.setDefaultParam("StringPack", string_pack, 1)
+
+	var graph = FuncGraph.new()
+
+	graph.addNode(switch_node)
+	graph.construct()
+
+	var function = Function.new()
+	function.setGraph(graph)
+
+	var hyper = HyperFunction.new()
+	hyper.addFunction(function)
+
+	return hyper
+
+func __buildSubMenuFunction():
+	var switch_node = FuncGraphNode.new()
+	switch_node.setFunc("SceneOperFuncSet", "pushScene")
+
+	var string_pack = StringPack.new()
+	string_pack.setVal("sub_menu")
+	switch_node.setDefaultParam("StringPack", string_pack, 1)
+
+	var graph = FuncGraph.new()
+
+	graph.addNode(switch_node)
+	graph.construct()
+
+	var function = Function.new()
+	function.setGraph(graph)
+
+	var hyper = HyperFunction.new()
+	hyper.addFunction(function)
+
+	return hyper
 
 func test_buildLinearBattleScript():
 	var linear_battle = LinearBattleScene.instance()
 
 	linear_battle.setSceneName("linear_battle")
 	
-	var switch_target_table = __buildSwitchTargetTable()
-	linear_battle.setSwitchTargetTable(switch_target_table)
-	
 	var linear_battle_model = LinearBattleModel.new()
 
-	# order_bucket
 	var order_bucket = __buildOrderBucket()
 	linear_battle_model.setOrderBucket(order_bucket)
 	linear_battle_model.setOwnTeamFunction(__buildOwnTeamFunction())
 	linear_battle_model.setEnemyTeamFunction(__buildEnemyTeamFunction())
 	linear_battle_model.setDrawNumFunction(__buildDrawNumFunction())
 	linear_battle_model.setIsDeadCondition(__buildIsDeadCondition())
-	linear_battle_model.setIsBattleOverCondition(__buildIsBattleOverCondition())
-	linear_battle.setSceneModel(linear_battle_model)
+	linear_battle_model.setIsVictoryCondition(__buildIsVictoryCondition())
+	linear_battle_model.setIsFailCondition(__buildIsFailCondition())
+	linear_battle.setModel(linear_battle_model)
+
+	linear_battle_model.setBeforeRoundFunction(__buildDummyFunction())
+	linear_battle_model.setAfterRoundFunction(__buildDummyFunction())
+	linear_battle_model.setVictoryFunction(__buildVictoryFunction())
+	linear_battle_model.setFailFunction(__buildFailFunction())
+	linear_battle_model.setSubMenuFunction(__buildSubMenuFunction())
 
 	var script_tree = linear_battle.pack()
 	script_tree.exportAsJson("res://test/scripts/linear_battle.json")

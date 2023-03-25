@@ -110,38 +110,68 @@
 		},
 		"linear_battle": {
 			"linear_battle": {
-				"next_round_button": [
+				"character_card_frame": [
 					22,
 					"TextureNode"
 				],
-				"sub_menu_entry_btn": [
+				"hand_card_frame": [
 					23,
 					"TextureNode"
+				],
+				"background": [
+					24,
+					"TextureNode"
+				],
+				"next_round_button": [
+					25,
+					"TextureNode"
+				],
+				"next_round_button_hover": [
+					26,
+					"TextureNode"
+				],
+				"sub_menu_entry_btn": [
+					27,
+					"TextureNode"
+				]
+			},
+			"NextRoundButtonText": {
+				"font": [
+					28,
+					"FontNode"
+				],
+				"font_color": [
+					29,
+					"ColorNode"
+				],
+				"font_text": [
+					30,
+					"TextNode"
 				]
 			}
 		},
 		"global": {
 			"avator": {
 				"main_character": [
-					24,
+					31,
 					"TextureNode"
 				],
 				"enemy_character": [
-					25,
+					32,
 					"TextureNode"
 				],
 				"attack_card": [
-					28,
+					35,
 					"TextureNode"
 				]
 			},
 			"component": {
 				"action_character_mark": [
-					26,
+					33,
 					"TextureNode"
 				],
 				"chosen_hand_card_mark": [
-					27,
+					34,
 					"TextureNode"
 				]
 			}
@@ -149,103 +179,79 @@
 		"sub_menu": {
 			"sub_menu": {
 				"background_rect": [
-					29,
+					36,
 					"TextureNode"
 				]
 			},
 			"ResumeButton": {
 				"texture_normal": [
-					30,
+					37,
 					"TextureNode"
 				],
 				"texture_hover": [
-					31,
+					38,
 					"TextureNode"
 				]
 			},
 			"ResumeButtonText": {
 				"font": [
-					32,
-					"FontNode"
-				],
-				"font_color": [
-					33,
-					"ColorNode"
-				],
-				"font_text": [
-					34,
-					"TextNode"
-				]
-			},
-			"LoadButton": {
-				"texture_normal": [
-					35,
-					"TextureNode"
-				],
-				"texture_hover": [
-					36,
-					"TextureNode"
-				]
-			},
-			"LoadButtonText": {
-				"font": [
-					37,
-					"FontNode"
-				],
-				"font_color": [
-					38,
-					"ColorNode"
-				],
-				"font_text": [
 					39,
+					"FontNode"
+				],
+				"font_color": [
+					40,
+					"ColorNode"
+				],
+				"font_text": [
+					41,
 					"TextNode"
 				]
 			},
 			"SettingButton": {
 				"texture_normal": [
-					40,
+					42,
 					"TextureNode"
 				],
 				"texture_hover": [
-					41,
+					43,
 					"TextureNode"
 				]
 			},
 			"SettingButtonText": {
 				"font": [
-					42,
+					44,
 					"FontNode"
 				],
 				"font_color": [
-					43,
+					45,
 					"ColorNode"
 				],
 				"font_text": [
-					44,
+					46,
 					"TextNode"
 				]
 			},
-			"MainMenuButton": {
+			"ExitButton": {
 				"texture_normal": [
-					45,
+					47,
 					"TextureNode"
 				],
 				"texture_hover": [
-					46,
+					48,
 					"TextureNode"
 				]
 			},
-			"MainMenuButtonText": {
+			"ExitButtonText": {
 				"font": [
-					47,
+					49,
 					"FontNode"
 				],
 				"font_color": [
-					48,
+					50,
 					"ColorNode"
 				],
 				"font_text": [
-					49,
+					51,
 					"TextNode"
 				]
 			}
@@ -253,107 +259,97 @@
 		"archive_menu": {
 			"archive_menu": {
 				"background": [
-					50,
+					52,
 					"TextureNode"
 				],
 				"menu_rect": [
-					51,
+					53,
 					"TextureNode"
 				]
 			},
 			"LoadButton": {
 				"texture_normal": [
-					52,
+					54,
 					"TextureNode"
 				],
 				"texture_hover": [
-					53,
+					55,
 					"TextureNode"
 				]
 			},
 			"LoadText": {
 				"font": [
-					54,
+					56,
 					"FontNode"
 				],
 				"font_color": [
-					55,
+					57,
 					"ColorNode"
 				]
 			},
 			"DeleteButton": {
 				"texture_normal": [
-					56,
+					58,
 					"TextureNode"
 				],
 				"texture_hover": [
-					57,
+					59,
 					"TextureNode"
 				]
 			},
 			"DeleteText": {
 				"font": [
-					58,
+					60,
 					"FontNode"
 				],
 				"font_color": [
-					59,
+					61,
 					"ColorNode"
 				]
 			},
 			"BackButton": {
 				"texture_normal": [
-					60,
+					62,
 					"TextureNode"
 				],
 				"texture_hover": [
-					61,
+					63,
 					"TextureNode"
 				]
 			},
 			"BackText": {
 				"font": [
-					62,
+					64,
 					"FontNode"
 				],
 				"font_color": [
-					63,
+					65,
 					"ColorNode"
 				]
 			},
 			"NextButton": {
 				"texture_normal": [
-					64,
+					66,
 					"TextureNode"
 				]
 			},
 			"PreviousButton": {
 				"texture_normal": [
-					65,
+					67,
 					"TextureNode"
 				]
 			},
 			"ArchiveCard": {
 				"active_card": [
-					66,
+					68,
 					"TextureNode"
 				],
 				"empty_card": [
-					67,
+					69,
 					"TextureNode"
 				]
 			},
 			"CardText": {
-				"font": [
-					68,
-					"FontNode"
-				],
-				"font_color": [
-					69,
-					"ColorNode"
-				]
-			},
-			"CreateText": {
 				"font": [
 					70,
 					"FontNode"
@@ -363,7 +359,7 @@
 					"ColorNode"
 				]
 			},
-			"UpdateText": {
+			"CreateText": {
 				"font": [
 					72,
 					"FontNode"
@@ -373,7 +369,7 @@
 					"ColorNode"
 				]
 			},
-			"CreateTimeText": {
+			"UpdateText": {
 				"font": [
 					74,
 					"FontNode"
@@ -383,7 +379,7 @@
 					"ColorNode"
 				]
 			},
-			"UpdateTimeText": {
+			"CreateTimeText": {
 				"font": [
 					76,
 					"FontNode"
@@ -392,25 +388,458 @@
 					77,
 					"ColorNode"
 				]
+			},
+			"UpdateTimeText": {
+				"font": [
+					78,
+					"FontNode"
+				],
+				"font_color": [
+					79,
+					"ColorNode"
+				]
+			}
+		},
+		"MapCanvas": {
+			"MapCanvas": {
+				"map_line_color": [
+					80,
+					"ColorNode"
+				]
+			}
+		},
+		"explore_map": {
+			"explore_map": {
+				"background": [
+					81,
+					"TextureNode"
+				],
+				"map_node": [
+					82,
+					"TextureNode"
+				],
+				"disable_map_node": [
+					83,
+					"TextureNode"
+				]
 			}
 		}
 	},
 	"node_list": [
 		{
-			"texture_path": "res://asserts/main_menu/title.png"
+			"texture_path": "res://asserts/main_menu/title1.png",
+			"s_name": "main_menu",
+			"c_name": "main_menu",
+			"r_name": "title"
 		},
 		{
-			"texture_path": "res://asserts/main_menu/bg2.jpg"
+			"texture_path": "res://asserts/main_menu/bg3.jpg",
+			"s_name": "main_menu",
+			"c_name": "main_menu",
+			"r_name": "background"
 		},
 		{
-			"texture_path": "res://asserts/main_menu/main_menu_btn.png"
+			"texture_path": "res://asserts/main_menu/main_menu_btn1.png",
+			"s_name": "main_menu",
+			"c_name": "StartButton",
+			"r_name": "texture_normal"
 		},
 		{
-			"texture_path": "res://asserts/main_menu/main_menu_btn_hover.png"
+			"texture_path": "res://asserts/main_menu/main_menu_btn_hover1.png",
+			"s_name": "main_menu",
+			"c_name": "StartButton",
+			"r_name": "texture_hover"
 		},
 		{
 			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
-			"font_size": 60
+			"font_size": 60,
+			"s_name": "main_menu",
+			"c_name": "StartButtonText",
+			"r_name": "font"
+		},
+		{
+			"color_name": "#1c1914",
+			"rgba_int": 0,
+			"rgb": [
+
+			],
+			"rgba": [
+
+			],
+			"type": 0,
+			"s_name": "main_menu",
+			"c_name": "StartButtonText",
+			"r_name": "font_color"
+		},
+		{
+			"text": "新的旅途",
+			"s_name": "main_menu",
+			"c_name": "StartButtonText",
+			"r_name": "font_text"
+		},
+		{
+			"texture_path": "res://asserts/main_menu/main_menu_btn1.png",
+			"s_name": "main_menu",
+			"c_name": "ContinueButton",
+			"r_name": "texture_normal"
+		},
+		{
+			"texture_path": "res://asserts/main_menu/main_menu_btn_hover1.png",
+			"s_name": "main_menu",
+			"c_name": "ContinueButton",
+			"r_name": "texture_hover"
+		},
+		{
+			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+			"font_size": 60,
+			"s_name": "main_menu",
+			"c_name": "ContinueButtonText",
+			"r_name": "font"
+		},
+		{
+			"color_name": "#1c1914",
+			"rgba_int": 0,
+			"rgb": [
+
+			],
+			"rgba": [
+
+			],
+			"type": 0,
+			"s_name": "main_menu",
+			"c_name": "ContinueButtonText",
+			"r_name": "font_color"
+		},
+		{
+			"text": "继续旅途",
+			"s_name": "main_menu",
+			"c_name": "ContinueButtonText",
+			"r_name": "font_text"
+		},
+		{
+			"texture_path": "res://asserts/main_menu/main_menu_btn1.png",
+			"s_name": "main_menu",
+			"c_name": "SettingButton",
+			"r_name": "texture_normal"
+		},
+		{
+			"texture_path": "res://asserts/main_menu/main_menu_btn_hover1.png",
+			"s_name": "main_menu",
+			"c_name": "SettingButton",
+			"r_name": "texture_hover"
+		},
+		{
+			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+			"font_size": 60,
+			"s_name": "main_menu",
+			"c_name": "SettingButtonText",
+			"r_name": "font"
+		},
+		{
+			"color_name": "#1c1914",
+			"rgba_int": 0,
+			"rgb": [
+
+			],
+			"rgba": [
+
+			],
+			"type": 0,
+			"s_name": "main_menu",
+			"c_name": "SettingButtonText",
+			"r_name": "font_color"
+		},
+		{
+			"text": "游戏设置",
+			"s_name": "main_menu",
+			"c_name": "SettingButtonText",
+			"r_name": "font_text"
+		},
+		{
+			"texture_path": "res://asserts/main_menu/main_menu_btn1.png",
+			"s_name": "main_menu",
+			"c_name": "ExitButton",
+			"r_name": "texture_normal"
+		},
+		{
+			"texture_path": "res://asserts/main_menu/main_menu_btn_hover1.png",
+			"s_name": "main_menu",
+			"c_name": "ExitButton",
+			"r_name": "texture_hover"
+		},
+		{
+			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+			"font_size": 60,
+			"s_name": "main_menu",
+			"c_name": "ExitButtonText",
+			"r_name": "font"
+		},
+		{
+			"color_name": "#1c1914",
+			"rgba_int": 0,
+			"rgb": [
+
+			],
+			"rgba": [
+
+			],
+			"type": 0,
+			"s_name": "main_menu",
+			"c_name": "ExitButtonText",
+			"r_name": "font_color"
+		},
+		{
+			"text": "离开游戏",
+			"s_name": "main_menu",
+			"c_name": "ExitButtonText",
+			"r_name": "font_text"
+		},
+		{
+			"texture_path": "res://asserts/linear_battle/CharacterCard.png",
+			"s_name": "linear_battle",
+			"c_name": "linear_battle",
+			"r_name": "character_card_frame"
+		},
+		{
+			"texture_path": "res://asserts/linear_battle/HandCardFrame.png",
+			"s_name": "linear_battle",
+			"c_name": "linear_battle",
+			"r_name": "hand_card_frame"
+		},
+		{
+			"texture_path": "res://asserts/linear_battle/bg2.jpg",
+			"s_name": "linear_battle",
+			"c_name": "linear_battle",
+			"r_name": "background"
+		},
+		{
+			"texture_path": "res://asserts/linear_battle/next_round_btn.png",
+			"s_name": "linear_battle",
+			"c_name": "linear_battle",
+			"r_name": "next_round_button"
+		},
+		{
+			"texture_path": "res://asserts/linear_battle/next_round_btn_hover.png",
+			"s_name": "linear_battle",
+			"c_name": "linear_battle",
+			"r_name": "next_round_button_hover"
+		},
+		{
+			"texture_path": "res://asserts/linear_battle/SubMenuButton.png",
+			"s_name": "linear_battle",
+			"c_name": "linear_battle",
+			"r_name": "sub_menu_entry_btn"
+		},
+		{
+			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+			"font_size": 40,
+			"s_name": "linear_battle",
+			"c_name": "NextRoundButtonText",
+			"r_name": "font"
+		},
+		{
+			"color_name": "#2E2E2E",
+			"rgba_int": 0,
+			"rgb": [
+
+			],
+			"rgba": [
+
+			],
+			"type": 0,
+			"s_name": "linear_battle",
+			"c_name": "NextRoundButtonText",
+			"r_name": "font_color"
+		},
+		{
+			"text": "结束回合",
+			"s_name": "linear_battle",
+			"c_name": "NextRoundButtonText",
+			"r_name": "font_text"
+		},
+		{
+			"texture_path": "res://asserts/avator/white_hair.png",
+			"s_name": "global",
+			"c_name": "avator",
+			"r_name": "main_character"
+		},
+		{
+			"texture_path": "res://asserts/avator/purple_hair.png",
+			"s_name": "global",
+			"c_name": "avator",
+			"r_name": "enemy_character"
+		},
+		{
+			"texture_path": "res://asserts/component/underline.png",
+			"s_name": "global",
+			"c_name": "component",
+			"r_name": "action_character_mark"
+		},
+		{
+			"texture_path": "res://asserts/component/underline.png",
+			"s_name": "global",
+			"c_name": "component",
+			"r_name": "chosen_hand_card_mark"
+		},
+		{
+			"texture_path": "res://asserts/avator/knight.png",
+			"s_name": "global",
+			"c_name": "avator",
+			"r_name": "attack_card"
+		},
+		{
+			"texture_path": "res://asserts/sub_menu/sub_menu_frame.png",
+			"s_name": "sub_menu",
+			"c_name": "sub_menu",
+			"r_name": "background_rect"
+		},
+		{
+			"texture_path": "res://asserts/sub_menu/sub_menu_btn.png",
+			"s_name": "sub_menu",
+			"c_name": "ResumeButton",
+			"r_name": "texture_normal"
+		},
+		{
+			"texture_path": "res://asserts/sub_menu/sub_menu_btn_hover.png",
+			"s_name": "sub_menu",
+			"c_name": "ResumeButton",
+			"r_name": "texture_hover"
+		},
+		{
+			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+			"font_size": 30,
+			"s_name": "sub_menu",
+			"c_name": "ResumeButtonText",
+			"r_name": "font"
+		},
+		{
+			"color_name": "#1c1914",
+			"rgba_int": 0,
+			"rgb": [
+
+			],
+			"rgba": [
+
+			],
+			"type": 0,
+			"s_name": "sub_menu",
+			"c_name": "ResumeButtonText",
+			"r_name": "font_color"
+		},
+		{
+			"text": "回到游戏",
+			"s_name": "sub_menu",
+			"c_name": "ResumeButtonText",
+			"r_name": "font_text"
+		},
+		{
+			"texture_path": "res://asserts/sub_menu/sub_menu_btn.png",
+			"s_name": "sub_menu",
+			"c_name": "SettingButton",
+			"r_name": "texture_normal"
+		},
+		{
+			"texture_path": "res://asserts/sub_menu/sub_menu_btn_hover.png",
+			"s_name": "sub_menu",
+			"c_name": "SettingButton",
+			"r_name": "texture_hover"
+		},
+		{
+			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+			"font_size": 30,
+			"s_name": "sub_menu",
+			"c_name": "SettingButtonText",
+			"r_name": "font"
+		},
+		{
+			"color_name": "#1c1914",
+			"rgba_int": 0,
+			"rgb": [
+
+			],
+			"rgba": [
+
+			],
+			"type": 0,
+			"s_name": "sub_menu",
+			"c_name": "SettingButtonText",
+			"r_name": "font_color"
+		},
+		{
+			"text": "游戏设置",
+			"s_name": "sub_menu",
+			"c_name": "SettingButtonText",
+			"r_name": "font_text"
+		},
+		{
+			"texture_path": "res://asserts/sub_menu/sub_menu_btn.png",
+			"s_name": "sub_menu",
+			"c_name": "ExitButton",
+			"r_name": "texture_normal"
+		},
+		{
+			"texture_path": "res://asserts/sub_menu/sub_menu_btn_hover.png",
+			"s_name": "sub_menu",
+			"c_name": "ExitButton",
+			"r_name": "texture_hover"
+		},
+		{
+			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+			"font_size": 30,
+			"s_name": "sub_menu",
+			"c_name": "ExitButtonText",
+			"r_name": "font"
+		},
+		{
+			"color_name": "#1c1914",
+			"rgba_int": 0,
+			"rgb": [
+
+			],
+			"rgba": [
+
+			],
+			"type": 0,
+			"s_name": "sub_menu",
+			"c_name": "ExitButtonText",
+			"r_name": "font_color"
+		},
+		{
+			"text": "回到主菜单",
+			"s_name": "sub_menu",
+			"c_name": "ExitButtonText",
+			"r_name": "font_text"
+		},
+		{
+			"texture_path": "res://asserts/archive_menu/archive_background.jpg",
+			"s_name": "archive_menu",
+			"c_name": "archive_menu",
+			"r_name": "background"
+		},
+		{
+			"texture_path": "res://asserts/archive_menu/archive_menu_rect.png",
+			"s_name": "archive_menu",
+			"c_name": "archive_menu",
+			"r_name": "menu_rect"
+		},
+		{
+			"texture_path": "res://asserts/archive_menu/archive_load_button.png",
+			"s_name": "archive_menu",
+			"c_name": "LoadButton",
+			"r_name": "texture_normal"
+		},
+		{
+			"texture_path": "res://asserts/archive_menu/archive_load_button_hover.png",
+			"s_name": "archive_menu",
+			"c_name": "LoadButton",
+			"r_name": "texture_hover"
+		},
+		{
+			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+			"font_size": 18,
+			"s_name": "archive_menu",
+			"c_name": "LoadText",
+			"r_name": "font"
 		},
 		{
 			"color_name": "#d1992d",
@@ -421,20 +850,29 @@
 			"rgba": [
 
 			],
-			"type": 0
+			"type": 0,
+			"s_name": "archive_menu",
+			"c_name": "LoadText",
+			"r_name": "font_color"
 		},
 		{
-			"text": "新的旅途"
+			"texture_path": "res://asserts/archive_menu/archive_delete_button.png",
+			"s_name": "archive_menu",
+			"c_name": "DeleteButton",
+			"r_name": "texture_normal"
 		},
 		{
-			"texture_path": "res://asserts/main_menu/main_menu_btn.png"
-		},
-		{
-			"texture_path": "res://asserts/main_menu/main_menu_btn_hover.png"
+			"texture_path": "res://asserts/archive_menu/archive_delete_button_hover.png",
+			"s_name": "archive_menu",
+			"c_name": "DeleteButton",
+			"r_name": "texture_hover"
 		},
 		{
 			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
-			"font_size": 60
+			"font_size": 18,
+			"s_name": "archive_menu",
+			"c_name": "DeleteText",
+			"r_name": "font"
 		},
 		{
 			"color_name": "#d1992d",
@@ -445,20 +883,29 @@
 			"rgba": [
 
 			],
-			"type": 0
+			"type": 0,
+			"s_name": "archive_menu",
+			"c_name": "DeleteText",
+			"r_name": "font_color"
 		},
 		{
-			"text": "继续旅途"
+			"texture_path": "res://asserts/archive_menu/archive_back_button.png",
+			"s_name": "archive_menu",
+			"c_name": "BackButton",
+			"r_name": "texture_normal"
 		},
 		{
-			"texture_path": "res://asserts/main_menu/main_menu_btn.png"
-		},
-		{
-			"texture_path": "res://asserts/main_menu/main_menu_btn_hover.png"
+			"texture_path": "res://asserts/archive_menu/archive_back_button_hover.png",
+			"s_name": "archive_menu",
+			"c_name": "BackButton",
+			"r_name": "texture_hover"
 		},
 		{
 			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
-			"font_size": 60
+			"font_size": 18,
+			"s_name": "archive_menu",
+			"c_name": "BackText",
+			"r_name": "font"
 		},
 		{
 			"color_name": "#d1992d",
@@ -469,20 +916,41 @@
 			"rgba": [
 
 			],
-			"type": 0
+			"type": 0,
+			"s_name": "archive_menu",
+			"c_name": "BackText",
+			"r_name": "font_color"
 		},
 		{
-			"text": "游戏设置"
+			"texture_path": "res://asserts/archive_menu/archive_next_button.png",
+			"s_name": "archive_menu",
+			"c_name": "NextButton",
+			"r_name": "texture_normal"
 		},
 		{
-			"texture_path": "res://asserts/main_menu/main_menu_btn.png"
+			"texture_path": "res://asserts/archive_menu/archive_previous_button.png",
+			"s_name": "archive_menu",
+			"c_name": "PreviousButton",
+			"r_name": "texture_normal"
 		},
 		{
-			"texture_path": "res://asserts/main_menu/main_menu_btn_hover.png"
+			"texture_path": "res://asserts/archive_menu/archive_card.png",
+			"s_name": "archive_menu",
+			"c_name": "ArchiveCard",
+			"r_name": "active_card"
+		},
+		{
+			"texture_path": "res://asserts/archive_menu/archive_empty_card.png",
+			"s_name": "archive_menu",
+			"c_name": "ArchiveCard",
+			"r_name": "empty_card"
 		},
 		{
 			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
-			"font_size": 60
+			"font_size": 18,
+			"s_name": "archive_menu",
+			"c_name": "CardText",
+			"r_name": "font"
 		},
 		{
 			"color_name": "#d1992d",
@@ -493,44 +961,17 @@
 			"rgba": [
 
 			],
-			"type": 0
-		},
-		{
-			"text": "离开游戏"
-		},
-		{
-			"texture_path": "res://asserts/component/next_round_btn.png"
-		},
-		{
-			"texture_path": "res://asserts/sub_menu/sub_menu_entry_btn.png"
-		},
-		{
-			"texture_path": "res://asserts/avator/white_hair.png"
-		},
-		{
-			"texture_path": "res://asserts/avator/purple_hair.png"
-		},
-		{
-			"texture_path": "res://asserts/component/underline.png"
-		},
-		{
-			"texture_path": "res://asserts/component/underline.png"
-		},
-		{
-			"texture_path": "res://asserts/avator/knight.png"
-		},
-		{
-			"texture_path": "res://asserts/sub_menu/background_.png"
-		},
-		{
-			"texture_path": "res://asserts/sub_menu/sub_menu_btn_.png"
-		},
-		{
-			"texture_path": "res://asserts/sub_menu/sub_menu_btn_hover.png"
+			"type": 0,
+			"s_name": "archive_menu",
+			"c_name": "CardText",
+			"r_name": "font_color"
 		},
 		{
 			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
-			"font_size": 30
+			"font_size": 18,
+			"s_name": "archive_menu",
+			"c_name": "CreateText",
+			"r_name": "font"
 		},
 		{
 			"color_name": "#d1992d",
@@ -541,20 +982,17 @@
 			"rgba": [
 
 			],
-			"type": 0
-		},
-		{
-			"text": "回到游戏"
-		},
-		{
-			"texture_path": "res://asserts/sub_menu/sub_menu_btn_.png"
-		},
-		{
-			"texture_path": "res://asserts/sub_menu/sub_menu_btn_hover.png"
+			"type": 0,
+			"s_name": "archive_menu",
+			"c_name": "CreateText",
+			"r_name": "font_color"
 		},
 		{
 			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
-			"font_size": 30
+			"font_size": 18,
+			"s_name": "archive_menu",
+			"c_name": "UpdateText",
+			"r_name": "font"
 		},
 		{
 			"color_name": "#d1992d",
@@ -565,20 +1003,17 @@
 			"rgba": [
 
 			],
-			"type": 0
-		},
-		{
-			"text": "读取游戏"
-		},
-		{
-			"texture_path": "res://asserts/sub_menu/sub_menu_btn_.png"
-		},
-		{
-			"texture_path": "res://asserts/sub_menu/sub_menu_btn_hover.png"
+			"type": 0,
+			"s_name": "archive_menu",
+			"c_name": "UpdateText",
+			"r_name": "font_color"
 		},
 		{
 			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
-			"font_size": 30
+			"font_size": 18,
+			"s_name": "archive_menu",
+			"c_name": "CreateTimeText",
+			"r_name": "font"
 		},
 		{
 			"color_name": "#d1992d",
@@ -589,20 +1024,17 @@
 			"rgba": [
 
 			],
-			"type": 0
-		},
-		{
-			"text": "游戏设置"
-		},
-		{
-			"texture_path": "res://asserts/sub_menu/sub_menu_btn_.png"
-		},
-		{
-			"texture_path": "res://asserts/sub_menu/sub_menu_btn_hover.png"
+			"type": 0,
+			"s_name": "archive_menu",
+			"c_name": "CreateTimeText",
+			"r_name": "font_color"
 		},
 		{
 			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
-			"font_size": 30
+			"font_size": 18,
+			"s_name": "archive_menu",
+			"c_name": "UpdateTimeText",
+			"r_name": "font"
 		},
 		{
 			"color_name": "#d1992d",
@@ -613,29 +1045,13 @@
 			"rgba": [
 
 			],
-			"type": 0
+			"type": 0,
+			"s_name": "archive_menu",
+			"c_name": "UpdateTimeText",
+			"r_name": "font_color"
 		},
 		{
-			"text": "回到主菜单"
-		},
-		{
-			"texture_path": "res://asserts/archive_menu/archive_background.jpg"
-		},
-		{
-			"texture_path": "res://asserts/archive_menu/archive_menu_rect.png"
-		},
-		{
-			"texture_path": "res://asserts/archive_menu/archive_load_button.png"
-		},
-		{
-			"texture_path": "res://asserts/archive_menu/archive_load_button_hover.png"
-		},
-		{
-			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
-			"font_size": 18
-		},
-		{
-			"color_name": "#d1992d",
+			"color_name": "#6f695d",
 			"rgba_int": 0,
 			"rgb": [
 
@@ -643,136 +1059,28 @@
 			"rgba": [
 
 			],
-			"type": 0
+			"type": 0,
+			"s_name": "MapCanvas",
+			"c_name": "MapCanvas",
+			"r_name": "map_line_color"
 		},
 		{
-			"texture_path": "res://asserts/archive_menu/archive_delete_button.png"
+			"texture_path": "res://asserts/explore_map/bg.jpg",
+			"s_name": "explore_map",
+			"c_name": "explore_map",
+			"r_name": "background"
 		},
 		{
-			"texture_path": "res://asserts/archive_menu/archive_delete_button_hover.png"
+			"texture_path": "res://asserts/explore_map/MapNode.png",
+			"s_name": "explore_map",
+			"c_name": "explore_map",
+			"r_name": "map_node"
 		},
 		{
-			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
-			"font_size": 18
-		},
-		{
-			"color_name": "#d1992d",
-			"rgba_int": 0,
-			"rgb": [
-
-			],
-			"rgba": [
-
-			],
-			"type": 0
-		},
-		{
-			"texture_path": "res://asserts/archive_menu/archive_back_button.png"
-		},
-		{
-			"texture_path": "res://asserts/archive_menu/archive_back_button_hover.png"
-		},
-		{
-			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
-			"font_size": 18
-		},
-		{
-			"color_name": "#d1992d",
-			"rgba_int": 0,
-			"rgb": [
-
-			],
-			"rgba": [
-
-			],
-			"type": 0
-		},
-		{
-			"texture_path": "res://asserts/archive_menu/archive_next_button.png"
-		},
-		{
-			"texture_path": "res://asserts/archive_menu/archive_previous_button.png"
-		},
-		{
-			"texture_path": "res://asserts/archive_menu/archive_card.png"
-		},
-		{
-			"texture_path": "res://asserts/archive_menu/archive_empty_card.png"
-		},
-		{
-			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
-			"font_size": 18
-		},
-		{
-			"color_name": "#d1992d",
-			"rgba_int": 0,
-			"rgb": [
-
-			],
-			"rgba": [
-
-			],
-			"type": 0
-		},
-		{
-			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
-			"font_size": 18
-		},
-		{
-			"color_name": "#d1992d",
-			"rgba_int": 0,
-			"rgb": [
-
-			],
-			"rgba": [
-
-			],
-			"type": 0
-		},
-		{
-			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
-			"font_size": 18
-		},
-		{
-			"color_name": "#d1992d",
-			"rgba_int": 0,
-			"rgb": [
-
-			],
-			"rgba": [
-
-			],
-			"type": 0
-		},
-		{
-			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
-			"font_size": 18
-		},
-		{
-			"color_name": "#d1992d",
-			"rgba_int": 0,
-			"rgb": [
-
-			],
-			"rgba": [
-
-			],
-			"type": 0
-		},
-		{
-			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
-			"font_size": 18
-		},
-		{
-			"color_name": "#d1992d",
-			"rgba_int": 0,
-			"rgb": [
-
-			],
-			"rgba": [
-
-			],
-			"type": 0
+			"texture_path": "res://asserts/explore_map/ExploreMapDisable.png",
+			"s_name": "explore_map",
+			"c_name": "explore_map",
+			"r_name": "disable_map_node"
 		}
 	]
 }

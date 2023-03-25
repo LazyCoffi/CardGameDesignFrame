@@ -5,6 +5,11 @@
 			"scene_name" : "main_menu",
 			"is_complete" : true
 		},
+		"explore_map" : {
+			"type" : "ExploreMapScene",
+			"scene_name" : "explore_map",
+			"is_complete" : true
+		},
 		"linear_battle" : {
 			"type" : "LinearBattleScene",
 			"scene_name" : "linear_battle",

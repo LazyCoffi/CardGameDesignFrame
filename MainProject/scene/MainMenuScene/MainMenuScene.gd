@@ -13,7 +13,6 @@ signal popSignal
 
 var is_registered
 var scene_name
-var switch_target_table
 
 var scene_dispatcher
 var scene_model
@@ -24,13 +23,11 @@ func _init():
 	is_registered = false
 	scene_dispatcher = MainMenuDispatcher.new()
 	scene_model = null
-	switch_target_table = null
 	scene_render = MainMenuRender.new()
 	scene_service = MainMenuService.new()
 	__setRef()
 
 func _ready():
-	__setSwitchConnection()
 	scene_dispatcher.launch()
 
 func isRuntimeType():
@@ -52,13 +49,6 @@ func getSceneName():
 
 func setSceneName(scene_name_):
 	scene_name = scene_name_
-
-# switch_target_table
-func getSwitchTargetTable():
-	return switch_target_table
-
-func setSwitchTargetTable(switch_target_table_):
-	switch_target_table = switch_target_table_
 
 # dispatcher
 func dispatcher():
@@ -88,52 +78,28 @@ func service():
 func setService(scene_service_):
 	scene_service = scene_service_
 
-func switchScene(target_scene_name, target_switch_type):
-	match target_switch_type:
-		"switch" :
-			emit_signal("switchSignal", target_scene_name)
-		"push" : 
-			emit_signal("pushSignal", target_scene_name)
-		"pop":
-			emit_signal("popSignal")
+func switchScene(target_scene_name):
+	emit_signal("switchSignal", target_scene_name)
+
+func pushScene(target_scene_name):
+	emit_signal("pushSignal", target_scene_name)
+
+func popScene():
+	emit_signal("popSignal")
 
 func pack():
 	var script_tree = ScriptTree.new()
 
 	script_tree.addAttr("scene_name", scene_name)
-	script_tree.addObject("switch_target_table", switch_target_table)
 	script_tree.addObject("scene_model", scene_model)
 
 	return script_tree
 
 func loadScript(script_tree):
 	scene_name = script_tree.getStr("scene_name")
-	switch_target_table = script_tree.getObject("switch_target_table", SwitchTargetTable)
 	scene_model = script_tree.getObject("scene_model", MainMenuModel)
 
 func __setRef():
 	scene_dispatcher.setRef(self)
 	scene_render.setRef(self)
 	scene_service.setRef(self)
-
-func __setSwitchConnection():
-	Logger.assert($StartButton.connect("pressed", self, "__startButtonSwitch") == 0, "Signal connect fail!")
-	Logger.assert($ContinueButton.connect("pressed", self, "__continueButtonSwitch") == 0, "Signal connect fail!")
-	Logger.assert($SettingButton.connect("pressed", self, "__settingButtonSwitch") == 0, "Signal connect fail!")
-
-func __startButtonSwitch():
-	var target_scene_name = switch_target_table.getTargetSceneName("StartButton")
-	var target_switch_type = switch_target_table.getTargetSwitchType("StartButton")
-	switchScene(target_scene_name, target_switch_type)
-
-func __continueButtonSwitch():
-	var target_scene_name = switch_target_table.getTargetSceneName("ContinueButton")
-	var target_switch_type = switch_target_table.getTargetSwitchType("ContinueButton")
-	switchScene(target_scene_name, target_switch_type)
-
-func __settingButtonSwitch():
-	var target_scene_name = switch_target_table.getTargetSceneName("SettingButton")
-	var target_switch_type = switch_target_table.getTargetSwitchType("SettingButton")
-	switchScene(target_scene_name, target_switch_type)
-
-
