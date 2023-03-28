@@ -51,9 +51,6 @@ func pushScene(next_scene_name):
 func popScene():
 	emit_signal("popSignal")
 
-func loadArchive(archive_name):
-	emit_signal("loadArchive", archive_name)
-	
 # scene_name
 func getSceneName():
 	return scene_name

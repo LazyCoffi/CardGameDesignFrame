@@ -13,10 +13,10 @@ func model():
 	return scene_ref.model()
 
 func resume():
-	model().resumeFunction()
+	model().resumeFunction(scene())
 
 func setting():
-	model().settingFunction()
+	model().settingFunction(scene())
 
 func exit():
-	model().exitFunction()
+	model().exitFunction(scene())

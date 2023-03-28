@@ -12,6 +12,9 @@ func scene():
 func model():
 	return scene_ref.model()
 
+func subMenu():
+	model().subMenuFunction(scene())
+
 func getMapLines():
 	var map_node_list = model().getMapNodeList()
 	var ret = []

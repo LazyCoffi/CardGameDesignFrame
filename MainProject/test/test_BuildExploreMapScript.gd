@@ -51,17 +51,56 @@ func __buildDisableFunc():
 
 	return hyper
 
+func __buildSaveFunc():
+	var save_node = FuncGraphNode.new()
+	save_node.setFunc("ArchiveOperFuncSet", "saveArchive")
+
+	var graph = FuncGraph.new()
+	graph.addNode(save_node)
+	graph.construct()
+
+	var function = Function.new()
+	function.setGraph(graph)
+
+	var hyper = HyperFunction.new()
+	hyper.addFunction(function)
+
+	return hyper
+
+func __buildSubMenuFunc():
+	var sub_menu_node = FuncGraphNode.new()
+	sub_menu_node.setFunc("SceneOperFuncSet", "pushScene")
+	var string_pack = StringPack.new()
+	string_pack.setVal("sub_menu")
+	sub_menu_node.setDefaultParam("StringPack", string_pack, 1)
+
+	var graph = FuncGraph.new()
+	graph.addNode(sub_menu_node)
+	graph.construct()
+
+	var function = Function.new()
+	function.setGraph(graph)
+
+	var hyper = HyperFunction.new()
+	hyper.addFunction(function)
+
+	return hyper
+
 func __buildExploreMapModel():
 	var explore_map_model = ExploreMapModel.new()
 
-	explore_map_model.addMapNode(1, 1, __buildDisableFunc(), true)
-	explore_map_model.addMapNode(2, 2, __buildEffectFunc(), true)
-	explore_map_model.addMapNode(1, 3, __buildEffectFunc(), false)
-	explore_map_model.addMapNode(4, 5, __buildEffectFunc(), false)
+	explore_map_model.setSubMenuFunction(__buildSubMenuFunc())
+
+	explore_map_model.addMapNode(1, 16, __buildDisableFunc(), true)
+	explore_map_model.addMapNode(2, 15, __buildEffectFunc(), true)
+	explore_map_model.addMapNode(3, 16, __buildEffectFunc(), false)
+	explore_map_model.addMapNode(2, 14, __buildEffectFunc(), false)
+	explore_map_model.addMapNode(4, 16, __buildSaveFunc(), true)
 
 	explore_map_model.addMapNodeCh(0, 1)
 	explore_map_model.addMapNodeCh(1, 2)
 	explore_map_model.addMapNodeCh(1, 3)
+	explore_map_model.addMapNodeCh(2, 4)
 
 	return explore_map_model
 

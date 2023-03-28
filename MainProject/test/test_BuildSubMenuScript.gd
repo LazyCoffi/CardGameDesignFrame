@@ -5,32 +5,7 @@ var SubMenuModel = TypeUnit.type("SubMenuModel")
 
 func __buildResumeFunction():
 	var switch_node = FuncGraphNode.new()
-	switch_node.setFunc("SceneOperFuncSet", "switchScene")
-
-	var string_pack = StringPack.new()
-	string_pack.setVal("explore_map")
-	switch_node.setDefaultParam("StringPack", string_pack, 1)
-
-	var graph = FuncGraph.new()
-
-	graph.addNode(switch_node)
-	graph.construct()
-
-	var function = Function.new()
-	function.setGraph(graph)
-
-	var hyper = HyperFunction.new()
-	hyper.addFunction(function)
-
-	return hyper
-
-func __buildContinueFunction():
-	var switch_node = FuncGraphNode.new()
-	switch_node.setFunc("SceneOperFuncSet", "switchScene")
-
-	var string_pack = StringPack.new()
-	string_pack.setVal("archive")
-	switch_node.setDefaultParam("StringPack", string_pack, 1)
+	switch_node.setFunc("SceneOperFuncSet", "popScene")
 
 	var graph = FuncGraph.new()
 
@@ -50,7 +25,7 @@ func __buildSettingFunction():
 	switch_node.setFunc("SceneOperFuncSet", "switchScene")
 
 	var string_pack = StringPack.new()
-	string_pack.setVal("linear_battle")
+	string_pack.setVal("explore_map")
 	switch_node.setDefaultParam("StringPack", string_pack, 1)
 
 	var graph = FuncGraph.new()
@@ -71,7 +46,7 @@ func __buildExitFunction():
 	switch_node.setFunc("SceneOperFuncSet", "switchScene")
 
 	var string_pack = StringPack.new()
-	string_pack.setVal("explore_map")
+	string_pack.setVal("main_menu")
 	switch_node.setDefaultParam("StringPack", string_pack, 1)
 
 	var graph = FuncGraph.new()

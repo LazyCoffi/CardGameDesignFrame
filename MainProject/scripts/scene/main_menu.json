@@ -43,6 +43,34 @@
 							"switchScene_0_0": 0
 						}
 					}
+				},
+				{
+					"graph": {
+						"request_params": {
+
+						},
+						"node_list": [
+							{
+								"func_unit": {
+									"func_name": "createArchive",
+									"func_set_name": "ArchiveOperFuncSet",
+									"default_params": {
+										"list": [
+
+										]
+									}
+								},
+								"ch_index_list": [
+
+								]
+							}
+						]
+					},
+					"param_map": {
+						"map": {
+
+						}
+					}
 				}
 			],
 			"param_map": {
@@ -52,7 +80,8 @@
 			},
 			"ret_map": {
 				"map": [
-					0
+					0,
+					1
 				]
 			}
 		},
@@ -62,12 +91,12 @@
 				{
 					"graph": {
 						"request_params": {
-							"switchScene_0_0": "Object"
+							"pushScene_0_0": "Object"
 						},
 						"node_list": [
 							{
 								"func_unit": {
-									"func_name": "switchScene",
+									"func_name": "pushScene",
 									"func_set_name": "SceneOperFuncSet",
 									"default_params": {
 										"list": [
@@ -95,7 +124,7 @@
 					},
 					"param_map": {
 						"map": {
-							"switchScene_0_0": 0
+							"pushScene_0_0": 0
 						}
 					}
 				}
@@ -117,12 +146,12 @@
 				{
 					"graph": {
 						"request_params": {
-							"switchScene_0_0": "Object"
+							"pushScene_0_0": "Object"
 						},
 						"node_list": [
 							{
 								"func_unit": {
-									"func_name": "switchScene",
+									"func_name": "pushScene",
 									"func_set_name": "SceneOperFuncSet",
 									"default_params": {
 										"list": [
@@ -135,7 +164,7 @@
 											{
 												"param_type": "StringPack",
 												"param": {
-													"val": "linear_battle"
+													"val": "setting"
 												}
 											}
 										]
@@ -150,7 +179,7 @@
 					},
 					"param_map": {
 						"map": {
-							"switchScene_0_0": 0
+							"pushScene_0_0": 0
 						}
 					}
 				}
@@ -172,12 +201,12 @@
 				{
 					"graph": {
 						"request_params": {
-							"switchScene_0_0": "Object"
+							"quitGame_0_0": "Object"
 						},
 						"node_list": [
 							{
 								"func_unit": {
-									"func_name": "switchScene",
+									"func_name": "quitGame",
 									"func_set_name": "SceneOperFuncSet",
 									"default_params": {
 										"list": [
@@ -186,18 +215,11 @@
 												"param": {
 
 												}
-											},
-											{
-												"param_type": "StringPack",
-												"param": {
-													"val": "explore_map"
-												}
 											}
 										]
 									}
 								},
 								"ch_index_list": [
-									null,
 									null
 								]
 							}
@@ -205,7 +227,7 @@
 					},
 					"param_map": {
 						"map": {
-							"switchScene_0_0": 0
+							"quitGame_0_0": 0
 						}
 					}
 				}

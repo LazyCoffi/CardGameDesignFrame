@@ -8,6 +8,7 @@ var MapCanvas = TypeUnit.type("MapCanvas")
 var map_canvas				# MapCanvas
 var map_node_rect_list		# ComponentPack_Array
 var background_rect			# ComponentPack
+var sub_menu_entry_button	# ComponentPack
 
 var scene_ref
 
@@ -20,6 +21,9 @@ func setRef(scene):
 
 func scene():
 	return scene_ref
+
+func sceneName():
+	return scene().getSceneName()
 
 func model():
 	return scene_ref.model()
@@ -88,8 +92,6 @@ func renderMapNode():
 		var x = service().coordinateRemap(x_, y_)[0]
 		var y = service().coordinateRemap(x_, y_)[1]
 
-		print("node: " + str([x, y]))
-
 		var map_node_rect_size = Vector2(model().getMapNodeSize()[0], model().getMapNodeSize()[1])
 		var map_node_rect_postion = Vector2(x - map_node_rect_size[0] / 2, y - map_node_rect_size[1] / 2)
 
@@ -125,3 +127,20 @@ func disableMapNode(node_index):
 	var texture = ResourceUnit.loadRes(scene_name, scene_name, "disable_map_node")
 
 	map_node.texture_normal = texture
+
+func renderSubMenuEntryButton():
+	var sub_menu_button = TextureButton.new()
+	var rect_size = model().getSubMenuRectSize()
+	var rect_position = model().getSubMenuPosition()
+	var texture = ResourceUnit.loadRes(sceneName(), sceneName(), "sub_menu_button")
+	sub_menu_button.rect_size = rect_size
+	sub_menu_button.rect_position = rect_position
+	sub_menu_button.texture_normal = texture
+
+	var component_pack = ComponentPack.new("__subMenuButton", sub_menu_button)
+	scene().add_child(sub_menu_button)
+
+	sub_menu_entry_button = component_pack
+
+func getSubMenuEntryButton():
+	return sub_menu_entry_button

@@ -18,11 +18,11 @@ margin_bottom = 990.0
 [node name="ArchiveListRect" type="TextureRect" parent="."]
 margin_left = 184.0
 margin_top = 112.0
-margin_right = 1392.0
+margin_right = 1384.0
 margin_bottom = 968.0
 
 [node name="ArchiveOperRect" type="TextureRect" parent="."]
-margin_left = 1448.0
+margin_left = 1344.0
 margin_top = 112.0
 margin_right = 1736.0
 margin_bottom = 968.0

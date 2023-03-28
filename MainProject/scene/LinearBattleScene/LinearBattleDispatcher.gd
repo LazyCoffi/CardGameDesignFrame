@@ -4,11 +4,9 @@ class_name LinearBattleDispatcher
 ## Dispatcher将以信号的方式推进流程，即上一步骤结束后，发送进行下一步骤的信号，根据信号决定执行的时机
 
 var scene_ref
-var is_over
 
 func setRef(scene):
 	scene_ref = scene
-	is_over = false
 
 func scene():
 	return scene_ref
@@ -33,6 +31,7 @@ func battleInit():
 	initSubMenuEntryButton()
 	initNextRoundButton()
 	initCharacter()
+	initCardView()
 
 func initBackground():
 	render().renderBackground()
@@ -51,6 +50,10 @@ func initCharacter():
 	service().initOrderBucket()
 
 	emitInitRenderCharacterSignal()
+
+func initCardView():
+	render().renderViewRect()
+	render().connectView()
 
 func emitInitRenderCharacterSignal():
 	tween().connect("tween_all_completed", self, "receiveInitRenderCharacterSignal")
@@ -111,12 +114,20 @@ func receiveChooseHandCardSignal(component_key):
 	if next_round_button.isConnected("pressed"):
 		__destroyRoute(next_round_button, "pressed", "receiveNextRoundSignal")
 
+	service().setChosenHandCard(component_key)
+
+	emitChooseHandCardBeforeSignal(component_key)
+
+func emitChooseHandCardBeforeSignal(component_key):
+	tween().connect("tween_all_completed", self, "receiveChooseHandCardBeforeSignal", [component_key])
+	render().renderChooseHandCardAnime(component_key)
+
+func receiveChooseHandCardBeforeSignal(component_key):
+	tween().disconnect("tween_all_completed", self, "receiveChooseHandCardBeforeSignal")
+
 	chooseHandCard(component_key)
 
 func chooseHandCard(component_key):
-	service().setChosenHandCard(component_key)
-	render().renderChosenHandCardMark(component_key)
-
 	emitChooseTargetCardSignal()
 	emitCancelHandCardSignal(component_key)
 
@@ -152,7 +163,6 @@ func playSound():
 	render().playSkillSound(chosen_hand_card)
 
 func emitPlaySkillAnimationSignal(component_key):
-
 	var chosen_target_card = service().getCharacterByName(component_key)
 	var chosen_hand_card = service().getChosenHandCard()
 
@@ -169,7 +179,6 @@ func receivePlaySkillAnimationSignal(animated_sprite):
 
 func playerAfterPlay():
 	service().resetChosenHandCard()
-	render().clearChosenHandCardMark()
 
 	emitAdjustHandCardSignal()
 
@@ -238,7 +247,7 @@ func emitCancelHandCardSignal(component_key):
 		if component_pack.getKey() == component_key:
 			__createRoute(component_pack, "pressed", "receiveCancelHandCardSignal")
 
-func receiveCancelHandCardSignal(_component_key):
+func receiveCancelHandCardSignal(component_key):
 	var own_team = render().getOwnTeamList()
 	for component_pack in own_team:
 		if component_pack.isConnected("pressed"):
@@ -254,11 +263,19 @@ func receiveCancelHandCardSignal(_component_key):
 		if component_pack.isConnected("pressed"):
 			__destroyRoute(component_pack, "pressed", "receiveCancelHandCardSignal")
 	
+	emitCancelHandCardBeforeSignal(component_key)
+
+func emitCancelHandCardBeforeSignal(component_key):
+	tween().connect("tween_all_completed", self, "receiveCancelHandCardBeforeSignal")
+	render().renderCancelHandCardAnime(component_key)
+
+func receiveCancelHandCardBeforeSignal():
+	tween().disconnect("tween_all_completed", self, "receiveCancelHandCardBeforeSignal")
+
 	cancelHandCard()
-	
+
 func cancelHandCard():
 	service().resetChosenHandCard()
-	render().clearChosenHandCardMark()
 
 	emitChooseHandCardSignal()
 	emitNextRoundSignal()

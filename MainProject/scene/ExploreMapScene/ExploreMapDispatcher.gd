@@ -22,8 +22,15 @@ func launch():
 	render().renderBackground()
 	render().drawMapCanvas()
 	render().renderMapNode()
-
+	
+	initSubMenuEntryButton()
 	refreshExecEffectFuncSignal()
+
+func initSubMenuEntryButton():
+	render().renderSubMenuEntryButton()
+	var component_pack = render().getSubMenuEntryButton()
+	var sub_menu_entry_button = component_pack.getComponent()
+	sub_menu_entry_button.connect("pressed", service(), "subMenu")
 
 func refreshExecEffectFuncSignal():
 	emitExecEffectFuncSignal()

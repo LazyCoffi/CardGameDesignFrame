@@ -1,6 +1,53 @@
 {
 	"scene_name": "archive_menu",
 	"scene_model": {
+		"return_function": {
+			"func_name": "",
+			"functions": [
+				{
+					"graph": {
+						"request_params": {
+							"popScene_0_0": "Object"
+						},
+						"node_list": [
+							{
+								"func_unit": {
+									"func_name": "popScene",
+									"func_set_name": "SceneOperFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
 
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									null
+								]
+							}
+						]
+					},
+					"param_map": {
+						"map": {
+							"popScene_0_0": 0
+						}
+					}
+				}
+			],
+			"param_map": {
+				"map": [
+					0
+				]
+			},
+			"ret_map": {
+				"map": [
+					0
+				]
+			}
+		}
 	}
 }

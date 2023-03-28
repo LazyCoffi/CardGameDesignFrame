@@ -45,11 +45,14 @@ func peekSceneStack():
 
 	return ret
 
+func createArchive():
+	archive_manager.createArchive()
+
 func peekArchiveList():
 	return archive_manager.peekArchiveList()
 
 func getArchiveByIndex(index):
-	archive_manager.getArchiveByIndex(index)
+	return archive_manager.getArchiveByIndex(index)
 
 func getArchiveNum():
 	return archive_manager.getArchiveNum()

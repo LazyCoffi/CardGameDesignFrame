@@ -84,6 +84,7 @@ func __initTypeTable():
 	__addType("entity", "TriggerTimer")
 	__addType("entity", "ValRange")
 	__addType("functional", "ArrayOperFuncSet")
+	__addType("functional", "ArchiveOperFuncSet")
 	__addType("functional", "AttrConditionSet")
 	__addType("functional", "AttrFuncSet")
 	__addType("functional", "BaseConditionSet")
@@ -139,6 +140,10 @@ func __initTypeTable():
 	__addSceneType("SubMenuScene", "SubMenuModel")
 	__addSceneType("SubMenuScene", "SubMenuRender")
 	__addSceneType("SubMenuScene", "SubMenuService")
+	__addSceneType("SettingScene", "SettingDispatcher")
+	__addSceneType("SettingScene", "SettingModel")
+	__addSceneType("SettingScene", "SettingRender")
+	__addSceneType("SettingScene", "SettingService")
 	__addSceneType("CharacterWarehouseScene", "CharacterWarehouseModel")
 
 	__addSceneInstance("ArchiveScene")
@@ -147,6 +152,7 @@ func __initTypeTable():
 	__addSceneInstance("LinearBattleScene")
 	__addSceneInstance("SubMenuScene")
 	__addSceneInstance("CharacterWarehouseScene")
+	__addSceneInstance("SettingScene")
 
 	__addFactory("ArchiveModelFactory")
 	__addFactory("ArchiveSceneFactory")

@@ -10,29 +10,44 @@ var own_team_list				# ComponentPack_Array
 var enemy_team_list				# ComponentPack_Array
 var hand_card_list				# ComponentPack_Array
 var action_character_mark		# ComponentPack
-var chosen_hand_card_mark		# ComponentPack
 var chosen_character_mark		# ComponentPack
 var next_round_button			# ComponentPack
 var background					# ComponentPack
 var sub_menu_entry_button		# ComponentPack
 
 var state_list_cache			# Dict
+var view_state					# Dict
+var card_view_rect				# TextureRect
+var card_attr_frame				# TextureRect
+var attr_entry_list				# Array
+var attr_next_button			# TextureButton
+var attr_pre_button				# TextureButton
+var card_introduction			# RichTextLabel
 
 func _init():
 	own_team_list = []
 	enemy_team_list = []
 	hand_card_list = []
 	action_character_mark = null
-	chosen_hand_card_mark = null
 	chosen_character_mark = null
 	next_round_button = null
 	state_list_cache = {}
+	attr_entry_list = []
+	view_state = {
+		"key" : null,
+		"visiable" : false,
+		"page" : 1,
+		"card" : null
+	}
 
 func setRef(scene):
 	scene_ref = scene
 
 func scene():
 	return scene_ref
+
+func sceneName():
+	return scene_ref.getSceneName()
 
 func model():
 	return scene_ref.model()
@@ -49,7 +64,7 @@ func tween():
 # background
 func renderBackground():
 	var bg = scene().get_node("LinearBattleBackground")
-	var texture = ResourceUnit.loadRes(scene().getSceneName(), scene().getSceneName(), "background")
+	var texture = ResourceUnit.loadRes(sceneName(), sceneName(), "background")
 	var rect_size = Vector2(GlobalSetting.getScreenSize()[0], GlobalSetting.getScreenSize()[1])
 	var rect_position = Vector2(0, 0)
 
@@ -77,7 +92,7 @@ func clearEnemyTeamList():
 
 func getOptionalTargetList():
 	var chosen_hand_card = model().getChosenHandCard()
-	var scene_name = scene().getSceneName()
+	var scene_name = sceneName()
 	var own_team = model().getOwnCharacterTeam()
 	var enemy_team = model().getEnemyCharacterTeam()
 
@@ -128,17 +143,20 @@ func getActionCharacterMark():
 func getNextRoundButton():
 	return next_round_button
 
+func getNextRoundButtonRef():
+	return scene().get_node("NextRoundButton")
+
 func renderNextRoundButton():
 	var texture = ResourceUnit.loadRes("linear_battle", "linear_battle", "next_round_button")
 	var texture_hover = ResourceUnit.loadRes("linear_battle", "linear_battle", "next_round_button_hover")
-	var next_round = scene().get_node("NextRoundButton")
+	var next_round = getNextRoundButtonRef()
 	next_round.texture_normal = texture
 	next_round.texture_hover = texture_hover
 
 	var next_round_text = scene().get_node("NextRoundButton/NextRoundButtonText")
-	var font = ResourceUnit.loadRes(scene().getSceneName(), "NextRoundButtonText", "font")
-	var font_color = ResourceUnit.loadRes(scene().getSceneName(), "NextRoundButtonText", "font_color")
-	var text = ResourceUnit.loadRes(scene().getSceneName(), "NextRoundButtonText", "font_text")
+	var font = ResourceUnit.loadRes(sceneName(), "NextRoundButtonText", "font")
+	var font_color = ResourceUnit.loadRes(sceneName(), "NextRoundButtonText", "font_color")
+	var text = ResourceUnit.loadRes(sceneName(), "NextRoundButtonText", "font_text")
 	next_round_text.add_font_override("font", font)
 	next_round_text.add_color_override("font_color", font_color)
 	next_round_text.text = text
@@ -156,16 +174,13 @@ func renderSubMenuEntryButton():
 	sub_menu_entry.texture_normal = texture
 	sub_menu_entry_button = ComponentPack.new("__subMenuEntryButton", sub_menu_entry)
 
-func getChosenCharacterMark():
-	return chosen_character_mark
-
 func __getOwnTeamPositionList():
 	var character_num = model().getOwnCharacterNum()
 
 	if character_num <= 0:
 		return []
 
-	var frame_size = __getCharacterCardFrameSize()
+	var frame_size = model().getCharacterCardFrameSize()
 	var width = GlobalSetting.getScreenSize()[0]
 	var height = GlobalSetting.getScreenSize()[1]
 
@@ -187,7 +202,7 @@ func __getEnemyTeamPositionList():
 	if character_num <= 0:
 		return []
 
-	var frame_size = __getCharacterCardFrameSize()
+	var frame_size = model().getCharacterCardFrameSize()
 	var width = GlobalSetting.getScreenSize()[0]
 	var height = GlobalSetting.getScreenSize()[1]
 
@@ -220,8 +235,8 @@ func __delComponentPack(list, component_key):
 
 func renderOwnTeam():
 	var own_character_team = model().getOwnCharacterTeam()
-	var rect_size = __getCharacterCardRectSize()
-	var frame_size = __getCharacterCardFrameSize()
+	var rect_size = model().getCharacterCardRectSize()
+	var frame_size = model().getCharacterCardFrameSize()
 	var frame_position_list = __getOwnTeamPositionList()
 
 	var list = []
@@ -241,7 +256,7 @@ func renderOwnTeam():
 		var component_pack = __findComponetPack(own_team_list, component_key)
 		if component_pack == null:
 			var avator_name = character_card.getAvatorName()
-			var frame_texture = ResourceUnit.loadRes(scene().getSceneName(), scene().getSceneName(), "character_card_frame") 
+			var frame_texture = ResourceUnit.loadRes(sceneName(), sceneName(), "character_card_frame") 
 			var texture = ResourceUnit.loadRes("global", "avator", avator_name)
 			var frame_position = frame_position_list[i]
 			var character_frame = TextureButton.new()
@@ -296,8 +311,8 @@ func clearOwnTeam():
 
 func renderEnemyTeam():
 	var enemy_character_team = model().getEnemyCharacterTeam()
-	var rect_size = __getCharacterCardRectSize()
-	var frame_size = __getCharacterCardFrameSize()
+	var rect_size = model().getCharacterCardRectSize()
+	var frame_size = model().getCharacterCardFrameSize()
 	var frame_position_list = __getEnemyTeamPositionList()
 
 	var list = []
@@ -317,7 +332,7 @@ func renderEnemyTeam():
 		var component_pack = __findComponetPack(enemy_team_list, component_key)
 		if component_pack == null:
 			var avator_name = character_card.getAvatorName()
-			var frame_texture = ResourceUnit.loadRes(scene().getSceneName(), scene().getSceneName(), "character_card_frame") 
+			var frame_texture = ResourceUnit.loadRes(sceneName(), sceneName(), "character_card_frame") 
 			var texture = ResourceUnit.loadRes("global", "avator", avator_name)
 			var frame_position = frame_position_list[i]
 			var character_frame = TextureButton.new()
@@ -393,6 +408,54 @@ func insertAnime(component_pack, final_rect_position):
 
 func __insertAnimeCallBack(component, final_rect_position):
 	component.rect_position = final_rect_position
+
+func renderChooseHandCardAnime(component_key):
+	var component_pack = __getHandCard(component_key)
+	chooseHandCardAnime(component_pack)
+
+func chooseHandCardAnime(component_pack):
+	var component = component_pack.getComponent()
+	var move_gap = model().getChooseMoveGap()
+	var rect_position = component.rect_position
+	var next_rect_position = Vector2(rect_position[0], rect_position[1] - move_gap)
+
+	tween().interpolate_property(component,
+								 "rect_position",
+								 null,
+								 next_rect_position,
+								 0.5,
+								 Tween.TRANS_LINEAR,
+								 Tween.EASE_IN_OUT
+								 )
+	tween().start()
+	tween().interpolate_callback(self, 0.5, "__chooseHandCardAnimeCallBack", component, next_rect_position)
+
+func __chooseHandCardAnimeCallBack(component, next_rect_position):
+	component.rect_position = next_rect_position
+
+func renderCancelHandCardAnime(component_key):
+	var component_pack = __getHandCard(component_key)
+	cancelHandCardAnime(component_pack)
+
+func cancelHandCardAnime(component_pack):
+	var component = component_pack.getComponent()
+	var move_gap = model().getChooseMoveGap()
+	var rect_position = component.rect_position
+	var next_rect_position = Vector2(rect_position[0], rect_position[1] + move_gap)
+
+	tween().interpolate_property(component,
+								 "rect_position",
+								 null,
+								 next_rect_position,
+								 0.5,
+								 Tween.TRANS_LINEAR,
+								 Tween.EASE_IN_OUT
+								 )
+	tween().start()
+	tween().interpolate_callback(self, 0.5, "__cancelHandCardAnimeCallBack", component, next_rect_position)
+
+func __cancelHandCardAnimeCallBack(component, next_rect_position):
+	component.rect_position = next_rect_position
 
 func moveAnime(component_pack, next_rect_position):
 	var component = component_pack.getComponent()
@@ -508,12 +571,12 @@ func renderActionCharacterMark():
 
 		i += 1
 
-	var rect_size = __getCharacterCardRectSize()
-	rect_position[1] += rect_size[1]
+	var frame_rect_size = model().getCharacterCardFrameSize()
+	rect_position[1] += frame_rect_size[1]
 
 	if action_character_mark == null:
-		var texture = ResourceUnit.loadRes("global", "component", "action_character_mark")
-		
+		var texture = ResourceUnit.loadRes(sceneName(), sceneName(), "action_character_mark")
+		var rect_size = model().getCharacterMarkRectSize()
 		var mark_texture_rect = TextureRect.new()
 		mark_texture_rect.texture = texture
 		mark_texture_rect.rect_position = rect_position
@@ -524,46 +587,15 @@ func renderActionCharacterMark():
 		var component_pack = ComponentPack.new("__action_character_mark", mark_texture_rect)
 		action_character_mark = component_pack
 	else:
-		#TODO: actionCharacterMarkMoveAnime
 		action_character_mark.getComponent().rect_position = rect_position
 
 func clearActionCharacterMark():
 	scene().remove_child(action_character_mark.getComponent())
 	action_character_mark = null
 
-func renderChosenHandCardMark(component_key):
-	var hand_cards = model().getActionHandCards()
-	var rect_position_list = __getHandCardRectPositionList(hand_cards.size())
-
-	var i = 0
-	for hand_card in hand_cards:
-		if hand_card.getCardName() == component_key:
-			var rect_position = rect_position_list[i]
-			if chosen_hand_card_mark == null:
-				var texture = ResourceUnit.loadRes("global", "component", "chosen_hand_card_mark")
-				var mark_texture_rect = TextureRect.new()
-
-				mark_texture_rect.texture = texture
-				mark_texture_rect.rect_position = rect_position
-
-				scene().add_child(mark_texture_rect)
-
-				var component_pack = ComponentPack.new("__chosen_hand_card_mark", mark_texture_rect)
-				chosen_hand_card_mark = component_pack
-			else:
-				# moveChosenHandCardMark
-				chosen_hand_card_mark.getComponent().rect_position = rect_position
-
-			return
-		i += 1
-
-func clearChosenHandCardMark():
-	scene().remove_child(chosen_hand_card_mark.getComponent())
-	chosen_hand_card_mark = null
-
 ## setCurHandCardsRect
 func __getHandCardRectPositionList(card_num):
-	var rect_size = __getHandCardFrameSize()
+	var rect_size = model().getHandCardFrameSize()
 	var width = GlobalSetting.getScreenSize()[0]
 	var height = GlobalSetting.getScreenSize()[1]
 	var rect_width = rect_size[0]
@@ -578,8 +610,8 @@ func __getHandCardRectPositionList(card_num):
 
 func renderHandCards():
 	var hand_cards = model().getActionHandCards()
-	var rect_size = __getHandCardRectSize()
-	var frame_size = __getHandCardFrameSize()
+	var rect_size = model().getHandCardRectSize()
+	var frame_size = model().getHandCardFrameSize()
 	var frame_position_list = __getHandCardRectPositionList(hand_cards.size())
 
 	var list = []
@@ -599,7 +631,7 @@ func renderHandCards():
 		if component_pack == null:
 			var avator_name = hand_card.getAvatorName()
 			
-			var frame_texture = ResourceUnit.loadRes(scene().getSceneName(), scene().getSceneName(), "hand_card_frame")
+			var frame_texture = ResourceUnit.loadRes(sceneName(), sceneName(), "hand_card_frame")
 			var texture = ResourceUnit.loadRes("global", "avator", avator_name)
 			var frame_position = frame_position_list[i]
 
@@ -649,99 +681,398 @@ func clearHandCards():
 	
 	hand_card_list.clear()
 
-func __getCharacterCardRectSize():
-	return Vector2(model().getCharacterCardRectSize()[0], model().getCharacterCardRectSize()[1])
-
-func __getCharacterCardFrameSize():
-	return Vector2(model().getCharacterCardFrameSize()[0], model().getCharacterCardFrameSize()[1])
-
-func __getHandCardRectSize():
-	return Vector2(model().getHandCardRectSize()[0], model().getHandCardRectSize()[1])
-
-func __getHandCardFrameSize():
-	return Vector2(model().getHandCardFrameSize()[0], model().getHandCardFrameSize()[1])
+	return model().getCharacterCardFrameSize()
 
 # setBackground
 func getBackground():
 	return scene().get_node("LinearBattleBackground")
 
 func setBackground():
-	var scene_name = scene().getSceneName()
+	var scene_name = sceneName()
 	var bg = ResourceUnit.loadRes(scene_name, scene_name, "background")
 	scene().get_node("LinearBattleBackground").texture = bg
 
 # preview
+func connectView():
+	var view_rect = getViewRectRef()
+	__dfsConnectView(view_rect)
+	
+func __dfsConnectView(component):
+	var component_pack = ComponentPack.new("__viewRect", component)
+	component_pack.connectTo(self, "mouse_entered", "cardViewHook")
+	component_pack.connectTo(self, "mouse_exited", "cardViewHook")
+
+	for index in range(component.get_child_count()):
+		var child = component.get_child(index)
+		__dfsConnectView(child)
+
 func connectCardState(component_pack):
 	if not component_pack.isConnected("mouse_entered"):
-		component_pack.connectTo(self, "mouse_entered", "showCardState")
+		component_pack.connectTo(self, "mouse_entered", "cardViewHook")
 
 	if not component_pack.isConnected("mouse_exited"):
-		component_pack.connectTo(self, "mouse_exited", "hideCardState")
+		component_pack.connectTo(self, "mouse_exited", "cardViewHook")
 
-func showCardState(component_key):
-	var component_pack = __getComponentPackByName(component_key)
-
-	var card_rect = component_pack.getComponent()
-
-	var card_rect_size = card_rect.rect_size
-	var card_rect_position = card_rect.rect_position
-
-	var card
-	card = service().getCharacterByName(component_key)
-	if card == null:
-		card = service().getActionHandCardByName(component_key)
-	
-	var card_attr = card.getCardAttr()
-	var card_introduction = card.getIntroduction()
-
-	var state_list = __getStateList(card_rect_size, card_rect_position, card_attr, card_introduction)
-
-	state_list_cache[component_key] = state_list
-
-func hideCardState(component_key):
-	if state_list_cache.has(component_key):
-		scene().remove_child(state_list_cache[component_key])
-		state_list_cache.erase(component_key)
-
-func __getStateList(card_rect_size, card_rect_position, card_attr, card_introduction):
-	var state_rect_size = model().getCardStateRectSize()
-
-	var state_rect_position = Vector2()
-
-	if card_rect_position[0] - (state_rect_size[0] + state_rect_size[0]) > 0:
-		state_rect_position[0] = card_rect_position[0] - state_rect_size[0] - 1
+func cardViewHook(component_key):
+	var component
+	if component_key == "__viewRect":
+		component = getViewRectRef()
 	else:
-		state_rect_position[0] = card_rect_position[0] + card_rect_size[0] + 1
-	
-	if (card_rect_position[1] + card_rect_size[1]) - state_rect_size[1] > 0:
-		state_rect_position[1] = (card_rect_position[1] + card_rect_size[1]) - state_rect_size[1]
-	else:
-		state_rect_position[1] = card_rect_position[1]
+		var component_pack = __getComponentPackByName(component_key)
+		component = component_pack.getComponent()
 		
-	var state_list = Tree.new()
-	state_list.columns = 2
-	scene().add_child(state_list)
+	var view_rect = getViewRectRef()
 
-	state_list.rect_position = Vector2(state_rect_position[0], state_rect_position[1])
-	state_list.rect_size = Vector2(state_rect_size[0], state_rect_size[1])
+	if __isMouseInRect(component) or __isMouseInRect(view_rect):
+		showCardView(component_key)
+	else:
+		hideCardView(component_key)
 
-	var root_node = state_list.create_item()
-	root_node.set_text(0, "Card State")
-	root_node.set_expand_right(0, true)
+func __isMouseInRect(component):
+	var component_rect = component.rect_size
+	var mouse_position = component.get_local_mouse_position()
 
+	return Rect2(Vector2(), component_rect).has_point(mouse_position)
+
+func __isViewVisiable():
+	return view_state["visiable"]
+
+func __getViewKey():
+	return view_state["key"]
+
+func __setViewStateKey(component_key):
+	view_state["key"] = component_key
+
+func __resetViewStateKey():
+	view_state["key"] = null
+
+func __setViewStateVisiable():
+	view_state["visiable"] = true
+
+func __setViewStateInvisiable():
+	view_state["visiable"] = false
+
+func __getViewPageIndex():
+	return view_state["page"]
+
+func __setViewPageIndex(page):
+	view_state["page"] = page
+
+func __resetViewPage():
+	view_state["page"] = 1
+
+func __addViewPage(arr_size):
+	var page_index = __getViewPageIndex()
+	var page_size = model().getCardAttrListSize()
+
+	if page_size * page_index < arr_size:
+		__setViewPageIndex(page_index + 1)
+	else:
+		__setViewPageIndex(page_index)
+	
+	__updateAttrListEntry()
+	
+func __subViewPage():
+	var page_index = __getViewPageIndex()
+	__setViewPageIndex(max(page_index - 1, 1))
+
+	__updateAttrListEntry()
+
+func __getViewStateCard():
+	return view_state["card"]
+
+func __setViewStateCard(card):
+	view_state["card"] = card
+
+func __resetViewStateCard():
+	view_state["card"] = null
+
+func getViewRectRef():
+	card_view_rect.set_as_toplevel(true)
+	return card_view_rect
+
+func getAttrFrameRef():
+	return card_attr_frame
+
+func getIntroductionTextRef():
+	return card_introduction
+
+func getAttrNextButton():
+	return attr_next_button
+
+func getAttrPreButton():
+	return attr_pre_button
+
+func renderViewRect():
+	var view_rect = TextureRect.new()
+	var view_rect_size = Vector2(model().getViewRectSize()[0], model().getViewRectSize()[1])
+	view_rect.rect_size = view_rect_size
+
+	var view_frame_texture = ResourceUnit.loadRes(sceneName(), sceneName(), "view_frame")
+	view_rect.texture = view_frame_texture
+
+	view_rect.add_child(__renderAttrFrame())
+	view_rect.add_child(__renderIntroductionFrame())
+
+	view_rect.hide()
+	scene().add_child(view_rect)
+
+	card_view_rect = view_rect
+
+func __renderAttrEntry(index_attr, entry_index):
+	var attr_frame = getAttrFrameRef()
+	var attr_frame_size = model().getAttrRectSize()
+
+	var entry = TextureRect.new()
+	attr_frame.add_child(entry)
+
+	var entry_texture = ResourceUnit.loadRes(sceneName(), sceneName(), "view_attr_entry")
+	entry.texture = entry_texture
+
+	var font = ResourceUnit.loadRes(sceneName(), sceneName(), "view_attr_font")
+	var font_color = ResourceUnit.loadRes(sceneName(), sceneName(), "view_attr_font_color")
+
+	var entry_head = Label.new()
+
+	var entry_head_size = model().getAttrEntryHeadSize()
+	entry_head.align = Label.ALIGN_CENTER
+	entry_head.valign = Label.VALIGN_CENTER
+	entry_head.rect_size = entry_head_size
+	entry_head.add_font_override("font", font)
+	entry_head.add_color_override("font_color", font_color)
+	entry_head.text = str(index_attr[0])
+
+	entry.add_child(entry_head)
+
+	var entry_content = Label.new()
+
+	var entry_content_size = model().getAttrEntryContentSize()
+	entry_content.valign = Label.VALIGN_CENTER
+	entry_content.rect_size = entry_content_size
+	entry_content.rect_position = Vector2(entry_head_size[0], 0)
+	entry_content.text = str(index_attr[1])
+	entry_content.add_font_override("font", font)
+	entry_content.add_color_override("font_color", font_color)
+
+	entry.add_child(entry_content)
+	
+	var y_margin = model().getAttrEntryYMargin()
+	var entry_page_size = model().getCardAttrListSize()
+
+	var entry_x = (attr_frame_size[0] - 	\
+				  entry_head_size[0] - 		\
+				  entry_content_size[0]) / 	\
+				  2
+	var entry_y = y_margin +							\
+				  (entry_index % entry_page_size) *		\
+				  entry_head_size[1]					\
+
+	entry.rect_position = Vector2(entry_x, entry_y)
+
+	return entry
+
+func __renderAttrFrame():
+	var view_rect_size = model().getViewRectSize()
+
+	var attr_frame = TextureRect.new()
+
+	var attr_rect_size = model().getAttrRectSize()
+	var attr_rect_position = Vector2((view_rect_size[0] / 2 - attr_rect_size[0]) / 2, (view_rect_size[1] - attr_rect_size[1]) / 2)
+
+	attr_frame.rect_size = attr_rect_size
+	attr_frame.rect_position = attr_rect_position
+
+	var attr_frame_texture = ResourceUnit.loadRes(sceneName(), sceneName(), "attr_frame")
+	attr_frame.texture = attr_frame_texture
+
+	card_attr_frame = attr_frame
+
+	var button_rect_size = model().getAttrButtonSize()
+
+	var x_margin = model().getAttrEntryXMargin()
+	var y_margin = model().getAttrEntryYMargin()
+
+	var next_button = TextureButton.new()
+	var next_texture = ResourceUnit.loadRes(sceneName(), sceneName(), "attr_next_button")
+	next_button.texture_normal = next_texture
+	next_button.rect_size = button_rect_size
+	var next_button_position = Vector2(attr_rect_size[0] - x_margin - button_rect_size[0], attr_rect_size[1] - y_margin - button_rect_size[1])
+
+	next_button.rect_size = button_rect_size
+	next_button.rect_position = next_button_position
+
+	attr_next_button = next_button
+	attr_frame.add_child(next_button)
+
+	var pre_button = TextureButton.new()
+	var pre_texture = ResourceUnit.loadRes(sceneName(), sceneName(), "attr_pre_button")
+	pre_button.texture_normal = pre_texture
+	pre_button.rect_size = button_rect_size
+	var pre_button_position = Vector2(x_margin, attr_rect_size[1] - y_margin - button_rect_size[1])
+	pre_button.rect_size = button_rect_size
+	pre_button.rect_position = pre_button_position
+
+	attr_pre_button = pre_button
+	attr_frame.add_child(pre_button)
+
+	return attr_frame
+
+func __renderIntroductionFrame():
+	var view_rect_size = model().getViewRectSize()
+	var introduction_rect_size = Vector2(model().getIntroductionRectSize()[0], model().getIntroductionRectSize()[1]) 
+
+	var font = ResourceUnit.loadRes(sceneName(), sceneName(), "view_introduction_font")
+	var font_color = ResourceUnit.loadRes(sceneName(), sceneName(), "view_introduction_font_color")
+
+	var introduction_rect_position = Vector2(view_rect_size[0] / 2 + (view_rect_size[0] / 2 - introduction_rect_size[0]) / 2, (view_rect_size[1] - introduction_rect_size[1]) / 2)
+
+	var introduction_frame = TextureRect.new()
+	introduction_frame.rect_size = introduction_rect_size
+	introduction_frame.rect_position = introduction_rect_position
+
+	var introduction_frame_texture = ResourceUnit.loadRes(sceneName(), sceneName(), "introduction_frame")
+	introduction_frame.texture = introduction_frame_texture
+
+	var introduction_text = RichTextLabel.new()
+	var introduction_text_size = model().getIntroductionTextSize()
+
+	introduction_text.rect_size = introduction_text_size
+	introduction_text.rect_position = Vector2((introduction_rect_size[0] - introduction_text_size[0]) / 2, (introduction_rect_size[1] - introduction_text_size[1]) / 2)
+
+	introduction_text.push_font(font)
+	introduction_text.push_color(font_color)
+
+	introduction_frame.add_child(introduction_text)
+	card_introduction = introduction_text
+
+	return introduction_frame
+
+func __updateAttrListEntry():
+	var card_attr = __getViewStateCard().getCardAttr()
+	var page_index = __getViewPageIndex()
+	var page_size = model().getCardAttrListSize()
 	var index_attr_list = card_attr.getIndexAttrList()
-	
-	for index_attr in index_attr_list:
-		var node = state_list.create_item(root_node)
-		node.set_text(0, str(index_attr[0]))
-		node.set_text(1, str(index_attr[1]))
-	
-	var introduction_node = state_list.create_item(root_node)
-	introduction_node.set_text(0, "Introduction")
-	introduction_node.set_text(1, card_introduction)
 
-	return state_list
+	for attr_entry in attr_entry_list:
+		card_attr_frame.remove_child(attr_entry)
 
+	attr_entry_list.clear()
+
+	var head = (page_index - 1) * page_size
+	var tail = min(page_index * page_size, index_attr_list.size())
+	for index in range(head, tail):
+		var index_attr = index_attr_list[index]
+		var attr_entry = __renderAttrEntry(index_attr, index)
+		attr_entry_list.append(attr_entry)
+
+func __updateAttrList():
+	var card_attr = __getViewStateCard().getCardAttr()
+	var index_attr_list = card_attr.getIndexAttrList()
+
+	var next_button = getAttrNextButton()
+	if not next_button.is_connected("pressed", self, "__addViewPage"):
+		next_button.connect("pressed", self, "__addViewPage", [index_attr_list.size()])
+
+	var pre_button = getAttrPreButton()
+	if not pre_button.is_connected("pressed", self, "__subViewPage"):
+		pre_button.connect("pressed", self, "__subViewPage")
+
+	__updateAttrListEntry()
+		
+func __updateIntroduction():
+	var introduction_text = __getViewStateCard().getIntroduction()
+	var introduction = getIntroductionTextRef()
+	var font = ResourceUnit.loadRes(sceneName(), sceneName(), "view_introduction_font")
+	var font_color = ResourceUnit.loadRes(sceneName(), sceneName(), "view_introduction_font_color")
+	introduction.clear()
+	introduction.push_font(font)
+	introduction.push_color(font_color)
+	introduction.add_text(introduction_text)
+
+func __updateCardView():
+	var key = __getViewKey()
+
+	var card = model().getCharacterByName(key)
+	if card == null:
+		card = model().getActionHandCardByName(key)
+
+	__setViewStateCard(card)
+	__updateAttrList()
+	__updateIntroduction()
+
+func __setViewRectPosition(component_key):
+	var component_pack = __getComponentPackByName(component_key)
+	var view_rect = getViewRectRef()
+	var component = component_pack.getComponent()
+	var rect_position = component.rect_position
+	var rect_size = component.rect_size
+	var view_rect_size = view_rect.rect_size
+
+	var view_position = Vector2()
+
+	if rect_position[0] - view_rect_size[0] < 0:
+		view_position[0] = rect_position[0] + rect_size[0]
+	else:
+		view_position[0] = rect_position[0] - view_rect_size[0]
+	
+	if rect_position[1] + rect_size[1] - view_rect_size[1] < 0:
+		view_position[1] = rect_position[1]
+	else:
+		view_position[1] = rect_position[1] + rect_size[1] - view_rect_size[1]
+	
+	view_rect.rect_position = view_position
+
+func __showCardView():
+	var view_rect = getViewRectRef()
+	view_rect.show()
+
+func showCardView(component_key):
+	if component_key == "__viewRect":
+		return
+	
+	if __getViewKey() != null:
+		return
+	
+	if __isViewVisiable():
+		return
+	
+	## config state
+	__setViewStateKey(component_key)
+	__setViewStateVisiable()
+	__resetViewPage()
+	
+	# render
+	__setViewRectPosition(component_key)
+	__updateCardView()
+
+	# show
+	__showCardView()
+
+func __hideCardView():
+	var view_rect = getViewRectRef()
+	view_rect.hide()
+
+func hideCardView(component_key):
+	if component_key != "__viewRect" and component_key != __getViewKey():
+		return
+
+	if not __isViewVisiable():
+		return
+
+	__setViewStateInvisiable()
+	__resetViewStateKey()
+	__resetViewStateCard()
+
+	var next_button = getAttrNextButton()
+	if next_button.is_connected("pressed", self, "__addViewPage"):
+		next_button.disconnect("pressed", self, "__addViewPage")
+
+	var pre_button = getAttrPreButton()
+	if pre_button.is_connected("pressed", self, "__subViewPage"):
+		pre_button.disconnect("pressed", self, "__subViewPage")
+
+	__hideCardView()
+	
 func __getComponentPackByName(component_key):
 	var ret
 	

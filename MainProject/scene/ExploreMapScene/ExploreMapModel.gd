@@ -7,6 +7,8 @@ var HyperFunction = TypeUnit.type("HyperFunction")
 var MAP_SIZE = [1920, 1080]
 var MAP_NODE_SIZE = [60, 60]
 var MAP_POSITION = [0, 0]
+var SUB_MENU_RECT_SIZE = Vector2(100, 100)
+var SUB_MENU_POSITION = Vector2(1720, 41)
 var MAP_LINE_WIDTH = 4
 
 class ExploreMapNode:
@@ -77,7 +79,8 @@ class ExploreMapNode:
 		is_interactive = script_tree.getBool("is_interactive")
 		effect_func = script_tree.getObject("effect_func", HyperFunction)
 
-var map_node_list
+var map_node_list		# Array
+var sub_menu_function	# HyperFunction
 
 func _init():
 	map_node_list = []
@@ -94,6 +97,12 @@ func getMapPosition():
 
 func getMapLineWidth():
 	return MAP_LINE_WIDTH
+
+func getSubMenuRectSize():
+	return SUB_MENU_RECT_SIZE
+
+func getSubMenuPosition():
+	return SUB_MENU_POSITION
 
 func addMapNode(coordinate_x, coordinate_y, effect_func, is_interactive):
 	var map_node = ExploreMapNode.new()
@@ -132,12 +141,20 @@ func execNodeEffectFunc(node_index, scene_ref):
 func getMapNodeList():
 	return map_node_list
 
+func subMenuFunction(scene_ref):
+	sub_menu_function.exec([scene_ref])
+
+func setSubMenuFunction(sub_menu_function_):
+	sub_menu_function = sub_menu_function_
+	
 func pack():
 	var script_tree = ScriptTree.new()
 
 	script_tree.addObjectArray("map_node_list", map_node_list)
+	script_tree.addObject("sub_menu_function", sub_menu_function)
 
 	return script_tree
 
 func loadScript(script_tree):
 	map_node_list = script_tree.getObjectArray("map_node_list", ExploreMapNode)
+	sub_menu_function = script_tree.getObject("sub_menu_function", HyperFunction)

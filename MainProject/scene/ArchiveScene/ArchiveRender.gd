@@ -34,11 +34,17 @@ func setRef(scene):
 func scene():
 	return scene_ref
 
+func sceneName():
+	return scene_ref.getSceneName()
+
 func model():
 	return scene_ref.model()
 
 func service():
 	return scene_ref.service()
+
+func getArchiveInfoRect():
+	return scene().get_node("ArchiveOperRect/ArchiveInfoRect")
 
 func renderBackground():
 	var scene_name = scene().getSceneName()
@@ -46,8 +52,7 @@ func renderBackground():
 	scene().get_node("ArchiveBackground").texture = background
 
 func renderMenuRect():
-	var scene_name = scene().getSceneName()
-	var menu_rect = ResourceUnit.loadRes(scene_name, scene_name, "menu_rect")
+	var menu_rect = ResourceUnit.loadRes(sceneName(), sceneName(), "menu_rect")
 	scene().get_node("ArchiveMenuRect").texture = menu_rect
 
 func renderArchiveOperRect():
@@ -73,23 +78,14 @@ func renderLoadButton():
 
 	var load_btn = TextureButton.new()
 
-	var BUTTON_RECT_SIZE = Vector2(210, 90)
-	var LOADBUTTON_POSITION = Vector2(39, 450)
-
-	load_btn.rect_position = LOADBUTTON_POSITION
-	load_btn.rect_size = BUTTON_RECT_SIZE
+	load_btn.rect_position = model().getLoadButtonPosition()
+	load_btn.rect_size = model().getButtonRectSize()
 	load_btn.expand = true
 
 	var scene_name = scene().getSceneName()
-	var texture_normal = ResourceUnit.loadRes(scene_name, "LoadButton",  "texture_normal")
-	var texture_hover = ResourceUnit.loadRes(scene_name, "LoadButton",  "texture_hover")
+	var texture_normal = ResourceUnit.loadRes(sceneName(), "LoadButton",  "texture_normal")
 
 	load_btn.texture_normal = texture_normal
-	load_btn.texture_hover = texture_hover
-
-	var LABEL_RECT_SIZE = Vector2(180, 72)
-	var LABEL_POSITION = Vector2(15, 9)
-	var LABEL_TEXT = "读取"
 
 	var load_label = Label.new()
 
@@ -97,9 +93,9 @@ func renderLoadButton():
 	load_label.align = Label.ALIGN_CENTER
 	load_label.valign = Label.VALIGN_CENTER
 
-	load_label.rect_size = LABEL_RECT_SIZE
-	load_label.rect_position = LABEL_POSITION
-	load_label.text = LABEL_TEXT
+	load_label.rect_size = model().getLabelRectSize()
+	load_label.rect_position = model().getLabelPosition()
+	load_label.text = model().getLoadLabelText()
 
 	var font = ResourceUnit.loadRes(scene_name, "LoadText", "font") 
 	var font_color = ResourceUnit.loadRes(scene_name, "LoadText", "font_color")
@@ -126,35 +122,27 @@ func renderDeleteButton():
 
 	var delete_btn = TextureButton.new()
 
-	var BUTTON_RECT_SIZE = Vector2(210, 90)
-	var DELETEBUTTON_POSITION = Vector2(39, 570)
+	delete_btn.rect_position = model().getDeleteButtonPosition()
+	delete_btn.rect_size = model().getButtonRectSize()
 
-	delete_btn.rect_position = DELETEBUTTON_POSITION
-	delete_btn.rect_size = BUTTON_RECT_SIZE
 	delete_btn.expand = true
 
 	var scene_name = scene().getSceneName()
 	var texture_normal = ResourceUnit.loadRes(scene_name, "DeleteButton",  "texture_normal")
-	var texture_hover = ResourceUnit.loadRes(scene_name, "DeleteButton",  "texture_hover")
 
 	delete_btn.texture_normal = texture_normal
-	delete_btn.texture_hover = texture_hover
-
-	var LABEL_RECT_SIZE = Vector2(180, 72)
-	var LABEL_POSITION = Vector2(15, 9)
-	var LABEL_TEXT = "删除"
 
 	var delete_label = Label.new()
 
 	delete_label.name = "DELETE_TEXT"
 	delete_label.align = Label.ALIGN_CENTER
 	delete_label.valign = Label.VALIGN_CENTER
-	delete_label.rect_size = LABEL_RECT_SIZE
-	delete_label.rect_position = LABEL_POSITION
-	delete_label.text = LABEL_TEXT
+	delete_label.rect_size = model().getLabelRectSize()
+	delete_label.rect_position = model().getLabelPosition()
+	delete_label.text = model().getDeleteLabelText()
 
-	var font = ResourceUnit.deleteRes(scene_name, "DeleteText", "font") 
-	var font_color = ResourceUnit.deleteRes(scene_name, "DeleteText", "font_color")
+	var font = ResourceUnit.loadRes(scene_name, "DeleteText", "font") 
+	var font_color = ResourceUnit.loadRes(scene_name, "DeleteText", "font_color")
 		
 	delete_label.add_font_override("font", font)
 	delete_label.add_color_override("font_color", font_color)
@@ -178,32 +166,23 @@ func renderBackButton():
 
 	var back_btn = TextureButton.new()
 
-	var BUTTON_RECT_SIZE = Vector2(210, 90)
-	var BACKBUTTON_POSITION = Vector2(39, 720)
-
-	back_btn.rect_position = BACKBUTTON_POSITION
-	back_btn.rect_size = BUTTON_RECT_SIZE
+	back_btn.rect_position = model().getBackButtonPosition()
+	back_btn.rect_size = model().getButtonRectSize()
 	back_btn.expand = true
 
 	var scene_name = scene().getSceneName()
 	var texture_normal = ResourceUnit.loadRes(scene_name, "BackButton",  "texture_normal")
-	var texture_hover = ResourceUnit.loadRes(scene_name, "BackButton",  "texture_hover")
 
 	back_btn.texture_normal = texture_normal
-	back_btn.texture_hover = texture_hover
 		
-	var LABEL_RECT_SIZE = Vector2(180, 72)
-	var LABEL_POSITION = Vector2(15, 9)
-	var LABEL_TEXT = "返回"
-
 	var back_label = Label.new()
 
 	back_label.name = "BACK_TEXT"
 	back_label.align = Label.ALIGN_CENTER
 	back_label.valign = Label.VALIGN_CENTER
-	back_label.rect_size = LABEL_RECT_SIZE
-	back_label.rect_position = LABEL_POSITION
-	back_label.text = LABEL_TEXT
+	back_label.rect_size = model().getLabelRectSize()
+	back_label.rect_position = model().getLabelPosition()
+	back_label.text = model().getBackLabelText()
 
 	var font = ResourceUnit.loadRes(scene_name, "BackText", "font") 
 	var font_color = ResourceUnit.loadRes(scene_name, "BackText", "font_color")
@@ -230,11 +209,8 @@ func renderNextButton():
 	
 	var next_btn = TextureButton.new()
 
-	var SWITCH_RECT_SIZE = Vector2(128, 56)
-	var NEXT_BUTTON_POSITION = Vector2(1032, 792)
-
-	next_btn.rect_position = NEXT_BUTTON_POSITION
-	next_btn.rect_size = SWITCH_RECT_SIZE
+	next_btn.rect_position = model().getNextButtonPosition()
+	next_btn.rect_size = model().getSwitchRectSize()
 	next_btn.expand = true
 
 	var scene_name = scene().getSceneName()
@@ -260,11 +236,8 @@ func renderPreviousButton():
 	
 	var previous_btn = TextureButton.new()
 
-	var SWITCH_RECT_SIZE = Vector2(128, 56)
-	var PREVIOUS_BUTTON_POSITION = Vector2(72, 792)
-
-	previous_btn.rect_position = PREVIOUS_BUTTON_POSITION
-	previous_btn.rect_size = SWITCH_RECT_SIZE
+	previous_btn.rect_position = model().getPreviousButtonPosition()
+	previous_btn.rect_size = model().getSwitchRectSize()
 	previous_btn.expand = true
 
 	var scene_name = scene().getSceneName()
@@ -288,33 +261,23 @@ func renderArchiveCard():
 	var current_archive_list = service().getCurrentArchiveList()
 
 	if archive_card_list.empty():
-		var CARD_RECT_SIZE = Vector2(360, 720)
-		var CARD_POSITION = [
-			Vector2(48, 56),
-			Vector2(440, 56),
-			Vector2(832, 56)
-		]
-		var TEXT_RECT_SIZE = Vector2(296, 72)
-		var TEXT_POSITION = Vector2(32, 600)
-
 		for index in range(model().getMaxArchiveNum()):
 			var archive_card = TextureButton.new()
-			archive_card.rect_size = CARD_RECT_SIZE 
-			archive_card.rect_position = CARD_POSITION[index]
+			archive_card.rect_size = model().getCardRectSize()
+			archive_card.rect_position = model().getCardPositionList()[index]
 			archive_card.expand = true
 
 			var text_label = Label.new()
 			text_label.align = Label.ALIGN_CENTER
 			text_label.valign = Label.VALIGN_CENTER
 			text_label.name = "CardText"
-			text_label.rect_size = TEXT_RECT_SIZE
-			text_label.rect_position = TEXT_POSITION
+			text_label.rect_size = model().getCardTextRectSize()
+			text_label.rect_position = model().getCardTextPosition()
 
 			archive_card.add_child(text_label)
 			scene().get_node("ArchiveListRect").add_child(archive_card)
 
-			var component_pack = ComponentPack.new("__archiveCard" + str(index), archive_card)
-			component_pack.setKey(index)
+			var component_pack = ComponentPack.new(index, archive_card)
 			archive_card_list.append(component_pack)
 	
 	var archive_num = current_archive_list.size()
@@ -325,7 +288,7 @@ func renderArchiveCard():
 
 		var scene_name = scene().getSceneName()
 		var texture = ResourceUnit.loadRes(scene_name, "ArchiveCard", "active_card")
-		archive_card.normal_texture = texture
+		archive_card.texture_normal = texture
 
 		var text_label = archive_card.get_node("CardText")
 		var font = ResourceUnit.loadRes(scene_name, "CardText", "font")
@@ -352,17 +315,15 @@ func renderArchiveCard():
 		text_label.add_font_override("font", font)
 		text_label.add_color_override("font_color", font_color)
 		text_label.text = "空档案"
-
+	
 func renderArchiveInfo():
 	if create_text == null:
 		var create_label = Label.new()
+		create_label.align = Label.ALIGN_CENTER
+		create_label.valign = Label.VALIGN_CENTER
 
-		var CREATE_RECT_SIZE = Vector2(150, 40)
-		var CREATE_POSITION = Vector2(45, 25)
-		var CREATE_TEXT = "创建时间"
-
-		create_label.rect_size = CREATE_RECT_SIZE
-		create_label.rect_position = CREATE_POSITION
+		create_label.rect_size = model().getInfoLabelRectSize()
+		create_label.rect_position = model().getInfoCreatePosition()
 		
 		var scene_name = scene().getSceneName()
 		var font = ResourceUnit.loadRes(scene_name, "CreateText", "font") 
@@ -370,21 +331,19 @@ func renderArchiveInfo():
 		
 		create_label.add_font_override("font", font)
 		create_label.add_color_override("font_color", font_color)
-		create_label.text = CREATE_TEXT
-			
-		scene().get_node("ArchiveInfoRect").add_child(create_label)
+		create_label.text = model().getInfoCreateText()
+
+		getArchiveInfoRect().add_child(create_label)
 
 		create_text = ComponentPack.new("__createText", create_label)
 	
 	if update_text == null:
 		var update_label = Label.new()
+		update_label.align = Label.ALIGN_CENTER
+		update_label.valign = Label.VALIGN_CENTER
 
-		var UPDATE_RECT_SIZE = Vector2(150, 40)
-		var UPDATE_POSITION = Vector2(45, 25)
-		var UPDATE_TEXT = "创建时间"
-
-		update_label.rect_size = UPDATE_RECT_SIZE
-		update_label.rect_position = UPDATE_POSITION
+		update_label.rect_size = model().getInfoLabelRectSize()
+		update_label.rect_position = model().getInfoUpdatePosition()
 		
 		var scene_name = scene().getSceneName()
 		var font = ResourceUnit.loadRes(scene_name, "UpdateText", "font") 
@@ -392,20 +351,18 @@ func renderArchiveInfo():
 		
 		update_label.add_font_override("font", font)
 		update_label.add_color_override("font_color", font_color)
-		update_label.text = UPDATE_TEXT
+		update_label.text = model().getInfoUpdateText()
 
-		scene().get_node("ArchiveInfoRect").add_child(update_label)
+		getArchiveInfoRect().add_child(update_label)
 
 		update_text = ComponentPack.new("__updateText", update_label)
 
 	if create_time_text == null:
 		var create_time_label = Label.new()
+		create_time_label.valign = Label.VALIGN_CENTER
 
-		var CREATE_TIME_RECT_SIZE = Vector2(150, 40)
-		var CREATE_TIME_POSITION = Vector2(45, 25)
-
-		create_time_label.rect_size = CREATE_TIME_RECT_SIZE
-		create_time_label.rect_position = CREATE_TIME_POSITION
+		create_time_label.rect_size = model().getInfoLabelRectSize()
+		create_time_label.rect_position = model().getInfoCreateTimePosition()
 		
 		var scene_name = scene().getSceneName()
 		var font = ResourceUnit.loadRes(scene_name, "CreateTimeText", "font") 
@@ -414,18 +371,16 @@ func renderArchiveInfo():
 		create_time_label.add_font_override("font", font)
 		create_time_label.add_color_override("font_color", font_color)
 
-		scene().get_node("ArchiveInfoRect").add_child(create_time_label)
+		getArchiveInfoRect().add_child(create_time_label)
 
 		create_time_text = ComponentPack.new("__createTimeText", create_time_label)
 	
 	if update_time_text == null:
 		var update_time_label = Label.new()
+		update_time_label.valign = Label.VALIGN_CENTER
 
-		var UPDATE_TIME_RECT_SIZE = Vector2(150, 40)
-		var UPDATE_TIME_POSITION = Vector2(45, 25)
-
-		update_time_label.rect_size = UPDATE_TIME_RECT_SIZE
-		update_time_label.rect_position = UPDATE_TIME_POSITION
+		update_time_label.rect_size = model().getInfoLabelRectSize()
+		update_time_label.rect_position = model().getInfoUpdateTimePosition()
 		
 		var scene_name = scene().getSceneName()
 		var font = ResourceUnit.loadRes(scene_name, "UpdateTimeText", "font") 
@@ -434,7 +389,7 @@ func renderArchiveInfo():
 		update_time_label.add_font_override("font", font)
 		update_time_label.add_color_override("font_color", font_color)
 
-		scene().get_node("ArchiveInfoRect").add_child(update_time_label)
+		getArchiveInfoRect().add_child(update_time_label)
 	
 		update_time_text = ComponentPack.new("__updateTimeText", update_time_label)
 
@@ -451,17 +406,17 @@ func renderArchiveInfo():
 
 func clearArchiveInfo():
 	if create_text != null:
-		scene().get_node("ArchiveInfoRect").remove_child(create_text.getComponent())
+		getArchiveInfoRect().remove_child(create_text.getComponent())
 		create_text = null
 
 	if create_time_text != null:
-		scene().get_node("ArchiveInfoRect").remove_child(create_time_text.getComponent())
+		getArchiveInfoRect().remove_child(create_time_text.getComponent())
 		create_time_text = null
 
 	if update_text != null:
-		scene().get_node("ArchiveInfoRect").remove_child(update_text.getComponent())
+		getArchiveInfoRect().remove_child(update_text.getComponent())
 		update_text = null
 
 	if update_time_text != null:
-		scene().get_node("ArchiveInfoRect").remove_child(update_time_text.getComponent())
+		getArchiveInfoRect().remove_child(update_time_text.getComponent())
 		update_time_text = null

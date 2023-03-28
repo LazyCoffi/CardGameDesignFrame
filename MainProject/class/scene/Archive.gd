@@ -41,6 +41,6 @@ func pack():
 	return script_tree
 
 func loadScript(script_tree):
-	script_tree.getStr("archive_name")
-	script_tree.getInt("create_time")
-	script_tree.getInt("last_save_time")
+	archive_name = script_tree.getStr("archive_name")
+	create_time = script_tree.getInt("create_time")
+	last_save_time = script_tree.getInt("last_save_time")

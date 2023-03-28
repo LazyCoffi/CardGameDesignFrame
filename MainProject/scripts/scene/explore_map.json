@@ -4,7 +4,7 @@
 		"map_node_list": [
 			{
 				"coordinate_x": 1,
-				"coordinate_y": 1,
+				"coordinate_y": 16,
 				"ch": [
 					1
 				],
@@ -70,7 +70,7 @@
 			},
 			{
 				"coordinate_x": 2,
-				"coordinate_y": 2,
+				"coordinate_y": 15,
 				"ch": [
 					2,
 					3
@@ -133,8 +133,71 @@
 				}
 			},
 			{
-				"coordinate_x": 1,
-				"coordinate_y": 3,
+				"coordinate_x": 3,
+				"coordinate_y": 16,
+				"ch": [
+					4
+				],
+				"is_interactive": false,
+				"effect_func": {
+					"func_name": "",
+					"functions": [
+						{
+							"graph": {
+								"request_params": {
+									"switchScene_0_0": "Object"
+								},
+								"node_list": [
+									{
+										"func_unit": {
+											"func_name": "switchScene",
+											"func_set_name": "SceneOperFuncSet",
+											"default_params": {
+												"list": [
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													},
+													{
+														"param_type": "StringPack",
+														"param": {
+															"val": "linear_battle"
+														}
+													}
+												]
+											}
+										},
+										"ch_index_list": [
+											null,
+											null
+										]
+									}
+								]
+							},
+							"param_map": {
+								"map": {
+									"switchScene_0_0": 0
+								}
+							}
+						}
+					],
+					"param_map": {
+						"map": [
+							1
+						]
+					},
+					"ret_map": {
+						"map": [
+							0
+						]
+					}
+				}
+			},
+			{
+				"coordinate_x": 2,
+				"coordinate_y": 14,
 				"ch": [
 
 				],
@@ -197,58 +260,46 @@
 			},
 			{
 				"coordinate_x": 4,
-				"coordinate_y": 5,
+				"coordinate_y": 16,
 				"ch": [
 
 				],
-				"is_interactive": false,
+				"is_interactive": true,
 				"effect_func": {
 					"func_name": "",
 					"functions": [
 						{
 							"graph": {
 								"request_params": {
-									"switchScene_0_0": "Object"
+
 								},
 								"node_list": [
 									{
 										"func_unit": {
-											"func_name": "switchScene",
-											"func_set_name": "SceneOperFuncSet",
+											"func_name": "saveArchive",
+											"func_set_name": "ArchiveOperFuncSet",
 											"default_params": {
 												"list": [
-													{
-														"param_type": "NullPack",
-														"param": {
 
-														}
-													},
-													{
-														"param_type": "StringPack",
-														"param": {
-															"val": "linear_battle"
-														}
-													}
 												]
 											}
 										},
 										"ch_index_list": [
-											null,
-											null
+
 										]
 									}
 								]
 							},
 							"param_map": {
 								"map": {
-									"switchScene_0_0": 0
+
 								}
 							}
 						}
 					],
 					"param_map": {
 						"map": [
-							1
+
 						]
 					},
 					"ret_map": {
@@ -258,6 +309,61 @@
 					}
 				}
 			}
-		]
+		],
+		"sub_menu_function": {
+			"func_name": "",
+			"functions": [
+				{
+					"graph": {
+						"request_params": {
+							"pushScene_0_0": "Object"
+						},
+						"node_list": [
+							{
+								"func_unit": {
+									"func_name": "pushScene",
+									"func_set_name": "SceneOperFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											},
+											{
+												"param_type": "StringPack",
+												"param": {
+													"val": "sub_menu"
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									null,
+									null
+								]
+							}
+						]
+					},
+					"param_map": {
+						"map": {
+							"pushScene_0_0": 0
+						}
+					}
+				}
+			],
+			"param_map": {
+				"map": [
+					0
+				]
+			},
+			"ret_map": {
+				"map": [
+					0
+				]
+			}
+		}
 	}
 }

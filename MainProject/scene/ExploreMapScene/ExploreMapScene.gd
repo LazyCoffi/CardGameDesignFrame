@@ -36,7 +36,7 @@ func switchScene(next_scene_name):
 func pushScene(next_scene_name):
 	emit_signal("pushSignal", next_scene_name)
 
-func popSignal():
+func popScene():
 	emit_signal("popSignal")
 
 func isRuntimeType():

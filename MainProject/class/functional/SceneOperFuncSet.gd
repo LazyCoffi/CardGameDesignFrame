@@ -22,6 +22,9 @@ func popScene(scene_ref):
 func getScene(scene_name):
 	return SceneManager.getScene(scene_name)
 
+func quitGame(scene_ref):
+	scene_ref.get_tree().quit()
+
 func __initFuncForm():
 	addFuncForm("fetchFromScene", "all", ["String", "String"])
 	addFuncForm("callSceneService", "all", ["String", "String", "Array"])
@@ -29,3 +32,4 @@ func __initFuncForm():
 	addFuncForm("pushScene", "null", ["Object", "String"])
 	addFuncForm("popScene", "null", ["Object"])
 	addFuncForm("getScene", "Object", ["String"])
+	addFuncForm("quitGame", "null", ["Object"])

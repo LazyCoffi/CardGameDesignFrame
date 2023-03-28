@@ -7,12 +7,12 @@
 				{
 					"graph": {
 						"request_params": {
-							"switchScene_0_0": "Object"
+							"popScene_0_0": "Object"
 						},
 						"node_list": [
 							{
 								"func_unit": {
-									"func_name": "switchScene",
+									"func_name": "popScene",
 									"func_set_name": "SceneOperFuncSet",
 									"default_params": {
 										"list": [
@@ -21,18 +21,11 @@
 												"param": {
 
 												}
-											},
-											{
-												"param_type": "StringPack",
-												"param": {
-													"val": "explore_map"
-												}
 											}
 										]
 									}
 								},
 								"ch_index_list": [
-									null,
 									null
 								]
 							}
@@ -40,7 +33,7 @@
 					},
 					"param_map": {
 						"map": {
-							"switchScene_0_0": 0
+							"popScene_0_0": 0
 						}
 					}
 				}
@@ -80,7 +73,7 @@
 											{
 												"param_type": "StringPack",
 												"param": {
-													"val": "linear_battle"
+													"val": "explore_map"
 												}
 											}
 										]
@@ -135,7 +128,7 @@
 											{
 												"param_type": "StringPack",
 												"param": {
-													"val": "explore_map"
+													"val": "main_menu"
 												}
 											}
 										]

@@ -15,7 +15,7 @@ func initArchiveManager():
 	active_archive = null
 
 	var file = File.new()
-	var path = "usr://archive_list.json"
+	var path = "user://archive_list.json"
 
 	if file.file_exists(path):
 		var script_tree = ScriptTree.new()
@@ -36,26 +36,34 @@ func getArchiveByIndex(index):
 func getArchiveNum():
 	return archive_list.size()
 
-func newArchive():
+func createArchive():
 	var archive_name = "Archive" + str(total_archive_num)
 	var archive = Archive.new()
 	archive.setArchiveName(archive_name)
 	active_archive = archive
 
+	refillArchiveList()
+
 func setArchive(archive_name):
 	var archive = getArchive(archive_name)
 	active_archive = archive
+
+	refillArchiveList()
 
 func delArchive(archive_name):
 	for index in range(archive_list.size()):
 		if archive_list[index].getArchiveName() == archive_name:
 			archive_list.remove(index)
 			return
+	
+	refillArchiveList()
 
 func delArchiveByIndex(index):
 	Logger.assert(index >= 0 and index < archive_list.size(), "Index out of range!")
 		
 	archive_list.remove(index)
+
+	refillArchiveList()
 
 func hasArchive(archive_name):
 	for archive in archive_list:
@@ -78,7 +86,7 @@ func saveArchive(scene_cache):
 	Logger.assert(isActiveArchiveSelected(), "No archive is selected!")
 		
 	var archive_name = active_archive.getArchiveName()
-	var path = "usr://"
+	var path = "user://"
 	var save_path = path + archive_name + ".json"
 	var script_tree = scene_cache.pack()
 	script_tree.exportAsJson(save_path)
@@ -88,7 +96,11 @@ func saveArchive(scene_cache):
 	if not hasArchive(archive_name):
 		archive_list.append(active_archive)
 		total_archive_num += 1
+	
+	refillArchiveList()
 
+func refillArchiveList():
+	var path = "user://"
 	var list_path = path + "archive_list.json"
 
 	var list_script_tree = ScriptTree.new()
@@ -102,7 +114,7 @@ func loadArchive(archive_name):
 	var archive = getArchive(archive_name)
 
 	var script_tree = archive.pack()
-	var path = "usr://" + archive_name + ".json"
+	var path = "user://" + archive_name + ".json"
 	script_tree.loadFromJson(path)
 
 	var scene_cache = SceneCache.new()

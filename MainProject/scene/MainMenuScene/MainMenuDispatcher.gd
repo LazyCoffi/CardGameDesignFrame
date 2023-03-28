@@ -39,13 +39,13 @@ func continue():
 	service().continue()
 
 func emitSettingSignal():
-	render().getSettingButton().connect("pressed", self, "start")
+	render().getSettingButton().connect("pressed", self, "setting")
 
 func setting():
 	service().setting()
 
 func emitExitSignal():
-	render().getExitButton().connect("pressed", self, "start")
+	render().getExitButton().connect("pressed", self, "exit")
 
 func exit():
 	service().exit()

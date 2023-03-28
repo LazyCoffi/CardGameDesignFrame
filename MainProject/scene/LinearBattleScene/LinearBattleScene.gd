@@ -1,7 +1,6 @@
 extends Node2D
 
 var ScriptTree = TypeUnit.type("ScriptTree")
-var SwitchTargetTable = TypeUnit.type("SwitchTargetTable")
 var LinearBattleDispatcher = TypeUnit.type("LinearBattleDispatcher")
 var LinearBattleModel = TypeUnit.type("LinearBattleModel")
 var LinearBattleRender = TypeUnit.type("LinearBattleRender")
@@ -48,7 +47,7 @@ func switchScene(next_scene_name):
 func pushScene(next_scene_name):
 	emit_signal("pushSignal", next_scene_name)
 
-func popSignal():
+func popScene():
 	emit_signal("popSignal")
 
 # scene_name

@@ -8,12 +8,24 @@ var Function = TypeUnit.type("Function")
 var PollingBucket = TypeUnit.type("PollingBucket")
 var HyperFunction = TypeUnit.type("HyperFunction")
 
-var MAX_GROUP_SIZE = 4
-var HAND_CARD_RECT_SIZE = [135, 240]
-var HAND_CARD_FRAME_SIZE = [150, 270]
-var CHARACTER_CARD_RECT_SIZE = [180, 320]
-var CHARACTER_CARD_FRAME_SIZE = [210, 360]
-var CARD_STATE_RECT_SIZE = [360, 540]
+var MAX_GROUP_SIZE = 2
+var HAND_CARD_RECT_SIZE = Vector2(135, 240)
+var HAND_CARD_FRAME_SIZE = Vector2(150, 270)
+var HAND_CARD_MARK_RECT_SIZE = Vector2(150, 24)
+var CHARACTER_CARD_RECT_SIZE = Vector2(180, 320)
+var CHARACTER_CARD_FRAME_SIZE = Vector2(210, 360)
+var CHARACTER_MARK_RECT_SIZE = Vector2(210, 40)
+var CARD_STATE_RECT_SIZE = Vector2(360, 540)
+var VIEW_RECT_SIZE = Vector2(600, 600)
+var ATTR_RECT_SIZE = Vector2(270, 560)
+var ATTR_ENTRY_XMARGIN = 5
+var ATTR_ENTRY_YMARGIN = 20
+var ATTR_ENTRY_HEAD_SIZE = Vector2(80, 40)
+var ATTR_ENTRY_CONTENT_SIZE = Vector2(180, 40)
+var ATTR_BUTTON_SIZE = Vector2(80, 40)
+var INTRODUCTION_RECT_SIZE = Vector2(270, 560)
+var INTRODUCTION_TEXT_SIZE = Vector2(250, 540)
+var CHOOSE_MOVE_GAP = 50
 var HAND_CARDS_UPPER = 10
 
 var own_character_team			# Array
@@ -68,8 +80,47 @@ func getCharacterCardRectSize():
 func getCharacterCardFrameSize():
 	return CHARACTER_CARD_FRAME_SIZE
 
+func getCharacterMarkRectSize():
+	return CHARACTER_MARK_RECT_SIZE
+
+func getHandCardMarkRectSize():
+	return HAND_CARD_MARK_RECT_SIZE
+
+func getAttrRectSize():
+	return ATTR_RECT_SIZE
+
+func getAttrEntryHeadSize():
+	return ATTR_ENTRY_HEAD_SIZE
+
+func getAttrEntryContentSize():
+	return ATTR_ENTRY_CONTENT_SIZE
+
+func getAttrEntryXMargin():
+	return ATTR_ENTRY_XMARGIN
+
+func getAttrEntryYMargin():
+	return ATTR_ENTRY_YMARGIN
+
+func getAttrButtonSize():
+	return ATTR_BUTTON_SIZE
+
+func getViewRectSize():
+	return VIEW_RECT_SIZE
+
+func getIntroductionRectSize():
+	return INTRODUCTION_RECT_SIZE
+
+func getIntroductionTextSize():
+	return INTRODUCTION_TEXT_SIZE
+
 func getCardStateRectSize():
 	return CARD_STATE_RECT_SIZE
+
+func getChooseMoveGap():
+	return CHOOSE_MOVE_GAP
+
+func getCardAttrListSize():
+	return int(ATTR_RECT_SIZE[1] / ATTR_ENTRY_HEAD_SIZE[1] - 2)
 
 # own_character_team
 func getOwnCharacterTeam():

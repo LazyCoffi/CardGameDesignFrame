@@ -2,7 +2,6 @@ extends GutTest
 
 var MainMenuScene = TypeUnit.type("MainMenuScene")
 var MainMenuModel = TypeUnit.type("MainMenuModel")
-var TargetPack = TypeUnit.type("TargetPack")
 var FuncGraphNode = TypeUnit.type("FuncGraphNode")
 var FuncGraph = TypeUnit.type("FuncGraph")
 var Function = TypeUnit.type("Function")
@@ -24,14 +23,26 @@ func __buildStartFunction():
 	var function = Function.new()
 	function.setGraph(graph)
 
+	var archive_node = FuncGraphNode.new()
+	archive_node.setFunc("ArchiveOperFuncSet", "createArchive")
+
+	var archive_graph = FuncGraph.new()
+
+	archive_graph.addNode(archive_node)
+	archive_graph.construct()
+
+	var archive_function = Function.new()
+	archive_function.setGraph(archive_graph)
+
 	var hyper = HyperFunction.new()
 	hyper.addFunction(function)
+	hyper.addFunction(archive_function)
 
 	return hyper
 
 func __buildContinueFunction():
 	var switch_node = FuncGraphNode.new()
-	switch_node.setFunc("SceneOperFuncSet", "switchScene")
+	switch_node.setFunc("SceneOperFuncSet", "pushScene")
 
 	var string_pack = StringPack.new()
 	string_pack.setVal("archive_menu")
@@ -52,10 +63,10 @@ func __buildContinueFunction():
 
 func __buildSettingFunction():
 	var switch_node = FuncGraphNode.new()
-	switch_node.setFunc("SceneOperFuncSet", "switchScene")
+	switch_node.setFunc("SceneOperFuncSet", "pushScene")
 
 	var string_pack = StringPack.new()
-	string_pack.setVal("linear_battle")
+	string_pack.setVal("setting")
 	switch_node.setDefaultParam("StringPack", string_pack, 1)
 
 	var graph = FuncGraph.new()
@@ -72,16 +83,11 @@ func __buildSettingFunction():
 	return hyper
 
 func __buildExitFunction():
-	var switch_node = FuncGraphNode.new()
-	switch_node.setFunc("SceneOperFuncSet", "switchScene")
-
-	var string_pack = StringPack.new()
-	string_pack.setVal("explore_map")
-	switch_node.setDefaultParam("StringPack", string_pack, 1)
+	var exit_node = FuncGraphNode.new()
+	exit_node.setFunc("SceneOperFuncSet", "quitGame")
 
 	var graph = FuncGraph.new()
-
-	graph.addNode(switch_node)
+	graph.addNode(exit_node)
 	graph.construct()
 
 	var function = Function.new()
