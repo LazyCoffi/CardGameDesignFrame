@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/crop.mp3-11d62a3409cd83ae804f2868adf2cac5.mp3str"
+
+[deps]
+
+source_file="res://asserts/audio/crop.mp3"
+dest_files=[ "res://.import/crop.mp3-11d62a3409cd83ae804f2868adf2cac5.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
