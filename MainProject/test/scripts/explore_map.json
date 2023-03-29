@@ -262,7 +262,7 @@
 				"coordinate_x": 4,
 				"coordinate_y": 16,
 				"ch": [
-
+					5
 				],
 				"is_interactive": true,
 				"effect_func": {
@@ -300,6 +300,69 @@
 					"param_map": {
 						"map": [
 
+						]
+					},
+					"ret_map": {
+						"map": [
+							0
+						]
+					}
+				}
+			},
+			{
+				"coordinate_x": 5,
+				"coordinate_y": 16,
+				"ch": [
+
+				],
+				"is_interactive": true,
+				"effect_func": {
+					"func_name": "",
+					"functions": [
+						{
+							"graph": {
+								"request_params": {
+									"pushScene_0_0": "Object"
+								},
+								"node_list": [
+									{
+										"func_unit": {
+											"func_name": "pushScene",
+											"func_set_name": "SceneOperFuncSet",
+											"default_params": {
+												"list": [
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													},
+													{
+														"param_type": "StringPack",
+														"param": {
+															"val": "test_dialog"
+														}
+													}
+												]
+											}
+										},
+										"ch_index_list": [
+											null,
+											null
+										]
+									}
+								]
+							},
+							"param_map": {
+								"map": {
+									"pushScene_0_0": 0
+								}
+							}
+						}
+					],
+					"param_map": {
+						"map": [
+							1
 						]
 					},
 					"ret_map": {

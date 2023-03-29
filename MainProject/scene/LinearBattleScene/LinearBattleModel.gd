@@ -1,7 +1,6 @@
-extends Node
+extends "res://scene/BaseModel.gd"
 class_name LinearBattleModel
 
-var ScriptTree = TypeUnit.type("ScriptTree")
 var LinearCharacterCard = TypeUnit.type("LinearCharacterCard")
 var LinearSkillCard = TypeUnit.type("LinearSkillCard")
 var Function = TypeUnit.type("Function")

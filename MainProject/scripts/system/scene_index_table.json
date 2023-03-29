@@ -29,6 +29,11 @@
 			"type" : "SettingScene",
 			"scene_name" : "setting",
 			"is_complete" : true
+		},
+		"test_dialog" : {
+			"type" : "DialogScene",
+			"scene_name" : "test_dialog",
+			"is_complete" : true
 		}
 	}
 }

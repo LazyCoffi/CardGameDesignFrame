@@ -1,0 +1,213 @@
+{
+	"scene_name": "test_dialog",
+	"scene_model": {
+		"dialog_title": "测试事件",
+		"dialog_info": "这是一段长文字，用于描述当前Dialog对应的事件，仅作为测试",
+		"option_list": [
+			{
+				"option_text": "返回！",
+				"effect_func": {
+					"func_name": "",
+					"functions": [
+						{
+							"graph": {
+								"request_params": {
+									"popScene_0_0": "Object"
+								},
+								"node_list": [
+									{
+										"func_unit": {
+											"func_name": "popScene",
+											"func_set_name": "SceneOperFuncSet",
+											"default_params": {
+												"list": [
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													}
+												]
+											}
+										},
+										"ch_index_list": [
+											null
+										]
+									}
+								]
+							},
+							"param_map": {
+								"map": {
+									"popScene_0_0": 0
+								}
+							}
+						}
+					],
+					"param_map": {
+						"map": [
+							0
+						]
+					},
+					"ret_map": {
+						"map": [
+							0
+						]
+					}
+				}
+			},
+			{
+				"option_text": "返回！",
+				"effect_func": {
+					"func_name": "",
+					"functions": [
+						{
+							"graph": {
+								"request_params": {
+									"popScene_0_0": "Object"
+								},
+								"node_list": [
+									{
+										"func_unit": {
+											"func_name": "popScene",
+											"func_set_name": "SceneOperFuncSet",
+											"default_params": {
+												"list": [
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													}
+												]
+											}
+										},
+										"ch_index_list": [
+											null
+										]
+									}
+								]
+							},
+							"param_map": {
+								"map": {
+									"popScene_0_0": 0
+								}
+							}
+						}
+					],
+					"param_map": {
+						"map": [
+							0
+						]
+					},
+					"ret_map": {
+						"map": [
+							0
+						]
+					}
+				}
+			},
+			{
+				"option_text": "返回！",
+				"effect_func": {
+					"func_name": "",
+					"functions": [
+						{
+							"graph": {
+								"request_params": {
+									"popScene_0_0": "Object"
+								},
+								"node_list": [
+									{
+										"func_unit": {
+											"func_name": "popScene",
+											"func_set_name": "SceneOperFuncSet",
+											"default_params": {
+												"list": [
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													}
+												]
+											}
+										},
+										"ch_index_list": [
+											null
+										]
+									}
+								]
+							},
+							"param_map": {
+								"map": {
+									"popScene_0_0": 0
+								}
+							}
+						}
+					],
+					"param_map": {
+						"map": [
+							0
+						]
+					},
+					"ret_map": {
+						"map": [
+							0
+						]
+					}
+				}
+			},
+			{
+				"option_text": "返回！",
+				"effect_func": {
+					"func_name": "",
+					"functions": [
+						{
+							"graph": {
+								"request_params": {
+									"popScene_0_0": "Object"
+								},
+								"node_list": [
+									{
+										"func_unit": {
+											"func_name": "popScene",
+											"func_set_name": "SceneOperFuncSet",
+											"default_params": {
+												"list": [
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													}
+												]
+											}
+										},
+										"ch_index_list": [
+											null
+										]
+									}
+								]
+							},
+							"param_map": {
+								"map": {
+									"popScene_0_0": 0
+								}
+							}
+						}
+					],
+					"param_map": {
+						"map": [
+							0
+						]
+					},
+					"ret_map": {
+						"map": [
+							0
+						]
+					}
+				}
+			}
+		]
+	}
+}

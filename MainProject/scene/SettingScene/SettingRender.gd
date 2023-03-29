@@ -1,10 +1,5 @@
-extends Node
+extends "res://scene/BaseRender.gd"
 class_name SettingRender
-
-var Emitter = TypeUnit.type("Emitter")
-var ComponentPack = TypeUnit.type("ComponentPack")
-	
-var scene_ref
 
 var setting_frame		# ComponentPack
 var bgm_text			# ComponentPack
@@ -15,24 +10,6 @@ var sound_volume		# ComponentPack
 var sound_volume_mark	# ComponentPack
 var return_button		# ComponentPack
 var return_text			# ComponentPack
-
-func setRef(scene):
-	scene_ref = scene
-
-func scene():
-	return scene_ref
-
-func sceneName():
-	return scene_ref.getSceneName()
-
-func model():
-	return scene_ref.model()
-
-func service():
-	return scene_ref.service()
-
-func dispatcher():
-	return scene_ref.dispatcher()
 
 func getSettingFrame():
 	return setting_frame

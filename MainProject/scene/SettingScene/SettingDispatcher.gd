@@ -1,19 +1,5 @@
-extends Node
+extends "res://scene/BaseDispatcher.gd"
 class_name SettingDispatcher
-
-var scene_ref
-
-func setRef(scene):
-	scene_ref = scene
-
-func scene():
-	return scene_ref
-
-func render():
-	return scene().render()
-
-func service():
-	return scene().service()
 
 func launch():
 	render().renderSettingFrame()

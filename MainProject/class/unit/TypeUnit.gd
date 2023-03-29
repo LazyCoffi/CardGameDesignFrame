@@ -124,6 +124,10 @@ func __initTypeTable():
 	__addSceneType("ArchiveScene", "ArchiveModel")
 	__addSceneType("ArchiveScene", "ArchiveRender")
 	__addSceneType("ArchiveScene", "ArchiveService")
+	__addSceneType("DialogScene", "DialogDispatcher")
+	__addSceneType("DialogScene", "DialogModel")
+	__addSceneType("DialogScene", "DialogRender")
+	__addSceneType("DialogScene", "DialogService")
 	__addSceneType("ExploreMapScene", "ExploreMapDispatcher")
 	__addSceneType("ExploreMapScene", "ExploreMapModel")
 	__addSceneType("ExploreMapScene", "ExploreMapRender")
@@ -147,6 +151,7 @@ func __initTypeTable():
 	__addSceneType("CharacterWarehouseScene", "CharacterWarehouseModel")
 
 	__addSceneInstance("ArchiveScene")
+	__addSceneInstance("DialogScene")
 	__addSceneInstance("ExploreMapScene")
 	__addSceneInstance("MainMenuScene")
 	__addSceneInstance("LinearBattleScene")

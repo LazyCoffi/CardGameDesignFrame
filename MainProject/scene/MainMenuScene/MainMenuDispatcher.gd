@@ -1,16 +1,5 @@
-extends Node
+extends "res://scene/BaseDispatcher.gd"
 class_name MainMenuDispatcher
-
-var scene_ref
-
-func setRef(scene):
-	scene_ref = scene
-
-func render():
-	return scene_ref.render()
-
-func service():
-	return scene_ref.service()
 
 func launch():
 	renderMainMenu()

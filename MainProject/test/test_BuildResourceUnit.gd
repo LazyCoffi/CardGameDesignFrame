@@ -149,6 +149,18 @@ func test_buildResourceUnit():
 	resource_unit.addTexture("setting", "SoundVolume", "texture", "res://asserts/setting/SettingVolume.png")
 	resource_unit.addTexture("setting", "SoundVolumeMark", "texture", "res://asserts/setting/SettingVolumeMark.png")
 
+	# test_dialog
+
+	resource_unit.addTexture("test_dialog", "test_dialog", "dialog_frame", "res://asserts/test_dialog/DialogFrame.png")
+	resource_unit.addFont("test_dialog", "test_dialog", "title_font", "res://asserts/ttf/SourceHanSansSC-Bold.otf", 48)
+	resource_unit.addColorByName("test_dialog", "test_dialog", "title_font_color", "#1c1914")
+	resource_unit.addTexture("test_dialog", "test_dialog", "dialog_pic", "res://asserts/test_dialog/pic.jpg")
+	resource_unit.addFont("test_dialog", "test_dialog", "info_font", "res://asserts/ttf/SourceHanSansSC-Bold.otf", 24)
+	resource_unit.addColorByName("test_dialog", "test_dialog", "info_font_color", "#1c1914")
+	resource_unit.addFont("test_dialog", "test_dialog", "option_font", "res://asserts/ttf/SourceHanSansSC-Bold.otf", 24)
+	resource_unit.addColorByName("test_dialog", "test_dialog", "option_font_color", "#1c1914")
+	resource_unit.addTexture("test_dialog", "test_dialog", "option_button", "res://asserts/test_dialog/DialogOptionButton.png")
+
 	# export
 	var script_tree = resource_unit.pack()
 	script_tree.exportAsJson("res://test/scripts/resource_unit.json")

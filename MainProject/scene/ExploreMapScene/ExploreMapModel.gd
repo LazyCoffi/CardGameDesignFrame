@@ -1,15 +1,7 @@
-extends Node
+extends "res://scene/BaseModel.gd"
 class_name ExploreMapModel
 
-var ScriptTree = TypeUnit.type("ScriptTree")
 var HyperFunction = TypeUnit.type("HyperFunction")
-
-var MAP_SIZE = [1920, 1080]
-var MAP_NODE_SIZE = [60, 60]
-var MAP_POSITION = [0, 0]
-var SUB_MENU_RECT_SIZE = Vector2(100, 100)
-var SUB_MENU_POSITION = Vector2(1720, 41)
-var MAP_LINE_WIDTH = 4
 
 class ExploreMapNode:
 	var coordinate_x
@@ -87,22 +79,22 @@ func _init():
 
 # const
 func getMapSize():
-	return MAP_SIZE
+	return Vector2(1920, 1080)
 
 func getMapNodeSize():
-	return MAP_NODE_SIZE
+	return Vector2(60, 60)
 
 func getMapPosition():
-	return MAP_POSITION
+	return Vector2()
 
 func getMapLineWidth():
-	return MAP_LINE_WIDTH
+	return 4
 
 func getSubMenuRectSize():
-	return SUB_MENU_RECT_SIZE
+	return Vector2(100, 100)
 
 func getSubMenuPosition():
-	return SUB_MENU_POSITION
+	return Vector2(1720, 41)
 
 func addMapNode(coordinate_x, coordinate_y, effect_func, is_interactive):
 	var map_node = ExploreMapNode.new()

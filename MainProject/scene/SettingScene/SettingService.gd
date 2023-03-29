@@ -1,16 +1,5 @@
-extends Node
+extends "res://scene/BaseService.gd"
 class_name SettingService
-
-var scene_ref
-
-func setRef(scene):
-	scene_ref = scene
-
-func scene():
-	return scene_ref
-
-func model():
-	return scene_ref.model()
 
 func return():
 	model().returnFunction(scene())

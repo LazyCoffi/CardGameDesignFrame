@@ -1,9 +1,5 @@
-extends Node
+extends "res://scene/BaseRender.gd"
 class_name ArchiveRender
-
-var ComponentPack = TypeUnit.type("ComponentPack")
-
-var scene_ref
 
 var load_button			# TextureButton
 var delete_button		# TextureButton
@@ -27,21 +23,6 @@ func _init():
 	create_time_text = null
 	update_text = null
 	update_time_text = null
-
-func setRef(scene):
-	scene_ref = scene
-
-func scene():
-	return scene_ref
-
-func sceneName():
-	return scene_ref.getSceneName()
-
-func model():
-	return scene_ref.model()
-
-func service():
-	return scene_ref.service()
 
 func getArchiveInfoRect():
 	return scene().get_node("ArchiveOperRect/ArchiveInfoRect")

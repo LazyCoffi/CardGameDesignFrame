@@ -1,4 +1,4 @@
-extends Node
+extends "res://scene/BaseModel.gd"
 class_name SubMenuModel
 
 var resume_function		# HyperFunction

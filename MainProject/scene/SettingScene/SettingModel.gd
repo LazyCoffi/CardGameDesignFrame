@@ -1,83 +1,63 @@
-extends Node
+extends "res://scene/BaseModel.gd"
 class_name SettingModel
 
-var ScriptTree = TypeUnit.type("ScriptTree")
 var HyperFunction = TypeUnit.type("HyperFunction")
-
-const SETTING_FRAME_RECT_SIZE = Vector2(600, 600)
-const SETTING_FRAME_POSITION = Vector2(660, 240)
-const BGM_TEXT_RECT_SIZE = Vector2(120, 120)
-const BGM_TEXT_POSITION = Vector2(60, 60)
-const BGM_TEXT = "BGM音量"
-const BGM_VOLUME_RECT_SIZE = Vector2(360, 120)
-const BGM_VOLUME_POSITION = Vector2(180, 60)
-const SOUND_TEXT_RECT_SIZE = Vector2(120, 120)
-const SOUND_TEXT_POSITION = Vector2(60, 240)
-const SOUND_TEXT = "音效音量"
-const VOLUME_MARK_RECT_SIZE = Vector2(20, 120)
-const SOUND_VOLUME_RECT_SIZE = Vector2(360, 120)
-const SOUND_VOLUME_POSITION = Vector2(180, 240)
-const RETURN_BUTTON_RECT_SIZE = Vector2(240, 120)
-const RETURN_BUTTON_POSITION = Vector2(180, 420)
-const RETURN_TEXT_RECT_SIZE = Vector2(240, 120)
-const RETURN_TEXT_POSITION = Vector2(0, 0)
-const RETURN_TEXT = "返回"
 
 var return_function			# HyperFunction
 
 func getSettingFrameRectSize():
-	return SETTING_FRAME_RECT_SIZE
+	return Vector2(600, 600)
 
 func getSettingFramePosition():
-	return SETTING_FRAME_POSITION
+	return Vector2(660, 240)
 
 func getBgmTextRectSize():
-	return BGM_TEXT_RECT_SIZE
+	return Vector2(120, 120)
 
 func getBgmTextPosition():
-	return BGM_TEXT_POSITION
+	return Vector2(60, 60)
 
 func getBgmText():
-	return BGM_TEXT
+	return "BGM音量"
 
 func getBgmVolumeRectSize():
-	return BGM_VOLUME_RECT_SIZE
+	return Vector2(360, 120)
 
 func getBgmVolumePosition():
-	return BGM_VOLUME_POSITION
+	return Vector2(180, 60)
 
 func getSoundTextRectSize():
-	return SOUND_TEXT_RECT_SIZE
+	return Vector2(120, 120)
 
 func getSoundTextPosition():
-	return SOUND_TEXT_POSITION
+	return Vector2(60, 240)
 
 func getSoundText():
-	return SOUND_TEXT
+	return "音效音量"
 
 func getSoundVolumeRectSize():
-	return SOUND_VOLUME_RECT_SIZE
+	return Vector2(360, 120)
 
 func getSoundVolumePosition():
-	return SOUND_VOLUME_POSITION
+	return Vector2(180, 240)
 
 func getReturnButtonRectSize():
-	return RETURN_BUTTON_RECT_SIZE
+	return Vector2(240, 120)
 
 func getReturnButtonPosition():
-	return RETURN_BUTTON_POSITION
+	return Vector2(180, 420)
 
 func getReturnTextRectSize():
-	return RETURN_TEXT_RECT_SIZE
+	return Vector2(240, 120)
 
 func getReturnTextPosition():
-	return RETURN_TEXT_POSITION
+	return Vector2(0, 0)
 
 func getReturnText():
-	return RETURN_TEXT
+	return "返回"
 
 func getVolumeMarkRectSize():
-	return VOLUME_MARK_RECT_SIZE
+	return Vector2(20, 120)
 
 func returnFunction(scene_ref):
 	return_function.exec([scene_ref])

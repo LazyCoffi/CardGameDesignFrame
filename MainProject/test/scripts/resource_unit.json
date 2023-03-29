@@ -527,6 +527,46 @@
 					"TextureNode"
 				]
 			}
+		},
+		"test_dialog": {
+			"test_dialog": {
+				"dialog_frame": [
+					106,
+					"TextureNode"
+				],
+				"title_font": [
+					107,
+					"FontNode"
+				],
+				"title_font_color": [
+					108,
+					"ColorNode"
+				],
+				"dialog_pic": [
+					109,
+					"TextureNode"
+				],
+				"info_font": [
+					110,
+					"FontNode"
+				],
+				"info_font_color": [
+					111,
+					"ColorNode"
+				],
+				"option_font": [
+					112,
+					"FontNode"
+				],
+				"option_font_color": [
+					113,
+					"ColorNode"
+				],
+				"option_button": [
+					114,
+					"TextureNode"
+				]
+			}
 		}
 	},
 	"node_list": [
@@ -1362,6 +1402,87 @@
 			"s_name": "setting",
 			"c_name": "SoundVolumeMark",
 			"r_name": "texture"
+		},
+		{
+			"texture_path": "res://asserts/test_dialog/DialogFrame.png",
+			"s_name": "test_dialog",
+			"c_name": "test_dialog",
+			"r_name": "dialog_frame"
+		},
+		{
+			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+			"font_size": 48,
+			"s_name": "test_dialog",
+			"c_name": "test_dialog",
+			"r_name": "title_font"
+		},
+		{
+			"color_name": "#1c1914",
+			"rgba_int": 0,
+			"rgb": [
+
+			],
+			"rgba": [
+
+			],
+			"type": 0,
+			"s_name": "test_dialog",
+			"c_name": "test_dialog",
+			"r_name": "title_font_color"
+		},
+		{
+			"texture_path": "res://asserts/test_dialog/pic.jpg",
+			"s_name": "test_dialog",
+			"c_name": "test_dialog",
+			"r_name": "dialog_pic"
+		},
+		{
+			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+			"font_size": 24,
+			"s_name": "test_dialog",
+			"c_name": "test_dialog",
+			"r_name": "info_font"
+		},
+		{
+			"color_name": "#1c1914",
+			"rgba_int": 0,
+			"rgb": [
+
+			],
+			"rgba": [
+
+			],
+			"type": 0,
+			"s_name": "test_dialog",
+			"c_name": "test_dialog",
+			"r_name": "info_font_color"
+		},
+		{
+			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+			"font_size": 24,
+			"s_name": "test_dialog",
+			"c_name": "test_dialog",
+			"r_name": "option_font"
+		},
+		{
+			"color_name": "#1c1914",
+			"rgba_int": 0,
+			"rgb": [
+
+			],
+			"rgba": [
+
+			],
+			"type": 0,
+			"s_name": "test_dialog",
+			"c_name": "test_dialog",
+			"r_name": "option_font_color"
+		},
+		{
+			"texture_path": "res://asserts/test_dialog/DialogOptionButton.png",
+			"s_name": "test_dialog",
+			"c_name": "test_dialog",
+			"r_name": "option_button"
 		}
 	]
 }

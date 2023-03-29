@@ -86,6 +86,28 @@ func __buildSubMenuFunc():
 
 	return hyper
 
+func __buildDialogFunc():
+	var sub_menu_node = FuncGraphNode.new()
+	sub_menu_node.setFunc("SceneOperFuncSet", "pushScene")
+	var string_pack = StringPack.new()
+	string_pack.setVal("test_dialog")
+	sub_menu_node.setDefaultParam("StringPack", string_pack, 1)
+
+	var graph = FuncGraph.new()
+	graph.addNode(sub_menu_node)
+
+	graph.construct()
+
+	var function = Function.new()
+	function.setGraph(graph)
+	function.setMapIndex("pushScene_0_0", 0)
+
+	var hyper = HyperFunction.new()
+	hyper.addFunction(function)
+	hyper.setParamMapIndex(0, 1)
+
+	return hyper
+
 func __buildExploreMapModel():
 	var explore_map_model = ExploreMapModel.new()
 
@@ -96,11 +118,13 @@ func __buildExploreMapModel():
 	explore_map_model.addMapNode(3, 16, __buildEffectFunc(), false)
 	explore_map_model.addMapNode(2, 14, __buildEffectFunc(), false)
 	explore_map_model.addMapNode(4, 16, __buildSaveFunc(), true)
+	explore_map_model.addMapNode(5, 16, __buildDialogFunc(), true)
 
 	explore_map_model.addMapNodeCh(0, 1)
 	explore_map_model.addMapNodeCh(1, 2)
 	explore_map_model.addMapNodeCh(1, 3)
 	explore_map_model.addMapNodeCh(2, 4)
+	explore_map_model.addMapNodeCh(4, 5)
 
 	return explore_map_model
 

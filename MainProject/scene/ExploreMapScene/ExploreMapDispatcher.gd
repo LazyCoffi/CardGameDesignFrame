@@ -1,22 +1,5 @@
-extends Node
+extends "res://scene/BaseDispatcher.gd"
 class_name ExploreMapDispatcher
-
-var scene_ref
-
-func setRef(scene):
-	scene_ref = scene
-
-func scene():
-	return scene_ref
-
-func render():
-	return scene().render()
-
-func tween():
-	return scene().get_node("Tween")
-
-func service():
-	return scene().service()
 
 func launch():
 	render().renderBackground()

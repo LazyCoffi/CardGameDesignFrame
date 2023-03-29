@@ -1,24 +1,8 @@
-extends Node
+extends "res://scene/BaseDispatcher.gd"
 class_name LinearBattleDispatcher
-
-## Dispatcher将以信号的方式推进流程，即上一步骤结束后，发送进行下一步骤的信号，根据信号决定执行的时机
-
-var scene_ref
-
-func setRef(scene):
-	scene_ref = scene
-
-func scene():
-	return scene_ref
-
-func render():
-	return scene().render()
 
 func tween():
 	return scene().get_node("Tween")
-
-func service():
-	return scene().service()
 
 func player():
 	return scene().get_node("AnimationPlayer")

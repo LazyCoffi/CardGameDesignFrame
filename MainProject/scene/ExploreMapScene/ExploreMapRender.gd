@@ -1,8 +1,6 @@
-extends Node
+extends "res://scene/BaseRender.gd"
 class_name ExploreMapRender
 
-var Emitter = TypeUnit.type("Emitter")
-var ComponentPack = TypeUnit.type("ComponentPack")
 var MapCanvas = TypeUnit.type("MapCanvas")
 
 var map_canvas				# MapCanvas
@@ -10,29 +8,9 @@ var map_node_rect_list		# ComponentPack_Array
 var background_rect			# ComponentPack
 var sub_menu_entry_button	# ComponentPack
 
-var scene_ref
-
 func _init():
 	map_canvas = MapCanvas.new()
 	map_node_rect_list = []
-
-func setRef(scene):
-	scene_ref = scene
-
-func scene():
-	return scene_ref
-
-func sceneName():
-	return scene().getSceneName()
-
-func model():
-	return scene_ref.model()
-
-func service():
-	return scene_ref.service()
-
-func dispatcher():
-	return scene_ref.dispatcher()
 
 func renderBackground():
 	var background = TextureRect.new()

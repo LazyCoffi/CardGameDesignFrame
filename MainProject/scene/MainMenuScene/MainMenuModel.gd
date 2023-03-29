@@ -1,4 +1,4 @@
-extends Node
+extends "res://scene/BaseModel.gd"
 class_name MainMenuModel
 
 var HyperFunction = TypeUnit.type("HyperFunction")
