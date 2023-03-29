@@ -11,5 +11,5 @@ data_*/
 # Log ignores
 MainProject/log/
 
-# asserts ingores
-MainProject/asserts/
+# output ignores
+MainProject/design/outputs
