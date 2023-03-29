@@ -485,7 +485,7 @@ func __addArrayObject(content, item):
 	__addArrayInnerMember(inner_member, item, member_tree)
 
 func __delArrayObject(content, item):
-	factory_tree.delObjectFromArray(content["index"])
+	factory_tree.delObjectFromArray(content["container_name"], content["index"])
 	__delArrayInnerMember(item)
 
 func __addDictObject(content, item):

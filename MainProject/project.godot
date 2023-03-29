@@ -320,6 +320,11 @@ _global_script_classes=[ {
 "path": "res://scene/ExploreMapScene/ExploreMapRender.gd"
 }, {
 "base": "Node",
+"class": "ExploreMapSceneFactory",
+"language": "GDScript",
+"path": "res://design/factory/ExploreMapSceneFactory.gd"
+}, {
+"base": "Node",
 "class": "ExploreMapService",
 "language": "GDScript",
 "path": "res://scene/ExploreMapScene/ExploreMapService.gd"
@@ -394,7 +399,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/gut/hook_script.gd"
 }, {
-"base": "Reference",
+"base": "Node",
 "class": "GutTest",
 "language": "GDScript",
 "path": "res://addons/gut/test.gd"
@@ -732,6 +737,7 @@ _global_script_class_icons={
 "ExploreMapFuncSet": "",
 "ExploreMapModel": "",
 "ExploreMapRender": "",
+"ExploreMapSceneFactory": "",
 "ExploreMapService": "",
 "Exporter": "",
 "Factory": "",
@@ -807,7 +813,7 @@ _global_script_class_icons={
 [application]
 
 config/name="CardGameDesignFrame"
-run/main_scene="res://Main.tscn"
+run/main_scene="res://design/Designer.tscn"
 config/icon="res://icon.png"
 
 [autoload]

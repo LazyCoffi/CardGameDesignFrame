@@ -36,8 +36,7 @@ class FactoryTreeNode:
 	
 	func delObjectFromArray(container_name, index):
 		var member = factory.delObjectFromArray(container_name, index)
-		var tree_node = ch[member["name"]][index]
-		factory.getEntity().call(member["del_func"], tree_node.getEntity())
+		factory.getEntity().call(member["del_func"], index)
 		ch[member["container_name"]].remove(index)
 
 		return member
@@ -54,8 +53,7 @@ class FactoryTreeNode:
 
 	func delObjectFromDict(container_name, index):
 		var member = factory.delObjectFromDict(container_name, index)
-		var tree_node = ch[member["name"]][index]
-		factory.getEntity().call(member["del_func"], tree_node.getEntity())
+		factory.getEntity().call(member["del_func"], index)
 		ch[member["container_name"]].erase(index)
 
 		return member

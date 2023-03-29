@@ -185,7 +185,7 @@ func delObjectFromArray(arr_name, index):
 
 				member["container"].remove(index)
 				for inner_index in range(member["container"].size()):
-					member["container"]["index"] = inner_index
+					member["container"][inner_index]["index"] = inner_index
 
 				return ret
 
