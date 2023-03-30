@@ -315,6 +315,11 @@ _global_script_classes=[ {
 "path": "res://scene/ExploreMapScene/ExploreMapModel.gd"
 }, {
 "base": "Node",
+"class": "ExploreMapModelFactory",
+"language": "GDScript",
+"path": "res://design/factory/ExploreMapModelFactory.gd"
+}, {
+"base": "Node",
 "class": "ExploreMapRender",
 "language": "GDScript",
 "path": "res://scene/ExploreMapScene/ExploreMapRender.gd"
@@ -399,7 +404,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/gut/hook_script.gd"
 }, {
-"base": "Reference",
+"base": "Node",
 "class": "GutTest",
 "language": "GDScript",
 "path": "res://addons/gut/test.gd"
@@ -746,6 +751,7 @@ _global_script_class_icons={
 "ExploreMapDispatcher": "",
 "ExploreMapFuncSet": "",
 "ExploreMapModel": "",
+"ExploreMapModelFactory": "",
 "ExploreMapRender": "",
 "ExploreMapSceneFactory": "",
 "ExploreMapService": "",
@@ -849,6 +855,10 @@ window/size/height=1080
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/gut/plugin.cfg" )
+
+[gdnative]
+
+singletons=[  ]
 
 [gui]
 
