@@ -21,19 +21,22 @@ enum {
 	RESET_LOCAL_COM_TYPE,
 }
 
-var factory_tree		# FactoryTree
-var jump_table			# Dict
-var export_table		# Dict
-var project_path		# String
+var factory_tree			# FactoryTree
+var jump_table				# Dict
+var export_table			# Dict
+var project_path			# String
+var resource_export_path	# String
 
 func _init():
 	project_path = null
+	resource_export_path = ""
 	jump_table = {}
 	factory_tree = FactoryTree.new()
 
 func _ready():
 	initToolBar()
 	initClassLibrary()
+	initResourceGenerator()
 
 func initToolBar():
 	var file_button = get_node("ToolBarSpliter").get_node("ToolBar").get_node("FileMenu")
@@ -71,6 +74,9 @@ func __getOperTree():
 func __getOverviewTree():
 	return get_node("ToolBarSpliter/WorkspaceContainer/OverviewTree")
 
+func __getConfigTree():
+	return get_node("ToolBarSpliter/WorkspaceContainer/ResourceGenerator/ConfigTree")
+
 func __getResourceDialog():
 	return get_node("ResourceDialog")
 
@@ -85,6 +91,27 @@ func __getSaveProjectDialog():
 
 func __getExportProjectDialog():
 	return get_node("ExportProjectDialog")
+
+func __getExportResourceDialog():
+	return get_node("ExportResourceDialog")
+
+func __getPromptTag():
+	return get_node("ToolBarSpliter/WorkspaceContainer/ResourceGenerator/PromptTag")
+
+func __getNegativePromptTag():
+	return get_node("ToolBarSpliter/WorkspaceContainer/ResourceGenerator/NegativePromptTag")
+
+func __getGenerateButton():
+	return get_node("ToolBarSpliter/WorkspaceContainer/ResourceGenerator/GenerateButton")
+
+func __getPreview():
+	return get_node("ToolBarSpliter/WorkspaceContainer/ResourceGenerator/Preview")
+
+func __getHttpRequest():
+	return get_node("HTTPRequest")
+
+func __getGenerateText():
+	return get_node("ToolBarSpliter/WorkspaceContainer/ResourceGenerator/GenerateText")
 
 func filePopMenuHandle(id):
 	match id:
@@ -682,3 +709,225 @@ func __renderOverviewAttrNode(main_node, overview_tree):
 	attr_node.set_expand_right(0, true)
 	
 	return attr_node
+
+func initResourceGenerator():
+	__renderConfigTree()
+	__initGenerate()
+
+func __renderConfigTree():
+	var config_tree = __getConfigTree()
+	
+	var root_node = config_tree.create_item()
+	root_node.set_text(0, "ResourceGenerator")
+	root_node.set_expand_right(0, true)
+	
+	var width_node = config_tree.create_item(root_node)
+	width_node.set_text(0, "width")
+	width_node.set_editable(0, false)
+	width_node.set_editable(1, true)
+	
+	var height_node = config_tree.create_item(root_node)
+	height_node.set_text(0, "height")
+	height_node.set_editable(0, false)
+	height_node.set_editable(1, true)
+	
+	var step_node = config_tree.create_item(root_node)
+	step_node.set_text(0, "steps")
+	step_node.set_editable(0, false)
+	step_node.set_editable(1, true)
+	
+	var batch_node = config_tree.create_item(root_node)
+	batch_node.set_text(0, "batch_size")
+	batch_node.set_editable(0, false)
+	batch_node.set_editable(1, true)
+	
+	var export_node = config_tree.create_item()
+	export_node.set_text(0, "export_path")
+	export_node.set_editable(0, false)
+	var texture = load("res://design/asserts/root-list_16x16.png")
+	export_node.add_button(1, texture)
+	
+	var export_dialog = __getExportResourceDialog()
+	
+	if not export_dialog.is_connected("file_selected", self, "__setResourceExportPath"):
+		export_dialog.connect("file_selected", self, "__setResourceExportPath")
+	
+	if not config_tree.is_connected("button_pressed", self, "__showResourceExportDialog"):
+		config_tree.connect("button_pressed", self, "__showResourceExportDialog")
+
+func __setResourceExportPath(path):
+	resource_export_path = path
+	
+	var config_tree = __getConfigTree()
+	var root_node = config_tree.get_root()
+	var node = root_node.get_children()
+	while node != null:
+		if node.get_text(0) == "export_path":
+			node.set_text(1, path)
+			break
+		
+		node = node.get_next()
+
+func __showResourceExportDialog(_item, _column, _id):
+	var export_dialog = __getExportResourceDialog()
+	export_dialog.popup_centered(Vector2(960, 540))
+
+func __initGenerate():
+	var generate_button = __getGenerateButton()
+	if not generate_button.is_connected("pressed", self, "__generateResource"):
+		generate_button.connect("pressed", self, "__generateResource")
+	
+	var http_request = __getHttpRequest()
+	if not http_request.is_connected("request_completed", self, "__requestComplete"):
+		http_request.connect("request_completed", self, "__requestComplete")
+
+func __setGeneratingState():
+	var generate_text = __getGenerateText()
+	generate_text.text = "Generating, please wait..."
+
+func __setCompleteState():
+	var generate_text = __getGenerateText()
+	generate_text.text = "Preview"
+
+func __generateResource():
+	__setGeneratingState()
+	
+	var body = __getRequestBody()
+	__requestStableDiffusionService(body)
+
+func __requestStableDiffusionService(body):
+	$HTTPRequest.request("http://localhost:7860/sdapi/v1/txt2img", [], true, HTTPClient.METHOD_POST, body)
+
+func __requestComplete(_result, _response_code, _headers, body):
+	__setCompleteState()
+	var json = JSON.parse(body.get_string_from_utf8()).result
+	var image = Image.new()
+	image.load_png_from_buffer(Marshalls.base64_to_raw(json["images"][0]))
+	var texture = ImageTexture.new()
+	texture.create_from_image(image)
+	
+	var preview = __getPreview()
+	preview.texture = texture
+	
+	var path = "user://"
+	if resource_export_path != "":
+		path = resource_export_path
+	image.save_png(path)
+	
+func __getRequestBody():
+	var default_body = {
+			"enable_hr": false,
+			"denoising_strength": 0,
+			"firstphase_width": 0,
+			"firstphase_height": 0,
+			"prompt": "example prompt",
+			"styles": [],
+			"seed": -1,
+			"subseed": -1,
+			"subseed_strength": 0,
+			"seed_resize_from_h": -1,
+			"seed_resize_from_w": -1,
+			"batch_size": 1,
+			"n_iter": 1,
+			"steps": 3,
+			"cfg_scale": 7,
+			"width": 64,
+			"height": 64,
+			"restore_faces": false,
+			"tiling": false,
+			"negative_prompt": "",
+			"eta": 0,
+			"s_churn": 0,
+			"s_tmax": 0,
+			"s_tmin": 0,
+			"s_noise": 1,
+			"sampler_index": "Euler a"
+		}
+		
+	var config_tree = __getConfigTree()
+	var root_node = config_tree.get_root()
+	var node = root_node.get_children()
+	while node != null:
+		if node.get_text(0) == "export_path":
+			node = node.get_next()
+			continue
+		
+		var val = node.get_text(1)
+		if val == "":
+			node = node.get_next()
+			continue
+		
+		default_body[node.get_text(0)] = int(val)
+		
+		node = node.get_next()
+	
+	var prompt_tag = __getPromptTag()
+	default_body["prompt"] = prompt_tag.text
+	
+	var negative_prompt_tag = __getNegativePromptTag()
+	default_body["negative_prompt"] = negative_prompt_tag.text
+	
+	var json = to_json(default_body)
+	
+	Logger.log(default_body)
+	return json
+		
+func initHttpRequest():
+	print($HTTPRequest.connect("request_completed", self, "__requestCompleted"))
+	var body = {
+			"enable_hr": false,
+			"denoising_strength": 0,
+			"firstphase_width": 0,
+			"firstphase_height": 0,
+			"prompt": "example prompt",
+			"styles": [],
+			"seed": -1,
+			"subseed": -1,
+			"subseed_strength": 0,
+			"seed_resize_from_h": -1,
+			"seed_resize_from_w": -1,
+			"batch_size": 1,
+			"n_iter": 1,
+			"steps": 3,
+			"cfg_scale": 7,
+			"width": 64,
+			"height": 64,
+			"restore_faces": false,
+			"tiling": false,
+			"negative_prompt": "",
+			"eta": 0,
+			"s_churn": 0,
+			"s_tmax": 0,
+			"s_tmin": 0,
+			"s_noise": 1,
+			"sampler_index": "Euler a"
+		}
+	var json = to_json(body)
+	var ret	= $HTTPRequest.request("http://localhost:7860/sdapi/v1/txt2img", [], true, HTTPClient.METHOD_POST, json)
+
+	print(ret)
+
+func __requestCompleted(result, response_code, headers, body):
+	
+	
+	var json = JSON.parse(body.get_string_from_utf8()).result
+	print(json.keys())
+	print(json["images"].size())
+	
+	var file = File.new()
+	print("is_open: " + str(file.open("res://test/testFile/pic.txt", File.WRITE)))
+	
+	file.store_string(json["images"][0])
+	file.flush()
+	file.close()
+	var image = Image.new()
+	image.load_png_from_buffer(Marshalls.base64_to_raw(json["images"][0]))
+	
+	var texture = ImageTexture.new()
+	texture.create_from_image(image)
+	
+	$Result.texture = texture
+	print(result)
+	print(response_code)
+	print(headers)
+	

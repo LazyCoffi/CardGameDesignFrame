@@ -858,7 +858,7 @@ enabled=PoolStringArray( "res://addons/gut/plugin.cfg" )
 
 [gdnative]
 
-singletons=[  ]
+singletons=[ "res://pythonscript.gdnlib" ]
 
 [gui]
 
