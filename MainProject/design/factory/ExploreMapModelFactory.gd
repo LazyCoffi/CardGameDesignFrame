@@ -1,16 +1,40 @@
-extends Node
+extends "res://design/factory/Factory.gd"
+class_name ExploreMapModelFactory
 
+func _init():
+	entity_type = "ExploreMapModel"
+	entity = TypeUnit.type(entity_type).new()
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+func initMemberList():
+	addFuncMember("addMapNode", [
+		{"name" : "coordinate_x", "type" : "int", "param_type" : "val"},
+		{"name" : "coordinate_y", "type" : "int", "param_type" : "val"},
+		{"name" : "effect_func", "type" : "HyperFunction", "param_type" : "obj"},
+		{"name" : "is_interactive", "type" : "bool", "param_type" : "val"}
+	])
+	addFuncMember("delMapNode", [
+			{"name" : "node_index", "type" : "int", "param_type" : "val"}
+	])
+	addFuncMember("addMapNodeCh", [
+		{"name" : "node_index", "type" : "int", "param_type" : "val"},
+		{"name" : "ch_node_index", "type" : "int", "param_type" : "val"},
+	])
+	addFuncMember("delMapNodeCh", [
+		{"name" : "node_index", "type" : "int", "param_type" : "val"},
+		{"name" : "ch_node_index", "type" : "int", "param_type" : "val"},
+	])
+	addFuncMember("setNodeInteractive", [
+		{"name" : "node_index", "type" : "int", "param_type" : "val"},
+	])
+	addFuncMember("resetNodeInteractive", [
+		{"name" : "node_index", "type" : "int", "param_type" : "val"},
+	])
 
+	addObjectMember("sub_menu_function", "HyperFunction", "setSubMenuFunction")
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func initOverviewList():
+	addArrayOverview("map_node_list", "getMapNodeList", [
+	{"attr_name" : "coordinate_x", "func_name" : "getCoordinateX"},
+	{"attr_name" : "coordinate_y", "func_name" : "getCoordinateY"},
+	{"attr_name" : "is_interactive" , "func_name" : "isInteractive"}
+	])

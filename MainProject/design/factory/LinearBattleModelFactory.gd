@@ -19,8 +19,8 @@ func initMemberList():
 	addObjectMember("sub_menu_function", "HyperFunction", "setSubMenuFunction")
 
 	addFuncMember("setBucketInitShuffleFunction", [
-		{"name" : "init_shuffle_function", "type" : "Function", "param_type" : "object"},
+		{"name" : "init_shuffle_function", "type" : "Function", "param_type" : "obj"},
 	])
 	addFuncMember("setBucketRegularShuffleFunction", [
-		{"name" : "regular_shuffle_function", "type" : "Function", "param_type" : "object"},
+		{"name" : "regular_shuffle_function", "type" : "Function", "param_type" : "obj"},
 	])

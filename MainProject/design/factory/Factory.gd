@@ -104,7 +104,6 @@ func __callFunc(func_name, params):
 
 	entity.callv(func_name, fparams)
 
-
 func addObjectMember(mem_name, class_type, set_func):
 	var ret = {
 		"name" : mem_name,

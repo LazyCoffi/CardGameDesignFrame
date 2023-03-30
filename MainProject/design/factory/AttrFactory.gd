@@ -9,8 +9,8 @@ func initMemberList():
 	addFuncMember("addAttr", [
 		{"name" : "attr_name", "type" : "String", "param_type" : "val"},
 		{"name" : "attr_type", "type" : "String", "param_type" : "val"},
-		{"name" : "getter", "type" : "Function", "param_type" : "object"},
-		{"name" : "setter", "type" : "Function", "param_type" : "object"}
+		{"name" : "getter", "type" : "Function", "param_type" : "obj"},
+		{"name" : "setter", "type" : "Function", "param_type" : "obj"}
 	])
 	addFuncMember("delAttr", [
 		{"name" : "attr_name", "type" : "String", "param_type" : "val"},

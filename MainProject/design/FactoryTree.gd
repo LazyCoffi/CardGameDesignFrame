@@ -46,7 +46,7 @@ class FactoryTreeNode:
 		var tree_factory = __getFactory(member["class_type"])
 		var tree_node = FactoryTreeNode.new(tree_factory, self)
 		tree_node.create()
-		ch[member["containter_name"]][index] = tree_node
+		ch[member["container_name"]][index] = tree_node
 		factory.getEntity().call(member["add_func"], tree_node.getEntity())
 
 		return member
@@ -59,7 +59,7 @@ class FactoryTreeNode:
 		return member
 
 	func setCommonObjectType(obj_name, obj_type):
-		var member = factory.setCommonObjectType(obj_name)
+		var member = factory.setCommonObjectType(obj_name, obj_type)
 
 		var tree_factory = __getFactory(obj_type)
 		var tree_node = FactoryTreeNode.new(tree_factory, self)

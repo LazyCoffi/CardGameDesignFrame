@@ -21,7 +21,5 @@ func initMemberList():
 
 func initOverviewList():
 	addAttrOverview("hyper_func_name", "getFuncName")
-	addAttrArrayOverview("func_name_list", "getFuncNameList")
-	addAttrArrayOverview("func_set_name_list", "getFuncSetNameList")
 	addAttrArrayOverview("param_map", "peekParamMap")
 	addAttrArrayOverview("ret_map", "peekRetMap")

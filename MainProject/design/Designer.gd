@@ -241,7 +241,7 @@ func __renderEmptyCommon(member, common_node):
 	common_node.add_button(1, library_button_texture)
 
 func __renderFullCommon(member, common_node):
-	if common_node.get_button_count() > 0:	
+	if common_node.get_button_count(1) > 0:	
 		common_node.erase_button(1, 0)
 
 	common_node.set_text(0, member["name"])
@@ -320,7 +320,7 @@ func __addLocalObjectMember(member, local_node, member_tree):
 	loc_node.set_text(0, member["func_name"] + "_" + str(member["index"]))
 
 	var edit_button_texture = load("res://design/asserts/edit_16x16.png")
-	__addJumpIndex(member["func_name"] + "_" + str(member["index"]), 0, loc_node.get_button_count(0), WALK_DOWN_INTO, member)
+	__addJumpIndex(member["func_name"] + "_" + str(member["index"]), 0, loc_node.get_button_count(0), WALK_DOWN_LOCAL, member)
 	loc_node.add_button(0, edit_button_texture)
 
 func __addLocalCommonMember(member, local_node, member_tree):
@@ -495,7 +495,7 @@ func __addDictObject(content, item):
 	__addDictInnerMember(inner_member, item, member_tree)
 
 func __delDictObject(content, item):
-	factory_tree.delObjectFromArray(content["index"])
+	factory_tree.delObjectFromDict(content["container_name"], content["index"])
 	__delDictInnerMember(item)
 
 func __setCommonType(content, item):

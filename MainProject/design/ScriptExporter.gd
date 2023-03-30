@@ -11,6 +11,7 @@ var sub_menu_scene
 var linear_battle_scene
 var archive_scene
 var explore_map_scene
+var setting_scene
 
 func _init():
 	global_setting = null
@@ -21,6 +22,7 @@ func _init():
 	linear_battle_scene = []
 	archive_scene = []
 	explore_map_scene = []
+	setting_scene = []
 
 func setGlobalSetting(global_setting_):
 	global_setting = global_setting_
@@ -92,3 +94,6 @@ func exportScript(path):
 		var scene_name = scene.getSceneName()
 		scene.pack().exportAsJson(path + "/scene/" + scene_name + ".json")
 
+	for scene in setting_scene:
+		var scene_name = scene.getSceneName()
+		scene.pack().exportAsJson(path + "/scene/" + scene_name + ".json")

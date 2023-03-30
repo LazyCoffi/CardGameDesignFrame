@@ -6,4 +6,7 @@ func _init():
 	entity = TypeUnit.type(entity_type).new()
 
 func initMemberList():
-	return
+	addObjectMember("start_function", "HyperFunction", "setStartFunction")
+	addObjectMember("continue_function", "HyperFunction", "setContinueFunction")
+	addObjectMember("setting_function", "HyperFunction", "setSettingFunction")
+	addObjectMember("exit_function", "HyperFunction", "setExitFunction")
