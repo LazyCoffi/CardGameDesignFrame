@@ -96,12 +96,14 @@ func getHandCardList():
 	return hand_card_list
 
 func getOptionalHandCardList():
+	var action_character = model().getActionCharacter()
+
 	var hand_cards = model().getActionHandCards()
 	var optional_hand_card_list = []
 
 	var i = 0
 	for hand_card in hand_cards:
-		if hand_card.isOffensive():
+		if hand_card.isOffensive() and hand_card.isPlayCondition(action_character):
 			optional_hand_card_list.append(hand_card_list[i])
 
 		i += 1

@@ -25,6 +25,9 @@ func getEnemyCharacterByName(scene_name, first):
 func getOppositeTeam(scene_name, first):
 	return SceneManager.callService(scene_name, "getOppositeTeam", [first])
 
+func getActionCharacter(scene_name):
+	return SceneManager.callService(scene_name, "getActionCharacter", [])
+
 func __initFuncForm():
 	addFuncForm("getOwnCharacterNum", "int", ["String"])
 	addFuncForm("getOwnCharacterTeam", "Array", ["String"])
@@ -33,3 +36,4 @@ func __initFuncForm():
 	addFuncForm("getEnemyCharacterTeam", "Array", ["String"])
 	addFuncForm("getEnemyCharacterByName", "CharacterCard", ["String", "String"])
 	addFuncForm("getOppositeTeam", "Array", ["String", "CharacterCard"])
+	addFuncForm("getActionCharacter", "CharacterCard", ["String"])

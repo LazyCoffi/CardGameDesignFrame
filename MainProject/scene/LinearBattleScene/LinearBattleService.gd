@@ -1,6 +1,22 @@
 extends "res://scene/BaseService.gd"
 class_name LinearBattleService
 
+func isCardOwnTeam(character):
+	var own_team = model().getOwnCharacterTeam()
+	for ch in own_team:
+		if ch.getCardName() == character.getCardName():
+			return true
+	
+	return false
+
+func isCardEnemyTeam(character):
+	var enemy_team = model().getEnemyCharacterTeam()
+	for ch in enemy_team:
+		if ch.getCardName() == character.getCardName():
+			return true
+	
+	return false
+
 func getOwnCharacterTeam():
 	return model().getOwnCharacterTeam()
 

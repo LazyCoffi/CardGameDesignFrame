@@ -58,9 +58,16 @@ func test_buildResourceUnit():
 	resource_unit.addTexture("linear_battle", "linear_battle", "action_character_mark", "res://asserts/linear_battle/LinearBattleActionCharacterMark.png")
 	resource_unit.addTexture("linear_battle", "linear_battle", "chosen_hand_card_mark", "res://asserts/linear_battle/LinearBattleChosenHandCardMark.png")
 
+	# global
 	resource_unit.addTexture("global", "avator", "main_character", "res://asserts/avator/white_hair.png")
 	resource_unit.addTexture("global", "avator", "enemy_character", "res://asserts/avator/purple_hair.png")
 	resource_unit.addTexture("global", "avator", "attack_card", "res://asserts/avator/knight.png")
+	resource_unit.addTexture("global", "avator", "crop_card", "res://asserts/avator/knight.png")
+	resource_unit.addTexture("global", "avator", "stab_card", "res://asserts/avator/knight.png")
+	resource_unit.addTexture("global", "avator", "knight_character", "res://asserts/avator/white_knight.png")
+	resource_unit.addTexture("global", "avator", "robber_character", "res://asserts/avator/robber.png")
+	resource_unit.addTexture("global", "avator", "slash_card", "res://asserts/avator/princess.png")
+	resource_unit.addTexture("global", "avator", "shield_card", "res://asserts/avator/witch.png")
 
 	# sub_menu
 	resource_unit.addTexture("sub_menu", "sub_menu", "background_rect", "res://asserts/sub_menu/sub_menu_frame.png")
@@ -150,7 +157,6 @@ func test_buildResourceUnit():
 	resource_unit.addTexture("setting", "SoundVolumeMark", "texture", "res://asserts/setting/SettingVolumeMark.png")
 
 	# test_dialog
-
 	resource_unit.addTexture("test_dialog", "test_dialog", "dialog_frame", "res://asserts/test_dialog/DialogFrame.png")
 	resource_unit.addFont("test_dialog", "test_dialog", "title_font", "res://asserts/ttf/SourceHanSansSC-Bold.otf", 48)
 	resource_unit.addColorByName("test_dialog", "test_dialog", "title_font_color", "#1c1914")
@@ -160,6 +166,30 @@ func test_buildResourceUnit():
 	resource_unit.addFont("test_dialog", "test_dialog", "option_font", "res://asserts/ttf/SourceHanSansSC-Bold.otf", 24)
 	resource_unit.addColorByName("test_dialog", "test_dialog", "option_font_color", "#1c1914")
 	resource_unit.addTexture("test_dialog", "test_dialog", "option_button", "res://asserts/test_dialog/DialogOptionButton.png")
+
+	# demo1
+	resource_unit.addFont("demo1", "demo1", "view_attr_font", "res://asserts/ttf/SourceHanSansSC-Bold.otf", 18)
+	resource_unit.addColorByName("demo1", "demo1", "view_attr_font_color", "#1c1914")
+	resource_unit.addFont("demo1", "demo1", "view_introduction_font", "res://asserts/ttf/SourceHanSansSC-Bold.otf", 18)
+	resource_unit.addColorByName("demo1", "demo1", "view_introduction_font_color", "#1c1914")
+
+	resource_unit.addTexture("demo1", "demo1", "attr_next_button", "res://asserts/demo1/LinearBattleAttrNextButton.png")
+	resource_unit.addTexture("demo1", "demo1", "attr_pre_button", "res://asserts/demo1/LinearBattleAttrPreButton.png")
+	resource_unit.addTexture("demo1", "demo1", "view_attr_entry", "res://asserts/demo1/LinearBattleEntry.png")
+	resource_unit.addTexture("demo1", "demo1", "view_frame", "res://asserts/demo1/ViewFrame.png")
+	resource_unit.addTexture("demo1", "demo1", "attr_frame", "res://asserts/demo1/LinearBattleAttrFrame.png")
+	resource_unit.addTexture("demo1", "demo1", "introduction_frame", "res://asserts/demo1/LinearBattleAttrFrame.png")
+	resource_unit.addTexture("demo1", "demo1", "character_card_frame", "res://asserts/demo1/CharacterCard.png")
+	resource_unit.addTexture("demo1", "demo1", "hand_card_frame", "res://asserts/demo1/HandCardFrame.png")
+	resource_unit.addTexture("demo1", "demo1", "background", "res://asserts/demo1/bg2.jpg")
+	resource_unit.addTexture("demo1", "demo1", "next_round_button", "res://asserts/demo1/next_round_btn.png")
+	resource_unit.addTexture("demo1", "demo1", "next_round_button_hover", "res://asserts/demo1/next_round_btn_hover.png")
+	resource_unit.addTexture("demo1", "demo1", "sub_menu_entry_btn", "res://asserts/demo1/SubMenuButton.png")
+	resource_unit.addFont("demo1", "NextRoundButtonText", "font", "res://asserts/ttf/SourceHanSansSC-Bold.otf", 40)
+	resource_unit.addColorByName("demo1", "NextRoundButtonText", "font_color", "#2E2E2E")	
+	resource_unit.addText("demo1", "NextRoundButtonText", "font_text", "结束回合")
+	resource_unit.addTexture("demo1", "demo1", "action_character_mark", "res://asserts/demo1/LinearBattleActionCharacterMark.png")
+	resource_unit.addTexture("demo1", "demo1", "chosen_hand_card_mark", "res://asserts/demo1/LinearBattleChosenHandCardMark.png")
 
 	# export
 	var script_tree = resource_unit.pack()

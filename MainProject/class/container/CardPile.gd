@@ -88,7 +88,7 @@ func deal(num):
 			ret.append(card_pile.pop_front())
 			num -= 1
 	
-	trash_pile.append_array(ret)
+	# trash_pile.append_array(ret)
 	return ret
 
 func dealTrash(num):

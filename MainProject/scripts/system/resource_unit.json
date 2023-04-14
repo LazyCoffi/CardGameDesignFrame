@@ -211,85 +211,109 @@
 				"attack_card": [
 					45,
 					"TextureNode"
+				],
+				"crop_card": [
+					46,
+					"TextureNode"
+				],
+				"stab_card": [
+					47,
+					"TextureNode"
+				],
+				"knight_character": [
+					48,
+					"TextureNode"
+				],
+				"robber_character": [
+					49,
+					"TextureNode"
+				],
+				"slash_card": [
+					50,
+					"TextureNode"
+				],
+				"shield_card": [
+					51,
+					"TextureNode"
 				]
 			}
 		},
 		"sub_menu": {
 			"sub_menu": {
 				"background_rect": [
-					46,
+					52,
 					"TextureNode"
 				]
 			},
 			"ResumeButton": {
 				"texture_normal": [
-					47,
+					53,
 					"TextureNode"
 				],
 				"texture_hover": [
-					48,
+					54,
 					"TextureNode"
 				]
 			},
 			"ResumeButtonText": {
 				"font": [
-					49,
+					55,
 					"FontNode"
 				],
 				"font_color": [
-					50,
+					56,
 					"ColorNode"
 				],
 				"font_text": [
-					51,
+					57,
 					"TextNode"
 				]
 			},
 			"SettingButton": {
 				"texture_normal": [
-					52,
+					58,
 					"TextureNode"
 				],
 				"texture_hover": [
-					53,
+					59,
 					"TextureNode"
 				]
 			},
 			"SettingButtonText": {
 				"font": [
-					54,
+					60,
 					"FontNode"
 				],
 				"font_color": [
-					55,
+					61,
 					"ColorNode"
 				],
 				"font_text": [
-					56,
+					62,
 					"TextNode"
 				]
 			},
 			"ExitButton": {
 				"texture_normal": [
-					57,
+					63,
 					"TextureNode"
 				],
 				"texture_hover": [
-					58,
+					64,
 					"TextureNode"
 				]
 			},
 			"ExitButtonText": {
 				"font": [
-					59,
+					65,
 					"FontNode"
 				],
 				"font_color": [
-					60,
+					66,
 					"ColorNode"
 				],
 				"font_text": [
-					61,
+					67,
 					"TextNode"
 				]
 			}
@@ -297,97 +321,65 @@
 		"archive_menu": {
 			"archive_menu": {
 				"background": [
-					62,
+					68,
 					"TextureNode"
 				],
 				"menu_rect": [
-					63,
+					69,
 					"TextureNode"
 				]
 			},
 			"LoadButton": {
 				"texture_normal": [
-					64,
+					70,
 					"TextureNode"
 				],
 				"texture_hover": [
-					65,
+					71,
 					"TextureNode"
 				]
 			},
 			"LoadText": {
 				"font": [
-					66,
+					72,
 					"FontNode"
 				],
 				"font_color": [
-					67,
+					73,
 					"ColorNode"
 				]
 			},
 			"DeleteButton": {
 				"texture_normal": [
-					68,
+					74,
 					"TextureNode"
 				],
 				"texture_hover": [
-					69,
+					75,
 					"TextureNode"
 				]
 			},
 			"DeleteText": {
 				"font": [
-					70,
+					76,
 					"FontNode"
 				],
 				"font_color": [
-					71,
+					77,
 					"ColorNode"
 				]
 			},
 			"BackButton": {
 				"texture_normal": [
-					72,
-					"TextureNode"
-				],
-				"texture_hover": [
-					73,
-					"TextureNode"
-				]
-			},
-			"BackText": {
-				"font": [
-					74,
-					"FontNode"
-				],
-				"font_color": [
-					75,
-					"ColorNode"
-				]
-			},
-			"NextButton": {
-				"texture_normal": [
-					76,
-					"TextureNode"
-				]
-			},
-			"PreviousButton": {
-				"texture_normal": [
-					77,
-					"TextureNode"
-				]
-			},
-			"ArchiveCard": {
-				"active_card": [
 					78,
 					"TextureNode"
 				],
-				"empty_card": [
+				"texture_hover": [
 					79,
 					"TextureNode"
 				]
 			},
-			"CardText": {
+			"BackText": {
 				"font": [
 					80,
 					"FontNode"
@@ -397,27 +389,29 @@
 					"ColorNode"
 				]
 			},
-			"CreateText": {
-				"font": [
+			"NextButton": {
+				"texture_normal": [
 					82,
-					"FontNode"
-				],
-				"font_color": [
+					"TextureNode"
+				]
+			},
+			"PreviousButton": {
+				"texture_normal": [
 					83,
-					"ColorNode"
+					"TextureNode"
 				]
 			},
-			"UpdateText": {
-				"font": [
+			"ArchiveCard": {
+				"active_card": [
 					84,
-					"FontNode"
+					"TextureNode"
 				],
-				"font_color": [
+				"empty_card": [
 					85,
-					"ColorNode"
+					"TextureNode"
 				]
 			},
-			"CreateTimeText": {
+			"CardText": {
 				"font": [
 					86,
 					"FontNode"
@@ -427,7 +421,7 @@
 					"ColorNode"
 				]
 			},
-			"UpdateTimeText": {
+			"CreateText": {
 				"font": [
 					88,
 					"FontNode"
@@ -436,12 +430,42 @@
 					89,
 					"ColorNode"
 				]
+			},
+			"UpdateText": {
+				"font": [
+					90,
+					"FontNode"
+				],
+				"font_color": [
+					91,
+					"ColorNode"
+				]
+			},
+			"CreateTimeText": {
+				"font": [
+					92,
+					"FontNode"
+				],
+				"font_color": [
+					93,
+					"ColorNode"
+				]
+			},
+			"UpdateTimeText": {
+				"font": [
+					94,
+					"FontNode"
+				],
+				"font_color": [
+					95,
+					"ColorNode"
+				]
 			}
 		},
 		"MapCanvas": {
 			"MapCanvas": {
 				"map_line_color": [
-					90,
+					96,
 					"ColorNode"
 				]
 			}
@@ -449,19 +473,19 @@
 		"explore_map": {
 			"explore_map": {
 				"sub_menu_button": [
-					91,
+					97,
 					"TextureNode"
 				],
 				"background": [
-					92,
+					98,
 					"TextureNode"
 				],
 				"map_node": [
-					93,
+					99,
 					"TextureNode"
 				],
 				"disable_map_node": [
-					94,
+					100,
 					"TextureNode"
 				]
 			}
@@ -469,61 +493,61 @@
 		"setting": {
 			"setting": {
 				"setting_frame": [
-					95,
+					101,
 					"TextureNode"
 				]
 			},
 			"BgmText": {
 				"font": [
-					96,
+					102,
 					"FontNode"
 				],
 				"font_color": [
-					97,
+					103,
 					"ColorNode"
 				]
 			},
 			"SoundText": {
 				"font": [
-					98,
+					104,
 					"FontNode"
 				],
 				"font_color": [
-					99,
+					105,
 					"ColorNode"
 				]
 			},
 			"ReturnButton": {
 				"texture": [
-					100,
+					106,
 					"TextureNode"
 				]
 			},
 			"ReturnText": {
 				"font": [
-					101,
+					107,
 					"FontNode"
 				],
 				"font_color": [
-					102,
+					108,
 					"ColorNode"
 				]
 			},
 			"BgmVolume": {
 				"texture": [
-					103,
+					109,
 					"TextureNode"
 				]
 			},
 			"SoundVolume": {
 				"texture": [
-					104,
+					110,
 					"TextureNode"
 				]
 			},
 			"SoundVolumeMark": {
 				"texture": [
-					105,
+					111,
 					"TextureNode"
 				]
 			}
@@ -531,40 +555,130 @@
 		"test_dialog": {
 			"test_dialog": {
 				"dialog_frame": [
-					106,
+					112,
 					"TextureNode"
 				],
 				"title_font": [
-					107,
+					113,
 					"FontNode"
 				],
 				"title_font_color": [
-					108,
+					114,
 					"ColorNode"
 				],
 				"dialog_pic": [
-					109,
+					115,
 					"TextureNode"
 				],
 				"info_font": [
-					110,
+					116,
 					"FontNode"
 				],
 				"info_font_color": [
-					111,
+					117,
 					"ColorNode"
 				],
 				"option_font": [
-					112,
+					118,
 					"FontNode"
 				],
 				"option_font_color": [
-					113,
+					119,
 					"ColorNode"
 				],
 				"option_button": [
-					114,
+					120,
 					"TextureNode"
+				]
+			}
+		},
+		"demo1": {
+			"demo1": {
+				"view_attr_font": [
+					121,
+					"FontNode"
+				],
+				"view_attr_font_color": [
+					122,
+					"ColorNode"
+				],
+				"view_introduction_font": [
+					123,
+					"FontNode"
+				],
+				"view_introduction_font_color": [
+					124,
+					"ColorNode"
+				],
+				"attr_next_button": [
+					125,
+					"TextureNode"
+				],
+				"attr_pre_button": [
+					126,
+					"TextureNode"
+				],
+				"view_attr_entry": [
+					127,
+					"TextureNode"
+				],
+				"view_frame": [
+					128,
+					"TextureNode"
+				],
+				"attr_frame": [
+					129,
+					"TextureNode"
+				],
+				"introduction_frame": [
+					130,
+					"TextureNode"
+				],
+				"character_card_frame": [
+					131,
+					"TextureNode"
+				],
+				"hand_card_frame": [
+					132,
+					"TextureNode"
+				],
+				"background": [
+					133,
+					"TextureNode"
+				],
+				"next_round_button": [
+					134,
+					"TextureNode"
+				],
+				"next_round_button_hover": [
+					135,
+					"TextureNode"
+				],
+				"sub_menu_entry_btn": [
+					136,
+					"TextureNode"
+				],
+				"action_character_mark": [
+					140,
+					"TextureNode"
+				],
+				"chosen_hand_card_mark": [
+					141,
+					"TextureNode"
+				]
+			},
+			"NextRoundButtonText": {
+				"font": [
+					137,
+					"FontNode"
+				],
+				"font_color": [
+					138,
+					"ColorNode"
+				],
+				"font_text": [
+					139,
+					"TextNode"
 				]
 			}
 		}
@@ -908,6 +1022,42 @@
 			"s_name": "global",
 			"c_name": "avator",
 			"r_name": "attack_card"
+		},
+		{
+			"texture_path": "res://asserts/avator/knight.png",
+			"s_name": "global",
+			"c_name": "avator",
+			"r_name": "crop_card"
+		},
+		{
+			"texture_path": "res://asserts/avator/knight.png",
+			"s_name": "global",
+			"c_name": "avator",
+			"r_name": "stab_card"
+		},
+		{
+			"texture_path": "res://asserts/avator/white_knight.png",
+			"s_name": "global",
+			"c_name": "avator",
+			"r_name": "knight_character"
+		},
+		{
+			"texture_path": "res://asserts/avator/robber.png",
+			"s_name": "global",
+			"c_name": "avator",
+			"r_name": "robber_character"
+		},
+		{
+			"texture_path": "res://asserts/avator/princess.png",
+			"s_name": "global",
+			"c_name": "avator",
+			"r_name": "slash_card"
+		},
+		{
+			"texture_path": "res://asserts/avator/witch.png",
+			"s_name": "global",
+			"c_name": "avator",
+			"r_name": "shield_card"
 		},
 		{
 			"texture_path": "res://asserts/sub_menu/sub_menu_frame.png",
@@ -1483,6 +1633,159 @@
 			"s_name": "test_dialog",
 			"c_name": "test_dialog",
 			"r_name": "option_button"
+		},
+		{
+			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+			"font_size": 18,
+			"s_name": "demo1",
+			"c_name": "demo1",
+			"r_name": "view_attr_font"
+		},
+		{
+			"color_name": "#1c1914",
+			"rgba_int": 0,
+			"rgb": [
+
+			],
+			"rgba": [
+
+			],
+			"type": 0,
+			"s_name": "demo1",
+			"c_name": "demo1",
+			"r_name": "view_attr_font_color"
+		},
+		{
+			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+			"font_size": 18,
+			"s_name": "demo1",
+			"c_name": "demo1",
+			"r_name": "view_introduction_font"
+		},
+		{
+			"color_name": "#1c1914",
+			"rgba_int": 0,
+			"rgb": [
+
+			],
+			"rgba": [
+
+			],
+			"type": 0,
+			"s_name": "demo1",
+			"c_name": "demo1",
+			"r_name": "view_introduction_font_color"
+		},
+		{
+			"texture_path": "res://asserts/demo1/LinearBattleAttrNextButton.png",
+			"s_name": "demo1",
+			"c_name": "demo1",
+			"r_name": "attr_next_button"
+		},
+		{
+			"texture_path": "res://asserts/demo1/LinearBattleAttrPreButton.png",
+			"s_name": "demo1",
+			"c_name": "demo1",
+			"r_name": "attr_pre_button"
+		},
+		{
+			"texture_path": "res://asserts/demo1/LinearBattleEntry.png",
+			"s_name": "demo1",
+			"c_name": "demo1",
+			"r_name": "view_attr_entry"
+		},
+		{
+			"texture_path": "res://asserts/demo1/ViewFrame.png",
+			"s_name": "demo1",
+			"c_name": "demo1",
+			"r_name": "view_frame"
+		},
+		{
+			"texture_path": "res://asserts/demo1/LinearBattleAttrFrame.png",
+			"s_name": "demo1",
+			"c_name": "demo1",
+			"r_name": "attr_frame"
+		},
+		{
+			"texture_path": "res://asserts/demo1/LinearBattleAttrFrame.png",
+			"s_name": "demo1",
+			"c_name": "demo1",
+			"r_name": "introduction_frame"
+		},
+		{
+			"texture_path": "res://asserts/demo1/CharacterCard.png",
+			"s_name": "demo1",
+			"c_name": "demo1",
+			"r_name": "character_card_frame"
+		},
+		{
+			"texture_path": "res://asserts/demo1/HandCardFrame.png",
+			"s_name": "demo1",
+			"c_name": "demo1",
+			"r_name": "hand_card_frame"
+		},
+		{
+			"texture_path": "res://asserts/demo1/bg2.jpg",
+			"s_name": "demo1",
+			"c_name": "demo1",
+			"r_name": "background"
+		},
+		{
+			"texture_path": "res://asserts/demo1/next_round_btn.png",
+			"s_name": "demo1",
+			"c_name": "demo1",
+			"r_name": "next_round_button"
+		},
+		{
+			"texture_path": "res://asserts/demo1/next_round_btn_hover.png",
+			"s_name": "demo1",
+			"c_name": "demo1",
+			"r_name": "next_round_button_hover"
+		},
+		{
+			"texture_path": "res://asserts/demo1/SubMenuButton.png",
+			"s_name": "demo1",
+			"c_name": "demo1",
+			"r_name": "sub_menu_entry_btn"
+		},
+		{
+			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+			"font_size": 40,
+			"s_name": "demo1",
+			"c_name": "NextRoundButtonText",
+			"r_name": "font"
+		},
+		{
+			"color_name": "#2E2E2E",
+			"rgba_int": 0,
+			"rgb": [
+
+			],
+			"rgba": [
+
+			],
+			"type": 0,
+			"s_name": "demo1",
+			"c_name": "NextRoundButtonText",
+			"r_name": "font_color"
+		},
+		{
+			"text": "结束回合",
+			"s_name": "demo1",
+			"c_name": "NextRoundButtonText",
+			"r_name": "font_text"
+		},
+		{
+			"texture_path": "res://asserts/demo1/LinearBattleActionCharacterMark.png",
+			"s_name": "demo1",
+			"c_name": "demo1",
+			"r_name": "action_character_mark"
+		},
+		{
+			"texture_path": "res://asserts/demo1/LinearBattleChosenHandCardMark.png",
+			"s_name": "demo1",
+			"c_name": "demo1",
+			"r_name": "chosen_hand_card_mark"
 		}
 	]
 }

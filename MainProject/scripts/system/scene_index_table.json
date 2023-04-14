@@ -34,6 +34,11 @@
 			"type" : "DialogScene",
 			"scene_name" : "test_dialog",
 			"is_complete" : true
+		},
+		"demo1" : {
+			"type" : "LinearBattleScene",
+			"scene_name" : "demo1",
+			"is_complete" : true
 		}
 	}
 }

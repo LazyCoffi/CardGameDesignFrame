@@ -1,6 +1,5 @@
 extends GutTest
 
-var SwitchTargetTable = TypeUnit.type("SwitchTargetTable")
 var Function = TypeUnit.type("Function")
 var PollingBucket = TypeUnit.type("PollingBucket")
 var LinearCharacterCard = TypeUnit.type("LinearCharacterCard")
@@ -503,13 +502,13 @@ func test_buildLinearBattleScript():
 	linear_battle_model.setIsDeadCondition(__buildIsDeadCondition())
 	linear_battle_model.setIsVictoryCondition(__buildIsVictoryCondition())
 	linear_battle_model.setIsFailCondition(__buildIsFailCondition())
-	linear_battle.setModel(linear_battle_model)
-
 	linear_battle_model.setBeforeRoundFunction(__buildDummyFunction())
 	linear_battle_model.setAfterRoundFunction(__buildDummyFunction())
 	linear_battle_model.setVictoryFunction(__buildVictoryFunction())
 	linear_battle_model.setFailFunction(__buildFailFunction())
 	linear_battle_model.setSubMenuFunction(__buildSubMenuFunction())
+
+	linear_battle.setModel(linear_battle_model)
 
 	var script_tree = linear_battle.pack()
 	script_tree.exportAsJson("res://test/scripts/linear_battle.json")

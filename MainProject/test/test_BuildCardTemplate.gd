@@ -254,8 +254,8 @@ func __buildAttackHyperFunction():
 
 	var attack_hyper = HyperFunction.new()
 	attack_hyper.addFunction(attack_function)
-	attack_hyper.setParamMap([0, 1])
-	attack_hyper.setRetMap([0])
+	attack_hyper.setParamMapIndex(0, 1)
+	attack_hyper.setParamMapIndex(1, 2)
 
 	return attack_hyper
 
@@ -476,32 +476,864 @@ func __buildReviseFunction():
 
 	return revise_function
 
-func test_buildCardCache():
+func __buildAttackCardTemplate():
 	var attack_card = __buildAttackSkillCard()
 	var attack_card_template = CardTemplate.new()
 	attack_card_template.setTemplateName("AttackSkillCard")
 	attack_card_template.setCardType("LinearSkillCard")
 	attack_card_template.setCardTemplate(attack_card)
 	attack_card_template.setReviseFunction(__buildReviseFunction())
-	CardCache.addTemplate(attack_card_template)
 
+	return attack_card_template
+
+func __buildMainCharacterTemplate():
 	var main_character_card = __buildMainCharacterCard()
 	var main_character_template = CardTemplate.new()
 	main_character_template.setTemplateName("MainCharacterCard")
 	main_character_template.setCardType("LinearCharacterCard")
 	main_character_template.setCardTemplate(main_character_card)
 	main_character_template.setReviseFunction(__buildReviseFunction())
-	CardCache.addTemplate(main_character_template)
 
+	return main_character_template
+
+func __buildEnemyCharacterTemplate():
 	var enemy_character_card = __buildEnemyCharacterCard()
 	var enemy_character_template = CardTemplate.new()
 	enemy_character_template.setTemplateName("EnemyCharacterCard")
 	enemy_character_template.setCardType("LinearCharacterCard")
 	enemy_character_template.setCardTemplate(enemy_character_card)
 	enemy_character_template.setReviseFunction(__buildReviseFunction())
-	CardCache.addTemplate(enemy_character_template)
+
+	return enemy_character_template
+
+func __buildPlayCondition():
+	var ap_pack = StringPack.new()
+	ap_pack.setVal("行动点")
+
+	var ap_cosm_pack = StringPack.new()
+	ap_cosm_pack.setVal("消耗行动点")
+
+	var extract_self_node = FuncGraphNode.new()
+	extract_self_node.setFunc("CardFuncSet", "extractAttr")
+
+	var extract_ch_node = FuncGraphNode.new()
+	extract_ch_node.setFunc("CardFuncSet", "extractAttr")
+
+	var is_le_node = FuncGraphNode.new()
+	is_le_node.setFunc("AttrConditionSet", "isAttrLessEqualInt")
+
+	is_le_node.setDefaultParam("StringPack", ap_cosm_pack, 1)
+	is_le_node.setDefaultParam("StringPack", ap_pack, 3)
+
+	var graph = FuncGraph.new()
+	graph.addNode(is_le_node)
+	graph.addNode(extract_self_node)
+	graph.addNode(extract_ch_node)
+
+	is_le_node.setChIndex(1, 0)
+	is_le_node.setChIndex(2, 2)
+
+	graph.construct()
+
+	var condition = Function.new()
+	condition.setGraph(graph)
+
+	return condition
+
+func __buildEnemyTargetCondition():
+	var target_node = FuncGraphNode.new()	
+	target_node.setFunc("LinearBattleConditionSet", "isCardEnemyTeam")
+	
+	var graph = FuncGraph.new()
+	graph.addNode(target_node)
+	graph.construct()
+
+	var target_condition = Function.new()
+	target_condition.setGraph(graph)
+
+	return target_condition
+
+func __buildCropAnimation():
+	var animation_pack = AnimationPack.new()
+
+	animation_pack.addTexturePath("res://asserts/animation/crop/crop1.png")
+	animation_pack.addTexturePath("res://asserts/animation/crop/crop2.png")
+	animation_pack.addTexturePath("res://asserts/animation/crop/crop3.png")
+
+	animation_pack.setGap(3)
+
+	return animation_pack
+
+func __buildCropAudio():
+	var audio_pack = AudioPack.new()
+
+	audio_pack.setAudioPath("res://asserts/audio/crop.mp3")
+	
+	return audio_pack
+
+func __buildCropHyperFunction():
+	var extract_atk_node = FuncGraphNode.new()
+	extract_atk_node.setFunc("CardFuncSet", "extractAttr")
+
+	var extract_hp_node = FuncGraphNode.new()
+	extract_hp_node.setFunc("CardFuncSet", "extractAttr")
+
+	var extract_arm_node = FuncGraphNode.new()
+	extract_arm_node.setFunc("CardFuncSet", "extractAttr")
+
+	var sub_hp_node = FuncGraphNode.new()
+	sub_hp_node.setFunc("AttrFuncSet", "minusAttrWithAttrBeforeInt")
+
+	var atk_pack = StringPack.new()
+	atk_pack.setVal("物理攻击")
+
+	var hp_pack = StringPack.new()
+	hp_pack.setVal("健康值")
+
+	var arm_pack = StringPack.new()
+	arm_pack.setVal("物理护甲")
+
+	sub_hp_node.setDefaultParam("StringPack", hp_pack, 1)
+	sub_hp_node.setDefaultParam("StringPack", arm_pack, 3)
+	sub_hp_node.setDefaultParam("StringPack", atk_pack, 5)
+
+	var graph = FuncGraph.new()
+	graph.addNode(sub_hp_node)
+	graph.addNode(extract_hp_node)
+	graph.addNode(extract_arm_node)
+	graph.addNode(extract_atk_node)
+
+	sub_hp_node.setChIndex(1, 0)
+	sub_hp_node.setChIndex(2, 2)
+	sub_hp_node.setChIndex(3, 4)
+
+	graph.construct()
+
+	var crop_function = Function.new()
+	crop_function.setGraph(graph)
+
+	crop_function.setMapIndex("extractAttr_1_0", 1)
+	crop_function.setMapIndex("extractAttr_2_0", 2)
+	crop_function.setMapIndex("extractAttr_3_0", 0)
+
+	var extract_ap_node = FuncGraphNode.new()
+	extract_ap_node.setFunc("CardFuncSet", "extractAttr")
+
+	var extract_ap_coms_node = FuncGraphNode.new()
+	extract_ap_coms_node.setFunc("CardFuncSet", "extractAttr")
+
+	var sub_ap_node = FuncGraphNode.new()
+	sub_ap_node.setFunc("AttrFuncSet", "minusAttrIntOverride")
+
+	var ap_pack = StringPack.new()
+	ap_pack.setVal("行动点")
+
+	var ap_coms_pack = StringPack.new()
+	ap_coms_pack.setVal("消耗行动点")
+
+	sub_ap_node.setDefaultParam("StringPack", ap_pack, 1)
+	sub_ap_node.setDefaultParam("StringPack", ap_coms_pack, 3)
+
+	var ap_graph = FuncGraph.new()
+	ap_graph.addNode(sub_ap_node)
+	ap_graph.addNode(extract_ap_node)
+	ap_graph.addNode(extract_ap_coms_node)
+
+	sub_ap_node.setChIndex(1, 0)
+	sub_ap_node.setChIndex(2, 2)
+
+	ap_graph.construct()
+
+	var ap_function = Function.new()
+	ap_function.setGraph(ap_graph)
+
+	var hyper = HyperFunction.new()
+	hyper.addFunction(crop_function)
+	hyper.addFunction(ap_function)
+
+	hyper.setParamMapIndex(0, 0)
+	hyper.setParamMapIndex(1, 1)
+	hyper.setParamMapIndex(2, 1)
+	hyper.setParamMapIndex(3, 2)
+	hyper.setParamMapIndex(4, 0)
+
+	return hyper
+
+func __buildCropSkillCard():
+	var card = LinearSkillCard.new()
+	var attr = Attr.new()
+
+	attr.addAttr("物理攻击", "Integer", __dummyGetterSetter(), __dummyGetterSetter())
+	attr.addAttr("消耗行动点", "Integer", __dummyGetterSetter(), __dummyGetterSetter())
+
+	card.setCardAttr(attr)
+
+	card.setAttr("物理攻击", 2)
+	card.setAttr("消耗行动点", 1)
+	card.setOffensive()
+	card.setPlayCondition(__buildPlayCondition())
+	card.setTargetCondition(__buildEnemyTargetCondition())
+	card.setAnimationPack(__buildCropAnimation())
+	card.setAudioPack(__buildCropAudio())
+	card.setAutoCondition(__buildFalseCondition())
+	card.setEffectFunc(__buildCropHyperFunction())
+	card.setIntroduction("使用长剑劈砍敌人，造成两点物理伤害")
+	card.setAvatorName("crop_card")
+	
+	return card
+
+func __buildCropCardTemplate():
+	var crop_card_template = CardTemplate.new()
+	crop_card_template.setTemplateName("CropSkillCard")
+	crop_card_template.setCardType("LinearSkillCard")
+	crop_card_template.setCardTemplate(__buildCropSkillCard())
+	crop_card_template.setReviseFunction(__buildReviseFunction())
+
+	return crop_card_template
+
+func __buildOwnTargetCondition():
+	var target_node = FuncGraphNode.new()	
+	target_node.setFunc("LinearBattleConditionSet", "isCardOwnTeam")
+	
+	var graph = FuncGraph.new()
+	graph.addNode(target_node)
+	graph.construct()
+
+	var target_condition = Function.new()
+	target_condition.setGraph(graph)
+
+	return target_condition
+
+func __buildStabHyperFunction():
+	var extract_atk_node = FuncGraphNode.new()
+	extract_atk_node.setFunc("CardFuncSet", "extractAttr")
+
+	var extract_hp_node = FuncGraphNode.new()
+	extract_hp_node.setFunc("CardFuncSet", "extractAttr")
+
+	var extract_arm_node = FuncGraphNode.new()
+	extract_arm_node.setFunc("CardFuncSet", "extractAttr")
+
+	var sub_hp_node = FuncGraphNode.new()
+	sub_hp_node.setFunc("AttrFuncSet", "minusAttrWithAttrBeforeInt")
+
+	var atk_pack = StringPack.new()
+	atk_pack.setVal("物理攻击")
+
+	var hp_pack = StringPack.new()
+	hp_pack.setVal("健康值")
+
+	var arm_pack = StringPack.new()
+	arm_pack.setVal("物理护甲")
+
+	sub_hp_node.setDefaultParam("StringPack", hp_pack, 1)
+	sub_hp_node.setDefaultParam("StringPack", arm_pack, 3)
+	sub_hp_node.setDefaultParam("StringPack", atk_pack, 5)
+
+	var graph = FuncGraph.new()
+	graph.addNode(sub_hp_node)
+	graph.addNode(extract_hp_node)
+	graph.addNode(extract_arm_node)
+	graph.addNode(extract_atk_node)
+
+	sub_hp_node.setChIndex(1, 0)
+	sub_hp_node.setChIndex(2, 2)
+	sub_hp_node.setChIndex(3, 4)
+
+	graph.construct()
+
+	var crop_function = Function.new()
+	crop_function.setGraph(graph)
+
+	crop_function.setMapIndex("extractAttr_1_0", 1)
+	crop_function.setMapIndex("extractAttr_2_0", 2)
+	crop_function.setMapIndex("extractAttr_3_0", 0)
+
+	var extract_ap_node = FuncGraphNode.new()
+	extract_ap_node.setFunc("CardFuncSet", "extractAttr")
+
+	var extract_ap_coms_node = FuncGraphNode.new()
+	extract_ap_coms_node.setFunc("CardFuncSet", "extractAttr")
+
+	var sub_ap_node = FuncGraphNode.new()
+	sub_ap_node.setFunc("AttrFuncSet", "minusAttrIntOverride")
+
+	var ap_pack = StringPack.new()
+	ap_pack.setVal("行动点")
+
+	var ap_coms_pack = StringPack.new()
+	ap_coms_pack.setVal("消耗行动点")
+
+	sub_ap_node.setDefaultParam("StringPack", ap_pack, 1)
+	sub_ap_node.setDefaultParam("StringPack", ap_coms_pack, 3)
+
+	var ap_graph = FuncGraph.new()
+	ap_graph.addNode(sub_ap_node)
+	ap_graph.addNode(extract_ap_node)
+	ap_graph.addNode(extract_ap_coms_node)
+
+	sub_ap_node.setChIndex(1, 0)
+	sub_ap_node.setChIndex(2, 2)
+
+	ap_graph.construct()
+
+	var ap_function = Function.new()
+	ap_function.setGraph(ap_graph)
+
+	var hyper = HyperFunction.new()
+	hyper.addFunction(crop_function)
+	hyper.addFunction(ap_function)
+
+	hyper.setParamMapIndex(0, 0)
+	hyper.setParamMapIndex(1, 1)
+	hyper.setParamMapIndex(2, 1)
+	hyper.setParamMapIndex(3, 2)
+	hyper.setParamMapIndex(4, 0)
+
+	return hyper
+
+func __buildStabAnimation():
+	var animation_pack = AnimationPack.new()
+
+	animation_pack.addTexturePath("res://asserts/animation/crop/crop1.png")
+	animation_pack.addTexturePath("res://asserts/animation/crop/crop2.png")
+	animation_pack.addTexturePath("res://asserts/animation/crop/crop3.png")
+
+	animation_pack.setGap(3)
+
+	return animation_pack
+
+func __buildStabAudio():
+	var audio_pack = AudioPack.new()
+
+	audio_pack.setAudioPath("res://asserts/audio/crop.mp3")
+	
+	return audio_pack
+
+func __buildStabSkillCard():
+	var card = LinearSkillCard.new()
+	
+	var attr = Attr.new()
+
+	attr.addAttr("物理攻击", "Integer", __dummyGetterSetter(), __dummyGetterSetter())
+	attr.addAttr("消耗行动点", "Integer", __dummyGetterSetter(), __dummyGetterSetter())
+
+	card.setCardAttr(attr)
+	card.setAttr("物理攻击", 1)
+	card.setAttr("消耗行动点", 1)
+	card.setOffensive()
+	card.setPlayCondition(__buildTrueCondition())
+	card.setTargetCondition(__buildOwnTargetCondition())
+	card.setAnimationPack(__buildStabAnimation())
+	card.setAudioPack(__buildStabAudio())
+	card.setAutoCondition(__buildFalseCondition())
+	card.setEffectFunc(__buildStabHyperFunction())
+	card.setIntroduction("使用匕首劈砍敌人，造成一点物理伤害")
+	card.setAvatorName("stab_card")
+	
+	return card
+
+func __buildStabCardTemplate():
+	var stab_card_template = CardTemplate.new()
+	stab_card_template.setTemplateName("StabSkillCard")
+	stab_card_template.setCardType("LinearSkillCard")
+	stab_card_template.setCardTemplate(__buildStabSkillCard())
+	stab_card_template.setReviseFunction(__buildReviseFunction())
+
+	return stab_card_template
+
+func __buildSlashHyperFunction():
+	var extract_atk_node = FuncGraphNode.new()
+	extract_atk_node.setFunc("CardFuncSet", "extractAttr")
+
+	var extract_hp_node = FuncGraphNode.new()
+	extract_hp_node.setFunc("CardFuncSet", "extractAttr")
+
+	var extract_arm_node = FuncGraphNode.new()
+	extract_arm_node.setFunc("CardFuncSet", "extractAttr")
+
+	var sub_hp_node = FuncGraphNode.new()
+	sub_hp_node.setFunc("AttrFuncSet", "minusAttrWithAttrBeforeInt")
+
+	var atk_pack = StringPack.new()
+	atk_pack.setVal("物理攻击")
+
+	var hp_pack = StringPack.new()
+	hp_pack.setVal("健康值")
+
+	var arm_pack = StringPack.new()
+	arm_pack.setVal("物理护甲")
+
+	sub_hp_node.setDefaultParam("StringPack", hp_pack, 1)
+	sub_hp_node.setDefaultParam("StringPack", arm_pack, 3)
+	sub_hp_node.setDefaultParam("StringPack", atk_pack, 5)
+
+	var graph = FuncGraph.new()
+	graph.addNode(sub_hp_node)
+	graph.addNode(extract_hp_node)
+	graph.addNode(extract_arm_node)
+	graph.addNode(extract_atk_node)
+
+	sub_hp_node.setChIndex(1, 0)
+	sub_hp_node.setChIndex(2, 2)
+	sub_hp_node.setChIndex(3, 4)
+
+	graph.construct()
+
+	var crop_function = Function.new()
+	crop_function.setGraph(graph)
+
+	crop_function.setMapIndex("extractAttr_1_0", 1)
+	crop_function.setMapIndex("extractAttr_2_0", 2)
+	crop_function.setMapIndex("extractAttr_3_0", 0)
+
+	var extract_ap_node = FuncGraphNode.new()
+	extract_ap_node.setFunc("CardFuncSet", "extractAttr")
+
+	var extract_ap_coms_node = FuncGraphNode.new()
+	extract_ap_coms_node.setFunc("CardFuncSet", "extractAttr")
+
+	var sub_ap_node = FuncGraphNode.new()
+	sub_ap_node.setFunc("AttrFuncSet", "minusAttrIntOverride")
+
+	var ap_pack = StringPack.new()
+	ap_pack.setVal("行动点")
+
+	var ap_coms_pack = StringPack.new()
+	ap_coms_pack.setVal("消耗行动点")
+
+	sub_ap_node.setDefaultParam("StringPack", ap_pack, 1)
+	sub_ap_node.setDefaultParam("StringPack", ap_coms_pack, 3)
+
+	var ap_graph = FuncGraph.new()
+	ap_graph.addNode(sub_ap_node)
+	ap_graph.addNode(extract_ap_node)
+	ap_graph.addNode(extract_ap_coms_node)
+
+	sub_ap_node.setChIndex(1, 0)
+	sub_ap_node.setChIndex(2, 2)
+
+	ap_graph.construct()
+
+	var ap_function = Function.new()
+	ap_function.setGraph(ap_graph)
+
+	var hyper = HyperFunction.new()
+	hyper.addFunction(crop_function)
+	hyper.addFunction(ap_function)
+
+	hyper.setParamMapIndex(0, 0)
+	hyper.setParamMapIndex(1, 1)
+	hyper.setParamMapIndex(2, 1)
+	hyper.setParamMapIndex(3, 2)
+	hyper.setParamMapIndex(4, 0)
+
+	return hyper
+
+func __buildSlashAnimation():
+	var animation_pack = AnimationPack.new()
+
+	animation_pack.addTexturePath("res://asserts/animation/crop/crop1.png")
+	animation_pack.addTexturePath("res://asserts/animation/crop/crop2.png")
+	animation_pack.addTexturePath("res://asserts/animation/crop/crop3.png")
+
+	animation_pack.setGap(3)
+
+	return animation_pack
+
+func __buildSlashAudio():
+	var audio_pack = AudioPack.new()
+
+	audio_pack.setAudioPath("res://asserts/audio/crop.mp3")
+	
+	return audio_pack
+
+func __buildSlashSkillCard():
+	var card = LinearSkillCard.new()
+	
+	var attr = Attr.new()
+
+	attr.addAttr("物理攻击", "Integer", __dummyGetterSetter(), __dummyGetterSetter())
+	attr.addAttr("消耗行动点", "Integer", __dummyGetterSetter(), __dummyGetterSetter())
+
+	card.setCardAttr(attr)
+	card.setAttr("物理攻击", 5)
+	card.setAttr("消耗行动点", 3)
+	card.setOffensive()
+	card.setPlayCondition(__buildTrueCondition())
+	card.setTargetCondition(__buildEnemyTargetCondition())
+	card.setAnimationPack(__buildSlashAnimation())
+	card.setAudioPack(__buildSlashAudio())
+	card.setAutoCondition(__buildFalseCondition())
+	card.setEffectFunc(__buildSlashHyperFunction())
+	card.setIntroduction("使出全力重击敌人，造成五点物理伤害")
+	card.setAvatorName("slash_card")
+	
+	return card
+
+func __buildSlashCardTemplate():
+	var slash_card_template = CardTemplate.new()
+	slash_card_template.setTemplateName("SlashSkillCard")
+	slash_card_template.setCardType("LinearSkillCard")
+	slash_card_template.setCardTemplate(__buildSlashSkillCard())
+	slash_card_template.setReviseFunction(__buildReviseFunction())
+
+	return slash_card_template
+
+func __buildShieldHyperFunction():
+	var extract_ch_node = FuncGraphNode.new()
+	extract_ch_node.setFunc("CardFuncSet", "extractAttr")
+
+	var extract_sh_node = FuncGraphNode.new()
+	extract_sh_node.setFunc("CardFuncSet", "extractAttr")
+
+	var sub_node = FuncGraphNode.new()
+	sub_node.setFunc("AttrFuncSet", "plusAttrIntOverride")
+
+	var sh_pack = StringPack.new()
+	sh_pack.setVal("物理护甲")
+
+	sub_node.setDefaultParam("StringPack", sh_pack, 1)
+	sub_node.setDefaultParam("StringPack", sh_pack, 3)
+
+	var sh_graph = FuncGraph.new()
+	sh_graph.addNode(sub_node)
+	sh_graph.addNode(extract_ch_node)
+	sh_graph.addNode(extract_sh_node)
+
+	sub_node.setChIndex(1, 0)
+	sub_node.setChIndex(2, 2)
+
+	sh_graph.construct()
+
+	var sh_function = Function.new()
+	sh_function.setGraph(sh_graph)
+
+	var extract_ap_node = FuncGraphNode.new()
+	extract_ap_node.setFunc("CardFuncSet", "extractAttr")
+
+	var extract_ap_coms_node = FuncGraphNode.new()
+	extract_ap_coms_node.setFunc("CardFuncSet", "extractAttr")
+
+	var sub_ap_node = FuncGraphNode.new()
+	sub_ap_node.setFunc("AttrFuncSet", "minusAttrIntOverride")
+
+	var ap_pack = StringPack.new()
+	ap_pack.setVal("行动点")
+
+	var ap_coms_pack = StringPack.new()
+	ap_coms_pack.setVal("消耗行动点")
+
+	sub_ap_node.setDefaultParam("StringPack", ap_pack, 1)
+	sub_ap_node.setDefaultParam("StringPack", ap_coms_pack, 3)
+
+	var ap_graph = FuncGraph.new()
+	ap_graph.addNode(sub_ap_node)
+	ap_graph.addNode(extract_ap_node)
+	ap_graph.addNode(extract_ap_coms_node)
+
+	sub_ap_node.setChIndex(1, 0)
+	sub_ap_node.setChIndex(2, 2)
+
+	ap_graph.construct()
+
+	var ap_function = Function.new()
+	ap_function.setGraph(ap_graph)
+
+	var hyper = HyperFunction.new()
+	hyper.addFunction(sh_function)
+	hyper.addFunction(ap_function)
+
+	hyper.setParamMapIndex(0, 2)
+	hyper.setParamMapIndex(1, 0)
+	hyper.setParamMapIndex(2, 2)	
+	hyper.setParamMapIndex(3, 0)	
+
+	return hyper
+
+func __buildShieldAnimation():
+	var animation_pack = AnimationPack.new()
+
+	animation_pack.addTexturePath("res://asserts/animation/crop/crop1.png")
+	animation_pack.addTexturePath("res://asserts/animation/crop/crop2.png")
+	animation_pack.addTexturePath("res://asserts/animation/crop/crop3.png")
+
+	animation_pack.setGap(3)
+
+	return animation_pack
+
+func __buildShieldAudio():
+	var audio_pack = AudioPack.new()
+
+	audio_pack.setAudioPath("res://asserts/audio/crop.mp3")
+	
+	return audio_pack
+
+func __buildShieldSkillCard():
+	var card = LinearSkillCard.new()
+	
+	var attr = Attr.new()
+
+	attr.addAttr("物理护甲", "Integer", __dummyGetterSetter(), __dummyGetterSetter())
+	attr.addAttr("消耗行动点", "Integer", __dummyGetterSetter(), __dummyGetterSetter())
+
+	card.setCardAttr(attr)
+	card.setAttr("物理护甲", 4)
+	card.setAttr("消耗行动点", 3)
+	card.setOffensive()
+	card.setPlayCondition(__buildTrueCondition())
+	card.setTargetCondition(__buildOwnTargetCondition())
+	card.setAnimationPack(__buildShieldAnimation())
+	card.setAudioPack(__buildShieldAudio())
+	card.setAutoCondition(__buildFalseCondition())
+	card.setEffectFunc(__buildShieldHyperFunction())
+	card.setIntroduction("举起盾牌抵御攻击，获得四点物护盾")
+	card.setAvatorName("shield_card")
+	
+	return card
+
+func __buildShieldCardTemplate():
+	var shield_card_template = CardTemplate.new()
+	shield_card_template.setTemplateName("ShieldSkillCard")
+	shield_card_template.setCardType("LinearSkillCard")
+	shield_card_template.setCardTemplate(__buildShieldSkillCard())
+	shield_card_template.setReviseFunction(__buildReviseFunction())
+
+	return shield_card_template
+
+func __dummyGetterSetter():
+	var dummy_node = FuncGraphNode.new()
+	dummy_node.setFunc("BaseFuncSet", "returnVal")
+
+	var graph = FuncGraph.new()
+	graph.addNode(dummy_node)
+	graph.construct()
+
+	var dummy_function = Function.new()
+	dummy_function.setGraph(graph)
+
+	return dummy_function
+
+func __buildInitKnightCardPileFunction():
+	var get_node1 = FuncGraphNode.new()
+	get_node1.setFunc("CardFuncSet", "createCardWithDefaultName")
+	var string_pack1 = StringPack.new()
+	string_pack1.setVal("CropSkillCard")
+	get_node1.setDefaultParam("StringPack", string_pack1, 0)
+	
+	var get_node2 = FuncGraphNode.new()
+	get_node2.setFunc("CardFuncSet", "createCardWithDefaultName")
+	var string_pack2 = StringPack.new()
+	string_pack2.setVal("CropSkillCard")
+	get_node2.setDefaultParam("StringPack", string_pack2, 0)
+
+	var get_node3 = FuncGraphNode.new()
+	get_node3.setFunc("CardFuncSet", "createCardWithDefaultName")
+	var string_pack3 = StringPack.new()
+	string_pack3.setVal("CropSkillCard")
+	get_node3.setDefaultParam("StringPack", string_pack3, 0)
+
+	var get_node4 = FuncGraphNode.new()
+	get_node4.setFunc("CardFuncSet", "createCardWithDefaultName")
+	var string_pack4 = StringPack.new()
+	string_pack4.setVal("CropSkillCard")
+	get_node4.setDefaultParam("StringPack", string_pack4, 0)
+
+	var get_node5 = FuncGraphNode.new()
+	get_node5.setFunc("CardFuncSet", "createCardWithDefaultName")
+	var string_pack5 = StringPack.new()
+	string_pack5.setVal("SlashSkillCard")
+	get_node5.setDefaultParam("StringPack", string_pack5, 0)
+
+	var get_node6 = FuncGraphNode.new()
+	get_node6.setFunc("CardFuncSet", "createCardWithDefaultName")
+	var string_pack6 = StringPack.new()
+	string_pack6.setVal("ShieldSkillCard")
+	get_node6.setDefaultParam("StringPack", string_pack6, 0)
+
+	var pack_node = FuncGraphNode.new()	
+	pack_node.setFunc("ArrayOperFuncSet", "packArray")
+	
+	var append_node1 = FuncGraphNode.new()
+	append_node1.setFunc("ArrayOperFuncSet", "appendVal")
+
+	var append_node2 = FuncGraphNode.new()
+	append_node2.setFunc("ArrayOperFuncSet", "appendVal")
+
+	var append_node3 = FuncGraphNode.new()
+	append_node3.setFunc("ArrayOperFuncSet", "appendVal")
+
+	var append_node4 = FuncGraphNode.new()
+	append_node4.setFunc("ArrayOperFuncSet", "appendVal")
+
+	var append_node5 = FuncGraphNode.new()
+	append_node5.setFunc("ArrayOperFuncSet", "appendVal")
+
+	var init_graph = FuncGraph.new()
+	init_graph.addNode(append_node1)
+	init_graph.addNode(append_node2)
+	init_graph.addNode(append_node3)
+	init_graph.addNode(append_node4)
+	init_graph.addNode(append_node5)
+	init_graph.addNode(pack_node)
+	init_graph.addNode(get_node1)
+	init_graph.addNode(get_node2)
+	init_graph.addNode(get_node3)
+	init_graph.addNode(get_node4)
+	init_graph.addNode(get_node5)
+	init_graph.addNode(get_node6)
+
+	append_node1.setChIndex(1, 0)
+	append_node2.setChIndex(2, 0)
+	append_node3.setChIndex(3, 0)
+	append_node4.setChIndex(4, 0)
+	append_node5.setChIndex(5, 0)
+	pack_node.setChIndex(6, 0)
+	append_node1.setChIndex(7, 1)
+	append_node2.setChIndex(8, 1)
+	append_node3.setChIndex(9, 1)
+	append_node4.setChIndex(10, 1)
+	append_node5.setChIndex(11, 1)
+
+	init_graph.construct()
+
+	var init_function = Function.new()
+	init_function.setGraph(init_graph)
+
+	return init_function
+
+func __addKnightCharacterAttr(card):
+	var attr = Attr.new()
+
+	attr.addAttr("健康值", "Integer", __dummyGetterSetter(), __dummyGetterSetter())
+	attr.addAttr("物理护甲", "Integer", __dummyGetterSetter(), __dummyGetterSetter())
+	attr.addAttr("行动点", "Integer", __dummyGetterSetter(), __dummyGetterSetter())
+	attr.addAttr("手牌上限", "Integer", __dummyGetterSetter(), __dummyGetterSetter())
+
+	card.setCardAttr(attr)
+
+func __setKnightCharacterAttr(card):
+	card.setAttr("健康值", 10)
+	card.setAttr("物理护甲", 0)
+	card.setAttr("行动点", 0)
+	card.setAttr("手牌上限", 4)
+
+func __buildKnightCharacterCard():
+	var card = LinearCharacterCard.new()
+	card.setTemplateName("KnightCharacterCard")
+	card.setAvatorName("knight_character")
+	card.setIntroduction("注重防御的重装职业")
+	
+	__addKnightCharacterAttr(card)
+	__setKnightCharacterAttr(card)
+
+	card.setInitCardPileFunction(__buildInitKnightCardPileFunction())
+	card.setAiIsActionCondition(__buildFalseCondition())
+	card.setAiChooseCardFunction(__buildFalseCondition())
+	card.setAiChooseTargetFunction(__buildFalseCondition())
+
+	return card
+
+func __buildKnightCardTemplate():
+	var knight_character_card = __buildKnightCharacterCard()
+	var knight_character_template = CardTemplate.new()
+	knight_character_template.setTemplateName("KnightCharacterCard")
+	knight_character_template.setCardType("LinearCharacterCard")
+	knight_character_template.setCardTemplate(knight_character_card)
+	knight_character_template.setReviseFunction(__buildReviseFunction())
+
+	return knight_character_template
+
+func __buildInitRobberCardPileFunction():
+	var get_node1 = FuncGraphNode.new()
+	get_node1.setFunc("CardFuncSet", "createCardWithDefaultName")
+	var string_pack1 = StringPack.new()
+	string_pack1.setVal("StabSkillCard")
+	get_node1.setDefaultParam("StringPack", string_pack1, 0)
+	
+	var get_node2 = FuncGraphNode.new()
+	get_node2.setFunc("CardFuncSet", "createCardWithDefaultName")
+	var string_pack2 = StringPack.new()
+	string_pack2.setVal("StabSkillCard")
+	get_node2.setDefaultParam("StringPack", string_pack2, 0)
+
+	var pack_node = FuncGraphNode.new()	
+	pack_node.setFunc("ArrayOperFuncSet", "packArray")
+	
+	var append_node = FuncGraphNode.new()
+	append_node.setFunc("ArrayOperFuncSet", "appendVal")
+
+	var init_graph = FuncGraph.new()
+	init_graph.addNode(append_node)
+	init_graph.addNode(pack_node)
+	init_graph.addNode(get_node1)
+	init_graph.addNode(get_node2)
+
+	append_node.setChIndex(1, 0)
+	append_node.setChIndex(3, 1)
+	pack_node.setChIndex(2, 0)
+
+	init_graph.construct()
+
+	var init_function = Function.new()
+	init_function.setGraph(init_graph)
+
+	return init_function
+
+func __addRobberCharacterAttr(card):
+	var attr = Attr.new()
+
+	attr.addAttr("健康值", "Integer", __dummyGetterSetter(), __dummyGetterSetter())
+	attr.addAttr("物理护甲", "Integer", __dummyGetterSetter(), __dummyGetterSetter())
+	attr.addAttr("行动点", "Integer", __dummyGetterSetter(), __dummyGetterSetter())
+	attr.addAttr("手牌上限", "Integer", __dummyGetterSetter(), __dummyGetterSetter())
+
+	card.setCardAttr(attr)
+
+func __setRobberCharacterAttr(card):
+	card.setAttr("健康值", 8)
+	card.setAttr("物理护甲", 4)
+	card.setAttr("行动点", 0)
+	card.setAttr("手牌上限", 2)
+
+func __buildRobberCharacterCard():
+	var card = LinearCharacterCard.new()
+	card.setTemplateName("RobberCharacterCard")
+	card.setAvatorName("robber_character")
+	card.setIntroduction("遭遇的山野强盗")
+	
+	__addRobberCharacterAttr(card)
+	__setRobberCharacterAttr(card)
+
+	card.setInitCardPileFunction(__buildInitRobberCardPileFunction())
+	card.setAiIsActionCondition(__buildAiIsActionCondition())
+	card.setAiChooseCardFunction(__buildAiChooseCardFunction())
+	card.setAiChooseTargetFunction(__buildAiChooseTargetFunction())
+
+	return card
+
+func __buildRobberCardTemplate():
+	var robber_character_card = __buildRobberCharacterCard()
+	var robber_character_template = CardTemplate.new()
+	robber_character_template.setTemplateName("RobberCharacterCard")
+	robber_character_template.setCardType("LinearCharacterCard")
+	robber_character_template.setCardTemplate(robber_character_card)
+	robber_character_template.setReviseFunction(__buildReviseFunction())
+
+	return robber_character_template
+
+func test_buildCardCache():
+	CardCache.addTemplate(__buildAttackCardTemplate())
+	CardCache.addTemplate(__buildMainCharacterTemplate())
+	CardCache.addTemplate(__buildEnemyCharacterTemplate())
+	CardCache.addTemplate(__buildKnightCardTemplate())
+	CardCache.addTemplate(__buildCropCardTemplate())
+	CardCache.addTemplate(__buildRobberCardTemplate())
+	CardCache.addTemplate(__buildStabCardTemplate())
+	CardCache.addTemplate(__buildSlashCardTemplate())
+	CardCache.addTemplate(__buildShieldCardTemplate())
 
 	var script_tree = CardCache.pack()
 	script_tree.exportAsJson("res://test/scripts/card_templates.json")
 
-	pass_test("Create cardCache script success")
+	pass_test("Create card cache script success")

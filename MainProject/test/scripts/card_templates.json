@@ -144,8 +144,8 @@
 					],
 					"param_map": {
 						"map": [
-							0,
-							1
+							1,
+							2
 						]
 					},
 					"ret_map": {
@@ -2841,6 +2841,3531 @@
 							"getOppositeTeam_1_0": 1
 						}
 					}
+				}
+			},
+			"copy_count": 0,
+			"revise_function": {
+				"graph": {
+					"request_params": {
+						"returnVal_0_0": "all"
+					},
+					"node_list": [
+						{
+							"func_unit": {
+								"func_name": "returnVal",
+								"func_set_name": "BaseFuncSet",
+								"default_params": {
+									"list": [
+										{
+											"param_type": "NullPack",
+											"param": {
+
+											}
+										}
+									]
+								}
+							},
+							"ch_index_list": [
+								null
+							]
+						}
+					]
+				},
+				"param_map": {
+					"map": {
+						"returnVal_0_0": 0
+					}
+				}
+			}
+		},
+		"KnightCharacterCard": {
+			"template_name": "KnightCharacterCard",
+			"card_type": "LinearCharacterCard",
+			"card_template": {
+				"card_name": "",
+				"avator_name": "knight_character",
+				"introduction": "注重防御的重装职业",
+				"template_name": "KnightCharacterCard",
+				"card_attr": {
+					"table": {
+						"健康值": {
+							"attr_name": "健康值",
+							"attr_type": "Integer",
+							"attr": 10,
+							"getter_function": {
+								"graph": {
+									"request_params": {
+										"returnVal_0_0": "all"
+									},
+									"node_list": [
+										{
+											"func_unit": {
+												"func_name": "returnVal",
+												"func_set_name": "BaseFuncSet",
+												"default_params": {
+													"list": [
+														{
+															"param_type": "NullPack",
+															"param": {
+
+															}
+														}
+													]
+												}
+											},
+											"ch_index_list": [
+												null
+											]
+										}
+									]
+								},
+								"param_map": {
+									"map": {
+										"returnVal_0_0": 0
+									}
+								}
+							},
+							"setter_function": {
+								"graph": {
+									"request_params": {
+										"returnVal_0_0": "all"
+									},
+									"node_list": [
+										{
+											"func_unit": {
+												"func_name": "returnVal",
+												"func_set_name": "BaseFuncSet",
+												"default_params": {
+													"list": [
+														{
+															"param_type": "NullPack",
+															"param": {
+
+															}
+														}
+													]
+												}
+											},
+											"ch_index_list": [
+												null
+											]
+										}
+									]
+								},
+								"param_map": {
+									"map": {
+										"returnVal_0_0": 0
+									}
+								}
+							}
+						},
+						"物理护甲": {
+							"attr_name": "物理护甲",
+							"attr_type": "Integer",
+							"attr": 0,
+							"getter_function": {
+								"graph": {
+									"request_params": {
+										"returnVal_0_0": "all"
+									},
+									"node_list": [
+										{
+											"func_unit": {
+												"func_name": "returnVal",
+												"func_set_name": "BaseFuncSet",
+												"default_params": {
+													"list": [
+														{
+															"param_type": "NullPack",
+															"param": {
+
+															}
+														}
+													]
+												}
+											},
+											"ch_index_list": [
+												null
+											]
+										}
+									]
+								},
+								"param_map": {
+									"map": {
+										"returnVal_0_0": 0
+									}
+								}
+							},
+							"setter_function": {
+								"graph": {
+									"request_params": {
+										"returnVal_0_0": "all"
+									},
+									"node_list": [
+										{
+											"func_unit": {
+												"func_name": "returnVal",
+												"func_set_name": "BaseFuncSet",
+												"default_params": {
+													"list": [
+														{
+															"param_type": "NullPack",
+															"param": {
+
+															}
+														}
+													]
+												}
+											},
+											"ch_index_list": [
+												null
+											]
+										}
+									]
+								},
+								"param_map": {
+									"map": {
+										"returnVal_0_0": 0
+									}
+								}
+							}
+						},
+						"行动点": {
+							"attr_name": "行动点",
+							"attr_type": "Integer",
+							"attr": 0,
+							"getter_function": {
+								"graph": {
+									"request_params": {
+										"returnVal_0_0": "all"
+									},
+									"node_list": [
+										{
+											"func_unit": {
+												"func_name": "returnVal",
+												"func_set_name": "BaseFuncSet",
+												"default_params": {
+													"list": [
+														{
+															"param_type": "NullPack",
+															"param": {
+
+															}
+														}
+													]
+												}
+											},
+											"ch_index_list": [
+												null
+											]
+										}
+									]
+								},
+								"param_map": {
+									"map": {
+										"returnVal_0_0": 0
+									}
+								}
+							},
+							"setter_function": {
+								"graph": {
+									"request_params": {
+										"returnVal_0_0": "all"
+									},
+									"node_list": [
+										{
+											"func_unit": {
+												"func_name": "returnVal",
+												"func_set_name": "BaseFuncSet",
+												"default_params": {
+													"list": [
+														{
+															"param_type": "NullPack",
+															"param": {
+
+															}
+														}
+													]
+												}
+											},
+											"ch_index_list": [
+												null
+											]
+										}
+									]
+								},
+								"param_map": {
+									"map": {
+										"returnVal_0_0": 0
+									}
+								}
+							}
+						},
+						"手牌上限": {
+							"attr_name": "手牌上限",
+							"attr_type": "Integer",
+							"attr": 4,
+							"getter_function": {
+								"graph": {
+									"request_params": {
+										"returnVal_0_0": "all"
+									},
+									"node_list": [
+										{
+											"func_unit": {
+												"func_name": "returnVal",
+												"func_set_name": "BaseFuncSet",
+												"default_params": {
+													"list": [
+														{
+															"param_type": "NullPack",
+															"param": {
+
+															}
+														}
+													]
+												}
+											},
+											"ch_index_list": [
+												null
+											]
+										}
+									]
+								},
+								"param_map": {
+									"map": {
+										"returnVal_0_0": 0
+									}
+								}
+							},
+							"setter_function": {
+								"graph": {
+									"request_params": {
+										"returnVal_0_0": "all"
+									},
+									"node_list": [
+										{
+											"func_unit": {
+												"func_name": "returnVal",
+												"func_set_name": "BaseFuncSet",
+												"default_params": {
+													"list": [
+														{
+															"param_type": "NullPack",
+															"param": {
+
+															}
+														}
+													]
+												}
+											},
+											"ch_index_list": [
+												null
+											]
+										}
+									]
+								},
+								"param_map": {
+									"map": {
+										"returnVal_0_0": 0
+									}
+								}
+							}
+						}
+					}
+				},
+				"hand_card_slot": {
+					"card_slot": [
+
+					]
+				},
+				"card_pile": {
+					"card_pile": [
+
+					],
+					"trash_pile": [
+
+					],
+					"is_random": true
+				},
+				"init_card_pile_function": {
+					"graph": {
+						"request_params": {
+
+						},
+						"node_list": [
+							{
+								"func_unit": {
+									"func_name": "appendVal",
+									"func_set_name": "ArrayOperFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											},
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									1,
+									7
+								]
+							},
+							{
+								"func_unit": {
+									"func_name": "appendVal",
+									"func_set_name": "ArrayOperFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											},
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									2,
+									8
+								]
+							},
+							{
+								"func_unit": {
+									"func_name": "appendVal",
+									"func_set_name": "ArrayOperFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											},
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									3,
+									9
+								]
+							},
+							{
+								"func_unit": {
+									"func_name": "appendVal",
+									"func_set_name": "ArrayOperFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											},
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									4,
+									10
+								]
+							},
+							{
+								"func_unit": {
+									"func_name": "appendVal",
+									"func_set_name": "ArrayOperFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											},
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									5,
+									11
+								]
+							},
+							{
+								"func_unit": {
+									"func_name": "packArray",
+									"func_set_name": "ArrayOperFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									6
+								]
+							},
+							{
+								"func_unit": {
+									"func_name": "createCardWithDefaultName",
+									"func_set_name": "CardFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "StringPack",
+												"param": {
+													"val": "CropSkillCard"
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									null
+								]
+							},
+							{
+								"func_unit": {
+									"func_name": "createCardWithDefaultName",
+									"func_set_name": "CardFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "StringPack",
+												"param": {
+													"val": "CropSkillCard"
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									null
+								]
+							},
+							{
+								"func_unit": {
+									"func_name": "createCardWithDefaultName",
+									"func_set_name": "CardFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "StringPack",
+												"param": {
+													"val": "CropSkillCard"
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									null
+								]
+							},
+							{
+								"func_unit": {
+									"func_name": "createCardWithDefaultName",
+									"func_set_name": "CardFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "StringPack",
+												"param": {
+													"val": "CropSkillCard"
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									null
+								]
+							},
+							{
+								"func_unit": {
+									"func_name": "createCardWithDefaultName",
+									"func_set_name": "CardFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "StringPack",
+												"param": {
+													"val": "SlashSkillCard"
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									null
+								]
+							},
+							{
+								"func_unit": {
+									"func_name": "createCardWithDefaultName",
+									"func_set_name": "CardFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "StringPack",
+												"param": {
+													"val": "ShieldSkillCard"
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									null
+								]
+							}
+						]
+					},
+					"param_map": {
+						"map": {
+
+						}
+					}
+				},
+				"ai_is_action_condition": {
+					"graph": {
+						"request_params": {
+
+						},
+						"node_list": [
+							{
+								"func_unit": {
+									"func_name": "falseGate",
+									"func_set_name": "BaseConditionSet",
+									"default_params": {
+										"list": [
+
+										]
+									}
+								},
+								"ch_index_list": [
+
+								]
+							}
+						]
+					},
+					"param_map": {
+						"map": {
+
+						}
+					}
+				},
+				"ai_choose_card_function": {
+					"graph": {
+						"request_params": {
+
+						},
+						"node_list": [
+							{
+								"func_unit": {
+									"func_name": "falseGate",
+									"func_set_name": "BaseConditionSet",
+									"default_params": {
+										"list": [
+
+										]
+									}
+								},
+								"ch_index_list": [
+
+								]
+							}
+						]
+					},
+					"param_map": {
+						"map": {
+
+						}
+					}
+				},
+				"ai_choose_target_function": {
+					"graph": {
+						"request_params": {
+
+						},
+						"node_list": [
+							{
+								"func_unit": {
+									"func_name": "falseGate",
+									"func_set_name": "BaseConditionSet",
+									"default_params": {
+										"list": [
+
+										]
+									}
+								},
+								"ch_index_list": [
+
+								]
+							}
+						]
+					},
+					"param_map": {
+						"map": {
+
+						}
+					}
+				}
+			},
+			"copy_count": 0,
+			"revise_function": {
+				"graph": {
+					"request_params": {
+						"returnVal_0_0": "all"
+					},
+					"node_list": [
+						{
+							"func_unit": {
+								"func_name": "returnVal",
+								"func_set_name": "BaseFuncSet",
+								"default_params": {
+									"list": [
+										{
+											"param_type": "NullPack",
+											"param": {
+
+											}
+										}
+									]
+								}
+							},
+							"ch_index_list": [
+								null
+							]
+						}
+					]
+				},
+				"param_map": {
+					"map": {
+						"returnVal_0_0": 0
+					}
+				}
+			}
+		},
+		"CropSkillCard": {
+			"template_name": "CropSkillCard",
+			"card_type": "LinearSkillCard",
+			"card_template": {
+				"card_name": "",
+				"avator_name": "crop_card",
+				"introduction": "使用长剑劈砍敌人，造成两点物理伤害",
+				"template_name": "",
+				"card_attr": {
+					"table": {
+						"物理攻击": {
+							"attr_name": "物理攻击",
+							"attr_type": "Integer",
+							"attr": 2,
+							"getter_function": {
+								"graph": {
+									"request_params": {
+										"returnVal_0_0": "all"
+									},
+									"node_list": [
+										{
+											"func_unit": {
+												"func_name": "returnVal",
+												"func_set_name": "BaseFuncSet",
+												"default_params": {
+													"list": [
+														{
+															"param_type": "NullPack",
+															"param": {
+
+															}
+														}
+													]
+												}
+											},
+											"ch_index_list": [
+												null
+											]
+										}
+									]
+								},
+								"param_map": {
+									"map": {
+										"returnVal_0_0": 0
+									}
+								}
+							},
+							"setter_function": {
+								"graph": {
+									"request_params": {
+										"returnVal_0_0": "all"
+									},
+									"node_list": [
+										{
+											"func_unit": {
+												"func_name": "returnVal",
+												"func_set_name": "BaseFuncSet",
+												"default_params": {
+													"list": [
+														{
+															"param_type": "NullPack",
+															"param": {
+
+															}
+														}
+													]
+												}
+											},
+											"ch_index_list": [
+												null
+											]
+										}
+									]
+								},
+								"param_map": {
+									"map": {
+										"returnVal_0_0": 0
+									}
+								}
+							}
+						},
+						"消耗行动点": {
+							"attr_name": "消耗行动点",
+							"attr_type": "Integer",
+							"attr": 1,
+							"getter_function": {
+								"graph": {
+									"request_params": {
+										"returnVal_0_0": "all"
+									},
+									"node_list": [
+										{
+											"func_unit": {
+												"func_name": "returnVal",
+												"func_set_name": "BaseFuncSet",
+												"default_params": {
+													"list": [
+														{
+															"param_type": "NullPack",
+															"param": {
+
+															}
+														}
+													]
+												}
+											},
+											"ch_index_list": [
+												null
+											]
+										}
+									]
+								},
+								"param_map": {
+									"map": {
+										"returnVal_0_0": 0
+									}
+								}
+							},
+							"setter_function": {
+								"graph": {
+									"request_params": {
+										"returnVal_0_0": "all"
+									},
+									"node_list": [
+										{
+											"func_unit": {
+												"func_name": "returnVal",
+												"func_set_name": "BaseFuncSet",
+												"default_params": {
+													"list": [
+														{
+															"param_type": "NullPack",
+															"param": {
+
+															}
+														}
+													]
+												}
+											},
+											"ch_index_list": [
+												null
+											]
+										}
+									]
+								},
+								"param_map": {
+									"map": {
+										"returnVal_0_0": 0
+									}
+								}
+							}
+						}
+					}
+				},
+				"play_condition": {
+					"graph": {
+						"request_params": {
+							"extractAttr_1_0": "Card",
+							"extractAttr_2_0": "Card"
+						},
+						"node_list": [
+							{
+								"func_unit": {
+									"func_name": "isAttrLessEqualInt",
+									"func_set_name": "AttrConditionSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											},
+											{
+												"param_type": "StringPack",
+												"param": {
+													"val": "消耗行动点"
+												}
+											},
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											},
+											{
+												"param_type": "StringPack",
+												"param": {
+													"val": "行动点"
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									1,
+									null,
+									2,
+									null
+								]
+							},
+							{
+								"func_unit": {
+									"func_name": "extractAttr",
+									"func_set_name": "CardFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									null
+								]
+							},
+							{
+								"func_unit": {
+									"func_name": "extractAttr",
+									"func_set_name": "CardFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									null
+								]
+							}
+						]
+					},
+					"param_map": {
+						"map": {
+							"extractAttr_1_0": 0,
+							"extractAttr_2_0": 1
+						}
+					}
+				},
+				"type_flag": {
+					"flag": 1
+				},
+				"effect_func": {
+					"func_name": "",
+					"functions": [
+						{
+							"graph": {
+								"request_params": {
+									"extractAttr_1_0": "Card",
+									"extractAttr_2_0": "Card",
+									"extractAttr_3_0": "Card"
+								},
+								"node_list": [
+									{
+										"func_unit": {
+											"func_name": "minusAttrWithAttrBeforeInt",
+											"func_set_name": "AttrFuncSet",
+											"default_params": {
+												"list": [
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													},
+													{
+														"param_type": "StringPack",
+														"param": {
+															"val": "健康值"
+														}
+													},
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													},
+													{
+														"param_type": "StringPack",
+														"param": {
+															"val": "物理护甲"
+														}
+													},
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													},
+													{
+														"param_type": "StringPack",
+														"param": {
+															"val": "物理攻击"
+														}
+													}
+												]
+											}
+										},
+										"ch_index_list": [
+											1,
+											null,
+											2,
+											null,
+											3,
+											null
+										]
+									},
+									{
+										"func_unit": {
+											"func_name": "extractAttr",
+											"func_set_name": "CardFuncSet",
+											"default_params": {
+												"list": [
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													}
+												]
+											}
+										},
+										"ch_index_list": [
+											null
+										]
+									},
+									{
+										"func_unit": {
+											"func_name": "extractAttr",
+											"func_set_name": "CardFuncSet",
+											"default_params": {
+												"list": [
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													}
+												]
+											}
+										},
+										"ch_index_list": [
+											null
+										]
+									},
+									{
+										"func_unit": {
+											"func_name": "extractAttr",
+											"func_set_name": "CardFuncSet",
+											"default_params": {
+												"list": [
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													}
+												]
+											}
+										},
+										"ch_index_list": [
+											null
+										]
+									}
+								]
+							},
+							"param_map": {
+								"map": {
+									"extractAttr_1_0": 1,
+									"extractAttr_2_0": 2,
+									"extractAttr_3_0": 0
+								}
+							}
+						},
+						{
+							"graph": {
+								"request_params": {
+									"extractAttr_1_0": "Card",
+									"extractAttr_2_0": "Card"
+								},
+								"node_list": [
+									{
+										"func_unit": {
+											"func_name": "minusAttrIntOverride",
+											"func_set_name": "AttrFuncSet",
+											"default_params": {
+												"list": [
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													},
+													{
+														"param_type": "StringPack",
+														"param": {
+															"val": "行动点"
+														}
+													},
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													},
+													{
+														"param_type": "StringPack",
+														"param": {
+															"val": "消耗行动点"
+														}
+													}
+												]
+											}
+										},
+										"ch_index_list": [
+											1,
+											null,
+											2,
+											null
+										]
+									},
+									{
+										"func_unit": {
+											"func_name": "extractAttr",
+											"func_set_name": "CardFuncSet",
+											"default_params": {
+												"list": [
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													}
+												]
+											}
+										},
+										"ch_index_list": [
+											null
+										]
+									},
+									{
+										"func_unit": {
+											"func_name": "extractAttr",
+											"func_set_name": "CardFuncSet",
+											"default_params": {
+												"list": [
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													}
+												]
+											}
+										},
+										"ch_index_list": [
+											null
+										]
+									}
+								]
+							},
+							"param_map": {
+								"map": {
+									"extractAttr_1_0": 0,
+									"extractAttr_2_0": 1
+								}
+							}
+						}
+					],
+					"param_map": {
+						"map": [
+							0,
+							1,
+							1,
+							2,
+							0
+						]
+					},
+					"ret_map": {
+						"map": [
+							0,
+							1
+						]
+					}
+				},
+				"target_condition": {
+					"graph": {
+						"request_params": {
+							"isCardEnemyTeam_0_0": "Character",
+							"isCardEnemyTeam_0_1": "String"
+						},
+						"node_list": [
+							{
+								"func_unit": {
+									"func_name": "isCardEnemyTeam",
+									"func_set_name": "LinearBattleConditionSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											},
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									null,
+									null
+								]
+							}
+						]
+					},
+					"param_map": {
+						"map": {
+							"isCardEnemyTeam_0_0": 0,
+							"isCardEnemyTeam_0_1": 1
+						}
+					}
+				},
+				"auto_condition": {
+					"graph": {
+						"request_params": {
+
+						},
+						"node_list": [
+							{
+								"func_unit": {
+									"func_name": "falseGate",
+									"func_set_name": "BaseConditionSet",
+									"default_params": {
+										"list": [
+
+										]
+									}
+								},
+								"ch_index_list": [
+
+								]
+							}
+						]
+					},
+					"param_map": {
+						"map": {
+
+						}
+					}
+				},
+				"animation_pack": {
+					"texture_path_list": [
+						"res://asserts/animation/crop/crop1.png",
+						"res://asserts/animation/crop/crop2.png",
+						"res://asserts/animation/crop/crop3.png"
+					],
+					"gap": 3
+				},
+				"audio_pack": {
+					"audio_path": "res://asserts/audio/crop.mp3"
+				}
+			},
+			"copy_count": 0,
+			"revise_function": {
+				"graph": {
+					"request_params": {
+						"returnVal_0_0": "all"
+					},
+					"node_list": [
+						{
+							"func_unit": {
+								"func_name": "returnVal",
+								"func_set_name": "BaseFuncSet",
+								"default_params": {
+									"list": [
+										{
+											"param_type": "NullPack",
+											"param": {
+
+											}
+										}
+									]
+								}
+							},
+							"ch_index_list": [
+								null
+							]
+						}
+					]
+				},
+				"param_map": {
+					"map": {
+						"returnVal_0_0": 0
+					}
+				}
+			}
+		},
+		"RobberCharacterCard": {
+			"template_name": "RobberCharacterCard",
+			"card_type": "LinearCharacterCard",
+			"card_template": {
+				"card_name": "",
+				"avator_name": "robber_character",
+				"introduction": "遭遇的山野强盗",
+				"template_name": "RobberCharacterCard",
+				"card_attr": {
+					"table": {
+						"健康值": {
+							"attr_name": "健康值",
+							"attr_type": "Integer",
+							"attr": 8,
+							"getter_function": {
+								"graph": {
+									"request_params": {
+										"returnVal_0_0": "all"
+									},
+									"node_list": [
+										{
+											"func_unit": {
+												"func_name": "returnVal",
+												"func_set_name": "BaseFuncSet",
+												"default_params": {
+													"list": [
+														{
+															"param_type": "NullPack",
+															"param": {
+
+															}
+														}
+													]
+												}
+											},
+											"ch_index_list": [
+												null
+											]
+										}
+									]
+								},
+								"param_map": {
+									"map": {
+										"returnVal_0_0": 0
+									}
+								}
+							},
+							"setter_function": {
+								"graph": {
+									"request_params": {
+										"returnVal_0_0": "all"
+									},
+									"node_list": [
+										{
+											"func_unit": {
+												"func_name": "returnVal",
+												"func_set_name": "BaseFuncSet",
+												"default_params": {
+													"list": [
+														{
+															"param_type": "NullPack",
+															"param": {
+
+															}
+														}
+													]
+												}
+											},
+											"ch_index_list": [
+												null
+											]
+										}
+									]
+								},
+								"param_map": {
+									"map": {
+										"returnVal_0_0": 0
+									}
+								}
+							}
+						},
+						"物理护甲": {
+							"attr_name": "物理护甲",
+							"attr_type": "Integer",
+							"attr": 4,
+							"getter_function": {
+								"graph": {
+									"request_params": {
+										"returnVal_0_0": "all"
+									},
+									"node_list": [
+										{
+											"func_unit": {
+												"func_name": "returnVal",
+												"func_set_name": "BaseFuncSet",
+												"default_params": {
+													"list": [
+														{
+															"param_type": "NullPack",
+															"param": {
+
+															}
+														}
+													]
+												}
+											},
+											"ch_index_list": [
+												null
+											]
+										}
+									]
+								},
+								"param_map": {
+									"map": {
+										"returnVal_0_0": 0
+									}
+								}
+							},
+							"setter_function": {
+								"graph": {
+									"request_params": {
+										"returnVal_0_0": "all"
+									},
+									"node_list": [
+										{
+											"func_unit": {
+												"func_name": "returnVal",
+												"func_set_name": "BaseFuncSet",
+												"default_params": {
+													"list": [
+														{
+															"param_type": "NullPack",
+															"param": {
+
+															}
+														}
+													]
+												}
+											},
+											"ch_index_list": [
+												null
+											]
+										}
+									]
+								},
+								"param_map": {
+									"map": {
+										"returnVal_0_0": 0
+									}
+								}
+							}
+						},
+						"行动点": {
+							"attr_name": "行动点",
+							"attr_type": "Integer",
+							"attr": 0,
+							"getter_function": {
+								"graph": {
+									"request_params": {
+										"returnVal_0_0": "all"
+									},
+									"node_list": [
+										{
+											"func_unit": {
+												"func_name": "returnVal",
+												"func_set_name": "BaseFuncSet",
+												"default_params": {
+													"list": [
+														{
+															"param_type": "NullPack",
+															"param": {
+
+															}
+														}
+													]
+												}
+											},
+											"ch_index_list": [
+												null
+											]
+										}
+									]
+								},
+								"param_map": {
+									"map": {
+										"returnVal_0_0": 0
+									}
+								}
+							},
+							"setter_function": {
+								"graph": {
+									"request_params": {
+										"returnVal_0_0": "all"
+									},
+									"node_list": [
+										{
+											"func_unit": {
+												"func_name": "returnVal",
+												"func_set_name": "BaseFuncSet",
+												"default_params": {
+													"list": [
+														{
+															"param_type": "NullPack",
+															"param": {
+
+															}
+														}
+													]
+												}
+											},
+											"ch_index_list": [
+												null
+											]
+										}
+									]
+								},
+								"param_map": {
+									"map": {
+										"returnVal_0_0": 0
+									}
+								}
+							}
+						},
+						"手牌上限": {
+							"attr_name": "手牌上限",
+							"attr_type": "Integer",
+							"attr": 2,
+							"getter_function": {
+								"graph": {
+									"request_params": {
+										"returnVal_0_0": "all"
+									},
+									"node_list": [
+										{
+											"func_unit": {
+												"func_name": "returnVal",
+												"func_set_name": "BaseFuncSet",
+												"default_params": {
+													"list": [
+														{
+															"param_type": "NullPack",
+															"param": {
+
+															}
+														}
+													]
+												}
+											},
+											"ch_index_list": [
+												null
+											]
+										}
+									]
+								},
+								"param_map": {
+									"map": {
+										"returnVal_0_0": 0
+									}
+								}
+							},
+							"setter_function": {
+								"graph": {
+									"request_params": {
+										"returnVal_0_0": "all"
+									},
+									"node_list": [
+										{
+											"func_unit": {
+												"func_name": "returnVal",
+												"func_set_name": "BaseFuncSet",
+												"default_params": {
+													"list": [
+														{
+															"param_type": "NullPack",
+															"param": {
+
+															}
+														}
+													]
+												}
+											},
+											"ch_index_list": [
+												null
+											]
+										}
+									]
+								},
+								"param_map": {
+									"map": {
+										"returnVal_0_0": 0
+									}
+								}
+							}
+						}
+					}
+				},
+				"hand_card_slot": {
+					"card_slot": [
+
+					]
+				},
+				"card_pile": {
+					"card_pile": [
+
+					],
+					"trash_pile": [
+
+					],
+					"is_random": true
+				},
+				"init_card_pile_function": {
+					"graph": {
+						"request_params": {
+
+						},
+						"node_list": [
+							{
+								"func_unit": {
+									"func_name": "appendVal",
+									"func_set_name": "ArrayOperFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											},
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									1,
+									3
+								]
+							},
+							{
+								"func_unit": {
+									"func_name": "packArray",
+									"func_set_name": "ArrayOperFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									2
+								]
+							},
+							{
+								"func_unit": {
+									"func_name": "createCardWithDefaultName",
+									"func_set_name": "CardFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "StringPack",
+												"param": {
+													"val": "StabSkillCard"
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									null
+								]
+							},
+							{
+								"func_unit": {
+									"func_name": "createCardWithDefaultName",
+									"func_set_name": "CardFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "StringPack",
+												"param": {
+													"val": "StabSkillCard"
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									null
+								]
+							}
+						]
+					},
+					"param_map": {
+						"map": {
+
+						}
+					}
+				},
+				"ai_is_action_condition": {
+					"graph": {
+						"request_params": {
+							"isHandCardsEmpty_1_0": "CharacterCard"
+						},
+						"node_list": [
+							{
+								"func_unit": {
+									"func_name": "notGate",
+									"func_set_name": "BaseConditionSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									1
+								]
+							},
+							{
+								"func_unit": {
+									"func_name": "isHandCardsEmpty",
+									"func_set_name": "CharacterCardConditionSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									null
+								]
+							}
+						]
+					},
+					"param_map": {
+						"map": {
+							"isHandCardsEmpty_1_0": 0
+						}
+					}
+				},
+				"ai_choose_card_function": {
+					"graph": {
+						"request_params": {
+							"peekHandCards_1_0": "CharacterCard"
+						},
+						"node_list": [
+							{
+								"func_unit": {
+									"func_name": "getFront",
+									"func_set_name": "ArrayOperFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									1
+								]
+							},
+							{
+								"func_unit": {
+									"func_name": "peekHandCards",
+									"func_set_name": "CharacterCardFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									null
+								]
+							}
+						]
+					},
+					"param_map": {
+						"map": {
+							"peekHandCards_1_0": 0
+						}
+					}
+				},
+				"ai_choose_target_function": {
+					"graph": {
+						"request_params": {
+							"getOppositeTeam_1_0": "String",
+							"getOppositeTeam_1_1": "CharacterCard"
+						},
+						"node_list": [
+							{
+								"func_unit": {
+									"func_name": "getFront",
+									"func_set_name": "ArrayOperFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									1
+								]
+							},
+							{
+								"func_unit": {
+									"func_name": "getOppositeTeam",
+									"func_set_name": "LinearBattleFuncSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											},
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									null,
+									null
+								]
+							}
+						]
+					},
+					"param_map": {
+						"map": {
+							"getOppositeTeam_1_1": 0,
+							"getOppositeTeam_1_0": 1
+						}
+					}
+				}
+			},
+			"copy_count": 0,
+			"revise_function": {
+				"graph": {
+					"request_params": {
+						"returnVal_0_0": "all"
+					},
+					"node_list": [
+						{
+							"func_unit": {
+								"func_name": "returnVal",
+								"func_set_name": "BaseFuncSet",
+								"default_params": {
+									"list": [
+										{
+											"param_type": "NullPack",
+											"param": {
+
+											}
+										}
+									]
+								}
+							},
+							"ch_index_list": [
+								null
+							]
+						}
+					]
+				},
+				"param_map": {
+					"map": {
+						"returnVal_0_0": 0
+					}
+				}
+			}
+		},
+		"StabSkillCard": {
+			"template_name": "StabSkillCard",
+			"card_type": "LinearSkillCard",
+			"card_template": {
+				"card_name": "",
+				"avator_name": "stab_card",
+				"introduction": "使用匕首劈砍敌人，造成一点物理伤害",
+				"template_name": "",
+				"card_attr": {
+					"table": {
+						"物理攻击": {
+							"attr_name": "物理攻击",
+							"attr_type": "Integer",
+							"attr": 1,
+							"getter_function": {
+								"graph": {
+									"request_params": {
+										"returnVal_0_0": "all"
+									},
+									"node_list": [
+										{
+											"func_unit": {
+												"func_name": "returnVal",
+												"func_set_name": "BaseFuncSet",
+												"default_params": {
+													"list": [
+														{
+															"param_type": "NullPack",
+															"param": {
+
+															}
+														}
+													]
+												}
+											},
+											"ch_index_list": [
+												null
+											]
+										}
+									]
+								},
+								"param_map": {
+									"map": {
+										"returnVal_0_0": 0
+									}
+								}
+							},
+							"setter_function": {
+								"graph": {
+									"request_params": {
+										"returnVal_0_0": "all"
+									},
+									"node_list": [
+										{
+											"func_unit": {
+												"func_name": "returnVal",
+												"func_set_name": "BaseFuncSet",
+												"default_params": {
+													"list": [
+														{
+															"param_type": "NullPack",
+															"param": {
+
+															}
+														}
+													]
+												}
+											},
+											"ch_index_list": [
+												null
+											]
+										}
+									]
+								},
+								"param_map": {
+									"map": {
+										"returnVal_0_0": 0
+									}
+								}
+							}
+						},
+						"消耗行动点": {
+							"attr_name": "消耗行动点",
+							"attr_type": "Integer",
+							"attr": 1,
+							"getter_function": {
+								"graph": {
+									"request_params": {
+										"returnVal_0_0": "all"
+									},
+									"node_list": [
+										{
+											"func_unit": {
+												"func_name": "returnVal",
+												"func_set_name": "BaseFuncSet",
+												"default_params": {
+													"list": [
+														{
+															"param_type": "NullPack",
+															"param": {
+
+															}
+														}
+													]
+												}
+											},
+											"ch_index_list": [
+												null
+											]
+										}
+									]
+								},
+								"param_map": {
+									"map": {
+										"returnVal_0_0": 0
+									}
+								}
+							},
+							"setter_function": {
+								"graph": {
+									"request_params": {
+										"returnVal_0_0": "all"
+									},
+									"node_list": [
+										{
+											"func_unit": {
+												"func_name": "returnVal",
+												"func_set_name": "BaseFuncSet",
+												"default_params": {
+													"list": [
+														{
+															"param_type": "NullPack",
+															"param": {
+
+															}
+														}
+													]
+												}
+											},
+											"ch_index_list": [
+												null
+											]
+										}
+									]
+								},
+								"param_map": {
+									"map": {
+										"returnVal_0_0": 0
+									}
+								}
+							}
+						}
+					}
+				},
+				"play_condition": {
+					"graph": {
+						"request_params": {
+
+						},
+						"node_list": [
+							{
+								"func_unit": {
+									"func_name": "trueGate",
+									"func_set_name": "BaseConditionSet",
+									"default_params": {
+										"list": [
+
+										]
+									}
+								},
+								"ch_index_list": [
+
+								]
+							}
+						]
+					},
+					"param_map": {
+						"map": {
+
+						}
+					}
+				},
+				"type_flag": {
+					"flag": 1
+				},
+				"effect_func": {
+					"func_name": "",
+					"functions": [
+						{
+							"graph": {
+								"request_params": {
+									"extractAttr_1_0": "Card",
+									"extractAttr_2_0": "Card",
+									"extractAttr_3_0": "Card"
+								},
+								"node_list": [
+									{
+										"func_unit": {
+											"func_name": "minusAttrWithAttrBeforeInt",
+											"func_set_name": "AttrFuncSet",
+											"default_params": {
+												"list": [
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													},
+													{
+														"param_type": "StringPack",
+														"param": {
+															"val": "健康值"
+														}
+													},
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													},
+													{
+														"param_type": "StringPack",
+														"param": {
+															"val": "物理护甲"
+														}
+													},
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													},
+													{
+														"param_type": "StringPack",
+														"param": {
+															"val": "物理攻击"
+														}
+													}
+												]
+											}
+										},
+										"ch_index_list": [
+											1,
+											null,
+											2,
+											null,
+											3,
+											null
+										]
+									},
+									{
+										"func_unit": {
+											"func_name": "extractAttr",
+											"func_set_name": "CardFuncSet",
+											"default_params": {
+												"list": [
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													}
+												]
+											}
+										},
+										"ch_index_list": [
+											null
+										]
+									},
+									{
+										"func_unit": {
+											"func_name": "extractAttr",
+											"func_set_name": "CardFuncSet",
+											"default_params": {
+												"list": [
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													}
+												]
+											}
+										},
+										"ch_index_list": [
+											null
+										]
+									},
+									{
+										"func_unit": {
+											"func_name": "extractAttr",
+											"func_set_name": "CardFuncSet",
+											"default_params": {
+												"list": [
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													}
+												]
+											}
+										},
+										"ch_index_list": [
+											null
+										]
+									}
+								]
+							},
+							"param_map": {
+								"map": {
+									"extractAttr_1_0": 1,
+									"extractAttr_2_0": 2,
+									"extractAttr_3_0": 0
+								}
+							}
+						},
+						{
+							"graph": {
+								"request_params": {
+									"extractAttr_1_0": "Card",
+									"extractAttr_2_0": "Card"
+								},
+								"node_list": [
+									{
+										"func_unit": {
+											"func_name": "minusAttrIntOverride",
+											"func_set_name": "AttrFuncSet",
+											"default_params": {
+												"list": [
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													},
+													{
+														"param_type": "StringPack",
+														"param": {
+															"val": "行动点"
+														}
+													},
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													},
+													{
+														"param_type": "StringPack",
+														"param": {
+															"val": "消耗行动点"
+														}
+													}
+												]
+											}
+										},
+										"ch_index_list": [
+											1,
+											null,
+											2,
+											null
+										]
+									},
+									{
+										"func_unit": {
+											"func_name": "extractAttr",
+											"func_set_name": "CardFuncSet",
+											"default_params": {
+												"list": [
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													}
+												]
+											}
+										},
+										"ch_index_list": [
+											null
+										]
+									},
+									{
+										"func_unit": {
+											"func_name": "extractAttr",
+											"func_set_name": "CardFuncSet",
+											"default_params": {
+												"list": [
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													}
+												]
+											}
+										},
+										"ch_index_list": [
+											null
+										]
+									}
+								]
+							},
+							"param_map": {
+								"map": {
+									"extractAttr_1_0": 0,
+									"extractAttr_2_0": 1
+								}
+							}
+						}
+					],
+					"param_map": {
+						"map": [
+							0,
+							1,
+							1,
+							2,
+							0
+						]
+					},
+					"ret_map": {
+						"map": [
+							0,
+							1
+						]
+					}
+				},
+				"target_condition": {
+					"graph": {
+						"request_params": {
+							"isCardOwnTeam_0_0": "Character",
+							"isCardOwnTeam_0_1": "String"
+						},
+						"node_list": [
+							{
+								"func_unit": {
+									"func_name": "isCardOwnTeam",
+									"func_set_name": "LinearBattleConditionSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											},
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									null,
+									null
+								]
+							}
+						]
+					},
+					"param_map": {
+						"map": {
+							"isCardOwnTeam_0_0": 0,
+							"isCardOwnTeam_0_1": 1
+						}
+					}
+				},
+				"auto_condition": {
+					"graph": {
+						"request_params": {
+
+						},
+						"node_list": [
+							{
+								"func_unit": {
+									"func_name": "falseGate",
+									"func_set_name": "BaseConditionSet",
+									"default_params": {
+										"list": [
+
+										]
+									}
+								},
+								"ch_index_list": [
+
+								]
+							}
+						]
+					},
+					"param_map": {
+						"map": {
+
+						}
+					}
+				},
+				"animation_pack": {
+					"texture_path_list": [
+						"res://asserts/animation/crop/crop1.png",
+						"res://asserts/animation/crop/crop2.png",
+						"res://asserts/animation/crop/crop3.png"
+					],
+					"gap": 3
+				},
+				"audio_pack": {
+					"audio_path": "res://asserts/audio/crop.mp3"
+				}
+			},
+			"copy_count": 0,
+			"revise_function": {
+				"graph": {
+					"request_params": {
+						"returnVal_0_0": "all"
+					},
+					"node_list": [
+						{
+							"func_unit": {
+								"func_name": "returnVal",
+								"func_set_name": "BaseFuncSet",
+								"default_params": {
+									"list": [
+										{
+											"param_type": "NullPack",
+											"param": {
+
+											}
+										}
+									]
+								}
+							},
+							"ch_index_list": [
+								null
+							]
+						}
+					]
+				},
+				"param_map": {
+					"map": {
+						"returnVal_0_0": 0
+					}
+				}
+			}
+		},
+		"SlashSkillCard": {
+			"template_name": "SlashSkillCard",
+			"card_type": "LinearSkillCard",
+			"card_template": {
+				"card_name": "",
+				"avator_name": "slash_card",
+				"introduction": "使出全力重击敌人，造成五点物理伤害",
+				"template_name": "",
+				"card_attr": {
+					"table": {
+						"物理攻击": {
+							"attr_name": "物理攻击",
+							"attr_type": "Integer",
+							"attr": 5,
+							"getter_function": {
+								"graph": {
+									"request_params": {
+										"returnVal_0_0": "all"
+									},
+									"node_list": [
+										{
+											"func_unit": {
+												"func_name": "returnVal",
+												"func_set_name": "BaseFuncSet",
+												"default_params": {
+													"list": [
+														{
+															"param_type": "NullPack",
+															"param": {
+
+															}
+														}
+													]
+												}
+											},
+											"ch_index_list": [
+												null
+											]
+										}
+									]
+								},
+								"param_map": {
+									"map": {
+										"returnVal_0_0": 0
+									}
+								}
+							},
+							"setter_function": {
+								"graph": {
+									"request_params": {
+										"returnVal_0_0": "all"
+									},
+									"node_list": [
+										{
+											"func_unit": {
+												"func_name": "returnVal",
+												"func_set_name": "BaseFuncSet",
+												"default_params": {
+													"list": [
+														{
+															"param_type": "NullPack",
+															"param": {
+
+															}
+														}
+													]
+												}
+											},
+											"ch_index_list": [
+												null
+											]
+										}
+									]
+								},
+								"param_map": {
+									"map": {
+										"returnVal_0_0": 0
+									}
+								}
+							}
+						},
+						"消耗行动点": {
+							"attr_name": "消耗行动点",
+							"attr_type": "Integer",
+							"attr": 3,
+							"getter_function": {
+								"graph": {
+									"request_params": {
+										"returnVal_0_0": "all"
+									},
+									"node_list": [
+										{
+											"func_unit": {
+												"func_name": "returnVal",
+												"func_set_name": "BaseFuncSet",
+												"default_params": {
+													"list": [
+														{
+															"param_type": "NullPack",
+															"param": {
+
+															}
+														}
+													]
+												}
+											},
+											"ch_index_list": [
+												null
+											]
+										}
+									]
+								},
+								"param_map": {
+									"map": {
+										"returnVal_0_0": 0
+									}
+								}
+							},
+							"setter_function": {
+								"graph": {
+									"request_params": {
+										"returnVal_0_0": "all"
+									},
+									"node_list": [
+										{
+											"func_unit": {
+												"func_name": "returnVal",
+												"func_set_name": "BaseFuncSet",
+												"default_params": {
+													"list": [
+														{
+															"param_type": "NullPack",
+															"param": {
+
+															}
+														}
+													]
+												}
+											},
+											"ch_index_list": [
+												null
+											]
+										}
+									]
+								},
+								"param_map": {
+									"map": {
+										"returnVal_0_0": 0
+									}
+								}
+							}
+						}
+					}
+				},
+				"play_condition": {
+					"graph": {
+						"request_params": {
+
+						},
+						"node_list": [
+							{
+								"func_unit": {
+									"func_name": "trueGate",
+									"func_set_name": "BaseConditionSet",
+									"default_params": {
+										"list": [
+
+										]
+									}
+								},
+								"ch_index_list": [
+
+								]
+							}
+						]
+					},
+					"param_map": {
+						"map": {
+
+						}
+					}
+				},
+				"type_flag": {
+					"flag": 1
+				},
+				"effect_func": {
+					"func_name": "",
+					"functions": [
+						{
+							"graph": {
+								"request_params": {
+									"extractAttr_1_0": "Card",
+									"extractAttr_2_0": "Card",
+									"extractAttr_3_0": "Card"
+								},
+								"node_list": [
+									{
+										"func_unit": {
+											"func_name": "minusAttrWithAttrBeforeInt",
+											"func_set_name": "AttrFuncSet",
+											"default_params": {
+												"list": [
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													},
+													{
+														"param_type": "StringPack",
+														"param": {
+															"val": "健康值"
+														}
+													},
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													},
+													{
+														"param_type": "StringPack",
+														"param": {
+															"val": "物理护甲"
+														}
+													},
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													},
+													{
+														"param_type": "StringPack",
+														"param": {
+															"val": "物理攻击"
+														}
+													}
+												]
+											}
+										},
+										"ch_index_list": [
+											1,
+											null,
+											2,
+											null,
+											3,
+											null
+										]
+									},
+									{
+										"func_unit": {
+											"func_name": "extractAttr",
+											"func_set_name": "CardFuncSet",
+											"default_params": {
+												"list": [
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													}
+												]
+											}
+										},
+										"ch_index_list": [
+											null
+										]
+									},
+									{
+										"func_unit": {
+											"func_name": "extractAttr",
+											"func_set_name": "CardFuncSet",
+											"default_params": {
+												"list": [
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													}
+												]
+											}
+										},
+										"ch_index_list": [
+											null
+										]
+									},
+									{
+										"func_unit": {
+											"func_name": "extractAttr",
+											"func_set_name": "CardFuncSet",
+											"default_params": {
+												"list": [
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													}
+												]
+											}
+										},
+										"ch_index_list": [
+											null
+										]
+									}
+								]
+							},
+							"param_map": {
+								"map": {
+									"extractAttr_1_0": 1,
+									"extractAttr_2_0": 2,
+									"extractAttr_3_0": 0
+								}
+							}
+						},
+						{
+							"graph": {
+								"request_params": {
+									"extractAttr_1_0": "Card",
+									"extractAttr_2_0": "Card"
+								},
+								"node_list": [
+									{
+										"func_unit": {
+											"func_name": "minusAttrIntOverride",
+											"func_set_name": "AttrFuncSet",
+											"default_params": {
+												"list": [
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													},
+													{
+														"param_type": "StringPack",
+														"param": {
+															"val": "行动点"
+														}
+													},
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													},
+													{
+														"param_type": "StringPack",
+														"param": {
+															"val": "消耗行动点"
+														}
+													}
+												]
+											}
+										},
+										"ch_index_list": [
+											1,
+											null,
+											2,
+											null
+										]
+									},
+									{
+										"func_unit": {
+											"func_name": "extractAttr",
+											"func_set_name": "CardFuncSet",
+											"default_params": {
+												"list": [
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													}
+												]
+											}
+										},
+										"ch_index_list": [
+											null
+										]
+									},
+									{
+										"func_unit": {
+											"func_name": "extractAttr",
+											"func_set_name": "CardFuncSet",
+											"default_params": {
+												"list": [
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													}
+												]
+											}
+										},
+										"ch_index_list": [
+											null
+										]
+									}
+								]
+							},
+							"param_map": {
+								"map": {
+									"extractAttr_1_0": 0,
+									"extractAttr_2_0": 1
+								}
+							}
+						}
+					],
+					"param_map": {
+						"map": [
+							0,
+							1,
+							1,
+							2,
+							0
+						]
+					},
+					"ret_map": {
+						"map": [
+							0,
+							1
+						]
+					}
+				},
+				"target_condition": {
+					"graph": {
+						"request_params": {
+							"isCardEnemyTeam_0_0": "Character",
+							"isCardEnemyTeam_0_1": "String"
+						},
+						"node_list": [
+							{
+								"func_unit": {
+									"func_name": "isCardEnemyTeam",
+									"func_set_name": "LinearBattleConditionSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											},
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									null,
+									null
+								]
+							}
+						]
+					},
+					"param_map": {
+						"map": {
+							"isCardEnemyTeam_0_0": 0,
+							"isCardEnemyTeam_0_1": 1
+						}
+					}
+				},
+				"auto_condition": {
+					"graph": {
+						"request_params": {
+
+						},
+						"node_list": [
+							{
+								"func_unit": {
+									"func_name": "falseGate",
+									"func_set_name": "BaseConditionSet",
+									"default_params": {
+										"list": [
+
+										]
+									}
+								},
+								"ch_index_list": [
+
+								]
+							}
+						]
+					},
+					"param_map": {
+						"map": {
+
+						}
+					}
+				},
+				"animation_pack": {
+					"texture_path_list": [
+						"res://asserts/animation/crop/crop1.png",
+						"res://asserts/animation/crop/crop2.png",
+						"res://asserts/animation/crop/crop3.png"
+					],
+					"gap": 3
+				},
+				"audio_pack": {
+					"audio_path": "res://asserts/audio/crop.mp3"
+				}
+			},
+			"copy_count": 0,
+			"revise_function": {
+				"graph": {
+					"request_params": {
+						"returnVal_0_0": "all"
+					},
+					"node_list": [
+						{
+							"func_unit": {
+								"func_name": "returnVal",
+								"func_set_name": "BaseFuncSet",
+								"default_params": {
+									"list": [
+										{
+											"param_type": "NullPack",
+											"param": {
+
+											}
+										}
+									]
+								}
+							},
+							"ch_index_list": [
+								null
+							]
+						}
+					]
+				},
+				"param_map": {
+					"map": {
+						"returnVal_0_0": 0
+					}
+				}
+			}
+		},
+		"ShieldSkillCard": {
+			"template_name": "ShieldSkillCard",
+			"card_type": "LinearSkillCard",
+			"card_template": {
+				"card_name": "",
+				"avator_name": "shield_card",
+				"introduction": "举起盾牌抵御攻击，获得四点物护盾",
+				"template_name": "",
+				"card_attr": {
+					"table": {
+						"物理护甲": {
+							"attr_name": "物理护甲",
+							"attr_type": "Integer",
+							"attr": 4,
+							"getter_function": {
+								"graph": {
+									"request_params": {
+										"returnVal_0_0": "all"
+									},
+									"node_list": [
+										{
+											"func_unit": {
+												"func_name": "returnVal",
+												"func_set_name": "BaseFuncSet",
+												"default_params": {
+													"list": [
+														{
+															"param_type": "NullPack",
+															"param": {
+
+															}
+														}
+													]
+												}
+											},
+											"ch_index_list": [
+												null
+											]
+										}
+									]
+								},
+								"param_map": {
+									"map": {
+										"returnVal_0_0": 0
+									}
+								}
+							},
+							"setter_function": {
+								"graph": {
+									"request_params": {
+										"returnVal_0_0": "all"
+									},
+									"node_list": [
+										{
+											"func_unit": {
+												"func_name": "returnVal",
+												"func_set_name": "BaseFuncSet",
+												"default_params": {
+													"list": [
+														{
+															"param_type": "NullPack",
+															"param": {
+
+															}
+														}
+													]
+												}
+											},
+											"ch_index_list": [
+												null
+											]
+										}
+									]
+								},
+								"param_map": {
+									"map": {
+										"returnVal_0_0": 0
+									}
+								}
+							}
+						},
+						"消耗行动点": {
+							"attr_name": "消耗行动点",
+							"attr_type": "Integer",
+							"attr": 3,
+							"getter_function": {
+								"graph": {
+									"request_params": {
+										"returnVal_0_0": "all"
+									},
+									"node_list": [
+										{
+											"func_unit": {
+												"func_name": "returnVal",
+												"func_set_name": "BaseFuncSet",
+												"default_params": {
+													"list": [
+														{
+															"param_type": "NullPack",
+															"param": {
+
+															}
+														}
+													]
+												}
+											},
+											"ch_index_list": [
+												null
+											]
+										}
+									]
+								},
+								"param_map": {
+									"map": {
+										"returnVal_0_0": 0
+									}
+								}
+							},
+							"setter_function": {
+								"graph": {
+									"request_params": {
+										"returnVal_0_0": "all"
+									},
+									"node_list": [
+										{
+											"func_unit": {
+												"func_name": "returnVal",
+												"func_set_name": "BaseFuncSet",
+												"default_params": {
+													"list": [
+														{
+															"param_type": "NullPack",
+															"param": {
+
+															}
+														}
+													]
+												}
+											},
+											"ch_index_list": [
+												null
+											]
+										}
+									]
+								},
+								"param_map": {
+									"map": {
+										"returnVal_0_0": 0
+									}
+								}
+							}
+						}
+					}
+				},
+				"play_condition": {
+					"graph": {
+						"request_params": {
+
+						},
+						"node_list": [
+							{
+								"func_unit": {
+									"func_name": "trueGate",
+									"func_set_name": "BaseConditionSet",
+									"default_params": {
+										"list": [
+
+										]
+									}
+								},
+								"ch_index_list": [
+
+								]
+							}
+						]
+					},
+					"param_map": {
+						"map": {
+
+						}
+					}
+				},
+				"type_flag": {
+					"flag": 1
+				},
+				"effect_func": {
+					"func_name": "",
+					"functions": [
+						{
+							"graph": {
+								"request_params": {
+									"extractAttr_1_0": "Card",
+									"extractAttr_2_0": "Card"
+								},
+								"node_list": [
+									{
+										"func_unit": {
+											"func_name": "plusAttrIntOverride",
+											"func_set_name": "AttrFuncSet",
+											"default_params": {
+												"list": [
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													},
+													{
+														"param_type": "StringPack",
+														"param": {
+															"val": "物理护甲"
+														}
+													},
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													},
+													{
+														"param_type": "StringPack",
+														"param": {
+															"val": "物理护甲"
+														}
+													}
+												]
+											}
+										},
+										"ch_index_list": [
+											1,
+											null,
+											2,
+											null
+										]
+									},
+									{
+										"func_unit": {
+											"func_name": "extractAttr",
+											"func_set_name": "CardFuncSet",
+											"default_params": {
+												"list": [
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													}
+												]
+											}
+										},
+										"ch_index_list": [
+											null
+										]
+									},
+									{
+										"func_unit": {
+											"func_name": "extractAttr",
+											"func_set_name": "CardFuncSet",
+											"default_params": {
+												"list": [
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													}
+												]
+											}
+										},
+										"ch_index_list": [
+											null
+										]
+									}
+								]
+							},
+							"param_map": {
+								"map": {
+									"extractAttr_1_0": 0,
+									"extractAttr_2_0": 1
+								}
+							}
+						},
+						{
+							"graph": {
+								"request_params": {
+									"extractAttr_1_0": "Card",
+									"extractAttr_2_0": "Card"
+								},
+								"node_list": [
+									{
+										"func_unit": {
+											"func_name": "minusAttrIntOverride",
+											"func_set_name": "AttrFuncSet",
+											"default_params": {
+												"list": [
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													},
+													{
+														"param_type": "StringPack",
+														"param": {
+															"val": "行动点"
+														}
+													},
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													},
+													{
+														"param_type": "StringPack",
+														"param": {
+															"val": "消耗行动点"
+														}
+													}
+												]
+											}
+										},
+										"ch_index_list": [
+											1,
+											null,
+											2,
+											null
+										]
+									},
+									{
+										"func_unit": {
+											"func_name": "extractAttr",
+											"func_set_name": "CardFuncSet",
+											"default_params": {
+												"list": [
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													}
+												]
+											}
+										},
+										"ch_index_list": [
+											null
+										]
+									},
+									{
+										"func_unit": {
+											"func_name": "extractAttr",
+											"func_set_name": "CardFuncSet",
+											"default_params": {
+												"list": [
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													}
+												]
+											}
+										},
+										"ch_index_list": [
+											null
+										]
+									}
+								]
+							},
+							"param_map": {
+								"map": {
+									"extractAttr_1_0": 0,
+									"extractAttr_2_0": 1
+								}
+							}
+						}
+					],
+					"param_map": {
+						"map": [
+							2,
+							0,
+							2,
+							0
+						]
+					},
+					"ret_map": {
+						"map": [
+							0,
+							1
+						]
+					}
+				},
+				"target_condition": {
+					"graph": {
+						"request_params": {
+							"isCardOwnTeam_0_0": "Character",
+							"isCardOwnTeam_0_1": "String"
+						},
+						"node_list": [
+							{
+								"func_unit": {
+									"func_name": "isCardOwnTeam",
+									"func_set_name": "LinearBattleConditionSet",
+									"default_params": {
+										"list": [
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											},
+											{
+												"param_type": "NullPack",
+												"param": {
+
+												}
+											}
+										]
+									}
+								},
+								"ch_index_list": [
+									null,
+									null
+								]
+							}
+						]
+					},
+					"param_map": {
+						"map": {
+							"isCardOwnTeam_0_0": 0,
+							"isCardOwnTeam_0_1": 1
+						}
+					}
+				},
+				"auto_condition": {
+					"graph": {
+						"request_params": {
+
+						},
+						"node_list": [
+							{
+								"func_unit": {
+									"func_name": "falseGate",
+									"func_set_name": "BaseConditionSet",
+									"default_params": {
+										"list": [
+
+										]
+									}
+								},
+								"ch_index_list": [
+
+								]
+							}
+						]
+					},
+					"param_map": {
+						"map": {
+
+						}
+					}
+				},
+				"animation_pack": {
+					"texture_path_list": [
+						"res://asserts/animation/crop/crop1.png",
+						"res://asserts/animation/crop/crop2.png",
+						"res://asserts/animation/crop/crop3.png"
+					],
+					"gap": 3
+				},
+				"audio_pack": {
+					"audio_path": "res://asserts/audio/crop.mp3"
 				}
 			},
 			"copy_count": 0,

@@ -28,7 +28,7 @@ func copy():
 
 # play_condition
 func isPlayCondition(card):
-	return play_condition.exec([card])
+	return play_condition.exec([self, card])
 
 func setPlayCondition(play_condition_):
 	play_condition = play_condition_

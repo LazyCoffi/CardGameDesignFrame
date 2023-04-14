@@ -1,0 +1,67 @@
+{
+	"scene_name": "fail_dialog",
+	"scene_model": {
+		"dialog_title": "战斗失败",
+		"dialog_info": "你的团队英勇的战斗，但最终仍被敌人击倒在地，这也意味着你们的旅途和生命都到此位置了",
+		"option_list": [
+			{
+				"option_text": "返回主菜单",
+				"effect_func": {
+					"func_name": "",
+					"functions": [
+						{
+							"graph": {
+								"request_params": {
+									"switchScene_0_0": "Object"
+								},
+								"node_list": [
+									{
+										"func_unit": {
+											"func_name": "switchScene",
+											"func_set_name": "SceneOperFuncSet",
+											"default_params": {
+												"list": [
+													{
+														"param_type": "NullPack",
+														"param": {
+
+														}
+													},
+													{
+														"param_type": "StringPack",
+														"param": {
+															"val": "main_menu"
+														}
+													}
+												]
+											}
+										},
+										"ch_index_list": [
+											null,
+											null
+										]
+									}
+								]
+							},
+							"param_map": {
+								"map": {
+									"switchScene_0_0": 0
+								}
+							}
+						}
+					],
+					"param_map": {
+						"map": [
+							0
+						]
+					},
+					"ret_map": {
+						"map": [
+							0
+						]
+					}
+				}
+			}
+		]
+	}
+}

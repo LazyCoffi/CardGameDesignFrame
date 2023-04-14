@@ -29,6 +29,18 @@ func isGreaterEqualInt(attr, attr_name, val):
 func isGreaterEqualFloat(attr, attr_name, val):
 	return __isGreaterEqual(attr, attr_name, val)
 
+func isAttrLessInt(first, first_name, second, second_name):
+	return first.getAttr(first_name) < second.getAttr(second_name)
+
+func isAttrLessEqualInt(first, first_name, second, second_name):
+	return first.getAttr(first_name) <= second.getAttr(second_name)
+
+func isAttrGreaterInt(first, first_name, second, second_name):
+	return first.getAttr(first_name) > second.getAttr(second_name)
+
+func isAttrGreaterEqualInt(first, first_name, second, second_name):
+	return first.getAttr(first_name) >= second.getAttr(second_name)
+
 func isEqual(attr, attr_name, val):
 	return attr.getAttr(attr_name) == val
 	
@@ -53,3 +65,7 @@ func __initFuncForm():
 	addFuncForm("isLessEqualFloat", "bool", ["Attr", "String", "float"])
 	addFuncForm("isGreaterEqualInt", "bool", ["Attr", "String", "int"])
 	addFuncForm("isGreaterEqualFloat", "bool", ["Attr", "String", "float"])
+	addFuncForm("isAttrLessEqualInt", "bool", ["Attr", "String", "Attr", "String"])
+	addFuncForm("isAttrLessEqualFloat", "bool", ["Attr", "String", "Attr", "String"])
+	addFuncForm("isAttrGreaterEqualInt", "bool", ["Attr", "String", "Attr", "String"])
+	addFuncForm("isAttrGreaterEqualFloat", "bool", ["Attr", "String", "Attr", "String"])

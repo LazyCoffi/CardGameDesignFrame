@@ -49,6 +49,7 @@ func playCardAt(param_list, card_pile, index):
 func playCardByName(param_list, card_pile, card_name):
 	for card in card_slot:
 		if card.getCardName() == card_name:
+			param_list.push_front(card)
 			card.exec(param_list)
 			card.afterPlayDiscard(card_pile, card_slot)
 	
