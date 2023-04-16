@@ -39,6 +39,17 @@
 			"type" : "LinearBattleScene",
 			"scene_name" : "demo1",
 			"is_complete" : true
-		}
+		},
+		"victory_dialog" : {
+			"type" : "DialogScene",
+			"scene_name" : "victory_dialog",
+			"is_complete" : true
+		},
+		"fail_dialog" : {
+			"type" : "DialogScene",
+			"scene_name" : "fail_dialog",
+			"is_complete" : true
+		},
+
 	}
 }

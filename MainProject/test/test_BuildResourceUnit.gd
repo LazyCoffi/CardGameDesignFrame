@@ -62,12 +62,12 @@ func test_buildResourceUnit():
 	resource_unit.addTexture("global", "avator", "main_character", "res://asserts/avator/white_hair.png")
 	resource_unit.addTexture("global", "avator", "enemy_character", "res://asserts/avator/purple_hair.png")
 	resource_unit.addTexture("global", "avator", "attack_card", "res://asserts/avator/knight.png")
-	resource_unit.addTexture("global", "avator", "crop_card", "res://asserts/avator/knight.png")
-	resource_unit.addTexture("global", "avator", "stab_card", "res://asserts/avator/knight.png")
+	resource_unit.addTexture("global", "avator", "crop_card", "res://asserts/avator/crop.png")
+	resource_unit.addTexture("global", "avator", "stab_card", "res://asserts/avator/stab.png")
 	resource_unit.addTexture("global", "avator", "knight_character", "res://asserts/avator/white_knight.png")
 	resource_unit.addTexture("global", "avator", "robber_character", "res://asserts/avator/robber.png")
-	resource_unit.addTexture("global", "avator", "slash_card", "res://asserts/avator/princess.png")
-	resource_unit.addTexture("global", "avator", "shield_card", "res://asserts/avator/witch.png")
+	resource_unit.addTexture("global", "avator", "slash_card", "res://asserts/avator/slash.png")
+	resource_unit.addTexture("global", "avator", "shield_card", "res://asserts/avator/shield.png")
 
 	# sub_menu
 	resource_unit.addTexture("sub_menu", "sub_menu", "background_rect", "res://asserts/sub_menu/sub_menu_frame.png")
@@ -167,6 +167,28 @@ func test_buildResourceUnit():
 	resource_unit.addColorByName("test_dialog", "test_dialog", "option_font_color", "#1c1914")
 	resource_unit.addTexture("test_dialog", "test_dialog", "option_button", "res://asserts/test_dialog/DialogOptionButton.png")
 
+	# victory_dialog
+	resource_unit.addTexture("victory_dialog", "victory_dialog", "dialog_frame", "res://asserts/test_dialog/DialogFrame.png")
+	resource_unit.addFont("victory_dialog", "victory_dialog", "title_font", "res://asserts/ttf/SourceHanSansSC-Bold.otf", 48)
+	resource_unit.addColorByName("victory_dialog", "victory_dialog", "title_font_color", "#1c1914")
+	resource_unit.addTexture("victory_dialog", "victory_dialog", "dialog_pic", "res://asserts/test_dialog/pic.jpg")
+	resource_unit.addFont("victory_dialog", "victory_dialog", "info_font", "res://asserts/ttf/SourceHanSansSC-Bold.otf", 24)
+	resource_unit.addColorByName("victory_dialog", "victory_dialog", "info_font_color", "#1c1914")
+	resource_unit.addFont("victory_dialog", "victory_dialog", "option_font", "res://asserts/ttf/SourceHanSansSC-Bold.otf", 24)
+	resource_unit.addColorByName("victory_dialog", "victory_dialog", "option_font_color", "#1c1914")
+	resource_unit.addTexture("victory_dialog", "victory_dialog", "option_button", "res://asserts/test_dialog/DialogOptionButton.png")
+
+	# fail_dialog
+	resource_unit.addTexture("fail_dialog", "fail_dialog", "dialog_frame", "res://asserts/test_dialog/DialogFrame.png")
+	resource_unit.addFont("fail_dialog", "fail_dialog", "title_font", "res://asserts/ttf/SourceHanSansSC-Bold.otf", 48)
+	resource_unit.addColorByName("fail_dialog", "fail_dialog", "title_font_color", "#1c1914")
+	resource_unit.addTexture("fail_dialog", "fail_dialog", "dialog_pic", "res://asserts/test_dialog/pic.jpg")
+	resource_unit.addFont("fail_dialog", "fail_dialog", "info_font", "res://asserts/ttf/SourceHanSansSC-Bold.otf", 24)
+	resource_unit.addColorByName("fail_dialog", "fail_dialog", "info_font_color", "#1c1914")
+	resource_unit.addFont("fail_dialog", "fail_dialog", "option_font", "res://asserts/ttf/SourceHanSansSC-Bold.otf", 24)
+	resource_unit.addColorByName("fail_dialog", "fail_dialog", "option_font_color", "#1c1914")
+	resource_unit.addTexture("fail_dialog", "fail_dialog", "option_button", "res://asserts/test_dialog/DialogOptionButton.png")
+	
 	# demo1
 	resource_unit.addFont("demo1", "demo1", "view_attr_font", "res://asserts/ttf/SourceHanSansSC-Bold.otf", 18)
 	resource_unit.addColorByName("demo1", "demo1", "view_attr_font_color", "#1c1914")

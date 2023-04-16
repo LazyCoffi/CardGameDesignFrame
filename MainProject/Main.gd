@@ -25,6 +25,7 @@ func __initUnit():
 func __gameStart():
 	Logger.log("Game start! Switch to the first scene.")
 	var init_scene_name = GlobalSetting.getInitSceneName()
+	AudioPlayer.playBgm("res://asserts/audio/bgm.mp3")
 	$SceneDispatcher.switch(init_scene_name)
 
 func quit():

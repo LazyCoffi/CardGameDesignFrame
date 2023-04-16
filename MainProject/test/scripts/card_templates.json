@@ -4209,7 +4209,7 @@
 						"健康值": {
 							"attr_name": "健康值",
 							"attr_type": "Integer",
-							"attr": 8,
+							"attr": 4,
 							"getter_function": {
 								"graph": {
 									"request_params": {
@@ -4280,7 +4280,7 @@
 						"物理护甲": {
 							"attr_name": "物理护甲",
 							"attr_type": "Integer",
-							"attr": 4,
+							"attr": 0,
 							"getter_function": {
 								"graph": {
 									"request_params": {
@@ -5304,11 +5304,10 @@
 				},
 				"animation_pack": {
 					"texture_path_list": [
-						"res://asserts/animation/crop/crop1.png",
-						"res://asserts/animation/crop/crop2.png",
-						"res://asserts/animation/crop/crop3.png"
+						"res://asserts/animation/stab/1.png",
+						"res://asserts/animation/stab/2.png"
 					],
-					"gap": 3
+					"gap": 2
 				},
 				"audio_pack": {
 					"audio_path": "res://asserts/audio/crop.mp3"
@@ -5849,9 +5848,11 @@
 				},
 				"animation_pack": {
 					"texture_path_list": [
-						"res://asserts/animation/crop/crop1.png",
-						"res://asserts/animation/crop/crop2.png",
-						"res://asserts/animation/crop/crop3.png"
+						"res://asserts/animation/slash/1.png",
+						"res://asserts/animation/slash/2.png",
+						"res://asserts/animation/slash/3.png",
+						"res://asserts/animation/slash/4.png",
+						"res://asserts/animation/slash/5.png"
 					],
 					"gap": 3
 				},
@@ -6358,14 +6359,20 @@
 				},
 				"animation_pack": {
 					"texture_path_list": [
-						"res://asserts/animation/crop/crop1.png",
-						"res://asserts/animation/crop/crop2.png",
-						"res://asserts/animation/crop/crop3.png"
+						"res://asserts/animation/shield/1.png",
+						"res://asserts/animation/shield/2.png",
+						"res://asserts/animation/shield/3.png",
+						"res://asserts/animation/shield/4.png",
+						"res://asserts/animation/shield/5.png",
+						"res://asserts/animation/shield/6.png",
+						"res://asserts/animation/shield/7.png",
+						"res://asserts/animation/shield/8.png",
+						"res://asserts/animation/shield/9.png"
 					],
-					"gap": 3
+					"gap": 5
 				},
 				"audio_pack": {
-					"audio_path": "res://asserts/audio/crop.mp3"
+					"audio_path": "res://asserts/audio/heal.mp3"
 				}
 			},
 			"copy_count": 0,

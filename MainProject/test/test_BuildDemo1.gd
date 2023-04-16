@@ -246,9 +246,9 @@ func __buildDummyFunction():
 
 func __buildVictoryFunction():
 	var switch_node = FuncGraphNode.new()
-	switch_node.setFunc("SceneOperFuncSet", "switchScene")
+	switch_node.setFunc("SceneOperFuncSet", "pushScene")
 	var scene_pack = StringPack.new()
-	scene_pack.setVal("fail_event")
+	scene_pack.setVal("victory_dialog")
 	switch_node.setDefaultParam("StringPack", scene_pack, 1)
 
 	var graph = FuncGraph.new()
@@ -265,9 +265,9 @@ func __buildVictoryFunction():
 	
 func __buildFailFunction():
 	var switch_node = FuncGraphNode.new()
-	switch_node.setFunc("SceneOperFuncSet", "switchScene")
+	switch_node.setFunc("SceneOperFuncSet", "pushScene")
 	var scene_pack = StringPack.new()
-	scene_pack.setVal("fail_event")
+	scene_pack.setVal("fail_dialog")
 	switch_node.setDefaultParam("StringPack", scene_pack, 1)
 
 	var graph = FuncGraph.new()

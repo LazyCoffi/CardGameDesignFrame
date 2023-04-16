@@ -795,11 +795,10 @@ func __buildStabHyperFunction():
 func __buildStabAnimation():
 	var animation_pack = AnimationPack.new()
 
-	animation_pack.addTexturePath("res://asserts/animation/crop/crop1.png")
-	animation_pack.addTexturePath("res://asserts/animation/crop/crop2.png")
-	animation_pack.addTexturePath("res://asserts/animation/crop/crop3.png")
+	animation_pack.addTexturePath("res://asserts/animation/stab/1.png")
+	animation_pack.addTexturePath("res://asserts/animation/stab/2.png")
 
-	animation_pack.setGap(3)
+	animation_pack.setGap(2)
 
 	return animation_pack
 
@@ -933,10 +932,11 @@ func __buildSlashHyperFunction():
 func __buildSlashAnimation():
 	var animation_pack = AnimationPack.new()
 
-	animation_pack.addTexturePath("res://asserts/animation/crop/crop1.png")
-	animation_pack.addTexturePath("res://asserts/animation/crop/crop2.png")
-	animation_pack.addTexturePath("res://asserts/animation/crop/crop3.png")
-
+	animation_pack.addTexturePath("res://asserts/animation/slash/1.png")
+	animation_pack.addTexturePath("res://asserts/animation/slash/2.png")
+	animation_pack.addTexturePath("res://asserts/animation/slash/3.png")
+	animation_pack.addTexturePath("res://asserts/animation/slash/4.png")
+	animation_pack.addTexturePath("res://asserts/animation/slash/5.png")
 	animation_pack.setGap(3)
 
 	return animation_pack
@@ -1054,18 +1054,23 @@ func __buildShieldHyperFunction():
 func __buildShieldAnimation():
 	var animation_pack = AnimationPack.new()
 
-	animation_pack.addTexturePath("res://asserts/animation/crop/crop1.png")
-	animation_pack.addTexturePath("res://asserts/animation/crop/crop2.png")
-	animation_pack.addTexturePath("res://asserts/animation/crop/crop3.png")
-
-	animation_pack.setGap(3)
+	animation_pack.addTexturePath("res://asserts/animation/shield/1.png")
+	animation_pack.addTexturePath("res://asserts/animation/shield/2.png")
+	animation_pack.addTexturePath("res://asserts/animation/shield/3.png")
+	animation_pack.addTexturePath("res://asserts/animation/shield/4.png")
+	animation_pack.addTexturePath("res://asserts/animation/shield/5.png")
+	animation_pack.addTexturePath("res://asserts/animation/shield/6.png")
+	animation_pack.addTexturePath("res://asserts/animation/shield/7.png")
+	animation_pack.addTexturePath("res://asserts/animation/shield/8.png")
+	animation_pack.addTexturePath("res://asserts/animation/shield/9.png")
+	animation_pack.setGap(5)
 
 	return animation_pack
 
 func __buildShieldAudio():
 	var audio_pack = AudioPack.new()
 
-	audio_pack.setAudioPath("res://asserts/audio/crop.mp3")
+	audio_pack.setAudioPath("res://asserts/audio/heal.mp3")
 	
 	return audio_pack
 
@@ -1291,8 +1296,8 @@ func __addRobberCharacterAttr(card):
 	card.setCardAttr(attr)
 
 func __setRobberCharacterAttr(card):
-	card.setAttr("健康值", 8)
-	card.setAttr("物理护甲", 4)
+	card.setAttr("健康值", 4)
+	card.setAttr("物理护甲", 0)
 	card.setAttr("行动点", 0)
 	card.setAttr("手牌上限", 2)
 

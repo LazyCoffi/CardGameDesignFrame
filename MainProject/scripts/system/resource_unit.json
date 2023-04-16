@@ -592,92 +592,172 @@
 				]
 			}
 		},
-		"demo1": {
-			"demo1": {
-				"view_attr_font": [
+		"victory_dialog": {
+			"victory_dialog": {
+				"dialog_frame": [
 					121,
-					"FontNode"
+					"TextureNode"
 				],
-				"view_attr_font_color": [
+				"title_font": [
 					122,
-					"ColorNode"
-				],
-				"view_introduction_font": [
-					123,
 					"FontNode"
 				],
-				"view_introduction_font_color": [
-					124,
+				"title_font_color": [
+					123,
 					"ColorNode"
 				],
-				"attr_next_button": [
+				"dialog_pic": [
+					124,
+					"TextureNode"
+				],
+				"info_font": [
 					125,
-					"TextureNode"
+					"FontNode"
 				],
-				"attr_pre_button": [
+				"info_font_color": [
 					126,
-					"TextureNode"
+					"ColorNode"
 				],
-				"view_attr_entry": [
+				"option_font": [
 					127,
-					"TextureNode"
+					"FontNode"
 				],
-				"view_frame": [
+				"option_font_color": [
 					128,
-					"TextureNode"
+					"ColorNode"
 				],
-				"attr_frame": [
+				"option_button": [
 					129,
 					"TextureNode"
-				],
-				"introduction_frame": [
+				]
+			}
+		},
+		"fail_dialog": {
+			"fail_dialog": {
+				"dialog_frame": [
 					130,
 					"TextureNode"
 				],
-				"character_card_frame": [
+				"title_font": [
 					131,
-					"TextureNode"
+					"FontNode"
 				],
-				"hand_card_frame": [
+				"title_font_color": [
 					132,
-					"TextureNode"
+					"ColorNode"
 				],
-				"background": [
+				"dialog_pic": [
 					133,
 					"TextureNode"
 				],
-				"next_round_button": [
+				"info_font": [
 					134,
+					"FontNode"
+				],
+				"info_font_color": [
+					135,
+					"ColorNode"
+				],
+				"option_font": [
+					136,
+					"FontNode"
+				],
+				"option_font_color": [
+					137,
+					"ColorNode"
+				],
+				"option_button": [
+					138,
+					"TextureNode"
+				]
+			}
+		},
+		"demo1": {
+			"demo1": {
+				"view_attr_font": [
+					139,
+					"FontNode"
+				],
+				"view_attr_font_color": [
+					140,
+					"ColorNode"
+				],
+				"view_introduction_font": [
+					141,
+					"FontNode"
+				],
+				"view_introduction_font_color": [
+					142,
+					"ColorNode"
+				],
+				"attr_next_button": [
+					143,
+					"TextureNode"
+				],
+				"attr_pre_button": [
+					144,
+					"TextureNode"
+				],
+				"view_attr_entry": [
+					145,
+					"TextureNode"
+				],
+				"view_frame": [
+					146,
+					"TextureNode"
+				],
+				"attr_frame": [
+					147,
+					"TextureNode"
+				],
+				"introduction_frame": [
+					148,
+					"TextureNode"
+				],
+				"character_card_frame": [
+					149,
+					"TextureNode"
+				],
+				"hand_card_frame": [
+					150,
+					"TextureNode"
+				],
+				"background": [
+					151,
+					"TextureNode"
+				],
+				"next_round_button": [
+					152,
 					"TextureNode"
 				],
 				"next_round_button_hover": [
-					135,
+					153,
 					"TextureNode"
 				],
 				"sub_menu_entry_btn": [
-					136,
+					154,
 					"TextureNode"
 				],
 				"action_character_mark": [
-					140,
+					158,
 					"TextureNode"
 				],
 				"chosen_hand_card_mark": [
-					141,
+					159,
 					"TextureNode"
 				]
 			},
 			"NextRoundButtonText": {
 				"font": [
-					137,
+					155,
 					"FontNode"
 				],
 				"font_color": [
-					138,
+					156,
 					"ColorNode"
 				],
 				"font_text": [
-					139,
+					157,
 					"TextNode"
 				]
 			}
@@ -1024,13 +1104,13 @@
 			"r_name": "attack_card"
 		},
 		{
-			"texture_path": "res://asserts/avator/knight.png",
+			"texture_path": "res://asserts/avator/crop.png",
 			"s_name": "global",
 			"c_name": "avator",
 			"r_name": "crop_card"
 		},
 		{
-			"texture_path": "res://asserts/avator/knight.png",
+			"texture_path": "res://asserts/avator/stab.png",
 			"s_name": "global",
 			"c_name": "avator",
 			"r_name": "stab_card"
@@ -1048,13 +1128,13 @@
 			"r_name": "robber_character"
 		},
 		{
-			"texture_path": "res://asserts/avator/princess.png",
+			"texture_path": "res://asserts/avator/slash.png",
 			"s_name": "global",
 			"c_name": "avator",
 			"r_name": "slash_card"
 		},
 		{
-			"texture_path": "res://asserts/avator/witch.png",
+			"texture_path": "res://asserts/avator/shield.png",
 			"s_name": "global",
 			"c_name": "avator",
 			"r_name": "shield_card"
@@ -1632,6 +1712,168 @@
 			"texture_path": "res://asserts/test_dialog/DialogOptionButton.png",
 			"s_name": "test_dialog",
 			"c_name": "test_dialog",
+			"r_name": "option_button"
+		},
+		{
+			"texture_path": "res://asserts/test_dialog/DialogFrame.png",
+			"s_name": "victory_dialog",
+			"c_name": "victory_dialog",
+			"r_name": "dialog_frame"
+		},
+		{
+			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+			"font_size": 48,
+			"s_name": "victory_dialog",
+			"c_name": "victory_dialog",
+			"r_name": "title_font"
+		},
+		{
+			"color_name": "#1c1914",
+			"rgba_int": 0,
+			"rgb": [
+
+			],
+			"rgba": [
+
+			],
+			"type": 0,
+			"s_name": "victory_dialog",
+			"c_name": "victory_dialog",
+			"r_name": "title_font_color"
+		},
+		{
+			"texture_path": "res://asserts/test_dialog/pic.jpg",
+			"s_name": "victory_dialog",
+			"c_name": "victory_dialog",
+			"r_name": "dialog_pic"
+		},
+		{
+			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+			"font_size": 24,
+			"s_name": "victory_dialog",
+			"c_name": "victory_dialog",
+			"r_name": "info_font"
+		},
+		{
+			"color_name": "#1c1914",
+			"rgba_int": 0,
+			"rgb": [
+
+			],
+			"rgba": [
+
+			],
+			"type": 0,
+			"s_name": "victory_dialog",
+			"c_name": "victory_dialog",
+			"r_name": "info_font_color"
+		},
+		{
+			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+			"font_size": 24,
+			"s_name": "victory_dialog",
+			"c_name": "victory_dialog",
+			"r_name": "option_font"
+		},
+		{
+			"color_name": "#1c1914",
+			"rgba_int": 0,
+			"rgb": [
+
+			],
+			"rgba": [
+
+			],
+			"type": 0,
+			"s_name": "victory_dialog",
+			"c_name": "victory_dialog",
+			"r_name": "option_font_color"
+		},
+		{
+			"texture_path": "res://asserts/test_dialog/DialogOptionButton.png",
+			"s_name": "victory_dialog",
+			"c_name": "victory_dialog",
+			"r_name": "option_button"
+		},
+		{
+			"texture_path": "res://asserts/test_dialog/DialogFrame.png",
+			"s_name": "fail_dialog",
+			"c_name": "fail_dialog",
+			"r_name": "dialog_frame"
+		},
+		{
+			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+			"font_size": 48,
+			"s_name": "fail_dialog",
+			"c_name": "fail_dialog",
+			"r_name": "title_font"
+		},
+		{
+			"color_name": "#1c1914",
+			"rgba_int": 0,
+			"rgb": [
+
+			],
+			"rgba": [
+
+			],
+			"type": 0,
+			"s_name": "fail_dialog",
+			"c_name": "fail_dialog",
+			"r_name": "title_font_color"
+		},
+		{
+			"texture_path": "res://asserts/test_dialog/pic.jpg",
+			"s_name": "fail_dialog",
+			"c_name": "fail_dialog",
+			"r_name": "dialog_pic"
+		},
+		{
+			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+			"font_size": 24,
+			"s_name": "fail_dialog",
+			"c_name": "fail_dialog",
+			"r_name": "info_font"
+		},
+		{
+			"color_name": "#1c1914",
+			"rgba_int": 0,
+			"rgb": [
+
+			],
+			"rgba": [
+
+			],
+			"type": 0,
+			"s_name": "fail_dialog",
+			"c_name": "fail_dialog",
+			"r_name": "info_font_color"
+		},
+		{
+			"font_path": "res://asserts/ttf/SourceHanSansSC-Bold.otf",
+			"font_size": 24,
+			"s_name": "fail_dialog",
+			"c_name": "fail_dialog",
+			"r_name": "option_font"
+		},
+		{
+			"color_name": "#1c1914",
+			"rgba_int": 0,
+			"rgb": [
+
+			],
+			"rgba": [
+
+			],
+			"type": 0,
+			"s_name": "fail_dialog",
+			"c_name": "fail_dialog",
+			"r_name": "option_font_color"
+		},
+		{
+			"texture_path": "res://asserts/test_dialog/DialogOptionButton.png",
+			"s_name": "fail_dialog",
+			"c_name": "fail_dialog",
 			"r_name": "option_button"
 		},
 		{
